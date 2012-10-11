@@ -8,15 +8,57 @@
 
 #import "AppDelegate.h"
 
+// Master
+#import "MasterViewController.h"
+
+// Default Views
+#import "MenuViewController.h"
+#import "HubViewController.h"
+
+// Singletons
+#import "GameManager.h"
+#import "SimpleAudioEngine.h"
+
 @implementation AppDelegate
+
+@synthesize window = _window;
+@synthesize viewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Initalise Game Manager
+    [GameManager sharedInstance];
+    
+    // Initialise Default Views for Master
+    MenuViewController* menuViewController = [[MenuViewController alloc] init];
+    HubViewController* hubViewController = [[HubViewController alloc] init];
+    
+    // Create Navigation Controller from Hub - See HubViewController for Explanation (ZUUIReveal)
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:hubViewController];
+    
+    // Master Controller
+    MasterViewController* masterViewController = [[MasterViewController alloc] initWithFrontViewController:navigationController rearViewController:menuViewController];
+    self.viewController = masterViewController;
+    
+    [[GameManager sharedInstance] setView:masterViewController];
+
+    
     // Override point for customization after application launch.
+    self.window.rootViewController = self.viewController; // Set Master
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    // Initialise Sound Engine
+    //[CDSoundEngine setMixerSampleRate:32000];
+	//[SimpleAudioEngine sharedEngine];
+    
+    // Authenticate
+    [[GameManager sharedInstance] authenticate];
+    
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
