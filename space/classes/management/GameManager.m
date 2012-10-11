@@ -90,9 +90,10 @@
         [self makeRequest:URI_PLAYER setPostDictionary:_authDict setBlock:^(NSDictionary *jsonDict) {
             // Store Player Information
             _playerDict = [jsonDict objectForKey:@"player"];
+            [_playerDict setObject:[jsonDict objectForKey:@"time"] forKey:@"time"];
             CCLOG(@"_playerDict: %@",_playerDict);
             
-            actionBlock(jsonDict);
+            actionBlock(_playerDict);
         } setBlockFail:nil];
         
     }]];
@@ -170,15 +171,15 @@
 
             if([[JSON objectForKey:@"error_code"] integerValue]==1)
             { // Soft Issue (ReAuthentication Required)
+                CCLOG(@"Re-Authentication Required: Invalid Session");
                 [self authenticate];
                 // ReQueue Failed Request
-                
             } else {
               // UnKnown Issue
                 [self apiError:[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]];
             }
         } else {
-            CCLOG(@"Response Success:%@",JSON);
+            //CCLOG(@"Response Success:%@",JSON);
             responseBlock(JSON);
         }
         

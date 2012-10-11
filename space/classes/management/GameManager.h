@@ -8,7 +8,7 @@
 
 // Console Logging Macro
 #ifdef DEBUG
-#   define CCLOG(fmt, ...) NSLog((@"%s " fmt), __PRETTY_FUNCTION__, ##__VA_ARGS__);
+#   define CCLOG(fmt, ...) NSLog(fmt, ##__VA_ARGS__);
 #else
 #   define CCLOG(...)
 #endif
