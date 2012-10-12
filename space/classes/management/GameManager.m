@@ -43,7 +43,7 @@
         // Initialise NSOperation Queue
         _requestQueue        = [[NSOperationQueue alloc] init];
         _requestSuspendQueue = [[NSOperationQueue alloc] init];
-        [_requestQueue setMaxConcurrentOperationCount:2]; // Concurrent Requests
+        [_requestQueue setMaxConcurrentOperationCount:1]; // Concurrent Requests
         [_requestSuspendQueue setMaxConcurrentOperationCount:2]; // Concurrent Requests
         
         // API Data Object
@@ -52,7 +52,7 @@
         
         // Authorisation
         _eAuthenticationState = eAuthenticationNone;
-        _retry                = 1;
+        _countdown            = HOST_RETRY;
         
         // Device UUID
         [self setDeviceUUID:[self getDeviceID]];
@@ -85,12 +85,24 @@
 -(void) refreshPlayer:(ResponseBlock) actionBlock
 {
     
+    // Check Existing Time
+    if([_playerDict objectForKey:@"time"])
+    {
+        // Check Last Update
+        //CCLOG(@"Last Player Refresh: %f",[[_playerDict objectForKey:@"time"] doubleValue]);
+        //CCLOG(@"Current UTC: %f",[[NSDate date] timeIntervalSince1970]);
+        if(([[_playerDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
+        {
+            actionBlock(_playerDict);
+            return;
+        }
+    }
+    
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
-        [self makeRequest:URI_PLAYER setPostDictionary:_authDict setBlock:^(NSDictionary *jsonDict) {
+        [self makeRequest:URI_PLAYER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             // Store Player Information
-            _playerDict = [jsonDict objectForKey:@"player"];
-            [_playerDict setObject:[jsonDict objectForKey:@"time"] forKey:@"time"];
+            [_playerDict setDictionary:jsonDict];
             CCLOG(@"_playerDict: %@",_playerDict);
             
             actionBlock(_playerDict);
@@ -103,8 +115,12 @@
 -(void) authenticate
 {
 
-    // Progress Indicator
-    [DejalBezelActivityView activityViewForView:_view.view withLabel:[NSString stringWithFormat:@"Authenticating\nAttempt: %d",_retry]];
+    // Progress Indicator (Add If Not Present)
+    if(![DejalActivityView currentActivityView]) {
+        [DejalBezelActivityView activityViewForView:_view.view withLabel:[NSString stringWithFormat:@"Connecting..."] width:200];
+    } else {
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connecting..."];
+    }
     
     // Create DATA Dictionary
     NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -119,24 +135,37 @@
         
         // Store Authentication Information
         _authDict = [jsonDict objectForKey:@"session"];
-         CCLOG(@"_authDict: %@",_authDict);
         
         // Dismiss Bezel / Flag Authenticated / Resume Secondary Queue
         [DejalBezelActivityView removeViewAnimated:YES];
         _eAuthenticationState = eAuthenticationOK;
         [_requestSuspendQueue setSuspended:NO]; // Release Pending Requests
-        _retry = 1; // Reset Counter
+        
     } setBlockFail:^{
         // Authentication Failure
         _eAuthenticationState = eAuthenticationNone;
-        _retry++;
-        [DejalBezelActivityView activityViewForView:_view.view withLabel:[NSString stringWithFormat:@"Authentication\nRetry in %d seconds",HOST_RETRY]];
-        [self performSelector:@selector(authenticate) withObject:nil afterDelay:HOST_RETRY];
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connection Problem\nWill try again."];
+        [self performSelector:@selector(countDown) withObject:nil afterDelay:HOST_RETRY];
     }];
     
     // Auth In Progress (Queue Additional Requests)
     _eAuthenticationState = eAuthenticationInProgress;
     [_requestSuspendQueue setSuspended:YES];
+}
+
+-(void) countDown
+{
+    _countdown--;
+    [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Retry in %d seconds",_countdown];
+    
+    // Next Auth Attempt
+    if(_countdown<=0)
+    {
+        _countdown  = HOST_RETRY;
+        [self performSelector:@selector(authenticate) withObject:nil];
+    } else {
+        [self performSelector:@selector(countDown) withObject:nil afterDelay:1];
+    }
 }
 
 #pragma mark Internal API Methods
@@ -146,8 +175,18 @@
     // Request URL
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:(@"%@%@"),HOST_NAME,URI]];
     
+    // Add Authentication Data
+    NSMutableDictionary *completeDict = [[NSMutableDictionary alloc] init];
+    [completeDict addEntriesFromDictionary:postDict];
+    
+    // If Authenticated / Add Data
+    if(_eAuthenticationState==eAuthenticationOK)
+    {
+        [completeDict addEntriesFromDictionary:_authDict];
+    }
+    
     // Create JSON (From Post Dictionary) 
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:completeDict
                                                        options:NSJSONWritingPrettyPrinted error:nil];
     
     // Convert UTF-8 String
@@ -173,7 +212,11 @@
             { // Soft Issue (ReAuthentication Required)
                 CCLOG(@"Re-Authentication Required: Invalid Session");
                 [self authenticate];
+                
                 // ReQueue Failed Request
+                [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+                    [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
+                }]];
             } else {
               // UnKnown Issue
                 [self apiError:[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]];
@@ -182,6 +225,8 @@
             //CCLOG(@"Response Success:%@",JSON);
             responseBlock(JSON);
         }
+        
+        [self cancelRefresh]; // Just In Case
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         
@@ -202,10 +247,14 @@
 // General API Error Handler
 -(void) apiError:(NSString*) errorDescription
 {
+    ALOG(@"%@",errorDescription);
+    [self cancelRefresh];
+}
+
+-(void) cancelRefresh
+{
     // Cancel Refresh Pull Down
     [(PullToRefreshView *)[_view.view viewWithTag:TAG_PULL] performSelector:@selector(finishedLoading) withObject:nil];
-    
-    ALOG(@"%@",errorDescription);
 }
 
 @end

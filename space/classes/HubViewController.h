@@ -16,5 +16,6 @@
 
 // Outlets
 @property (nonatomic) IBOutlet UILabel *labelServerTime;
+@property (nonatomic) IBOutlet UILabel *labelPlayerName;
 
 @end

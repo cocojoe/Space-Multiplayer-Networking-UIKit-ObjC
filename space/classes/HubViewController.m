@@ -117,11 +117,18 @@
    
     [[GameManager sharedInstance] refreshPlayer:^(NSDictionary *jsonDict){
         
-        // Update Label
+        // Update View
+        
+        // Format Time
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[jsonDict objectForKey:@"time"] doubleValue]];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy'-'MM'-'dd HH':'mm':'ss"];
+        
+        NSDictionary *playerDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"player"]];
+        
+        // Labels
         _labelServerTime.text = [dateFormat stringFromDate:date];
+        _labelPlayerName.text = [playerDict objectForKey:@"name"];
         
         // Complete Pull To Refresh
         [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] finishedLoading];

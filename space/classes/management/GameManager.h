@@ -38,6 +38,9 @@ typedef void (^BasicBlock)          ();
 #define URI_AUTH        (@"/api/auth/")
 #define URI_PLAYER      (@"/api/player/")
 
+// Simple Caching / Request Spam
+#define API_CACHE_TIME  10
+
 enum eAuthenticationState {
     eAuthenticationNone,
     eAuthenticationInProgress,
@@ -52,7 +55,7 @@ enum eAuthenticationState {
     
     // Authentication Monitoring
     enum eAuthenticationState _eAuthenticationState;
-    uint    _retry;
+    uint    _countdown;
     
     // Queues (API Communication)
     NSOperationQueue *_requestQueue;
