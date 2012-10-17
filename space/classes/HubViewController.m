@@ -8,7 +8,13 @@
 
 #import "HubViewController.h"
 #import "ZUUIRevealController.h"
+
+// Game Manager Singleton 
 #import "GameManager.h"
+
+// Tab Views
+#import "PlayerViewController.h"
+#import "HangarViewController.h"
 
 @interface HubViewController ()
 
@@ -16,14 +22,10 @@
 
 @implementation HubViewController
 
-// Outlets
-@synthesize labelServerTime = _labelServerTime;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -59,7 +61,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"HubTitleKey", @"");
+    self.title = NSLocalizedString(@"PlayerTitleKey", @"");
 	
     // ZUUIRevealConbtroller (Master)
     // Add Reveal Actions (Button / Swipe)
@@ -71,27 +73,21 @@
 		
         // Left Button
 		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(revealToggle:)];
+        
+        [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 	}
     
-    // Assign Scroll View to Member / Assign Delegate Self
-    for (UIView* subView in self.view.subviews) {
-        if ([subView isKindOfClass:[UIScrollView class]]) {
-            _mainScrollView = (UIScrollView *)subView;
-            _mainScrollView.delegate = (id) self;
-            
-            // Set Size (No Auto Layout)
-            _mainScrollView.contentSize=self.view.frame.size;
-        }
-    }
+    // Add Player Controller (Default)
+    NSString *controllerTitle = NSLocalizedString(@"PlayerTitleKey", @"");
+    _playerViewController = [[PlayerViewController alloc] initWithTitle:controllerTitle];
+    [self.view insertSubview:_playerViewController.view belowSubview:_customTabBar];
+    [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
     
-    // Set up Pull to Refresh code
-    PullToRefreshView *pull = [[PullToRefreshView alloc] initWithScrollView:_mainScrollView];
-    [pull setDelegate:self];
-    pull.tag = TAG_PULL;
-    [_mainScrollView addSubview:pull];
-    
-    // Update View
-    [self refresHubFeed];
+    // Add Hangar Controller
+    controllerTitle = NSLocalizedString(@"HangarTitleKey", @"");
+    _hangarViewController = [[HangarViewController alloc] initWithTitle:controllerTitle];
+    [self.view insertSubview:_hangarViewController.view belowSubview:_playerViewController.view];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,33 +108,27 @@
     return shouldAutorotate;
 }
 
--(void) refresHubFeed
+#pragma mark UITabBar Delegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-   
-    [[GameManager sharedInstance] refreshPlayer:^(NSDictionary *jsonDict){
-        
-        // Update View
-        
-        // Format Time
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[jsonDict objectForKey:@"time"] doubleValue]];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy'-'MM'-'dd HH':'mm':'ss"];
-        
-        NSDictionary *playerDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"player"]];
-        
-        // Labels
-        _labelServerTime.text = [dateFormat stringFromDate:date];
-        _labelPlayerName.text = [playerDict objectForKey:@"name"];
-        
-        // Complete Pull To Refresh
-        [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] finishedLoading];
-    }];
 
-}
-
-#pragma mark Pull To Refresh Delegate Methods
--(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
-    [self refresHubFeed];
+    switch(item.tag)
+    {
+        case TAG_PLAYER_VIEW:
+            //CCLOG(@"Activate Player View");
+            [self.view bringSubviewToFront:_playerViewController.view];
+            self.navigationItem.title = _playerViewController.title;
+            [_playerViewController refreshData];
+            break;
+        case TAG_HANGAR_VIEW:
+            //CCLOG(@"Activate Hangar View");
+            [self.view bringSubviewToFront:_hangarViewController.view];
+            self.navigationItem.title = _hangarViewController.title;
+            break;
+    }
+    
+    // Ensure Tab Bar
+    [self.view bringSubviewToFront:_customTabBar];
 }
 
 @end

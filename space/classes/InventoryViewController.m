@@ -45,6 +45,8 @@
 		
         // Left Button
 		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(revealToggle:)];
+        
+         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 	}
 }
 

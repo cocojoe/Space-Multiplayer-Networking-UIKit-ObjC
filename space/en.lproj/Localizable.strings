@@ -7,3 +7,5 @@
 */
 "HubTitleKey"       = "Command HQ";
 "InventoryTitleKey" = "Inventory";
+"PlayerTitleKey"    = "Player";
+"HangarTitleKey"    = "Hangar";

@@ -25,7 +25,10 @@ typedef void (^ResponseBlock)       (NSDictionary *jsonDict);
 typedef void (^BasicBlock)          ();
 
 // TAGS
-#define TAG_PULL        800
+#define TAG_PULL                800
+
+#define TAG_PLAYER_VIEW         10
+#define TAG_HANGAR_VIEW         20
 
 // API Credentials
 #define APP_ID          (@"67542423701777489896990453036662")

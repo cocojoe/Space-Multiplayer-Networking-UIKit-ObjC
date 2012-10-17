@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullToRefreshView.h"
 
-@interface HubViewController : UIViewController <PullToRefreshViewDelegate>
-{
-    UIScrollView* _mainScrollView;
-}
+@class PlayerViewController;
+@class HangarViewController;
 
-// Outlets
-@property (nonatomic) IBOutlet UILabel *labelServerTime;
-@property (nonatomic) IBOutlet UILabel *labelPlayerName;
+@interface HubViewController : UIViewController <UITabBarDelegate>
+
+@property (nonatomic) IBOutlet UITabBar* customTabBar;
+
+// Controllers
+@property (nonatomic) PlayerViewController* playerViewController;
+@property (nonatomic) HangarViewController* hangarViewController;
 
 @end

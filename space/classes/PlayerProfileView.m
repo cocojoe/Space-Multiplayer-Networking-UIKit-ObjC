@@ -7,6 +7,7 @@
 //
 
 #import "PlayerProfileView.h"
+#import "GameManager.h"
 
 @implementation PlayerProfileView
 
@@ -17,6 +18,31 @@
         // Initialization code
     }
     return self;
+}
+
+ // Initialization From NIB
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if(self) {
+        [self applyDefaultStyle];
+    }
+    return self;
+}
+
+- (void)applyDefaultStyle {
+    
+    // curve the corners
+    self.layer.cornerRadius = 4;
+    
+    // apply the border
+    self.layer.borderWidth = 1.0;
+    self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    
+    // add the drop shadow
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+    self.layer.shadowOpacity = 0.25;
 }
 
 /*
