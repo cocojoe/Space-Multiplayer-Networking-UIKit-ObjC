@@ -9,3 +9,4 @@
 "InventoryTitleKey" = "Inventory";
 "PlayerTitleKey"    = "Player";
 "HangarTitleKey"    = "Hangar";
+"MenuTitleKey"      = "Menu";

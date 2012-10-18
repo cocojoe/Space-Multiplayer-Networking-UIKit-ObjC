@@ -38,8 +38,10 @@ typedef void (^BasicBlock)          ();
 #define HOST_NAME       (@"http://darkmatter.andyburton.co.uk")
 #define HOST_TIMEOUT    8
 #define HOST_RETRY      5
+
 #define URI_AUTH        (@"/api/auth/")
 #define URI_PLAYER      (@"/api/player/")
+#define URI_INVENTORY   (@"/api/player/inventory")
 
 // Simple Caching / Request Spam
 #define API_CACHE_TIME  10
@@ -55,6 +57,7 @@ enum eAuthenticationState {
     // API Data
     NSMutableDictionary* _authDict;
     NSMutableDictionary* _playerDict;
+    NSMutableDictionary* _inventoryDict;
     
     // Authentication Monitoring
     enum eAuthenticationState _eAuthenticationState;
@@ -81,5 +84,6 @@ enum eAuthenticationState {
 #pragma mark Public API Methods
 -(void) authenticate;
 -(void) refreshPlayer:(ResponseBlock) actionBlock;
+-(void) refreshInventory:(ResponseBlock) actionBlock;
 
 @end

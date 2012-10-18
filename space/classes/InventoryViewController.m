@@ -7,6 +7,10 @@
 //
 
 #import "InventoryViewController.h"
+#import "GameManager.h"
+
+// Custom Cell
+#import "InventoryCell.h"
 
 @interface InventoryViewController ()
 
@@ -19,6 +23,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        _inventory = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -48,6 +53,14 @@
         
          [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 	}
+    
+    // Create Pull Loader
+    _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+    [_pull setDelegate:self];
+    [self.tableView addSubview:_pull];
+    
+    // Grab Data
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,60 +82,52 @@
 {
 
     // Return the number of rows in the section.
-    return 0;
+    //CCLOG(@"Inventory Row Count: %d",[_inventory count]);
+    return [_inventory count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"InventoryCell";
+    InventoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[InventoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
+    NSDictionary* cellDict  = [_inventory objectAtIndex:indexPath.row];
+
+    // Name
+    cell.labelName.text = [cellDict objectForKey:@"name"];
+    
+    // Description
+    if([cellDict objectForKey:@"description"] == [NSNull null])
+    {
+        cell.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"Describe Me!"];
+    } else {
+        cell.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",[cellDict objectForKey:@"description"]];
+    }
+    
+    // Description
+    if([cellDict objectForKey:@"group_name"] == [NSNull null])
+    {
+        cell.labelGroup.text = @"Misc";
+    } else {
+        cell.labelGroup.text = [cellDict objectForKey:@"group_name"];
+    }
+    
+    // Image
+    if([cellDict objectForKey:@"icon"] != [NSNull null])
+    {
+        cell.imageIcon.image = [UIImage imageNamed:[cellDict objectForKey:@"icon"]];
+    }
+
+    
+    // Amount
+    cell.labelAmount.text = [NSString stringWithFormat:@"x %d",[[cellDict objectForKey:@"amount"] integerValue]];
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     BOOL shouldAutorotate = NO;
@@ -136,6 +141,12 @@
     return shouldAutorotate;
 }
 
+// Table Size (Custom Cell)
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,6 +158,35 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    CCLOG(@"Inventory Item Selected");
+}
+
+#pragma mark Data Processing
+-(void) refreshData
+{
+    
+    [[GameManager sharedInstance] refreshInventory:^(NSDictionary *jsonDict){
+        
+        // Process JSON
+        
+        // Assign Inventory JSON
+        _inventory = [jsonDict objectForKey:@"inventory"];
+        
+        //CCLOG(@"Inventory: %@",_inventory);
+        
+        // Refersh View
+        [self.tableView reloadData];
+        
+        // Complete Loading
+        [_pull finishedLoading];
+    }];
+    
+}
+
+#pragma mark Pull To Refresh Delegate Methods
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+{
+    [self refreshData];
 }
 
 @end

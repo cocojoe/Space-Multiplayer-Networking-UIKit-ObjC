@@ -33,6 +33,8 @@
     
     // Initialise Default Views for Master
     MenuViewController* menuViewController = [[MenuViewController alloc] init];
+   
+    
     HubViewController* hubViewController = [[HubViewController alloc] init];
     
     // Create Navigation Controller from Hub - See HubViewController for Explanation (ZUUIReveal)

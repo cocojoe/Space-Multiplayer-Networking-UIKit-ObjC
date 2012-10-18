@@ -30,7 +30,8 @@
         // Custom initialization
         
         // Correct Size (Was Redundant To Space on iOS5)
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        //self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+         self.navigationItem.title = NSLocalizedString(@"MenuTitleKey", @"");
     }
     return self;
 }
@@ -122,7 +123,7 @@
 		{
 			HubViewController *hubViewController = [[HubViewController alloc] init];
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:hubViewController];
-			[masterController setFrontViewController:navigationController animated:NO];
+			[masterController setFrontViewController:navigationController animated:YES];
 			
 		}
 		// Seems the user attempts to 'switch' to exactly the same controller he came from!
@@ -138,7 +139,7 @@
 			InventoryViewController *inventoryViewController = [[InventoryViewController alloc] init];
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inventoryViewController];
             
-			[masterController setFrontViewController:navigationController animated:NO];
+			[masterController setFrontViewController:navigationController animated:YES];
 			
 		}
 		// Seems the user attempts to 'switch' to exactly the same controller he came from!

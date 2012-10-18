@@ -10,4 +10,11 @@
 
 @interface InventoryCell : UITableViewCell
 
+@property (nonatomic) IBOutlet UILabel* labelName;
+@property (nonatomic) IBOutlet UILabel* labelDescription;
+@property (nonatomic) IBOutlet UILabel* labelGroup;
+@property (nonatomic) IBOutlet UILabel* labelAmount;
+@property (nonatomic) IBOutlet UIImageView* imageIcon;
+
+
 @end

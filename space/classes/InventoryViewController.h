@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullToRefreshView.h"
 
-@interface InventoryViewController : UITableViewController
+@interface InventoryViewController : UITableViewController <PullToRefreshViewDelegate>
+
+@property (nonatomic) NSMutableArray* inventory;
+@property (nonatomic) PullToRefreshView *pull;
 
 @end

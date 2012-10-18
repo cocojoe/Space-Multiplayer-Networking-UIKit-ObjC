@@ -47,8 +47,9 @@
         [_requestSuspendQueue setMaxConcurrentOperationCount:2]; // Concurrent Requests
         
         // API Data Object
-        _authDict   = [[NSMutableDictionary alloc] init];
-        _playerDict = [[NSMutableDictionary alloc] init];
+        _authDict       = [[NSMutableDictionary alloc] init];
+        _playerDict     = [[NSMutableDictionary alloc] init];
+        _inventoryDict  = [[NSMutableDictionary alloc] init];
         
         // Authorisation
         _eAuthenticationState = eAuthenticationNone;
@@ -78,10 +79,55 @@
 #pragma mark Device Indentity
 -(NSString*) getDeviceID
 {
-     return [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+     //return [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    return @"15fd7ce896302ec559fb3932bca2b19d";
 }
 
 #pragma mark Public API Methods
+-(void) authenticate
+{
+    
+    // Progress Indicator (Add If Not Present)
+    if(![DejalActivityView currentActivityView]) {
+        [DejalBezelActivityView activityViewForView:_view.view withLabel:[NSString stringWithFormat:@"Connecting..."] width:200];
+    } else {
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connecting..."];
+    }
+    
+    // Create DATA Dictionary
+    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              APP_ID      , @"app_id",
+                              APP_SECRET  , @"app_secret",
+                              @"ios"      , @"platform",
+                              _deviceUUID , @"uid",
+                              nil];
+    
+    
+    [self makeRequest:URI_AUTH setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict){
+        
+        // Store Authentication Information
+        _authDict = [jsonDict objectForKey:@"session"];
+        
+        // Dismiss Bezel / Flag Authenticated / Resume Secondary Queue
+        [DejalBezelActivityView removeViewAnimated:YES];
+        _eAuthenticationState = eAuthenticationOK;
+        [_requestSuspendQueue setSuspended:NO]; // Release Pending Requests
+        
+        CCLOG(@"_authDict: %@",_authDict);
+        
+    } setBlockFail:^{
+        // Authentication Failure
+        _eAuthenticationState = eAuthenticationNone;
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connection Problem\nWill try again."];
+        [self performSelector:@selector(countDown) withObject:nil afterDelay:HOST_RETRY];
+    }];
+    
+    // Auth In Progress (Queue Additional Requests)
+    _eAuthenticationState = eAuthenticationInProgress;
+    [_requestSuspendQueue setSuspended:YES];
+}
+
+
 -(void) refreshPlayer:(ResponseBlock) actionBlock
 {
     
@@ -89,8 +135,6 @@
     if([_playerDict objectForKey:@"time"])
     {
         // Check Last Update
-        //CCLOG(@"Last Player Refresh: %f",[[_playerDict objectForKey:@"time"] doubleValue]);
-        //CCLOG(@"Current UTC: %f",[[NSDate date] timeIntervalSince1970]);
         if(([[_playerDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
         {
             actionBlock(_playerDict);
@@ -112,47 +156,35 @@
     
 }
 
--(void) authenticate
+-(void) refreshInventory:(ResponseBlock) actionBlock
 {
-
-    // Progress Indicator (Add If Not Present)
-    if(![DejalActivityView currentActivityView]) {
-        [DejalBezelActivityView activityViewForView:_view.view withLabel:[NSString stringWithFormat:@"Connecting..."] width:200];
-    } else {
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connecting..."];
+    
+    // Check Existing Time
+    if([_inventoryDict objectForKey:@"time"])
+    {
+        // Check Last Update
+        if(([[_inventoryDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
+        {
+            actionBlock(_inventoryDict);
+            return;
+        }
     }
     
-    // Create DATA Dictionary
-    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              APP_ID      , @"app_id",
-                              APP_SECRET  , @"app_secret",
-                              @"ios"      , @"platform",
-                              _deviceUUID , @"uid",
-                              nil];
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_INVENTORY setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            // Store Player Information
+            [_inventoryDict setDictionary:jsonDict];
+            CCLOG(@"_inventoryDict: %@",_inventoryDict);
+            
+            actionBlock(_inventoryDict);
+        } setBlockFail:nil];
+        
+    }]];
     
-
-    [self makeRequest:URI_AUTH setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict){
-        
-        // Store Authentication Information
-        _authDict = [jsonDict objectForKey:@"session"];
-        
-        // Dismiss Bezel / Flag Authenticated / Resume Secondary Queue
-        [DejalBezelActivityView removeViewAnimated:YES];
-        _eAuthenticationState = eAuthenticationOK;
-        [_requestSuspendQueue setSuspended:NO]; // Release Pending Requests
-        
-    } setBlockFail:^{
-        // Authentication Failure
-        _eAuthenticationState = eAuthenticationNone;
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connection Problem\nWill try again."];
-        [self performSelector:@selector(countDown) withObject:nil afterDelay:HOST_RETRY];
-    }];
-    
-    // Auth In Progress (Queue Additional Requests)
-    _eAuthenticationState = eAuthenticationInProgress;
-    [_requestSuspendQueue setSuspended:YES];
 }
 
+#pragma mark Connection Retry
 -(void) countDown
 {
     _countdown--;

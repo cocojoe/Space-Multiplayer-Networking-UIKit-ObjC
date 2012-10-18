@@ -25,7 +25,10 @@
         // Correct Size (Was Redundant To Space on iOS5)
         self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         
+        // Nav Title
         self.title = title;
+        
+       
     }
     return self;
 }
@@ -72,6 +75,8 @@
     
     // Populate Data
     [self refreshData];
+    
+    // 
 }
 
 - (void)viewDidUnload
@@ -106,7 +111,7 @@
         
         // Process JSON
         
-        // Format Time > Date
+        // Date Formatter from Unix Timestamp
         /*
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[jsonDict objectForKey:@"time"] doubleValue]];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -120,11 +125,11 @@
         // Currency Child Dictionary
         NSDictionary *currencyDict = [NSDictionary dictionaryWithDictionary:[playerDict objectForKey:@"currency"]];
  
-        // IB Outlets
-        // Profile Details
+        //// IB Outlets Profile
+        // Name
         _labelPlayerName.text = [playerDict objectForKey:@"name"];
         
-        // Number Formatted
+        // Number Formatter
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         
@@ -140,10 +145,55 @@
         NSNumber* score = [NSNumber numberWithInt:[[playerDict objectForKey:@"score"] integerValue]];
         _labelPlayerScore.text = [formatter stringFromNumber:score];
         
-        // Complete Pull To Refresh
+        
+        //// IB Outlets Equipment
+        [self updateEquipmentView:[playerDict objectForKey:@"parts"]];
+        
+        // Finished
         [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] finishedLoading];
+    
     }];
     
 }
+
+-(void) updateEquipmentView:(NSDictionary*) partsDict
+{
+    // Check Head
+    if([partsDict objectForKey:@"head"]!=nil)
+    {
+        NSDictionary* itemDict = [[partsDict objectForKey:@"head"] objectForKey:@"item"];
+        
+        // Head
+        _labelPlayerEquipmentHead.text  = [itemDict objectForKey:@"name"];
+        _labelPlayerEquipmentHeadDescription.text  = [NSString stringWithFormat:@"\"%@\"",[itemDict objectForKey:@"description"]];
+        _imagePlayerEquipmentHead.image = [UIImage imageNamed:[itemDict objectForKey:@"icon"]];
+    }
+    
+    // Add Head Handler
+    _imagePlayerEquipmentHead.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(equipmentTap)];
+    [tap setNumberOfTouchesRequired:1];
+    [tap setNumberOfTapsRequired:1];
+    [_imagePlayerEquipmentHead addGestureRecognizer:tap];
+    
+    
+    // Check Hands
+    if([partsDict objectForKey:@"hands"]!=nil)
+    {
+        NSDictionary* itemDict = [[partsDict objectForKey:@"hands"] objectForKey:@"item"];
+        
+        // Head
+        _labelPlayerEquipmentHands.text  = [itemDict objectForKey:@"name"];
+        _labelPlayerEquipmentHandsDescription.text  = [NSString stringWithFormat:@"\"%@\"",[itemDict objectForKey:@"description"]];
+        _imagePlayerEquipmentHands.image = [UIImage imageNamed:[itemDict objectForKey:@"icon"]];
+    }
+    
+}
+
+#pragma mark Handle Equipment Touch
+-(void) equipmentTap {
+    CCLOG(@"Equipment Touch");
+}
+
 
 @end
