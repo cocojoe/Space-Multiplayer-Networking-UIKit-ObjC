@@ -23,7 +23,20 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _inventory = [[NSMutableArray alloc] init];
+        _inventory         = [[NSMutableArray alloc] init];
+        _inventoryFiltered = [[NSMutableArray alloc] init];
+        _partID            = 0;
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _inventory         = [[NSMutableArray alloc] init];
+        _inventoryFiltered = [[NSMutableArray alloc] init];
+        _partID            = 0;
     }
     return self;
 }
@@ -37,8 +50,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.title = NSLocalizedString(@"InventoryTitleKey", @"");
 	
 	// ZUUIRevealConbtroller (Master)
     // Add Reveal Actions (Button / Swipe)
@@ -51,13 +62,43 @@
         // Left Button
 		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(revealToggle:)];
         
-         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-	}
-    
-    // Create Pull Loader
-    _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
-    [_pull setDelegate:self];
-    [self.tableView addSubview:_pull];
+        [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+        
+        // Create Pull Loader
+        _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+        [_pull setDelegate:self];
+        [self.tableView addSubview:_pull];
+        
+        self.title = NSLocalizedString(@"InventoryTitleKey", @"");
+	} else if(_partID) { // Part Selection
+        
+        // Manually Presented Search
+        _filterSearch.placeholder              = _searchText;
+        _filterSearch.userInteractionEnabled   = NO;
+        _filterSearch.hidden                   = YES;
+        
+        // Correct Size for Hidden Frame
+        CGRect newBounds = self.tableView.bounds;
+        newBounds.origin.y = newBounds.origin.y + _filterSearch.bounds.size.height;
+        self.tableView.bounds = newBounds;
+        _filterSearch.hidden                   = YES;
+        
+        // Part Selection Title
+        self.title = [NSString stringWithFormat:@"Select %@ item",_searchText];
+        
+        // Nav Style
+        [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+        
+        // Navigation 
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        
+        // Clear Item If Currently Equipped
+        if(_showRemove==YES) {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Remove" style:UIBarButtonItemStylePlain target:self action:@selector(clearItem)];
+            
+            self.navigationItem.rightBarButtonItem.tintColor = [UIColor redColor];
+        }
+    }
     
     // Grab Data
     [self refreshData];
@@ -82,8 +123,7 @@
 {
 
     // Return the number of rows in the section.
-    //CCLOG(@"Inventory Row Count: %d",[_inventory count]);
-    return [_inventory count];
+    return [_inventoryFiltered count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,36 +135,10 @@
         cell = [[InventoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary* cellDict  = [_inventory objectAtIndex:indexPath.row];
-
-    // Name
-    cell.labelName.text = [cellDict objectForKey:@"name"];
+    // Populate Cell
+    NSDictionary* cellDict  = [_inventoryFiltered objectAtIndex:indexPath.row];
+    [cell refresh:cellDict];
     
-    // Description
-    if([cellDict objectForKey:@"description"] == [NSNull null])
-    {
-        cell.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"Describe Me!"];
-    } else {
-        cell.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",[cellDict objectForKey:@"description"]];
-    }
-    
-    // Description
-    if([cellDict objectForKey:@"group_name"] == [NSNull null])
-    {
-        cell.labelGroup.text = @"Misc";
-    } else {
-        cell.labelGroup.text = [cellDict objectForKey:@"group_name"];
-    }
-    
-    // Image
-    if([cellDict objectForKey:@"icon"] != [NSNull null])
-    {
-        cell.imageIcon.image = [UIImage imageNamed:[cellDict objectForKey:@"icon"]];
-    }
-
-    
-    // Amount
-    cell.labelAmount.text = [NSString stringWithFormat:@"x %d",[[cellDict objectForKey:@"amount"] integerValue]];
     
     return cell;
 }
@@ -144,7 +158,20 @@
 // Table Size (Custom Cell)
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
+}
+
+#pragma mark Item Management
+-(void) clearItem {
+    [[GameManager sharedInstance] clearPart:_partID setBlock:^(NSDictionary *jsonDict){
+        // Force Refresh Player Cache
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"playerRefresh"
+         object:self];
+        // Dismiss
+        [self dismissModalViewControllerAnimated:YES];
+    }];
+
 }
 
 #pragma mark - Table view delegate
@@ -158,13 +185,28 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    CCLOG(@"Inventory Item Selected");
+    
+    NSDictionary* itemDict = [_inventoryFiltered objectAtIndex:indexPath.row];
+    
+    if(_partID) {
+        [[GameManager sharedInstance] setPart:_partID setItem:[[itemDict objectForKey:@"id"] integerValue] setBlock:^(NSDictionary *jsonDict){
+            
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"playerRefresh"
+             object:self];
+            
+            // Dismiss
+            [self dismissModalViewControllerAnimated:YES];
+        }];
+    }
+
+    
 }
 
 #pragma mark Data Processing
 -(void) refreshData
 {
-    
+   
     [[GameManager sharedInstance] refreshInventory:^(NSDictionary *jsonDict){
         
         // Process JSON
@@ -172,10 +214,7 @@
         // Assign Inventory JSON
         _inventory = [jsonDict objectForKey:@"inventory"];
         
-        //CCLOG(@"Inventory: %@",_inventory);
-        
-        // Refersh View
-        [self.tableView reloadData];
+        [self defaultFilter];
         
         // Complete Loading
         [_pull finishedLoading];
@@ -183,10 +222,58 @@
     
 }
 
+#pragma mark Search Helpers
+-(void) defaultFilter
+{
+    // Manual Search
+    if([_searchText length]>0)
+    {
+        [self filterData:_searchText];
+    } else {
+        // Filter Inventory
+        _inventoryFiltered = [NSMutableArray arrayWithArray:_inventory];
+    }
+
+    [self.tableView reloadData];
+}
+
+-(void) filterData:(NSString*) searchString {
+    
+    [_inventoryFiltered removeAllObjects];
+    
+    for (NSDictionary* item in _inventory)
+    {
+        NSRange nameSearch = [[item objectForKey:@"name"] rangeOfString:searchString options:NSCaseInsensitiveSearch];
+        
+        NSRange groupSearch = [[item objectForKey:@"group_name"] rangeOfString:searchString options:NSCaseInsensitiveSearch];
+        
+        if(nameSearch.location != NSNotFound ||
+           groupSearch.location != NSNotFound)
+        {
+            [_inventoryFiltered addObject:item];
+        }
+    }
+}
+
 #pragma mark Pull To Refresh Delegate Methods
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
     [self refreshData];
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+
+    [self filterData:searchString];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    CCLOG(@"searchDisplayControllerWillEndSearch");
+    [self defaultFilter];
 }
 
 @end

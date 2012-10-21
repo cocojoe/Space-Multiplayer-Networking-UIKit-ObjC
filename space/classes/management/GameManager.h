@@ -39,9 +39,11 @@ typedef void (^BasicBlock)          ();
 #define HOST_TIMEOUT    8
 #define HOST_RETRY      5
 
-#define URI_AUTH        (@"/api/auth/")
-#define URI_PLAYER      (@"/api/player/")
-#define URI_INVENTORY   (@"/api/player/inventory")
+#define URI_AUTH                        (@"/api/auth/")
+#define URI_PLAYER                      (@"/api/player/")
+#define URI_INVENTORY                   (@"/api/player/inventory")
+#define URI_INVENTORY_REMOVE_PART       (@"/api/player/inventory/remove")
+#define URI_INVENTORY_ATTACH_PART       (@"/api/player/inventory/attach")
 
 // Simple Caching / Request Spam
 #define API_CACHE_TIME  10
@@ -51,6 +53,8 @@ enum eAuthenticationState {
     eAuthenticationInProgress,
     eAuthenticationOK
 };
+
+@class MasterViewController;
 
 @interface GameManager : NSObject
 {
@@ -71,6 +75,7 @@ enum eAuthenticationState {
 
 @property (nonatomic) NSString* deviceUUID;
 @property (weak, nonatomic) UIViewController *view;
+@property (weak, nonatomic) MasterViewController *masterController;
 
 // Singleton Instance
 +(GameManager *)sharedInstance;
@@ -81,9 +86,17 @@ enum eAuthenticationState {
 #pragma mark Device Indentity
 -(NSString*) getDeviceID;
 
-#pragma mark Public API Methods
+#pragma mark Authentication
 -(void) authenticate;
+
+#pragma mark Player
 -(void) refreshPlayer:(ResponseBlock) actionBlock;
+
+#pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock;
 
+#pragma mark Inventory Part Management
+-(void) clearPart:(int)partID setBlock:(ResponseBlock) actionBlock;
+-(void) setPart:(int)partID setItem:(int)itemID setBlock:(ResponseBlock) actionBlock;
+    
 @end

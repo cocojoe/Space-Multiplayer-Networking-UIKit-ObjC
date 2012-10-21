@@ -45,13 +45,40 @@
     self.layer.shadowOpacity = 0.25;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void) refresh:(NSDictionary*) playerDict
 {
-    // Drawing code
+    // Process JSON
+    
+    // Date Formatter from Unix Timestamp
+    /*
+     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[jsonDict objectForKey:@"time"] doubleValue]];
+     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+     [dateFormat setDateFormat:@"yyyy'-'MM'-'dd HH':'mm':'ss"];
+     _labelServerTime.text = [dateFormat stringFromDate:date];
+     */
+    
+    // Currency Child Dictionary
+    NSDictionary *currencyDict = [NSDictionary dictionaryWithDictionary:[playerDict objectForKey:@"currency"]];
+    
+    //// IB Outlets Profile
+    // Name
+    _labelPlayerName.text = [playerDict objectForKey:@"name"];
+    
+    // Number Formatter
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    // Cash
+    NSNumber* cash = [NSNumber numberWithInt:[[currencyDict objectForKey:@"cash"] integerValue]];
+    _labelPlayerCurrencyCash.text = [formatter stringFromNumber:cash];
+    
+    // Premium
+    NSNumber* premium = [NSNumber numberWithInt:[[currencyDict objectForKey:@"premium"] integerValue]];
+    _labelPlayerCurrencyPremium.text = [formatter stringFromNumber:premium];
+    
+    // Score
+    NSNumber* score = [NSNumber numberWithInt:[[playerDict objectForKey:@"score"] integerValue]];
+    _labelPlayerScore.text = [formatter stringFromNumber:score];
 }
-*/
 
 @end

@@ -16,5 +16,6 @@
 @property (nonatomic) IBOutlet UILabel* labelAmount;
 @property (nonatomic) IBOutlet UIImageView* imageIcon;
 
+-(void) refresh:(NSDictionary*) cellDict;
 
 @end

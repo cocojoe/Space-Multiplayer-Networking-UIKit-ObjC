@@ -31,7 +31,7 @@
         
         // Correct Size (Was Redundant To Space on iOS5)
         //self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-         self.navigationItem.title = NSLocalizedString(@"MenuTitleKey", @"");
+         //self.navigationItem.title = NSLocalizedString(@"MenuTitleKey", @"");
     }
     return self;
 }
@@ -121,7 +121,7 @@
 		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[HubViewController class]])
 		{
-			HubViewController *hubViewController = [[HubViewController alloc] init];
+			HubViewController *hubViewController = [[HubViewController alloc] initWithNibName:@"HubViewController" bundle:nil];
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:hubViewController];
 			[masterController setFrontViewController:navigationController animated:YES];
 			
@@ -136,7 +136,7 @@
 		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[InventoryViewController class]])
 		{
-			InventoryViewController *inventoryViewController = [[InventoryViewController alloc] init];
+			InventoryViewController *inventoryViewController = [[InventoryViewController alloc] initWithNibName:@"InventoryViewController" bundle:nil];
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inventoryViewController];
             
 			[masterController setFrontViewController:navigationController animated:YES];

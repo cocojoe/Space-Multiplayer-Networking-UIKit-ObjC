@@ -57,6 +57,8 @@
 		5BA22DBD1624603D0006AE64 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA22DBF1624603D0006AE64 /* Localizable.strings */; };
 		5BA22DC3162461DE0006AE64 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA22DC1162461DD0006AE64 /* InventoryViewController.m */; };
 		5BA22DC4162461DE0006AE64 /* InventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA22DC2162461DE0006AE64 /* InventoryViewController.xib */; };
+		5BB6251B16314798005BB81B /* PlayerPartsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6251A16314798005BB81B /* PlayerPartsView.m */; };
+		5BB6252016314E48005BB81B /* PartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6251F16314E48005BB81B /* PartView.m */; };
 		5BCB9512162EF38E005AD7E5 /* PlayerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */; };
 		5BCB951E162EFA88005AD7E5 /* bg_space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB951A162EFA88005AD7E5 /* bg_space.jpg */; };
 		5BCB951F162EFA88005AD7E5 /* bg_space@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB951B162EFA88005AD7E5 /* bg_space@2x.jpg */; };
@@ -90,6 +92,7 @@
 		5BECBAF816302EBE004620B0 /* parts_head_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAF016302EBE004620B0 /* parts_head_empty@2x.png */; };
 		5BECBB0016303364004620B0 /* icon_trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFE16303364004620B0 /* icon_trophy.png */; };
 		5BECBB0116303364004620B0 /* icon_trophy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFF16303364004620B0 /* icon_trophy@2x.png */; };
+		5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF38E4616316B890029658A /* UIView+FindUIViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +168,10 @@
 		5BA22DC0162461DD0006AE64 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = classes/InventoryViewController.h; sourceTree = "<group>"; };
 		5BA22DC1162461DD0006AE64 /* InventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryViewController.m; path = classes/InventoryViewController.m; sourceTree = "<group>"; };
 		5BA22DC2162461DE0006AE64 /* InventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InventoryViewController.xib; path = classes/InventoryViewController.xib; sourceTree = "<group>"; };
+		5BB6251916314798005BB81B /* PlayerPartsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerPartsView.h; path = classes/PlayerPartsView.h; sourceTree = "<group>"; };
+		5BB6251A16314798005BB81B /* PlayerPartsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerPartsView.m; path = classes/PlayerPartsView.m; sourceTree = "<group>"; };
+		5BB6251E16314E48005BB81B /* PartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartView.h; path = classes/PartView.h; sourceTree = "<group>"; };
+		5BB6251F16314E48005BB81B /* PartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartView.m; path = classes/PartView.m; sourceTree = "<group>"; };
 		5BCB9510162EF38E005AD7E5 /* PlayerProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerProfileView.h; path = classes/PlayerProfileView.h; sourceTree = "<group>"; };
 		5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerProfileView.m; path = classes/PlayerProfileView.m; sourceTree = "<group>"; };
 		5BCB951A162EFA88005AD7E5 /* bg_space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_space.jpg; sourceTree = "<group>"; };
@@ -210,6 +217,8 @@
 		5BECBAF016302EBE004620B0 /* parts_head_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parts_head_empty@2x.png"; sourceTree = "<group>"; };
 		5BECBAFE16303364004620B0 /* icon_trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_trophy.png; sourceTree = "<group>"; };
 		5BECBAFF16303364004620B0 /* icon_trophy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_trophy@2x.png"; sourceTree = "<group>"; };
+		5BF38E4516316B890029658A /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
+		5BF38E4616316B890029658A /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,9 +326,9 @@
 			isa = PBXGroup;
 			children = (
 				5B7E184F1624218F00E0315E /* Classes */,
-				5B7E18431624201400E0315E /* libs */,
 				5B7E183116241ECC00E0315E /* AppDelegate.h */,
 				5B7E183216241ECC00E0315E /* AppDelegate.m */,
+				5B7E18431624201400E0315E /* libs */,
 				5B7E182916241ECC00E0315E /* Supporting Files */,
 			);
 			path = space;
@@ -415,6 +424,8 @@
 				5B8F1A2D1624684500274D4E /* Objects */,
 				5B7E1869162434CC00E0315E /* GameManager.h */,
 				5B7E186A162434CC00E0315E /* GameManager.m */,
+				5BF38E4516316B890029658A /* UIView+FindUIViewController.h */,
+				5BF38E4616316B890029658A /* UIView+FindUIViewController.m */,
 			);
 			name = Management;
 			path = classes/management;
@@ -484,14 +495,25 @@
 			path = DejalActivityView;
 			sourceTree = "<group>";
 		};
+		5BB6251D16314A76005BB81B /* Parts */ = {
+			isa = PBXGroup;
+			children = (
+				5BB6251916314798005BB81B /* PlayerPartsView.h */,
+				5BB6251A16314798005BB81B /* PlayerPartsView.m */,
+				5BB6251E16314E48005BB81B /* PartView.h */,
+				5BB6251F16314E48005BB81B /* PartView.m */,
+			);
+			name = Parts;
+			sourceTree = "<group>";
+		};
 		5BCB9504162EE1C0005AD7E5 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				5BB6251D16314A76005BB81B /* Parts */,
 				5B1ACD27162DFA39003C157F /* PlayerViewController.h */,
 				5B1ACD28162DFA39003C157F /* PlayerViewController.m */,
 				5B1ACD29162DFA39003C157F /* PlayerViewController.xib */,
-				5BCB9510162EF38E005AD7E5 /* PlayerProfileView.h */,
-				5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */,
+				5BF38E4916318A200029658A /* Profile */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -560,6 +582,15 @@
 			name = parts;
 			path = assets/parts;
 			sourceTree = SOURCE_ROOT;
+		};
+		5BF38E4916318A200029658A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5BCB9510162EF38E005AD7E5 /* PlayerProfileView.h */,
+				5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -697,6 +728,9 @@
 				5B07A72C162EB864006B56A5 /* HangarViewController.m in Sources */,
 				5BCB9512162EF38E005AD7E5 /* PlayerProfileView.m in Sources */,
 				5BDD4A51162FF7DA009FA697 /* InventoryCell.m in Sources */,
+				5BB6251B16314798005BB81B /* PlayerPartsView.m in Sources */,
+				5BB6252016314E48005BB81B /* PartView.m in Sources */,
+				5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

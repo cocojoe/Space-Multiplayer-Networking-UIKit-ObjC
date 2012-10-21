@@ -9,26 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
 
+@class PlayerProfileView;
+@class PlayerPartsView;
+
 @interface PlayerViewController : UIViewController <PullToRefreshViewDelegate>
 
 @property (nonatomic) UIScrollView* mainScrollView;
 
-// Player Profile
-@property (nonatomic) IBOutlet UILabel *labelPlayerName;
-@property (nonatomic) IBOutlet UILabel *labelPlayerScore;
-@property (nonatomic) IBOutlet UILabel *labelPlayerCurrencyCash;
-@property (nonatomic) IBOutlet UILabel *labelPlayerCurrencyPremium;
+// Custom Views
+@property (nonatomic) IBOutlet PlayerProfileView* playerProfileView;
+@property (nonatomic) IBOutlet PlayerPartsView* partsProfileView;
 
-// Player Equipment
-// Head
-@property (nonatomic) IBOutlet UILabel *labelPlayerEquipmentHead;
-@property (nonatomic) IBOutlet UILabel *labelPlayerEquipmentHeadDescription;
-@property (nonatomic) IBOutlet UIImageView *imagePlayerEquipmentHead;
-
-// Hands
-@property (nonatomic) IBOutlet UILabel *labelPlayerEquipmentHands;
-@property (nonatomic) IBOutlet UILabel *labelPlayerEquipmentHandsDescription;
-@property (nonatomic) IBOutlet UIImageView *imagePlayerEquipmentHands;
 
 #pragma mark Manual Creation
 - (id)initWithTitle:(NSString *)title;

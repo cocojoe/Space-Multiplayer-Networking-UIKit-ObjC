@@ -11,4 +11,12 @@
 
 @interface PlayerProfileView : UIView
 
+// Player Profile
+@property (nonatomic) IBOutlet UILabel *labelPlayerName;
+@property (nonatomic) IBOutlet UILabel *labelPlayerScore;
+@property (nonatomic) IBOutlet UILabel *labelPlayerCurrencyCash;
+@property (nonatomic) IBOutlet UILabel *labelPlayerCurrencyPremium;
+
+-(void) refresh:(NSDictionary*) playerDict;
+
 @end

@@ -20,6 +20,8 @@
 // Activity View
 #import "DejalActivityView.h"
 
+// Master View (ZUUReval)
+
 @implementation GameManager
 
 @synthesize deviceUUID = _deviceUUID;
@@ -83,7 +85,7 @@
     return @"15fd7ce896302ec559fb3932bca2b19d";
 }
 
-#pragma mark Public API Methods
+#pragma mark Authentication
 -(void) authenticate
 {
     
@@ -128,26 +130,30 @@
 }
 
 
+#pragma mark Player 
 -(void) refreshPlayer:(ResponseBlock) actionBlock
 {
     
+    /*
     // Check Existing Time
     if([_playerDict objectForKey:@"time"])
     {
         // Check Last Update
         if(([[_playerDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
         {
+            CCLOG(@"Player No Cache");
             actionBlock(_playerDict);
             return;
         }
     }
+    */
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
         [self makeRequest:URI_PLAYER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             // Store Player Information
             [_playerDict setDictionary:jsonDict];
-            CCLOG(@"_playerDict: %@",_playerDict);
+             CCLOG(@"Player Normnal Return");
             
             actionBlock(_playerDict);
         } setBlockFail:nil];
@@ -156,9 +162,12 @@
     
 }
 
+
+#pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock
 {
     
+    /*
     // Check Existing Time
     if([_inventoryDict objectForKey:@"time"])
     {
@@ -169,15 +178,56 @@
             return;
         }
     }
+    */
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
         [self makeRequest:URI_INVENTORY setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             // Store Player Information
             [_inventoryDict setDictionary:jsonDict];
-            CCLOG(@"_inventoryDict: %@",_inventoryDict);
+            //CCLOG(@"_inventoryDict: %@",_inventoryDict);
             
             actionBlock(_inventoryDict);
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
+#pragma mark Inventory Part Management
+-(void) clearPart:(int)partID setBlock:(ResponseBlock) actionBlock {
+    
+    // Create DATA Dictionary
+    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithInt:partID], @"part_id",
+                              nil];
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_INVENTORY_REMOVE_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            // Store Player Information
+            [_inventoryDict setDictionary:jsonDict];
+            //CCLOG(@"_inventoryDict: %@",_inventoryDict);
+            
+            actionBlock(_inventoryDict);
+        } setBlockFail:nil];
+        
+    }]];
+
+}
+
+-(void) setPart:(int)partID setItem:(int)itemID setBlock:(ResponseBlock) actionBlock {
+    
+    // Create DATA Dictionary
+    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithInt:partID], @"part_id",
+                              [NSNumber numberWithInt:itemID], @"item_id",
+                              nil];
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_INVENTORY_ATTACH_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            actionBlock(nil);
         } setBlockFail:nil];
         
     }]];

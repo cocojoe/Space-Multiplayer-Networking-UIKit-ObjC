@@ -45,6 +45,7 @@
     self.viewController = masterViewController;
     
     [[GameManager sharedInstance] setView:masterViewController];
+    [[GameManager sharedInstance] setMasterController:masterViewController];
 
     
     // Override point for customization after application launch.

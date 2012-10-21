@@ -28,4 +28,41 @@
     // Configure the view for the selected state
 }
 
+-(void) refresh:(NSDictionary*) cellDict;
+{
+    // Number Formatter
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    // Name
+    self.labelName.text = [cellDict objectForKey:@"name"];
+    
+    // Description
+    if([cellDict objectForKey:@"description"] == [NSNull null])
+    {
+        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"Describe Me!"];
+    } else {
+        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",[cellDict objectForKey:@"description"]];
+    }
+    
+    // Description
+    if([cellDict objectForKey:@"group_name"] == [NSNull null])
+    {
+        self.labelGroup.text = @"Misc";
+    } else {
+        self.labelGroup.text = [cellDict objectForKey:@"group_name"];
+    }
+    
+    // Image
+    if([cellDict objectForKey:@"icon"] != [NSNull null])
+    {
+        self.imageIcon.image = [UIImage imageNamed:[cellDict objectForKey:@"icon"]];
+    }
+    
+    // Amount (Formatted)
+    NSNumber* amount = [NSNumber numberWithInt:[[cellDict objectForKey:@"amount"] integerValue]];
+    self.labelAmount.text = [formatter stringFromNumber:amount];
+
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import "PlayerViewController.h"
 #import "GameManager.h"
+#import "PlayerProfileView.h"
+#import "PlayerPartsView.h"
 
 @interface PlayerViewController ()
 
@@ -28,6 +30,7 @@
         // Nav Title
         self.title = title;
         
+        [self setupNotification];
        
     }
     return self;
@@ -38,6 +41,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setupNotification];
     }
     return self;
 }
@@ -49,6 +53,8 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+
+
 
 #pragma mark - View lifecycle
 
@@ -76,8 +82,16 @@
     // Populate Data
     [self refreshData];
     
-    // 
 }
+
+// For example after a modal is dimissed (that may have refreshed player)
+/*
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self refreshData];
+}
+*/
 
 - (void)viewDidUnload
 {
@@ -98,6 +112,33 @@
     return shouldAutorotate;
 }
 
+#pragma mark Notification Handling
+-(void) setupNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerRefreshNotification:)
+                                                 name:@"playerRefresh"
+                                               object:nil];
+}
+
+- (void) playerRefreshNotification:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"playerRefresh"])
+    {
+        CCLOG(@"Player Refresh Notification");
+        [self refreshData];
+    }
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 #pragma mark Pull To Refresh Delegate Methods
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [self refreshData];
@@ -111,89 +152,26 @@
         
         // Process JSON
         
-        // Date Formatter from Unix Timestamp
-        /*
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[jsonDict objectForKey:@"time"] doubleValue]];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy'-'MM'-'dd HH':'mm':'ss"];
-        _labelServerTime.text = [dateFormat stringFromDate:date];
-        */
-        
         // Parent Player Dictionary
         NSDictionary *playerDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"player"]];
         
-        // Currency Child Dictionary
-        NSDictionary *currencyDict = [NSDictionary dictionaryWithDictionary:[playerDict objectForKey:@"currency"]];
- 
-        //// IB Outlets Profile
-        // Name
-        _labelPlayerName.text = [playerDict objectForKey:@"name"];
+        // Player View
+        [_playerProfileView refresh:playerDict];
         
-        // Number Formatter
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        
-        // Cash
-        NSNumber* cash = [NSNumber numberWithInt:[[currencyDict objectForKey:@"cash"] integerValue]];
-        _labelPlayerCurrencyCash.text = [formatter stringFromNumber:cash];
-        
-        // Premium
-        NSNumber* premium = [NSNumber numberWithInt:[[currencyDict objectForKey:@"premium"] integerValue]];
-        _labelPlayerCurrencyPremium.text = [formatter stringFromNumber:premium];
-        
-        // Score
-        NSNumber* score = [NSNumber numberWithInt:[[playerDict objectForKey:@"score"] integerValue]];
-        _labelPlayerScore.text = [formatter stringFromNumber:score];
-        
-        
-        //// IB Outlets Equipment
-        [self updateEquipmentView:[playerDict objectForKey:@"parts"]];
-        
+        // Parts View (We have some parts?)
+        if([[playerDict objectForKey:@"parts"] count]>0) {
+            [_partsProfileView refresh:[playerDict objectForKey:@"parts"]];
+        } else {
+            // Provide Dummy Dictionary Object (Expects Dict)
+            NSDictionary *partsDict = [[NSDictionary alloc] init];
+            [_partsProfileView refresh:partsDict];
+        }
+
         // Finished
         [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] finishedLoading];
     
     }];
     
 }
-
--(void) updateEquipmentView:(NSDictionary*) partsDict
-{
-    // Check Head
-    if([partsDict objectForKey:@"head"]!=nil)
-    {
-        NSDictionary* itemDict = [[partsDict objectForKey:@"head"] objectForKey:@"item"];
-        
-        // Head
-        _labelPlayerEquipmentHead.text  = [itemDict objectForKey:@"name"];
-        _labelPlayerEquipmentHeadDescription.text  = [NSString stringWithFormat:@"\"%@\"",[itemDict objectForKey:@"description"]];
-        _imagePlayerEquipmentHead.image = [UIImage imageNamed:[itemDict objectForKey:@"icon"]];
-    }
-    
-    // Add Head Handler
-    _imagePlayerEquipmentHead.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(equipmentTap)];
-    [tap setNumberOfTouchesRequired:1];
-    [tap setNumberOfTapsRequired:1];
-    [_imagePlayerEquipmentHead addGestureRecognizer:tap];
-    
-    
-    // Check Hands
-    if([partsDict objectForKey:@"hands"]!=nil)
-    {
-        NSDictionary* itemDict = [[partsDict objectForKey:@"hands"] objectForKey:@"item"];
-        
-        // Head
-        _labelPlayerEquipmentHands.text  = [itemDict objectForKey:@"name"];
-        _labelPlayerEquipmentHandsDescription.text  = [NSString stringWithFormat:@"\"%@\"",[itemDict objectForKey:@"description"]];
-        _imagePlayerEquipmentHands.image = [UIImage imageNamed:[itemDict objectForKey:@"icon"]];
-    }
-    
-}
-
-#pragma mark Handle Equipment Touch
--(void) equipmentTap {
-    CCLOG(@"Equipment Touch");
-}
-
 
 @end
