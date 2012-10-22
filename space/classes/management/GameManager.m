@@ -17,8 +17,12 @@
 // Pull To Refresh
 #import "PullToRefreshView.h"
 
-// Activity View
-#import "DejalActivityView.h"
+// Login View
+#import "LoginViewController.h"
+
+// UI Kit Find Parent Controller
+#import "UIView+FindUIViewController.h"
+
 
 // Master View (ZUUReval)
 
@@ -53,9 +57,13 @@
         _playerDict     = [[NSMutableDictionary alloc] init];
         _inventoryDict  = [[NSMutableDictionary alloc] init];
         
+        // Data Store
+        _masterItemList  = [[NSMutableArray alloc] init];
+        _masterPartList  = [[NSMutableArray alloc] init];
+        _masterGroupList = [[NSMutableArray alloc] init];
+        
         // Authorisation
         _eAuthenticationState = eAuthenticationNone;
-        _countdown            = HOST_RETRY;
         
         // Device UUID
         [self setDeviceUUID:[self getDeviceID]];
@@ -85,16 +93,31 @@
     return @"15fd7ce896302ec559fb3932bca2b19d";
 }
 
+
 #pragma mark Authentication
--(void) authenticate
+-(void) loginStart
 {
+    CCLOG(@"Launch Login Controller");
     
-    // Progress Indicator (Add If Not Present)
-    if(![DejalActivityView currentActivityView]) {
-        [DejalBezelActivityView activityViewForView:_view.view withLabel:[NSString stringWithFormat:@"Connecting..."] width:200];
-    } else {
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connecting..."];
-    }
+    // Auth In Progress (Queue Additional Requests)
+    _eAuthenticationState = eAuthenticationInProgress;
+    [_requestSuspendQueue setSuspended:YES];
+
+    // Present Loader
+    LoginViewController* loginViewController = [[LoginViewController alloc] init];
+    
+    // Grab Top Most Controller 
+    UIViewController* TopController = [[[[[UIApplication sharedApplication] keyWindow] subviews] lastObject] firstAvailableUIViewController];
+    [TopController presentModalViewController:loginViewController animated:YES];
+}
+
+-(void) loginComplete
+{
+    [_requestSuspendQueue setSuspended:NO]; // Release Pending Requests
+}
+     
+-(void) authenticate:(BasicBlock) successBlock setErrorBlock:(BasicBlock) errorBlock
+{
     
     // Create DATA Dictionary
     NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -109,26 +132,18 @@
         
         // Store Authentication Information
         _authDict = [jsonDict objectForKey:@"session"];
-        
-        // Dismiss Bezel / Flag Authenticated / Resume Secondary Queue
-        [DejalBezelActivityView removeViewAnimated:YES];
         _eAuthenticationState = eAuthenticationOK;
-        [_requestSuspendQueue setSuspended:NO]; // Release Pending Requests
         
         CCLOG(@"_authDict: %@",_authDict);
+        successBlock();
         
     } setBlockFail:^{
+        
         // Authentication Failure
         _eAuthenticationState = eAuthenticationNone;
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Connection Problem\nWill try again."];
-        [self performSelector:@selector(countDown) withObject:nil afterDelay:HOST_RETRY];
+        errorBlock();
     }];
-    
-    // Auth In Progress (Queue Additional Requests)
-    _eAuthenticationState = eAuthenticationInProgress;
-    [_requestSuspendQueue setSuspended:YES];
 }
-
 
 #pragma mark Player 
 -(void) refreshPlayer:(ResponseBlock) actionBlock
@@ -153,7 +168,6 @@
         [self makeRequest:URI_PLAYER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             // Store Player Information
             [_playerDict setDictionary:jsonDict];
-             CCLOG(@"Player Normnal Return");
             
             actionBlock(_playerDict);
         } setBlockFail:nil];
@@ -162,23 +176,74 @@
     
 }
 
+#pragma mark Master Lists
+-(void) retrieveMasterItem:(BasicBlock) actionBlock
+{
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_INVENTORY_ITEM_MASTER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Store Master List
+            [_masterItemList setArray:[jsonDict objectForKey:@"items"]];
+            CCLOG(@"Master Item List Retrieved, %d Items", [_masterItemList count]);
+            actionBlock();
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
+-(void) retrieveMasterPart:(BasicBlock) actionBlock
+{
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_PART_MASTER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Store Master List
+            [_masterPartList setArray:[jsonDict objectForKey:@"parts"]];
+            CCLOG(@"Master Part List Retrieved, %d Items", [_masterPartList count]);
+            actionBlock();
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
+-(void) retrieveMasterGroup:(BasicBlock) actionBlock
+{
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_INVENTORY_GROUP_MASTER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Store Master List
+            [_masterGroupList setArray:[jsonDict objectForKey:@"groups"]];
+            CCLOG(@"Master Group List Retrieved, %d Items", [_masterGroupList count]);
+            actionBlock();
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
 
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock
 {
     
     /*
-    // Check Existing Time
-    if([_inventoryDict objectForKey:@"time"])
-    {
-        // Check Last Update
-        if(([[_inventoryDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
-        {
-            actionBlock(_inventoryDict);
-            return;
-        }
-    }
-    */
+     // Check Existing Time
+     if([_inventoryDict objectForKey:@"time"])
+     {
+     // Check Last Update
+     if(([[_inventoryDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
+     {
+     actionBlock(_inventoryDict);
+     return;
+     }
+     }
+     */
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
@@ -194,6 +259,7 @@
     
 }
 
+
 #pragma mark Inventory Part Management
 -(void) clearPart:(int)partID setBlock:(ResponseBlock) actionBlock {
     
@@ -205,11 +271,7 @@
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
         [self makeRequest:URI_INVENTORY_REMOVE_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
-            // Store Player Information
-            [_inventoryDict setDictionary:jsonDict];
-            //CCLOG(@"_inventoryDict: %@",_inventoryDict);
-            
-            actionBlock(_inventoryDict);
+            actionBlock(nil);
         } setBlockFail:nil];
         
     }]];
@@ -234,22 +296,6 @@
     
 }
 
-#pragma mark Connection Retry
--(void) countDown
-{
-    _countdown--;
-    [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Retry in %d seconds",_countdown];
-    
-    // Next Auth Attempt
-    if(_countdown<=0)
-    {
-        _countdown  = HOST_RETRY;
-        [self performSelector:@selector(authenticate) withObject:nil];
-    } else {
-        [self performSelector:@selector(countDown) withObject:nil afterDelay:1];
-    }
-}
-
 #pragma mark Internal API Methods
 // @todo General Connectivity Flagging
 -(void) makeRequest:(NSString*) URI setPostDictionary:(NSDictionary*) postDict setBlock:(ResponseBlock) responseBlock setBlockFail:(BasicBlock) failBlock
@@ -261,7 +307,7 @@
     NSMutableDictionary *completeDict = [[NSMutableDictionary alloc] init];
     [completeDict addEntriesFromDictionary:postDict];
     
-    // If Authenticated / Add Data
+    // Auto Add Authentication Dictionary
     if(_eAuthenticationState==eAuthenticationOK)
     {
         [completeDict addEntriesFromDictionary:_authDict];
@@ -280,6 +326,8 @@
     // Create URL Request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
+    //CCLOG(@"REQUEST POST: %@",completeDict);
+    
     // Params
     [request setHTTPMethod: @"POST"];
     [request setHTTPBody: requestData];
@@ -291,19 +339,22 @@
         {
 
             if([[JSON objectForKey:@"error_code"] integerValue]==1)
-            { // Soft Issue (ReAuthentication Required)
+            {
+                // Soft Issue (ReAuthentication Required)
                 CCLOG(@"Re-Authentication Required: Invalid Session");
-                [self authenticate];
+                [self loginStart];
                 
                 // ReQueue Failed Request
                 [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
                 }]];
+
             } else {
-              // UnKnown Issue
+                // UnKnown Issue
                 [self apiError:[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]];
             }
         } else {
+            // Success
             //CCLOG(@"Response Success:%@",JSON);
             responseBlock(JSON);
         }
@@ -326,6 +377,8 @@
     
 }
 
+
+#pragma mark Error Handling
 // General API Error Handler
 -(void) apiError:(NSString*) errorDescription
 {

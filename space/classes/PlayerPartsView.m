@@ -10,6 +10,9 @@
 #import "PartView.h"
 #import "GameManager.h"
 
+#define PART_HEAD       1
+#define PART_HANDS      2
+
 @implementation PlayerPartsView
 
 - (id)initWithFrame:(CGRect)frame
@@ -17,6 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self applyDefaultStyle];
     }
     return self;
 }
@@ -46,45 +50,25 @@
     self.layer.shadowOpacity = 0.25;
 }
 
--(void) refresh:(NSDictionary*) partsDict
+-(void) refresh:(NSMutableArray*) parts
 {
-    // Check Head
-    if([partsDict objectForKey:@"head"])
-    {
-        NSDictionary* itemDict = [[partsDict objectForKey:@"head"] objectForKey:@"item"];
-        
-        [_partHead refresh:itemDict setPartID:[[[partsDict objectForKey:@"head"] objectForKey:@"part_id"] integerValue]];
-    } else {
-        // Harcoded Part Reference
-        // Default Values
-        NSDictionary* itemDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  @"You have no head item", @"name",
-                                  @"Click to equip an item", @"description",
-                                  @"parts_head_empty", @"icon",
-                                  [NSNumber numberWithBool:NO],@"remove", nil];
-        [_partHead refresh:itemDict setPartID:1];
-    }
-    [_partHead setSearchText:@"head"];
-    
     
     // Check Head
-    if([partsDict objectForKey:@"hands"])
+    [_partHead setupPartID:PART_HEAD];
+    for(NSDictionary* part in parts)
     {
-        NSDictionary* itemDict = [[partsDict objectForKey:@"hands"] objectForKey:@"item"];
-        
-        [_partHands refresh:itemDict setPartID:[[[partsDict objectForKey:@"hands"] objectForKey:@"part_id"] integerValue]];
-    } else {
-        // Harcoded Part Reference
-        // Default Values
-        NSDictionary* itemDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  @"You have no hands item", @"name",
-                                  @"Click to equip an item", @"description",
-                                  @"parts_hands_empty", @"icon",
-                                  [NSNumber numberWithBool:NO],@"remove", nil];
-        [_partHands refresh:itemDict setPartID:2];
+        if([[part objectForKey:@"part_id"] integerValue]==PART_HEAD)
+            [_partHead refresh:[[part objectForKey:@"item_id"] integerValue]];
     }
-    [_partHands setSearchText:@"hands"];
-    
+      
+    // Check Head
+    [_partHands setupPartID:PART_HANDS];
+    for(NSDictionary* part in parts)
+    {
+        if([[part objectForKey:@"part_id"] integerValue]==PART_HANDS)
+            [_partHands refresh:[[part objectForKey:@"item_id"] integerValue]];
+    }
+      
 }
 
 

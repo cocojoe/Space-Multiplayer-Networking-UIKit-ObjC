@@ -24,6 +24,7 @@
     if (self) {
         // Custom initialization
         _inventory         = [[NSMutableArray alloc] init];
+        _inventoryAppended = [[NSMutableArray alloc] init];
         _inventoryFiltered = [[NSMutableArray alloc] init];
         _partID            = 0;
     }
@@ -35,6 +36,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _inventory         = [[NSMutableArray alloc] init];
+        _inventoryAppended = [[NSMutableArray alloc] init];
         _inventoryFiltered = [[NSMutableArray alloc] init];
         _partID            = 0;
     }
@@ -164,10 +166,10 @@
 #pragma mark Item Management
 -(void) clearItem {
     [[GameManager sharedInstance] clearPart:_partID setBlock:^(NSDictionary *jsonDict){
+        
         // Force Refresh Player Cache
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"playerRefresh"
-         object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRefresh" object:self];
+        
         // Dismiss
         [self dismissModalViewControllerAnimated:YES];
     }];
@@ -178,28 +180,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-    
     NSDictionary* itemDict = [_inventoryFiltered objectAtIndex:indexPath.row];
     
     if(_partID) {
-        [[GameManager sharedInstance] setPart:_partID setItem:[[itemDict objectForKey:@"id"] integerValue] setBlock:^(NSDictionary *jsonDict){
+        [[GameManager sharedInstance] setPart:_partID setItem:[[[itemDict objectForKey:@"item"] objectForKey:@"id"] integerValue] setBlock:^(NSDictionary *jsonDict){
             
-            [[NSNotificationCenter defaultCenter]
-             postNotificationName:@"playerRefresh"
-             object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRefresh" object:self];
             
             // Dismiss
             [self dismissModalViewControllerAnimated:YES];
         }];
     }
-
     
 }
 
@@ -208,9 +199,6 @@
 {
    
     [[GameManager sharedInstance] refreshInventory:^(NSDictionary *jsonDict){
-        
-        // Process JSON
-        
         // Assign Inventory JSON
         _inventory = [jsonDict objectForKey:@"inventory"];
         
@@ -219,19 +207,29 @@
         // Complete Loading
         [_pull finishedLoading];
     }];
-    
+
 }
 
 #pragma mark Search Helpers
 -(void) defaultFilter
 {
+    // ReBuild Inventory - Attach Item/Group Details
+    for(NSDictionary* inventoryItem in _inventory)
+    {
+        NSDictionary* item      = [[[GameManager sharedInstance] masterItemList] objectAtIndex:[[inventoryItem objectForKey:@"item_id"] integerValue]-1];
+        NSDictionary* itemGroup = [[[GameManager sharedInstance] masterGroupList] objectAtIndex:[[item objectForKey:@"group_id"] integerValue]-1];
+        [_inventoryAppended addObject:[NSDictionary dictionaryWithObjectsAndKeys:item, @"item",
+                                                                                 itemGroup, @"group",
+                                                                                 [inventoryItem objectForKey:@"amount"], @"amount",nil]];
+    }
+    
     // Manual Search
     if([_searchText length]>0)
     {
         [self filterData:_searchText];
     } else {
         // Filter Inventory
-        _inventoryFiltered = [NSMutableArray arrayWithArray:_inventory];
+        _inventoryFiltered = [NSMutableArray arrayWithArray:_inventoryAppended];
     }
 
     [self.tableView reloadData];
@@ -241,16 +239,19 @@
     
     [_inventoryFiltered removeAllObjects];
     
-    for (NSDictionary* item in _inventory)
+    for (NSDictionary* inventoryItem in _inventoryAppended)
     {
+        NSDictionary* item      = [inventoryItem objectForKey:@"item"];
+        NSDictionary* itemGroup = [inventoryItem objectForKey:@"group"];
+        
         NSRange nameSearch = [[item objectForKey:@"name"] rangeOfString:searchString options:NSCaseInsensitiveSearch];
         
-        NSRange groupSearch = [[item objectForKey:@"group_name"] rangeOfString:searchString options:NSCaseInsensitiveSearch];
+        NSRange groupSearch = [[itemGroup objectForKey:@"name"] rangeOfString:searchString options:NSCaseInsensitiveSearch];
         
         if(nameSearch.location != NSNotFound ||
            groupSearch.location != NSNotFound)
         {
-            [_inventoryFiltered addObject:item];
+            [_inventoryFiltered addObject:inventoryItem];
         }
     }
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B04D35F16354F1A0019FDDF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35716354F1A0019FDDF /* Icon-72.png */; };
+		5B04D36016354F1A0019FDDF /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35816354F1A0019FDDF /* Icon-72@2x.png */; };
+		5B04D36116354F1A0019FDDF /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35916354F1A0019FDDF /* Icon-Small-50.png */; };
+		5B04D36216354F1A0019FDDF /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35A16354F1A0019FDDF /* Icon-Small.png */; };
+		5B04D36316354F1A0019FDDF /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35B16354F1A0019FDDF /* Icon-Small@2x.png */; };
+		5B04D36416354F1A0019FDDF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35C16354F1A0019FDDF /* Icon.png */; };
+		5B04D36516354F1A0019FDDF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35D16354F1A0019FDDF /* Icon@2x.png */; };
+		5B04D36616354F1A0019FDDF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 5B04D35E16354F1A0019FDDF /* iTunesArtwork */; };
 		5B07A72C162EB864006B56A5 /* HangarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B07A72A162EB864006B56A5 /* HangarViewController.m */; };
 		5B07A72D162EB864006B56A5 /* HangarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A72B162EB864006B56A5 /* HangarViewController.xib */; };
 		5B07A73A162ED110006B56A5 /* avatar_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A738162ED110006B56A5 /* avatar_default.png */; };
@@ -17,6 +25,9 @@
 		5B07A743162ED4A9006B56A5 /* icon_premium@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73F162ED4A9006B56A5 /* icon_premium@2x.png */; };
 		5B1ACD2A162DFA39003C157F /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1ACD28162DFA39003C157F /* PlayerViewController.m */; };
 		5B1ACD2B162DFA39003C157F /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1ACD29162DFA39003C157F /* PlayerViewController.xib */; };
+		5B3FE69916355D6800D9F2CC /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */; };
+		5B3FE6A216355D8A00D9F2CC /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */; };
+		5B3FE6A416355D9300D9F2CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE6A316355D9300D9F2CC /* MapKit.framework */; };
 		5B7A10A5162579680012E452 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A10A1162579680012E452 /* arrow.png */; };
 		5B7A10A6162579680012E452 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A10A2162579680012E452 /* arrow@2x.png */; };
 		5B7A10A7162579680012E452 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A10A4162579680012E452 /* PullToRefreshView.m */; };
@@ -31,7 +42,6 @@
 		5B7E183316241ECC00E0315E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E183216241ECC00E0315E /* AppDelegate.m */; };
 		5B7E183516241ECC00E0315E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E183416241ECC00E0315E /* Default.png */; };
 		5B7E183716241ECC00E0315E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E183616241ECC00E0315E /* Default@2x.png */; };
-		5B7E183916241ECC00E0315E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7E183816241ECC00E0315E /* Default-568h@2x.png */; };
 		5B7E184E1624206400E0315E /* ZUUIRevealController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E184D1624206400E0315E /* ZUUIRevealController.m */; };
 		5B7E1852162421C000E0315E /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E1851162421C000E0315E /* MasterViewController.m */; };
 		5B7E185B16242CBF00E0315E /* HubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E185916242CBF00E0315E /* HubViewController.m */; };
@@ -46,12 +56,12 @@
 		5B7E187F1624360200E0315E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7E187C1624360200E0315E /* OpenAL.framework */; };
 		5B7E189116243D8900E0315E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E188E16243D8900E0315E /* NSString+MD5Addition.m */; };
 		5B7E189216243D8900E0315E /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E189016243D8900E0315E /* UIDevice+IdentifierAddition.m */; };
+		5B8A29AF1635607C006FCB17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A29AE1635607C006FCB17 /* LoginViewController.m */; };
 		5B8F1A23162466AA00274D4E /* icon_inventory.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F1A21162466AA00274D4E /* icon_inventory.png */; };
 		5B8F1A24162466AA00274D4E /* icon_inventory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F1A22162466AA00274D4E /* icon_inventory@2x.png */; };
 		5B8F1A28162467C900274D4E /* icon_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F1A26162467C900274D4E /* icon_home.png */; };
 		5B8F1A29162467C900274D4E /* icon_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F1A27162467C900274D4E /* icon_home@2x.png */; };
 		5B8F1A2C1624683100274D4E /* MenuObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F1A2B1624683100274D4E /* MenuObject.m */; };
-		5B94FF971626F8F7004397D4 /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94FF951626F8F7004397D4 /* DejalActivityView.m */; };
 		5BA22DB11624581A0006AE64 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA22DAF1624581A0006AE64 /* MenuViewController.m */; };
 		5BA22DB21624581A0006AE64 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA22DB01624581A0006AE64 /* MenuViewController.xib */; };
 		5BA22DBD1624603D0006AE64 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA22DBF1624603D0006AE64 /* Localizable.strings */; };
@@ -95,7 +105,39 @@
 		5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF38E4616316B890029658A /* UIView+FindUIViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5B3FE69C16355D6900D9F2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = TapkuLibrary;
+		};
+		5B3FE69E16355D6900D9F2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3B45DDF1134C736600D24C1A;
+			remoteInfo = LogicTests;
+		};
+		5B3FE6A016355D7900D9F2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = TapkuLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		5B04D35716354F1A0019FDDF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		5B04D35816354F1A0019FDDF /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		5B04D35916354F1A0019FDDF /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		5B04D35A16354F1A0019FDDF /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		5B04D35B16354F1A0019FDDF /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		5B04D35C16354F1A0019FDDF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		5B04D35D16354F1A0019FDDF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		5B04D35E16354F1A0019FDDF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		5B07A729162EB864006B56A5 /* HangarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HangarViewController.h; path = classes/HangarViewController.h; sourceTree = "<group>"; };
 		5B07A72A162EB864006B56A5 /* HangarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HangarViewController.m; path = classes/HangarViewController.m; sourceTree = "<group>"; };
 		5B07A72B162EB864006B56A5 /* HangarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HangarViewController.xib; path = classes/HangarViewController.xib; sourceTree = "<group>"; };
@@ -108,6 +150,9 @@
 		5B1ACD27162DFA39003C157F /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerViewController.h; path = classes/PlayerViewController.h; sourceTree = "<group>"; };
 		5B1ACD28162DFA39003C157F /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerViewController.m; path = classes/PlayerViewController.m; sourceTree = "<group>"; };
 		5B1ACD29162DFA39003C157F /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlayerViewController.xib; path = classes/PlayerViewController.xib; sourceTree = "<group>"; };
+		5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = ../../tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
+		5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = ../tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
+		5B3FE6A316355D9300D9F2CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5B7A10A1162579680012E452 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		5B7A10A2162579680012E452 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		5B7A10A3162579680012E452 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
@@ -127,7 +172,6 @@
 		5B7E183216241ECC00E0315E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5B7E183416241ECC00E0315E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5B7E183616241ECC00E0315E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		5B7E183816241ECC00E0315E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5B7E184C1624206400E0315E /* ZUUIRevealController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUUIRevealController.h; sourceTree = "<group>"; };
 		5B7E184D1624206400E0315E /* ZUUIRevealController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZUUIRevealController.m; sourceTree = "<group>"; };
 		5B7E1850162421C000E0315E /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = classes/MasterViewController.h; sourceTree = "<group>"; };
@@ -153,14 +197,14 @@
 		5B7E188E16243D8900E0315E /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		5B7E188F16243D8900E0315E /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		5B7E189016243D8900E0315E /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		5B8A29AD1635607C006FCB17 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = classes/LoginViewController.h; sourceTree = "<group>"; };
+		5B8A29AE1635607C006FCB17 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = classes/LoginViewController.m; sourceTree = "<group>"; };
 		5B8F1A21162466AA00274D4E /* icon_inventory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_inventory.png; sourceTree = "<group>"; };
 		5B8F1A22162466AA00274D4E /* icon_inventory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_inventory@2x.png"; sourceTree = "<group>"; };
 		5B8F1A26162467C900274D4E /* icon_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_home.png; sourceTree = "<group>"; };
 		5B8F1A27162467C900274D4E /* icon_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_home@2x.png"; sourceTree = "<group>"; };
 		5B8F1A2A1624683100274D4E /* MenuObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuObject.h; path = classes/MenuObject.h; sourceTree = "<group>"; };
 		5B8F1A2B1624683100274D4E /* MenuObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuObject.m; path = classes/MenuObject.m; sourceTree = "<group>"; };
-		5B94FF941626F8F7004397D4 /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
-		5B94FF951626F8F7004397D4 /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		5BA22DAE1624581A0006AE64 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = classes/MenuViewController.h; sourceTree = "<group>"; };
 		5BA22DAF1624581A0006AE64 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = classes/MenuViewController.m; sourceTree = "<group>"; };
 		5BA22DB01624581A0006AE64 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuViewController.xib; path = classes/MenuViewController.xib; sourceTree = "<group>"; };
@@ -226,6 +270,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3FE6A416355D9300D9F2CC /* MapKit.framework in Frameworks */,
+				5B3FE6A216355D8A00D9F2CC /* libTapkuLibrary.a in Frameworks */,
 				5BD3C423162808D300974C3C /* SystemConfiguration.framework in Frameworks */,
 				5B7A10AA16257B390012E452 /* QuartzCore.framework in Frameworks */,
 				5B7E187D1624360200E0315E /* AudioToolbox.framework in Frameworks */,
@@ -240,15 +286,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B07A728162EA61A006B56A5 /* Hub Views */ = {
+		5B07A728162EA61A006B56A5 /* Initial Hub Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B07A729162EB864006B56A5 /* HangarViewController.h */,
-				5B07A72A162EB864006B56A5 /* HangarViewController.m */,
-				5B07A72B162EB864006B56A5 /* HangarViewController.xib */,
+				5BE7F8C71635973D00C5E0F7 /* Hangar */,
 				5BCB9504162EE1C0005AD7E5 /* Player */,
 			);
-			name = "Hub Views";
+			name = "Initial Hub Views";
 			sourceTree = "<group>";
 		};
 		5B07A72E162EC38C006B56A5 /* backgrounds */ = {
@@ -278,6 +322,38 @@
 			name = profile;
 			path = assets/profile;
 			sourceTree = SOURCE_ROOT;
+		};
+		5B3FE69016355AEA00D9F2CC /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */,
+			);
+			name = Bundles;
+			sourceTree = "<group>";
+		};
+		5B3FE69116355B0000D9F2CC /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				5B04D35716354F1A0019FDDF /* Icon-72.png */,
+				5B04D35816354F1A0019FDDF /* Icon-72@2x.png */,
+				5B04D35916354F1A0019FDDF /* Icon-Small-50.png */,
+				5B04D35A16354F1A0019FDDF /* Icon-Small.png */,
+				5B04D35B16354F1A0019FDDF /* Icon-Small@2x.png */,
+				5B04D35C16354F1A0019FDDF /* Icon.png */,
+				5B04D35D16354F1A0019FDDF /* Icon@2x.png */,
+				5B04D35E16354F1A0019FDDF /* iTunesArtwork */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		5B3FE69416355D6800D9F2CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */,
+				5B3FE69F16355D6900D9F2CC /* LogicTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 		5B7A10A0162579680012E452 /* PullToRefresh */ = {
 			isa = PBXGroup;
@@ -310,6 +386,8 @@
 		5B7E182116241ECC00E0315E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */,
+				5B3FE6A316355D9300D9F2CC /* MapKit.framework */,
 				5BD3C422162808D300974C3C /* SystemConfiguration.framework */,
 				5B7A10A916257B390012E452 /* QuartzCore.framework */,
 				5B7E187A1624360200E0315E /* AudioToolbox.framework */,
@@ -337,6 +415,8 @@
 		5B7E182916241ECC00E0315E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B3FE69016355AEA00D9F2CC /* Bundles */,
+				5B3FE69116355B0000D9F2CC /* Icons */,
 				5BECBAE816302EBE004620B0 /* parts */,
 				5BDD4A48162FF7A2009FA697 /* inventory */,
 				5B07A737162ED110006B56A5 /* profile */,
@@ -348,7 +428,6 @@
 				5B7E183016241ECC00E0315E /* space-Prefix.pch */,
 				5B7E183416241ECC00E0315E /* Default.png */,
 				5B7E183616241ECC00E0315E /* Default@2x.png */,
-				5B7E183816241ECC00E0315E /* Default-568h@2x.png */,
 				5BA22DBF1624603D0006AE64 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -357,7 +436,6 @@
 		5B7E18431624201400E0315E /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				5B94FF921626F8F7004397D4 /* DejalActivityView */,
 				5BDB9C211626CD950074EBB7 /* AFNetworking */,
 				5B7A10A0162579680012E452 /* PullToRefresh */,
 				5B7E188C16243D8900E0315E /* DeviceID */,
@@ -379,6 +457,7 @@
 		5B7E184F1624218F00E0315E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5B8A29B216356083006FCB17 /* Loader */,
 				5B7E1868162434CC00E0315E /* Management */,
 				5B7E185D1624307600E0315E /* Master Control */,
 				5B7E185E1624308200E0315E /* Rear Controllers */,
@@ -409,7 +488,7 @@
 		5B7E185F1624308A00E0315E /* Front Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5B07A728162EA61A006B56A5 /* Hub Views */,
+				5B07A728162EA61A006B56A5 /* Initial Hub Views */,
 				5B7E185816242CBF00E0315E /* HubViewController.h */,
 				5B7E185916242CBF00E0315E /* HubViewController.m */,
 				5B7E185A16242CBF00E0315E /* HubViewController.xib */,
@@ -458,6 +537,15 @@
 			path = DeviceID;
 			sourceTree = "<group>";
 		};
+		5B8A29B216356083006FCB17 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A29AD1635607C006FCB17 /* LoginViewController.h */,
+				5B8A29AE1635607C006FCB17 /* LoginViewController.m */,
+			);
+			name = Loader;
+			sourceTree = "<group>";
+		};
 		5B8F1A20162466AA00274D4E /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,15 +574,6 @@
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		5B94FF921626F8F7004397D4 /* DejalActivityView */ = {
-			isa = PBXGroup;
-			children = (
-				5B94FF941626F8F7004397D4 /* DejalActivityView.h */,
-				5B94FF951626F8F7004397D4 /* DejalActivityView.m */,
-			);
-			path = DejalActivityView;
-			sourceTree = "<group>";
-		};
 		5BB6251D16314A76005BB81B /* Parts */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,11 +588,11 @@
 		5BCB9504162EE1C0005AD7E5 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				5BF38E4916318A200029658A /* Profile */,
 				5BB6251D16314A76005BB81B /* Parts */,
 				5B1ACD27162DFA39003C157F /* PlayerViewController.h */,
 				5B1ACD28162DFA39003C157F /* PlayerViewController.m */,
 				5B1ACD29162DFA39003C157F /* PlayerViewController.xib */,
-				5BF38E4916318A200029658A /* Profile */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -560,11 +639,29 @@
 				5BA22DC0162461DD0006AE64 /* InventoryViewController.h */,
 				5BA22DC1162461DD0006AE64 /* InventoryViewController.m */,
 				5BA22DC2162461DE0006AE64 /* InventoryViewController.xib */,
+				5BE7F8C81635974F00C5E0F7 /* Cells */,
+			);
+			name = Inventory;
+			sourceTree = "<group>";
+		};
+		5BE7F8C71635973D00C5E0F7 /* Hangar */ = {
+			isa = PBXGroup;
+			children = (
+				5B07A729162EB864006B56A5 /* HangarViewController.h */,
+				5B07A72A162EB864006B56A5 /* HangarViewController.m */,
+				5B07A72B162EB864006B56A5 /* HangarViewController.xib */,
+			);
+			name = Hangar;
+			sourceTree = "<group>";
+		};
+		5BE7F8C81635974F00C5E0F7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
 				5BDD4A4F162FF7DA009FA697 /* InventoryCell.h */,
 				5BDD4A50162FF7DA009FA697 /* InventoryCell.m */,
 				5BDD4A52162FFFF8009FA697 /* InventoryCell.xib */,
 			);
-			name = Inventory;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		5BECBAE816302EBE004620B0 /* parts */ = {
@@ -606,6 +703,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5B3FE6A116355D7900D9F2CC /* PBXTargetDependency */,
 			);
 			name = space;
 			productName = space;
@@ -631,12 +729,35 @@
 			mainGroup = 5B7E181316241ECC00E0315E;
 			productRefGroup = 5B7E181F16241ECC00E0315E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5B3FE69416355D6800D9F2CC /* Products */;
+					ProjectRef = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5B7E181D16241ECC00E0315E /* space */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTapkuLibrary.a;
+			remoteRef = 5B3FE69C16355D6900D9F2CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5B3FE69F16355D6900D9F2CC /* LogicTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LogicTests.octest;
+			remoteRef = 5B3FE69E16355D6900D9F2CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5B7E181C16241ECC00E0315E /* Resources */ = {
@@ -646,7 +767,6 @@
 				5B7E182D16241ECC00E0315E /* InfoPlist.strings in Resources */,
 				5B7E183516241ECC00E0315E /* Default.png in Resources */,
 				5B7E183716241ECC00E0315E /* Default@2x.png in Resources */,
-				5B7E183916241ECC00E0315E /* Default-568h@2x.png in Resources */,
 				5B7E185C16242CBF00E0315E /* HubViewController.xib in Resources */,
 				5BA22DB21624581A0006AE64 /* MenuViewController.xib in Resources */,
 				5BA22DBD1624603D0006AE64 /* Localizable.strings in Resources */,
@@ -688,6 +808,15 @@
 				5BECBAF816302EBE004620B0 /* parts_head_empty@2x.png in Resources */,
 				5BECBB0016303364004620B0 /* icon_trophy.png in Resources */,
 				5BECBB0116303364004620B0 /* icon_trophy@2x.png in Resources */,
+				5B04D35F16354F1A0019FDDF /* Icon-72.png in Resources */,
+				5B04D36016354F1A0019FDDF /* Icon-72@2x.png in Resources */,
+				5B04D36116354F1A0019FDDF /* Icon-Small-50.png in Resources */,
+				5B04D36216354F1A0019FDDF /* Icon-Small.png in Resources */,
+				5B04D36316354F1A0019FDDF /* Icon-Small@2x.png in Resources */,
+				5B04D36416354F1A0019FDDF /* Icon.png in Resources */,
+				5B04D36516354F1A0019FDDF /* Icon@2x.png in Resources */,
+				5B04D36616354F1A0019FDDF /* iTunesArtwork in Resources */,
+				5B3FE69916355D6800D9F2CC /* TapkuLibrary.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,7 +852,6 @@
 				5BDB9C3B1626CD950074EBB7 /* AFURLConnectionOperation.m in Sources */,
 				5BDB9C3C1626CD950074EBB7 /* AFXMLRequestOperation.m in Sources */,
 				5BDB9C3D1626CD950074EBB7 /* UIImageView+AFNetworking.m in Sources */,
-				5B94FF971626F8F7004397D4 /* DejalActivityView.m in Sources */,
 				5B1ACD2A162DFA39003C157F /* PlayerViewController.m in Sources */,
 				5B07A72C162EB864006B56A5 /* HangarViewController.m in Sources */,
 				5BCB9512162EF38E005AD7E5 /* PlayerProfileView.m in Sources */,
@@ -731,10 +859,19 @@
 				5BB6251B16314798005BB81B /* PlayerPartsView.m in Sources */,
 				5BB6252016314E48005BB81B /* PartView.m in Sources */,
 				5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */,
+				5B8A29AF1635607C006FCB17 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B3FE6A116355D7900D9F2CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TapkuLibrary;
+			targetProxy = 5B3FE6A016355D7900D9F2CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5B7E182B16241ECC00E0315E /* InfoPlist.strings */ = {
@@ -814,6 +951,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "space/space-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/martin/Documents/ios/tapkulibrary/src;
 				INFOPLIST_FILE = "space/space-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -825,6 +963,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "space/space-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/martin/Documents/ios/tapkulibrary/src;
 				INFOPLIST_FILE = "space/space-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

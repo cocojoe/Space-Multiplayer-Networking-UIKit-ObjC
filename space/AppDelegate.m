@@ -19,6 +19,9 @@
 #import "GameManager.h"
 #import "SimpleAudioEngine.h"
 
+// Loader
+#import "LoginViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -45,20 +48,15 @@
     self.viewController = masterViewController;
     
     [[GameManager sharedInstance] setView:masterViewController];
-    [[GameManager sharedInstance] setMasterController:masterViewController];
 
-    
     // Override point for customization after application launch.
-    self.window.rootViewController = self.viewController; // Set Master
+    self.window.rootViewController = self.viewController; // Set Login
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     // Initialise Sound Engine
     //[CDSoundEngine setMixerSampleRate:32000];
 	//[SimpleAudioEngine sharedEngine];
-    
-    // Authenticate
-    [[GameManager sharedInstance] authenticate];
     
     return YES;
 

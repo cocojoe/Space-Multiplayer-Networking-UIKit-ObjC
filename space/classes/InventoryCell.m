@@ -7,6 +7,7 @@
 //
 
 #import "InventoryCell.h"
+#import "GameManager.h"
 
 @implementation InventoryCell
 
@@ -34,29 +35,35 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     
+    NSDictionary* item      = [cellDict objectForKey:@"item"];
+    NSDictionary* itemGroup = [cellDict objectForKey:@"group"];
+    
     // Name
-    self.labelName.text = [cellDict objectForKey:@"name"];
+    self.labelName.text = [item objectForKey:@"name"];
     
     // Description
-    if([cellDict objectForKey:@"description"] == [NSNull null])
+    if([[item objectForKey:@"description"] length]>0)
     {
-        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"Describe Me!"];
+        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",[item objectForKey:@"description"]];
     } else {
-        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",[cellDict objectForKey:@"description"]];
+        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"Describe Me!"];
     }
     
     // Description
-    if([cellDict objectForKey:@"group_name"] == [NSNull null])
+    if([itemGroup objectForKey:@"name"] == [NSNull null])
     {
-        self.labelGroup.text = @"Misc";
+        self.labelGroup.text = @"Other";
     } else {
-        self.labelGroup.text = [cellDict objectForKey:@"group_name"];
+        self.labelGroup.text = [itemGroup objectForKey:@"name"];
     }
     
     // Image
-    if([cellDict objectForKey:@"icon"] != [NSNull null])
+    if([[item objectForKey:@"icon"] length]>0)
     {
-        self.imageIcon.image = [UIImage imageNamed:[cellDict objectForKey:@"icon"]];
+        self.imageIcon.image = [UIImage imageNamed:[item objectForKey:@"icon"]];
+    } else {
+        // Dummy Holder
+        self.imageIcon.image = [UIImage imageNamed:@"item_default"];
     }
     
     // Amount (Formatted)

@@ -24,6 +24,7 @@
 @property (nonatomic,readwrite) bool equipped;
 @property (nonatomic) NSString* searchText;
 
--(void) refresh:(NSDictionary*) itemDict setPartID:(int) partID;
+-(void) refresh:(int) itemID;
+-(void) setupPartID:(int) partID;
 
 @end

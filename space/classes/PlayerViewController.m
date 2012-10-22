@@ -150,22 +150,14 @@
     
     [[GameManager sharedInstance] refreshPlayer:^(NSDictionary *jsonDict){
         
-        // Process JSON
-        
         // Parent Player Dictionary
         NSDictionary *playerDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"player"]];
         
         // Player View
         [_playerProfileView refresh:playerDict];
         
-        // Parts View (We have some parts?)
-        if([[playerDict objectForKey:@"parts"] count]>0) {
-            [_partsProfileView refresh:[playerDict objectForKey:@"parts"]];
-        } else {
-            // Provide Dummy Dictionary Object (Expects Dict)
-            NSDictionary *partsDict = [[NSDictionary alloc] init];
-            [_partsProfileView refresh:partsDict];
-        }
+        // Parts View
+        [_partsProfileView refresh:[playerDict objectForKey:@"parts"]];
 
         // Finished
         [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] finishedLoading];

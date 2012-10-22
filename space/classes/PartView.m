@@ -49,23 +49,43 @@
     [self setBackgroundColor:[UIColor clearColor]];
 }
 
--(void) refresh:(NSDictionary*) itemDict setPartID:(int) partID
+-(void) setupPartID:(int) partID
 {
-    // Set Internal Part ID
+
     _partID   = partID;
-    _equipped = YES;
+    _equipped = NO;
     
-    // Check Item Dictionary
-    if(itemDict!=nil)
+    NSMutableArray* partList = [[GameManager sharedInstance] masterPartList];
+    for(NSDictionary* part in partList)
     {
-        _labelName.text  = [itemDict objectForKey:@"name"];
-        _labelDescription.text  = [NSString stringWithFormat:@"\"%@\"",[itemDict objectForKey:@"description"]];
-        _imagePart.image = [UIImage imageNamed:[itemDict objectForKey:@"icon"]];
-        
-        if([itemDict objectForKey:@"remove"])
-            _equipped = NO;
+        if([[part objectForKey:@"id"] integerValue]==partID)
+        {
+            // Setup Part
+            _searchText      = [part objectForKey:@"name"];
+            _imagePart.image = [UIImage imageNamed:[part objectForKey:@"icon"]];
+        }
     }
     
+    // Enable Touch
+    self.userInteractionEnabled = YES;
+}
+
+-(void) refresh:(int) itemID
+{
+    _equipped = YES;
+    
+    NSMutableArray* itemList = [[GameManager sharedInstance] masterItemList];
+    for(NSDictionary* item in itemList)
+    {
+        if([[item objectForKey:@"id"] integerValue]==itemID)
+        {
+            // Setup Part
+            _labelName.text         = [item objectForKey:@"name"];
+            _labelDescription.text  = [NSString stringWithFormat:@"\"%@\"",[item objectForKey:@"description"]];
+            _imagePart.image        = [UIImage imageNamed:[item objectForKey:@"icon"]];
+        }
+    }
+
     // Enable Touch
     self.userInteractionEnabled = YES;
     
@@ -78,7 +98,7 @@
     // Create Inventroy
     InventoryViewController* inventoryViewController = [[InventoryViewController alloc] initWithNibName:@"InventoryViewController" bundle:nil];
     
-    // Display Inventory View
+    // Set Inventory Fixed Search
     [inventoryViewController setSearchText:_searchText];
     [inventoryViewController setPartID:_partID];
     [inventoryViewController setShowRemove:_equipped];
@@ -86,7 +106,7 @@
     // Add Navigation (For Bar Control)
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:inventoryViewController];
     
-    // Create
+    // Push Inventory Selection View
     UIViewController* viewController = [[GameManager sharedInstance] view];
     [viewController presentModalViewController:navigation animated:YES];
     

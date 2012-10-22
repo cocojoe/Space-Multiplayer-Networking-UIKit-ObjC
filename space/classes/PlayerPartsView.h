@@ -16,6 +16,6 @@
 @property (nonatomic) IBOutlet PartView* partHead;
 @property (nonatomic) IBOutlet PartView* partHands;
 
--(void) refresh:(NSDictionary*) partsDict;
+-(void) refresh:(NSMutableArray*) parts;
 
 @end

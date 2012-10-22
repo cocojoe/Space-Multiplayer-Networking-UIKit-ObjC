@@ -20,39 +20,39 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "space/classes/management/GameManager.m"
-         timestampString = "372546565.243727"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "136"
-         endingLineNumber = "136"
-         landmarkName = "-refreshPlayer:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "space/classes/InventoryCell.m"
-         timestampString = "372327193.720937"
+         timestampString = "372627586.907"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "18"
-         endingLineNumber = "18"
-         landmarkName = "-initWithStyle:reuseIdentifier:"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-refresh:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "space/classes/PlayerViewController.m"
-         timestampString = "372546232.232089"
+         filePath = "space/classes/InventoryViewController.m"
+         timestampString = "372633775.279186"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
-         landmarkName = "-refreshData"
+         startingLineNumber = "226"
+         endingLineNumber = "226"
+         landmarkName = "-defaultFilter"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "space/classes/management/GameManager.m"
+         timestampString = "372633510.038221"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "288"
+         endingLineNumber = "288"
+         landmarkName = "-setPart:setItem:setBlock:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

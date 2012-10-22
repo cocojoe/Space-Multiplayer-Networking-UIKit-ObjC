@@ -16,6 +16,7 @@
 
 // Inventory Data
 @property (nonatomic) NSMutableArray* inventory;
+@property (nonatomic) NSMutableArray* inventoryAppended;
 @property (nonatomic) NSMutableArray* inventoryFiltered;
 
 @property (nonatomic) PullToRefreshView *pull;

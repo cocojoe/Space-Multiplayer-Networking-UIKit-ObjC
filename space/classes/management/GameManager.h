@@ -44,6 +44,9 @@ typedef void (^BasicBlock)          ();
 #define URI_INVENTORY                   (@"/api/player/inventory")
 #define URI_INVENTORY_REMOVE_PART       (@"/api/player/inventory/remove")
 #define URI_INVENTORY_ATTACH_PART       (@"/api/player/inventory/attach")
+#define URI_INVENTORY_ITEM_MASTER       (@"/api/inventory/item/")
+#define URI_INVENTORY_GROUP_MASTER      (@"/api/inventory/group/")
+#define URI_PART_MASTER                 (@"/api/part/")
 
 // Simple Caching / Request Spam
 #define API_CACHE_TIME  10
@@ -58,14 +61,10 @@ enum eAuthenticationState {
 
 @interface GameManager : NSObject
 {
-    // API Data
+    // API Data Caching
     NSMutableDictionary* _authDict;
     NSMutableDictionary* _playerDict;
     NSMutableDictionary* _inventoryDict;
-    
-    // Authentication Monitoring
-    enum eAuthenticationState _eAuthenticationState;
-    uint    _countdown;
     
     // Queues (API Communication)
     NSOperationQueue *_requestQueue;
@@ -75,7 +74,12 @@ enum eAuthenticationState {
 
 @property (nonatomic) NSString* deviceUUID;
 @property (weak, nonatomic) UIViewController *view;
-@property (weak, nonatomic) MasterViewController *masterController;
+@property (nonatomic, readwrite) enum eAuthenticationState eAuthenticationState;
+
+// Data Stores
+@property (nonatomic) NSMutableArray* masterItemList;
+@property (nonatomic) NSMutableArray* masterPartList;
+@property (nonatomic) NSMutableArray* masterGroupList;
 
 // Singleton Instance
 +(GameManager *)sharedInstance;
@@ -87,10 +91,17 @@ enum eAuthenticationState {
 -(NSString*) getDeviceID;
 
 #pragma mark Authentication
--(void) authenticate;
+-(void) loginStart;
+-(void) loginComplete;
+-(void) authenticate:(BasicBlock) successBlock setErrorBlock:(BasicBlock) errorBlock;
 
 #pragma mark Player
 -(void) refreshPlayer:(ResponseBlock) actionBlock;
+
+#pragma mark Master Lists
+-(void) retrieveMasterItem:(BasicBlock) actionBlock;
+-(void) retrieveMasterPart:(BasicBlock) actionBlock;
+-(void) retrieveMasterGroup:(BasicBlock) actionBlock;
 
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock;
