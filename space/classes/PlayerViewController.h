@@ -10,22 +10,16 @@
 #import "PullToRefreshView.h"
 
 @class PlayerProfileView;
-@class PlayerPartsView;
 
 @interface PlayerViewController : UIViewController <PullToRefreshViewDelegate>
 
 @property (nonatomic) UIScrollView* mainScrollView;
 
-// Custom Views
+// Custom IBOutlet Views
 @property (nonatomic) IBOutlet PlayerProfileView* playerProfileView;
-@property (nonatomic) IBOutlet PlayerPartsView* partsProfileView;
-
 
 #pragma mark Manual Creation
 - (id)initWithTitle:(NSString *)title;
-
-#pragma mark Data Processing
--(void) refreshData;
 
 @end
 

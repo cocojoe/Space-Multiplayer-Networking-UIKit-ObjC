@@ -46,7 +46,7 @@
     {
         self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",[item objectForKey:@"description"]];
     } else {
-        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"Describe Me!"];
+        self.labelDescription.text = [NSString stringWithFormat:@"\"%@\"",@"No description."];
     }
     
     // Description

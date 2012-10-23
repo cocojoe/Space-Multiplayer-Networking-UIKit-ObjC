@@ -10,6 +10,7 @@
 
 @class PlayerViewController;
 @class HangarViewController;
+@class EquipmentViewController;
 
 @interface HubViewController : UIViewController <UITabBarDelegate>
 
@@ -18,5 +19,6 @@
 // Controllers
 @property (nonatomic) PlayerViewController* playerViewController;
 @property (nonatomic) HangarViewController* hangarViewController;
+@property (nonatomic) EquipmentViewController* equipmentViewController;
 
 @end

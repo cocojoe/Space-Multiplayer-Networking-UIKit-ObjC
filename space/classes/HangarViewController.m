@@ -17,10 +17,6 @@
     
     if (self) {
         // Custom initialization
-        
-        // Correct Size (Was Redundant To Space on iOS5)
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        
         self.title = title;
     }
     return self;

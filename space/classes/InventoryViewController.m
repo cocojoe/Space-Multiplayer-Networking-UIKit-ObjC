@@ -22,11 +22,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
-        _inventory         = [[NSMutableArray alloc] init];
-        _inventoryAppended = [[NSMutableArray alloc] init];
-        _inventoryFiltered = [[NSMutableArray alloc] init];
-        _partID            = 0;
     }
     return self;
 }
@@ -39,6 +34,7 @@
         _inventoryAppended = [[NSMutableArray alloc] init];
         _inventoryFiltered = [[NSMutableArray alloc] init];
         _partID            = 0;
+        [self setupNotification];
     }
     return self;
 }
@@ -65,12 +61,7 @@
 		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(revealToggle:)];
         
         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-        
-        // Create Pull Loader
-        _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
-        [_pull setDelegate:self];
-        [self.tableView addSubview:_pull];
-        
+    
         self.title = NSLocalizedString(@"InventoryTitleKey", @"");
 	} else if(_partID) { // Part Selection
         
@@ -96,13 +87,22 @@
         
         // Clear Item If Currently Equipped
         if(_showRemove==YES) {
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Remove" style:UIBarButtonItemStylePlain target:self action:@selector(clearItem)];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearItem)];
             
             self.navigationItem.rightBarButtonItem.tintColor = [UIColor redColor];
         }
     }
     
-    // Grab Data
+    // Create Pull Loader
+    _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+    [_pull setDelegate:self];
+    [self.tableView addSubview:_pull];
+}
+
+// For example after a modal is dimissed (that may have refreshed player)
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self refreshData];
 }
 
@@ -199,13 +199,12 @@
 {
    
     [[GameManager sharedInstance] refreshInventory:^(NSDictionary *jsonDict){
+        
         // Assign Inventory JSON
         _inventory = [jsonDict objectForKey:@"inventory"];
         
         [self defaultFilter];
         
-        // Complete Loading
-        [_pull finishedLoading];
     }];
 
 }
@@ -213,30 +212,43 @@
 #pragma mark Search Helpers
 -(void) defaultFilter
 {
+    // Clear Inventory Appended
+    [_inventoryAppended removeAllObjects];
+    
     // ReBuild Inventory - Attach Item/Group Details
     for(NSDictionary* inventoryItem in _inventory)
     {
-        NSDictionary* item      = [[[GameManager sharedInstance] masterItemList] objectAtIndex:[[inventoryItem objectForKey:@"item_id"] integerValue]-1];
-        NSDictionary* itemGroup = [[[GameManager sharedInstance] masterGroupList] objectAtIndex:[[item objectForKey:@"group_id"] integerValue]-1];
+        NSDictionary* item;
+        for(item in [[GameManager sharedInstance] masterItemList])
+        {
+            if([[inventoryItem objectForKey:@"item_id"] integerValue]==[[item objectForKey:@"id"] integerValue])
+                break;
+        }
+        NSDictionary* itemGroup;
+        for(itemGroup in [[GameManager sharedInstance] masterGroupList])
+        {
+            if([[item objectForKey:@"group_id"] integerValue]==[[itemGroup objectForKey:@"id"] integerValue])
+                break;
+        }
+        
         [_inventoryAppended addObject:[NSDictionary dictionaryWithObjectsAndKeys:item, @"item",
                                                                                  itemGroup, @"group",
                                                                                  [inventoryItem objectForKey:@"amount"], @"amount",nil]];
     }
     
-    // Manual Search
+    // Set Filtered Inventory
+    _inventoryFiltered = [NSMutableArray arrayWithArray:_inventoryAppended];
+    
+    // Perform a 'Set' Search (e.g. Part Selector)
     if([_searchText length]>0)
-    {
         [self filterData:_searchText];
-    } else {
-        // Filter Inventory
-        _inventoryFiltered = [NSMutableArray arrayWithArray:_inventoryAppended];
-    }
 
     [self.tableView reloadData];
 }
 
 -(void) filterData:(NSString*) searchString {
     
+    // Clear Existing Filter
     [_inventoryFiltered removeAllObjects];
     
     for (NSDictionary* inventoryItem in _inventoryAppended)
@@ -262,6 +274,32 @@
     [self refreshData];
 }
 
+#pragma mark Notification Handling
+-(void) setupNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:@"cancelPullDown"
+                                               object:nil];
+}
+
+- (void) handleNotification:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"cancelPullDown"])
+    {
+        // Cancel Refresh
+        [_pull finishedLoading];
+    }
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - UISearchDisplayController Delegate Methods
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 
@@ -273,8 +311,8 @@
 
 - (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
-    CCLOG(@"searchDisplayControllerWillEndSearch");
-    [self defaultFilter];
+    // Reset Inventory
+    _inventoryFiltered = [NSMutableArray arrayWithArray:_inventoryAppended];
 }
 
 @end

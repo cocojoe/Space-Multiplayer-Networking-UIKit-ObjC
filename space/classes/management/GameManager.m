@@ -28,9 +28,6 @@
 
 @implementation GameManager
 
-@synthesize deviceUUID = _deviceUUID;
-@synthesize view = _view;
-
 +(GameManager *)sharedInstance
 {
     static GameManager *sharedInstance = nil;
@@ -97,18 +94,26 @@
 #pragma mark Authentication
 -(void) loginStart
 {
-    CCLOG(@"Launch Login Controller");
-    
     // Auth In Progress (Queue Additional Requests)
     _eAuthenticationState = eAuthenticationInProgress;
     [_requestSuspendQueue setSuspended:YES];
 
-    // Present Loader
-    LoginViewController* loginViewController = [[LoginViewController alloc] init];
+    UIViewController *topController = self.view; // Root/Master Controller
     
-    // Grab Top Most Controller 
-    UIViewController* TopController = [[[[[UIApplication sharedApplication] keyWindow] subviews] lastObject] firstAvailableUIViewController];
-    [TopController presentModalViewController:loginViewController animated:YES];
+    // Find Currently Presented Controller (Includes Modals)
+    while (topController.presentedViewController) {
+           topController = topController.presentedViewController;
+    }
+    
+    // Already In Login Controller? If So SKIP
+    if([topController isKindOfClass:[LoginViewController class]])
+    {
+        return;
+    }
+    
+    // Created Login Controller
+    LoginViewController* loginViewController = [[LoginViewController alloc] init];
+    [topController presentModalViewController:loginViewController animated:YES];
 }
 
 -(void) loginComplete
@@ -177,7 +182,7 @@
 }
 
 #pragma mark Master Lists
--(void) retrieveMasterItem:(BasicBlock) actionBlock
+-(void) retrieveMasterItem:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
 {
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
@@ -188,13 +193,13 @@
             [_masterItemList setArray:[jsonDict objectForKey:@"items"]];
             CCLOG(@"Master Item List Retrieved, %d Items", [_masterItemList count]);
             actionBlock();
-        } setBlockFail:nil];
+        } setBlockFail:^(){errorBlock();}];
         
     }]];
     
 }
 
--(void) retrieveMasterPart:(BasicBlock) actionBlock
+-(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
 {
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
@@ -205,13 +210,13 @@
             [_masterPartList setArray:[jsonDict objectForKey:@"parts"]];
             CCLOG(@"Master Part List Retrieved, %d Items", [_masterPartList count]);
             actionBlock();
-        } setBlockFail:nil];
+        } setBlockFail:^(){errorBlock();}];
         
     }]];
     
 }
 
--(void) retrieveMasterGroup:(BasicBlock) actionBlock
+-(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
 {
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
@@ -222,7 +227,7 @@
             [_masterGroupList setArray:[jsonDict objectForKey:@"groups"]];
             CCLOG(@"Master Group List Retrieved, %d Items", [_masterGroupList count]);
             actionBlock();
-        } setBlockFail:nil];
+        } setBlockFail:^(){errorBlock();}];
         
     }]];
     
@@ -259,7 +264,6 @@
     
 }
 
-
 #pragma mark Inventory Part Management
 -(void) clearPart:(int)partID setBlock:(ResponseBlock) actionBlock {
     
@@ -275,7 +279,7 @@
         } setBlockFail:nil];
         
     }]];
-
+    
 }
 
 -(void) setPart:(int)partID setItem:(int)itemID setBlock:(ResponseBlock) actionBlock {
@@ -326,7 +330,7 @@
     // Create URL Request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    //CCLOG(@"REQUEST POST: %@",completeDict);
+    CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
     
     // Params
     [request setHTTPMethod: @"POST"];
@@ -342,34 +346,41 @@
             {
                 // Soft Issue (ReAuthentication Required)
                 CCLOG(@"Re-Authentication Required: Invalid Session");
+                _eAuthenticationState = eAuthenticationNone;
                 [self loginStart];
                 
                 // ReQueue Failed Request
                 [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
                 }]];
-
+                
             } else {
-                // UnKnown Issue
-                [self apiError:[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]];
+                // Log API Issue
+                CCLOG(@"%@",[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]);
             }
         } else {
             // Success
-            //CCLOG(@"Response Success:%@",JSON);
             responseBlock(JSON);
         }
         
-        [self cancelRefresh]; // Just In Case
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelPullDown" object:self];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+         CCLOG(@"Connection Error: %@",error);
         
         // Execture Fail Block (Optional Custom Handler)
         if(failBlock)
         {
             failBlock(); 
         } else {
-            [self apiError:@"Server Busy\nPlease try again..."];
+            // Only if Authenticated as Non Auth will be handlded by Login Controller
+            if(_eAuthenticationState==eAuthenticationOK)
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Please try again in a few seconds"];
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelPullDown" object:self];
+        
     }];
     
     
@@ -377,19 +388,5 @@
     
 }
 
-
-#pragma mark Error Handling
-// General API Error Handler
--(void) apiError:(NSString*) errorDescription
-{
-    ALOG(@"%@",errorDescription);
-    [self cancelRefresh];
-}
-
--(void) cancelRefresh
-{
-    // Cancel Refresh Pull Down
-    [(PullToRefreshView *)[_view.view viewWithTag:TAG_PULL] performSelector:@selector(finishedLoading) withObject:nil];
-}
 
 @end

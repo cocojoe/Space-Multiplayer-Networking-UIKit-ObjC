@@ -61,7 +61,9 @@
         if([[part objectForKey:@"id"] integerValue]==partID)
         {
             // Setup Part
-            _searchText      = [part objectForKey:@"name"];
+            _searchText             = [part objectForKey:@"name"];
+            _labelName.text         = [NSString stringWithFormat:@"No %@ gear",_searchText];
+            _labelDescription.text  = [NSString stringWithFormat:@"You have no gear"];
             _imagePart.image = [UIImage imageNamed:[part objectForKey:@"icon"]];
         }
     }
@@ -108,8 +110,7 @@
     
     // Push Inventory Selection View
     UIViewController* viewController = [[GameManager sharedInstance] view];
-    [viewController presentModalViewController:navigation animated:YES];
-    
+    [viewController presentModalViewController:navigation animated:YES];    
 }
 
 @end

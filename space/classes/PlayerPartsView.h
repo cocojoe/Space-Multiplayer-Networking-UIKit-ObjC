@@ -14,7 +14,11 @@
 @interface PlayerPartsView : UIView
 
 @property (nonatomic) IBOutlet PartView* partHead;
+@property (nonatomic) IBOutlet PartView* partArms;
+@property (nonatomic) IBOutlet PartView* partChest;
 @property (nonatomic) IBOutlet PartView* partHands;
+@property (nonatomic) IBOutlet PartView* partLegs;
+@property (nonatomic) IBOutlet PartView* partFeet;
 
 -(void) refresh:(NSMutableArray*) parts;
 

@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Pedro LTD. All rights reserved.
 //
 
+#import <TapkuLibrary/TapkuLibrary.h>
+
 // Console Logging Macro
 #ifdef DEBUG
 #   define CCLOG(fmt, ...) NSLog(fmt, ##__VA_ARGS__);
@@ -29,6 +31,7 @@ typedef void (^BasicBlock)          ();
 
 #define TAG_PLAYER_VIEW         10
 #define TAG_HANGAR_VIEW         20
+#define TAG_EQUIPMENT_VIEW      30
 
 // API Credentials
 #define APP_ID          (@"67542423701777489896990453036662")
@@ -81,6 +84,9 @@ enum eAuthenticationState {
 @property (nonatomic) NSMutableArray* masterPartList;
 @property (nonatomic) NSMutableArray* masterGroupList;
 
+// Alerts
+@property (retain,nonatomic) TKProgressAlertView *alertView;
+
 // Singleton Instance
 +(GameManager *)sharedInstance;
 
@@ -99,9 +105,9 @@ enum eAuthenticationState {
 -(void) refreshPlayer:(ResponseBlock) actionBlock;
 
 #pragma mark Master Lists
--(void) retrieveMasterItem:(BasicBlock) actionBlock;
--(void) retrieveMasterPart:(BasicBlock) actionBlock;
--(void) retrieveMasterGroup:(BasicBlock) actionBlock;
+-(void) retrieveMasterItem:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
+-(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
+-(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock;

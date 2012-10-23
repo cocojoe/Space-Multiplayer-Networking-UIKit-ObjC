@@ -9,7 +9,7 @@
 #import "PlayerViewController.h"
 #import "GameManager.h"
 #import "PlayerProfileView.h"
-#import "PlayerPartsView.h"
+
 
 @interface PlayerViewController ()
 
@@ -22,16 +22,10 @@
     self = [super initWithNibName:@"PlayerViewController" bundle:nil];
     
     if (self) {
-        // Custom initialization
-        
-        // Correct Size (Was Redundant To Space on iOS5)
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        
-        // Nav Title
+
+        // Bar Title
         self.title = title;
-        
         [self setupNotification];
-       
     }
     return self;
 }
@@ -40,8 +34,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        [self setupNotification];
     }
     return self;
 }
@@ -79,19 +71,9 @@
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
     
-    // Populate Data
     [self refreshData];
     
 }
-
-// For example after a modal is dimissed (that may have refreshed player)
-/*
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self refreshData];
-}
-*/
 
 - (void)viewDidUnload
 {
@@ -116,17 +98,25 @@
 -(void) setupNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(playerRefreshNotification:)
+                                             selector:@selector(handleNotification:)
                                                  name:@"playerRefresh"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:@"cancelPullDown"
                                                object:nil];
 }
 
-- (void) playerRefreshNotification:(NSNotification *) notification
+- (void) handleNotification:(NSNotification *) notification
 {
     if ([[notification name] isEqualToString:@"playerRefresh"])
     {
-        CCLOG(@"Player Refresh Notification");
         [self refreshData];
+    } else if ([[notification name] isEqualToString:@"cancelPullDown"])
+    {
+        // Cancel Refresh
+        [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] performSelector:@selector(finishedLoading) withObject:nil];
     }
 }
 
@@ -155,13 +145,7 @@
         
         // Player View
         [_playerProfileView refresh:playerDict];
-        
-        // Parts View
-        [_partsProfileView refresh:[playerDict objectForKey:@"parts"]];
 
-        // Finished
-        [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] finishedLoading];
-    
     }];
     
 }

@@ -33,6 +33,8 @@
 #import "GameManager.h"
 #import "AppDelegate.h"
 
+#define RETRY_SECONDS 3
+
 @implementation LoginViewController
 
 - (id) init{
@@ -51,6 +53,9 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    _alertView = [[TKProgressAlertView alloc] initWithProgressTitle:@""];
+    self.alertView.progressBar.progress = 0;
+    [self.alertView show];
     
     [self stepAuthenticate];
 }
@@ -58,16 +63,15 @@
 #pragma mark Initialisation Sequence
 -(void) stepAuthenticate
 {
-    _alertView = [[TKProgressAlertView alloc] initWithProgressTitle:@"Logging In"];
-    self.alertView.progressBar.progress = 0;
-    [self.alertView show];
+    self.alertView.label.text           = @"Logging In";
     
     [[GameManager sharedInstance] authenticate:^(){
         self.alertView.progressBar.progress = 0.25f;
         self.alertView.label.text           = @"Updating 1/3";
         [self performSelector:@selector(stepMasterItemList) withObject:nil afterDelay:0.1f];
     } setErrorBlock:^(){
-        
+        self.alertView.label.text           = [NSString stringWithFormat:@"Retrying in %d", RETRY_SECONDS];
+        [self performSelector:@selector(stepAuthenticate) withObject:nil afterDelay:RETRY_SECONDS];
     }];
 }
 
@@ -77,6 +81,9 @@
         self.alertView.progressBar.progress = 0.50f;
         self.alertView.label.text           = @"Updating 2/3";
         [self performSelector:@selector(stepMasterPartList) withObject:nil afterDelay:0.1f];
+    } setErrorBlock:^(){
+        self.alertView.label.text           = [NSString stringWithFormat:@"Retrying in %d", RETRY_SECONDS];
+        [self performSelector:@selector(stepMasterItemList) withObject:nil afterDelay:2.0f];
     }];
 }
 
@@ -87,6 +94,9 @@
         self.alertView.progressBar.progress = 0.75f;
         self.alertView.label.text           = @"Updating 3/3";
         [self performSelector:@selector(stepMasterGroupList) withObject:nil afterDelay:0.1f];
+    } setErrorBlock:^(){
+        self.alertView.label.text           = [NSString stringWithFormat:@"Retrying in %d", RETRY_SECONDS];
+        [self performSelector:@selector(stepMasterPartList) withObject:nil afterDelay:2.0f];
     }];
 }
 
@@ -96,6 +106,9 @@
         self.alertView.progressBar.progress = 1.0f;
         self.alertView.label.text           = @"Ready...";
         [self performSelector:@selector(dismissLogin) withObject:nil afterDelay:0.4f];
+    } setErrorBlock:^(){
+        self.alertView.label.text           = [NSString stringWithFormat:@"Retrying in %d", RETRY_SECONDS];
+        [self performSelector:@selector(stepMasterGroupList) withObject:nil afterDelay:2.0f];
     }];
 }
 

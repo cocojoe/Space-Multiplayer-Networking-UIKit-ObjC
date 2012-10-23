@@ -15,6 +15,7 @@
 // Tab Views
 #import "PlayerViewController.h"
 #import "HangarViewController.h"
+#import "EquipmentViewController.h"
 
 @interface HubViewController ()
 
@@ -81,12 +82,19 @@
     NSString *controllerTitle = NSLocalizedString(@"PlayerTitleKey", @"");
     _playerViewController = [[PlayerViewController alloc] initWithTitle:controllerTitle];
     [self.view insertSubview:_playerViewController.view belowSubview:_customTabBar];
-    [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
     
+    // Default Selection
+    [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
+
     // Add Hangar Controller
     controllerTitle = NSLocalizedString(@"HangarTitleKey", @"");
     _hangarViewController = [[HangarViewController alloc] initWithTitle:controllerTitle];
     [self.view insertSubview:_hangarViewController.view belowSubview:_playerViewController.view];
+    
+    // Add Equipment Controller
+    controllerTitle = NSLocalizedString(@"EquipmentTitleKey", @"");
+    _equipmentViewController = [[EquipmentViewController alloc] initWithTitle:controllerTitle];
+    [self.view insertSubview:_equipmentViewController.view belowSubview:_playerViewController.view];
 
 }
 
@@ -118,12 +126,16 @@
             //CCLOG(@"Activate Player View");
             [self.view bringSubviewToFront:_playerViewController.view];
             self.navigationItem.title = _playerViewController.title;
-            [_playerViewController refreshData];
             break;
         case TAG_HANGAR_VIEW:
             //CCLOG(@"Activate Hangar View");
             [self.view bringSubviewToFront:_hangarViewController.view];
             self.navigationItem.title = _hangarViewController.title;
+            break;
+        case TAG_EQUIPMENT_VIEW:
+            //CCLOG(@"Activate Hangar View");
+            [self.view bringSubviewToFront:_equipmentViewController.view];
+            self.navigationItem.title = _equipmentViewController.title;
             break;
     }
     
