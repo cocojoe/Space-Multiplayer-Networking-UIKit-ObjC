@@ -58,6 +58,9 @@
     //[CDSoundEngine setMixerSampleRate:32000];
 	//[SimpleAudioEngine sharedEngine];
     
+    // Login
+    [[GameManager sharedInstance] loginStart];
+    
     return YES;
 
 }

@@ -71,8 +71,6 @@
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
     
-    [self refreshData];
-    
 }
 
 - (void)viewDidUnload
@@ -99,21 +97,13 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
-                                                 name:@"playerRefresh"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleNotification:)
                                                  name:@"cancelPullDown"
                                                object:nil];
 }
 
 - (void) handleNotification:(NSNotification *) notification
 {
-    if ([[notification name] isEqualToString:@"playerRefresh"])
-    {
-        [self refreshData];
-    } else if ([[notification name] isEqualToString:@"cancelPullDown"])
+    if ([[notification name] isEqualToString:@"cancelPullDown"])
     {
         // Cancel Refresh
         [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] performSelector:@selector(finishedLoading) withObject:nil];

@@ -85,6 +85,7 @@
     
     // Default Selection
     [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
+    [_playerViewController refreshData];
 
     // Add Hangar Controller
     controllerTitle = NSLocalizedString(@"HangarTitleKey", @"");
@@ -126,16 +127,18 @@
             //CCLOG(@"Activate Player View");
             [self.view bringSubviewToFront:_playerViewController.view];
             self.navigationItem.title = _playerViewController.title;
-            break;
-        case TAG_HANGAR_VIEW:
-            //CCLOG(@"Activate Hangar View");
-            [self.view bringSubviewToFront:_hangarViewController.view];
-            self.navigationItem.title = _hangarViewController.title;
+            [_playerViewController refreshData];
             break;
         case TAG_EQUIPMENT_VIEW:
             //CCLOG(@"Activate Hangar View");
             [self.view bringSubviewToFront:_equipmentViewController.view];
             self.navigationItem.title = _equipmentViewController.title;
+            [_equipmentViewController refreshData];
+            break;
+        case TAG_HANGAR_VIEW:
+            //CCLOG(@"Activate Hangar View");
+            [self.view bringSubviewToFront:_hangarViewController.view];
+            self.navigationItem.title = _hangarViewController.title;
             break;
     }
     

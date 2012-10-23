@@ -21,5 +21,7 @@
 #pragma mark Manual Creation
 - (id)initWithTitle:(NSString *)title;
 
+#pragma mark Data Processing
+-(void) refreshData;
 
 @end

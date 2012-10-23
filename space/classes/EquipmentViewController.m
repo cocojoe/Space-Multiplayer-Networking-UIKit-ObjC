@@ -63,8 +63,6 @@
     [pull setDelegate:self];
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
-    
-    [self refreshData];
 
 }
 

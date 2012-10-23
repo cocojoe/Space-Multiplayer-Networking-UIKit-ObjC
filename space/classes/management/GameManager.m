@@ -107,13 +107,11 @@
     
     // Already In Login Controller? If So SKIP
     if([topController isKindOfClass:[LoginViewController class]])
-    {
         return;
-    }
     
     // Created Login Controller
     LoginViewController* loginViewController = [[LoginViewController alloc] init];
-    [topController presentModalViewController:loginViewController animated:YES];
+    [topController presentModalViewController:loginViewController animated:NO];
 }
 
 -(void) loginComplete
@@ -330,7 +328,7 @@
     // Create URL Request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
+    // CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
     
     // Params
     [request setHTTPMethod: @"POST"];
