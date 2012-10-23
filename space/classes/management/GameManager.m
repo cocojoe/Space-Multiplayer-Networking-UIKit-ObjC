@@ -189,7 +189,7 @@
             
             // Store Master List
             [_masterItemList setArray:[jsonDict objectForKey:@"items"]];
-            CCLOG(@"Master Item List Retrieved, %d Items", [_masterItemList count]);
+            //CCLOG(@"Master Item List Retrieved, %d Items", [_masterItemList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         
@@ -206,7 +206,7 @@
             
             // Store Master List
             [_masterPartList setArray:[jsonDict objectForKey:@"parts"]];
-            CCLOG(@"Master Part List Retrieved, %d Items", [_masterPartList count]);
+            //CCLOG(@"Master Part List Retrieved, %d Items", [_masterPartList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         
@@ -223,7 +223,7 @@
             
             // Store Master List
             [_masterGroupList setArray:[jsonDict objectForKey:@"groups"]];
-            CCLOG(@"Master Group List Retrieved, %d Items", [_masterGroupList count]);
+            //CCLOG(@"Master Group List Retrieved, %d Items", [_masterGroupList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         
