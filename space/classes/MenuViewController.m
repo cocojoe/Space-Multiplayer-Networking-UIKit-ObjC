@@ -11,9 +11,14 @@
 #import "MasterViewController.h"
 #import "HubViewController.h"
 #import "InventoryViewController.h"
+#import "PlanetHubViewController.h"
 
 // Various Object Definition(s)
 #import "MenuObject.h"
+
+#define MENU_HUB            0
+#define MENU_INVENTORY      1
+#define MENU_PLANET         2
 
 @interface MenuViewController ()
 
@@ -66,13 +71,19 @@
     // Home
     menuItem = [[MenuObject alloc] init];
     [menuItem setIconName:@"icon_home.png"];
-    [menuItem setName:NSLocalizedString(@"HubTitleKey", @"")];
+    [menuItem setName:NSLocalizedString(@"PlayerTitleKey", @"")];
     [_menuList addObject:menuItem];
     
     // Inventory
     menuItem = [[MenuObject alloc] init];
     [menuItem setIconName:@"icon_inventory.png"];
     [menuItem setName:NSLocalizedString(@"InventoryTitleKey", @"")];
+    [_menuList addObject:menuItem];
+    
+    // Inventory
+    menuItem = [[MenuObject alloc] init];
+    [menuItem setIconName:@"icon_planet.png"];
+    [menuItem setName:NSLocalizedString(@"PlanetTitleKey", @"")];
     [_menuList addObject:menuItem];
 }
 
@@ -116,13 +127,13 @@
 	MasterViewController *masterController = [self.parentViewController isKindOfClass:[MasterViewController class]] ? (MasterViewController *)self.parentViewController : nil;
     
     // Bit Lazy
-	if (indexPath.row == 0) // Hub Controller
+	if (indexPath.row == MENU_HUB) // Hub Controller
 	{
 		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[HubViewController class]])
 		{
-			HubViewController *hubViewController = [[HubViewController alloc] initWithNibName:@"HubViewController" bundle:nil];
-			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:hubViewController];
+			HubViewController *viewController = [[HubViewController alloc] initWithNibName:@"HubViewController" bundle:nil];
+			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 			[masterController setFrontViewController:navigationController animated:YES];
 			
 		}
@@ -131,13 +142,29 @@
 		{
 			[masterController revealToggle:self];
 		}
-	} else if (indexPath.row == 1) // Inventory
+	} else if (indexPath.row == MENU_INVENTORY) // Inventory
 	{
 		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[InventoryViewController class]])
 		{
-			InventoryViewController *inventoryViewController = [[InventoryViewController alloc] initWithNibName:@"InventoryViewController" bundle:nil];
-			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inventoryViewController];
+			InventoryViewController *viewController = [[InventoryViewController alloc] initWithNibName:@"InventoryViewController" bundle:nil];
+			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+            
+			[masterController setFrontViewController:navigationController animated:YES];
+			
+		}
+		// Seems the user attempts to 'switch' to exactly the same controller he came from!
+		else
+		{
+			[masterController revealToggle:self];
+		}
+	} else if (indexPath.row == MENU_PLANET) // Planet
+	{
+		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
+		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[PlanetHubViewController class]])
+		{
+			PlanetHubViewController *viewController = [[PlanetHubViewController alloc] initWithNibName:@"PlanetHubViewController" bundle:nil];
+			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
             
 			[masterController setFrontViewController:navigationController animated:YES];
 			

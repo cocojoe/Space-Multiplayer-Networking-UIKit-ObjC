@@ -7,7 +7,10 @@
 */
 "HubTitleKey"       = "Command HQ";
 "InventoryTitleKey" = "Inventory";
-"PlayerTitleKey"    = "Player";
+"PlayerTitleKey"    = "Home";
 "HangarTitleKey"    = "Hangar";
 "MenuTitleKey"      = "Menu";
 "EquipmentTitleKey" = "Equipment";
+"PlanetTitleKey"    = "Planet";
+"PlanetSelectionTitleKey" = "Select Planet";
+"PlanetOverviewTitleKey"  = "Planet Overview";

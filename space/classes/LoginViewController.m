@@ -120,7 +120,8 @@
     [[GameManager sharedInstance] loginComplete];
     
     [_alertView hide];
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^(){}];
 }
 
 @end

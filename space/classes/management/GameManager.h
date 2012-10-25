@@ -29,10 +29,6 @@ typedef void (^BasicBlock)          ();
 // TAGS
 #define TAG_PULL                800
 
-#define TAG_PLAYER_VIEW         10
-#define TAG_HANGAR_VIEW         20
-#define TAG_EQUIPMENT_VIEW      30
-
 // API Credentials
 #define APP_ID          (@"67542423701777489896990453036662")
 #define APP_SECRET      (@"ynTQL9cuckeX6FQ2wMFwJIVe70xLGd25qLL2LOnNZrBVWiOjUjFtSryPhWrO0kKh")
@@ -50,9 +46,11 @@ typedef void (^BasicBlock)          ();
 #define URI_INVENTORY_ITEM_MASTER       (@"/api/inventory/item/")
 #define URI_INVENTORY_GROUP_MASTER      (@"/api/inventory/group/")
 #define URI_PART_MASTER                 (@"/api/part/")
+#define URI_PLAYER_PLANETS              (@"/api/player/planets")
+#define URI_PLANET                      (@"/api/planet/index")
 
 // Simple Caching / Request Spam
-#define API_CACHE_TIME  10
+#define API_CACHE_TIME  30
 
 enum eAuthenticationState {
     eAuthenticationNone,
@@ -67,7 +65,9 @@ enum eAuthenticationState {
     // API Data Caching
     NSMutableDictionary* _authDict;
     NSMutableDictionary* _playerDict;
+    NSMutableDictionary* _planetDict;
     NSMutableDictionary* _inventoryDict;
+    NSMutableDictionary* _planetsDict;
     
     // Queues (API Communication)
     NSOperationQueue *_requestQueue;
@@ -83,6 +83,9 @@ enum eAuthenticationState {
 @property (nonatomic) NSMutableArray* masterItemList;
 @property (nonatomic) NSMutableArray* masterPartList;
 @property (nonatomic) NSMutableArray* masterGroupList;
+
+// Preferences
+@property (nonatomic, readwrite) int planetID;
 
 // Alerts
 @property (retain,nonatomic) TKProgressAlertView *alertView;
@@ -115,5 +118,9 @@ enum eAuthenticationState {
 #pragma mark Inventory Part Management
 -(void) clearPart:(int)partID setBlock:(ResponseBlock) actionBlock;
 -(void) setPart:(int)partID setItem:(int)itemID setBlock:(ResponseBlock) actionBlock;
-    
+
+#pragma mark Planets
+-(void) refreshPlanets:(ResponseBlock) actionBlock;
+-(void) refreshPlanet:(ResponseBlock) actionBlock;
+
 @end

@@ -52,7 +52,9 @@
         // API Data Object
         _authDict       = [[NSMutableDictionary alloc] init];
         _playerDict     = [[NSMutableDictionary alloc] init];
+        _planetDict     = [[NSMutableDictionary alloc] init];
         _inventoryDict  = [[NSMutableDictionary alloc] init];
+        _planetsDict    = [[NSMutableDictionary alloc] init];
         
         // Data Store
         _masterItemList  = [[NSMutableArray alloc] init];
@@ -64,6 +66,9 @@
         
         // Device UUID
         [self setDeviceUUID:[self getDeviceID]];
+        
+        // Preferences Reset
+        _planetID = 0;
         
 	}
 	
@@ -111,7 +116,8 @@
     
     // Created Login Controller
     LoginViewController* loginViewController = [[LoginViewController alloc] init];
-    [topController presentModalViewController:loginViewController animated:NO];
+    //[topController presentModalViewController:loginViewController animated:NO];
+    [topController presentViewController:loginViewController animated:NO completion:^(){}];
 }
 
 -(void) loginComplete
@@ -152,19 +158,9 @@
 -(void) refreshPlayer:(ResponseBlock) actionBlock
 {
     
-    /*
-    // Check Existing Time
-    if([_playerDict objectForKey:@"time"])
-    {
-        // Check Last Update
-        if(([[_playerDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
-        {
-            CCLOG(@"Player No Cache");
-            actionBlock(_playerDict);
-            return;
-        }
-    }
-    */
+    if([self shouldUseCache:_playerDict setBlock:actionBlock])
+        return;
+
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
@@ -235,27 +231,15 @@
 -(void) refreshInventory:(ResponseBlock) actionBlock
 {
     
-    /*
-     // Check Existing Time
-     if([_inventoryDict objectForKey:@"time"])
-     {
-     // Check Last Update
-     if(([[_inventoryDict objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
-     {
-     actionBlock(_inventoryDict);
-     return;
-     }
-     }
-     */
+    if([self shouldUseCache:_inventoryDict setBlock:actionBlock])
+        return;
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
         [self makeRequest:URI_INVENTORY setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            // Store Player Information
+            // Cache Information
             [_inventoryDict setDictionary:jsonDict];
-            //CCLOG(@"_inventoryDict: %@",_inventoryDict);
-            
-            actionBlock(_inventoryDict);
+            actionBlock(jsonDict);
         } setBlockFail:nil];
         
     }]];
@@ -273,6 +257,9 @@
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
         [self makeRequest:URI_INVENTORY_REMOVE_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            // Clear Player Cache / Inventory Cache
+            [_playerDict removeAllObjects];
+            [_inventoryDict removeAllObjects];
             actionBlock(nil);
         } setBlockFail:nil];
         
@@ -291,11 +278,80 @@
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
         [self makeRequest:URI_INVENTORY_ATTACH_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            // Clear Player Cache / Inventory Cache
+            [_playerDict removeAllObjects];
+            [_inventoryDict removeAllObjects];
             actionBlock(nil);
         } setBlockFail:nil];
         
     }]];
     
+}
+
+#pragma mark Planets
+-(void) refreshPlanets:(ResponseBlock) actionBlock
+{
+    
+    if([self shouldUseCache:_planetsDict setBlock:actionBlock])
+        return;
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_PLAYER_PLANETS setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Cache Information
+            [_planetsDict setDictionary:jsonDict];
+            
+            actionBlock(jsonDict);
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
+-(void) refreshPlanet:(ResponseBlock) actionBlock
+{
+    
+    if([self shouldUseCache:_planetDict setBlock:actionBlock])
+        return;
+    
+    // Create DATA Dictionary
+    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithInt:_planetID], @"planet_id",
+                              nil];
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_PLANET setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            
+            // Cache Information
+            [_planetDict setDictionary:jsonDict];
+            
+            actionBlock(jsonDict);
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
+#pragma mark General Caching
+-(BOOL) shouldUseCache:(NSDictionary*) checkDictionary setBlock:(ResponseBlock) actionBlock
+{
+    if([checkDictionary count]==0) // Empty Forces Refresh
+        return NO;
+    
+    if([checkDictionary objectForKey:@"time"]) {
+        // Check Last Update
+        if(([[checkDictionary objectForKey:@"time"] doubleValue]+API_CACHE_TIME)>[[NSDate date] timeIntervalSince1970])
+        {
+            actionBlock(checkDictionary);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelPullDown" object:self];
+            return YES;
+        }
+    }
+    
+    // Default
+    return NO;
 }
 
 #pragma mark Internal API Methods
@@ -328,7 +384,7 @@
     // Create URL Request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    // CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
+    CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
     
     // Params
     [request setHTTPMethod: @"POST"];
@@ -347,10 +403,12 @@
                 _eAuthenticationState = eAuthenticationNone;
                 [self loginStart];
                 
+                /*
                 // ReQueue Failed Request
                 [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
                 }]];
+                */
                 
             } else {
                 // Log API Issue

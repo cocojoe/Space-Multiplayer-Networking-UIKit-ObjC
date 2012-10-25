@@ -17,6 +17,7 @@
     
     if (self) {
         // Custom initialization
+        // Bar Title
         self.title = title;
     }
     return self;

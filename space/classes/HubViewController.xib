@@ -39,8 +39,9 @@
 					<object class="IBUITabBar" id="341350373">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{0, 367}, {320, 49}}</string>
+						<string key="NSFrame">{{0, 411}, {320, 49}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -49,8 +50,8 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<array class="NSMutableArray" key="IBUIItems">
 							<object class="IBUITabBarItem" id="1017458096">
-								<int key="IBUITag">10</int>
-								<string key="IBUITitle">You</string>
+								<int key="IBUITag">1</int>
+								<string key="IBUITitle">Home</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">icon_home.png</string>
@@ -59,7 +60,7 @@
 								<reference key="IBUITabBar" ref="341350373"/>
 							</object>
 							<object class="IBUITabBarItem" id="937240715">
-								<int key="IBUITag">30</int>
+								<int key="IBUITag">2</int>
 								<string key="IBUITitle">Equipment</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
@@ -69,7 +70,7 @@
 								<reference key="IBUITabBar" ref="341350373"/>
 							</object>
 							<object class="IBUITabBarItem" id="669725655">
-								<int key="IBUITag">20</int>
+								<int key="IBUITag">3</int>
 								<string key="IBUITitle">Hangar</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
@@ -81,8 +82,9 @@
 						</array>
 					</object>
 				</array>
-				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
+				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="341350373"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -92,10 +94,6 @@
 					</object>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
-					<int key="IBUIBarStyle">1</int>
-					<bool key="IBUIPrompted">NO</bool>
-				</object>
 				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
 					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">

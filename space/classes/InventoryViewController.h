@@ -11,6 +11,9 @@
 
 @interface InventoryViewController : UITableViewController <PullToRefreshViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
 
+// Pull Refresh
+@property (nonatomic) PullToRefreshView *pull;
+
 // Outlets
 @property (nonatomic) IBOutlet UISearchBar* filterSearch;
 
@@ -18,8 +21,6 @@
 @property (nonatomic) NSMutableArray* inventory;
 @property (nonatomic) NSMutableArray* inventoryAppended;
 @property (nonatomic) NSMutableArray* inventoryFiltered;
-
-@property (nonatomic) PullToRefreshView *pull;
 
 // Fixed Search
 @property (nonatomic) NSString* searchText;

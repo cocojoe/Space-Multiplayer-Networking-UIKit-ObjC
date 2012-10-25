@@ -7,7 +7,6 @@
 //
 
 #import "HubViewController.h"
-#import "ZUUIRevealController.h"
 
 // Game Manager Singleton 
 #import "GameManager.h"
@@ -16,6 +15,10 @@
 #import "PlayerViewController.h"
 #import "HangarViewController.h"
 #import "EquipmentViewController.h"
+
+#define TAG_PLAYER_VIEW         1
+#define TAG_EQUIPMENT_VIEW      2
+#define TAG_HANGAR_VIEW         3
 
 @interface HubViewController ()
 

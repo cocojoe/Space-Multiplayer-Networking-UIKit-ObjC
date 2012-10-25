@@ -25,6 +25,12 @@
 		5B07A743162ED4A9006B56A5 /* icon_premium@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73F162ED4A9006B56A5 /* icon_premium@2x.png */; };
 		5B1ACD2A162DFA39003C157F /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1ACD28162DFA39003C157F /* PlayerViewController.m */; };
 		5B1ACD2B162DFA39003C157F /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1ACD29162DFA39003C157F /* PlayerViewController.xib */; };
+		5B369FF51639489000FA8BC8 /* PlanetHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B369FF31639489000FA8BC8 /* PlanetHubViewController.m */; };
+		5B369FF61639489000FA8BC8 /* PlanetHubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FF41639489000FA8BC8 /* PlanetHubViewController.xib */; };
+		5B369FFC1639515400FA8BC8 /* PlanetOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */; };
+		5B369FFD1639515400FA8BC8 /* PlanetOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */; };
+		5B36A00016395BF300FA8BC8 /* icon_planet_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */; };
+		5B36A00116395BF300FA8BC8 /* icon_planet_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */; };
 		5B3FE69916355D6800D9F2CC /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */; };
 		5B3FE6A216355D8A00D9F2CC /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */; };
 		5B3FE6A416355D9300D9F2CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE6A316355D9300D9F2CC /* MapKit.framework */; };
@@ -118,6 +124,8 @@
 		5BCB951F162EFA88005AD7E5 /* bg_space@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB951B162EFA88005AD7E5 /* bg_space@2x.jpg */; };
 		5BCB9522162EFE18005AD7E5 /* bg_deadspace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB9520162EFE18005AD7E5 /* bg_deadspace.jpg */; };
 		5BCB9523162EFE18005AD7E5 /* bg_deadspace@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB9521162EFE18005AD7E5 /* bg_deadspace@2x.jpg */; };
+		5BD07FAF163877C50035D38E /* PlanetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD07FAD163877C50035D38E /* PlanetViewController.m */; };
+		5BD07FB0163877C50035D38E /* PlanetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07FAE163877C50035D38E /* PlanetViewController.xib */; };
 		5BD3C423162808D300974C3C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD3C422162808D300974C3C /* SystemConfiguration.framework */; };
 		5BDB9C351626CD950074EBB7 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB9C231626CD950074EBB7 /* AFHTTPClient.m */; };
 		5BDB9C361626CD950074EBB7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB9C251626CD950074EBB7 /* AFHTTPRequestOperation.m */; };
@@ -184,6 +192,14 @@
 		5B1ACD27162DFA39003C157F /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerViewController.h; path = classes/PlayerViewController.h; sourceTree = "<group>"; };
 		5B1ACD28162DFA39003C157F /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerViewController.m; path = classes/PlayerViewController.m; sourceTree = "<group>"; };
 		5B1ACD29162DFA39003C157F /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlayerViewController.xib; path = classes/PlayerViewController.xib; sourceTree = "<group>"; };
+		5B369FF21639489000FA8BC8 /* PlanetHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetHubViewController.h; path = classes/PlanetHubViewController.h; sourceTree = "<group>"; };
+		5B369FF31639489000FA8BC8 /* PlanetHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetHubViewController.m; path = classes/PlanetHubViewController.m; sourceTree = "<group>"; };
+		5B369FF41639489000FA8BC8 /* PlanetHubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetHubViewController.xib; path = classes/PlanetHubViewController.xib; sourceTree = "<group>"; };
+		5B369FF91639515400FA8BC8 /* PlanetOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetOverviewViewController.h; path = classes/PlanetOverviewViewController.h; sourceTree = "<group>"; };
+		5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetOverviewViewController.m; path = classes/PlanetOverviewViewController.m; sourceTree = "<group>"; };
+		5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetOverviewViewController.xib; path = classes/PlanetOverviewViewController.xib; sourceTree = "<group>"; };
+		5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_planet_search.png; sourceTree = "<group>"; };
+		5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_planet_search@2x.png"; sourceTree = "<group>"; };
 		5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = ../../tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
 		5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = ../tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
 		5B3FE6A316355D9300D9F2CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -301,6 +317,9 @@
 		5BCB951B162EFA88005AD7E5 /* bg_space@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_space@2x.jpg"; sourceTree = "<group>"; };
 		5BCB9520162EFE18005AD7E5 /* bg_deadspace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_deadspace.jpg; sourceTree = "<group>"; };
 		5BCB9521162EFE18005AD7E5 /* bg_deadspace@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_deadspace@2x.jpg"; sourceTree = "<group>"; };
+		5BD07FAC163877C50035D38E /* PlanetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetViewController.h; path = classes/PlanetViewController.h; sourceTree = "<group>"; };
+		5BD07FAD163877C50035D38E /* PlanetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetViewController.m; path = classes/PlanetViewController.m; sourceTree = "<group>"; };
+		5BD07FAE163877C50035D38E /* PlanetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetViewController.xib; path = classes/PlanetViewController.xib; sourceTree = "<group>"; };
 		5BD3C422162808D300974C3C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5BDB9C221626CD950074EBB7 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		5BDB9C231626CD950074EBB7 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
@@ -355,14 +374,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B07A728162EA61A006B56A5 /* Initial Hub Views */ = {
+		5B07A728162EA61A006B56A5 /* Command HQ */ = {
 			isa = PBXGroup;
 			children = (
+				5B7E185816242CBF00E0315E /* HubViewController.h */,
+				5B7E185916242CBF00E0315E /* HubViewController.m */,
+				5B7E185A16242CBF00E0315E /* HubViewController.xib */,
 				5BE7F8C71635973D00C5E0F7 /* Hangar */,
 				5BCB9504162EE1C0005AD7E5 /* Player */,
 				5B906D0416369C5C00C4C0DF /* Equipment */,
 			);
-			name = "Initial Hub Views";
+			name = "Command HQ";
 			sourceTree = "<group>";
 		};
 		5B07A72E162EC38C006B56A5 /* backgrounds */ = {
@@ -392,6 +414,26 @@
 			name = profile;
 			path = assets/profile;
 			sourceTree = SOURCE_ROOT;
+		};
+		5B369FF7163948C500FA8BC8 /* Planet Selector (Modal) */ = {
+			isa = PBXGroup;
+			children = (
+				5BD07FAC163877C50035D38E /* PlanetViewController.h */,
+				5BD07FAD163877C50035D38E /* PlanetViewController.m */,
+				5BD07FAE163877C50035D38E /* PlanetViewController.xib */,
+			);
+			name = "Planet Selector (Modal)";
+			sourceTree = "<group>";
+		};
+		5B369FF81639512800FA8BC8 /* Overivew */ = {
+			isa = PBXGroup;
+			children = (
+				5B369FF91639515400FA8BC8 /* PlanetOverviewViewController.h */,
+				5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */,
+				5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */,
+			);
+			name = Overivew;
+			sourceTree = "<group>";
 		};
 		5B3FE69016355AEA00D9F2CC /* Bundles */ = {
 			isa = PBXGroup;
@@ -558,10 +600,8 @@
 		5B7E185F1624308A00E0315E /* Front Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5B07A728162EA61A006B56A5 /* Initial Hub Views */,
-				5B7E185816242CBF00E0315E /* HubViewController.h */,
-				5B7E185916242CBF00E0315E /* HubViewController.m */,
-				5B7E185A16242CBF00E0315E /* HubViewController.xib */,
+				5BD07FAB1638779A0035D38E /* Planets */,
+				5B07A728162EA61A006B56A5 /* Command HQ */,
 				5BDD4A4E162FF7B4009FA697 /* Inventory */,
 			);
 			name = "Front Controllers";
@@ -619,6 +659,8 @@
 		5B8F1A20162466AA00274D4E /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */,
+				5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */,
 				5B906D051636A45C00C4C0DF /* icon_bank.png */,
 				5B906D061636A45C00C4C0DF /* icon_bank@2x.png */,
 				5B906D071636A45C00C4C0DF /* icon_equipment.png */,
@@ -673,12 +715,24 @@
 		5BCB9504162EE1C0005AD7E5 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				5BF38E4916318A200029658A /* Profile */,
+				5BF38E4916318A200029658A /* Custom UIViews */,
 				5B1ACD27162DFA39003C157F /* PlayerViewController.h */,
 				5B1ACD28162DFA39003C157F /* PlayerViewController.m */,
 				5B1ACD29162DFA39003C157F /* PlayerViewController.xib */,
 			);
 			name = Player;
+			sourceTree = "<group>";
+		};
+		5BD07FAB1638779A0035D38E /* Planets */ = {
+			isa = PBXGroup;
+			children = (
+				5B369FF81639512800FA8BC8 /* Overivew */,
+				5B369FF7163948C500FA8BC8 /* Planet Selector (Modal) */,
+				5B369FF21639489000FA8BC8 /* PlanetHubViewController.h */,
+				5B369FF31639489000FA8BC8 /* PlanetHubViewController.m */,
+				5B369FF41639489000FA8BC8 /* PlanetHubViewController.xib */,
+			);
+			name = Planets;
 			sourceTree = "<group>";
 		};
 		5BDB9C211626CD950074EBB7 /* AFNetworking */ = {
@@ -792,13 +846,13 @@
 			path = assets/parts;
 			sourceTree = SOURCE_ROOT;
 		};
-		5BF38E4916318A200029658A /* Profile */ = {
+		5BF38E4916318A200029658A /* Custom UIViews */ = {
 			isa = PBXGroup;
 			children = (
 				5BCB9510162EF38E005AD7E5 /* PlayerProfileView.h */,
 				5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */,
 			);
-			name = Profile;
+			name = "Custom UIViews";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -962,6 +1016,11 @@
 				5B906D101636A45C00C4C0DF /* icon_planet@2x.png in Resources */,
 				5B906D131636A88500C4C0DF /* parts_arms_empty.png in Resources */,
 				5B906D141636A88500C4C0DF /* parts_arms_empty@2x.png in Resources */,
+				5BD07FB0163877C50035D38E /* PlanetViewController.xib in Resources */,
+				5B369FF61639489000FA8BC8 /* PlanetHubViewController.xib in Resources */,
+				5B369FFD1639515400FA8BC8 /* PlanetOverviewViewController.xib in Resources */,
+				5B36A00016395BF300FA8BC8 /* icon_planet_search.png in Resources */,
+				5B36A00116395BF300FA8BC8 /* icon_planet_search@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1006,6 +1065,9 @@
 				5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */,
 				5B8A29AF1635607C006FCB17 /* LoginViewController.m in Sources */,
 				5B906D0216369C5900C4C0DF /* EquipmentViewController.m in Sources */,
+				5BD07FAF163877C50035D38E /* PlanetViewController.m in Sources */,
+				5B369FF51639489000FA8BC8 /* PlanetHubViewController.m in Sources */,
+				5B369FFC1639515400FA8BC8 /* PlanetOverviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
