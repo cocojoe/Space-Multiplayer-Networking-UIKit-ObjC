@@ -10,6 +10,7 @@
 
 // Sub Views
 #import "PlanetOverviewViewController.h"
+#import "PlanetBuildingViewController.h"
 
 // Modals
 #import "PlanetViewController.h"
@@ -18,6 +19,7 @@
 #import "GameManager.h"
 
 #define TAG_PLANET_PLANETS_VIEW     1
+#define TAG_PLANET_BUILDING_VIEW    2
 
 @interface PlanetHubViewController ()
 
@@ -58,11 +60,17 @@
     _planetOverviewViewController = [[PlanetOverviewViewController alloc] initWithNibName:@"PlanetOverviewViewController" bundle:nil];
     [self.view insertSubview:_planetOverviewViewController.view belowSubview:_customTabBar];
     
+    // Add Planet Building Controller 
+    _planetBuildingViewController = [[PlanetBuildingViewController alloc] initWithNibName:@"PlanetBuildingViewController" bundle:nil];
+    [self.view insertSubview:_planetBuildingViewController.view belowSubview:_planetOverviewViewController.view];
+    
     // Default Selection
     [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
     
     [self setPlanetOverviewController];
 
+    // Ensure Tab Bar
+    [self.view bringSubviewToFront:_customTabBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,10 +95,22 @@
 {
 
     self.navigationItem.title = _planetOverviewViewController.title;
+    [self.view bringSubviewToFront:_planetOverviewViewController.view];
     [_planetOverviewViewController refreshData];
 
     // Search Planet Option
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:_planetOverviewViewController action:@selector(showPlanetList)];
+}
+
+-(void) setPlanetBuildingController
+{
+    
+    self.navigationItem.title = _planetBuildingViewController.title;
+    [self.view bringSubviewToFront:_planetBuildingViewController.view];
+    [_planetBuildingViewController refreshData];
+    
+    // Search Planet Option
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:_planetBuildingViewController action:@selector(showBuildingList)];
 }
 
 #pragma mark UITabBar Delegate
@@ -101,6 +121,10 @@
         case TAG_PLANET_PLANETS_VIEW:
             [self setPlanetOverviewController];
             break;
+        case TAG_PLANET_BUILDING_VIEW:
+            [self setPlanetBuildingController];
+            break;
+
     }
     
     // Ensure Tab Bar

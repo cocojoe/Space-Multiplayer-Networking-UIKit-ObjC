@@ -142,6 +142,7 @@
             //CCLOG(@"Activate Hangar View");
             [self.view bringSubviewToFront:_hangarViewController.view];
             self.navigationItem.title = _hangarViewController.title;
+            [_hangarViewController refreshData];
             break;
     }
     

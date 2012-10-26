@@ -1,29 +1,28 @@
 //
-//  PlanetViewController.m
+//  BuildingSelectionTableViewController.m
 //  space
 //
-//  Created by Martin Walsh on 24/10/2012.
+//  Created by Martin Walsh on 26/10/2012.
 //  Copyright (c) 2012 Pedro LTD. All rights reserved.
 //
 
-#import "PlanetViewController.h"
+#import "BuildingSelectionTableViewController.h"
+#import "BuildingCell.h"
 #import "GameManager.h"
 
-// Custom Cell
-#import "PlanetTableCell.h"
-
-@interface PlanetViewController ()
+@interface BuildingSelectionTableViewController ()
 
 @end
 
-@implementation PlanetViewController
+@implementation BuildingSelectionTableViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _planets         = [[NSMutableArray alloc] init];
-        self.title       = NSLocalizedString(@"PlanetSelectionTitleKey", @"");
+        _buildingsAllowed  = [[NSMutableArray alloc] init];
+        _buildingsFiltered = [[NSMutableArray alloc] init];
+        self.title         = NSLocalizedString(@"BuildingSelectionTitleKey", @"");
         [self setupNotification];
     }
     return self;
@@ -33,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     // Nav Style
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
@@ -44,24 +43,39 @@
     _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
     [_pull setDelegate:self];
     [self.tableView addSubview:_pull];
-    
+
 }
 
 #pragma mark Data Processing
 -(void) refreshData
 {
-    [[GameManager sharedInstance] refreshPlanets:^(NSDictionary *jsonDict){
+    [[GameManager sharedInstance] refreshBuildingsAllowed:^(NSDictionary *jsonDict){
         
         // Assign Inventory JSON
-        _planets = [jsonDict objectForKey:@"planets"];
+        _buildingsAllowed = [jsonDict objectForKey:@"buildings"];
         
         [self defaultFilter];
     }];
+
 }
 
 #pragma mark Search Helpers
 -(void) defaultFilter
 {
+
+    // Clear Filter
+    [_buildingsFiltered removeAllObjects];
+    
+    // ReBuild Inventory - Attach Item/Group Details
+    for(NSDictionary* building in [[GameManager sharedInstance] masterBuildingList])
+    {
+        for(NSNumber* buildingID in _buildingsAllowed)
+        {
+            if([[building objectForKey:@"id"] integerValue]==[buildingID integerValue])
+                [_buildingsFiltered addObject:building];
+        }
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -83,35 +97,40 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     // Return the number of rows in the section.
-    return [_planets count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"PlanetTableCell";
-    PlanetTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[PlanetTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    // Populate Cell
-    [cell refresh:[_planets objectAtIndex:indexPath.row]];
-
-    return cell;
+    return [_buildingsFiltered count];
 }
 
 // Table Size (Custom Cell)
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *CellIdentifier = @"BuildingCell";
+    BuildingCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[BuildingCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    
+    // Populate Cell
+    [cell refresh:[_buildingsFiltered objectAtIndex:indexPath.row]];
+    
+     return cell;
 }
 
 #pragma mark Rotation Fix
@@ -137,7 +156,7 @@
 #pragma mark Notification Handling
 -(void) setupNotification
 {
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
                                                  name:@"cancelPullDown"
@@ -153,22 +172,17 @@
     }
 }
 
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* planetDict = [_planets objectAtIndex:indexPath.row];
-    
-    // Set Game Manager Planet
-    [[GameManager sharedInstance] setPlanetID:[[planetDict objectForKey:@"id"] integerValue]];
-    
-    // Refresh Planet
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"planetRefresh" object:self];
-    
-    // Dismiss
-    [self dismissModalViewControllerAnimated:YES];
-
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
 }
 
 @end

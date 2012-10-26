@@ -1,54 +1,37 @@
 //
-//  HangarViewController.m
+//  PlanetBuildingViewController.m
 //  space
 //
-//  Created by Deminem on 5/14/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Martin Walsh on 26/10/2012.
+//  Copyright (c) 2012 Pedro LTD. All rights reserved.
 //
 
-#import "HangarViewController.h"
+#import "PlanetBuildingViewController.h"
+#import "BuildingSelectionTableViewController.h"
+
 #import "GameManager.h"
-#import "ShipPartsView.h"
 
-@implementation HangarViewController
+@interface PlanetBuildingViewController ()
 
-- (id)initWithTitle:(NSString *)title {
-    
-    self = [super initWithNibName:@"HangarViewController" bundle:nil];
-    
-    if (self) {
-        // Custom initialization
-        // Bar Title
-        self.title = title;
-        [self setupNotification];
+@end
 
-    }
-    return self;
-}
+@implementation PlanetBuildingViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = NSLocalizedString(@"BuildingOverviewTitleKey", @"");
+        [self setupNotification];
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    // Do any additional setup after loading the view from its nib.
+    
     // Assign Scroll View to Member / Assign Delegate Self
     for (UIView* subView in self.view.subviews) {
         if ([subView isKindOfClass:[UIScrollView class]]) {
@@ -65,16 +48,14 @@
     [pull setDelegate:self];
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
-
-    
 }
 
-- (void)viewDidUnload
+- (void)didReceiveMemoryWarning
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     BOOL shouldAutorotate = NO;
@@ -93,18 +74,18 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
-                                                 name:@"partsRefresh"
+                                                 name:@"cancelPullDown"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
-                                                 name:@"cancelPullDown"
+                                                 name:@"buildingRefresh"
                                                object:nil];
 }
 
 - (void) handleNotification:(NSNotification *) notification
 {
-    if ([[notification name] isEqualToString:@"partsRefresh"])
+    if ([[notification name] isEqualToString:@"buildingRefresh"])
     {
         [self refreshData];
     } else if ([[notification name] isEqualToString:@"cancelPullDown"])
@@ -122,6 +103,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
 #pragma mark Pull To Refresh Delegate Methods
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [self refreshData];
@@ -130,19 +112,31 @@
 #pragma mark Data Processing
 -(void) refreshData
 {
-    
-    [[GameManager sharedInstance] refreshParts:^(NSDictionary *jsonDict){
+
+    /*
+    [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
         // Parent Player Dictionary
-        NSDictionary *partsDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"parts"]];
+        NSDictionary *planetDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
         
-        // Parts View
-        [_partsShipView refresh:[partsDict objectForKey:@"hq"]];
+        [_planetDetailView refresh:planetDict];
         
     }];
-    
+    */
 }
 
-
+#pragma mark Navigation Extras
+-(void) showBuildingList;
+{
+    // Create Building Selection Modal
+    BuildingSelectionTableViewController* selectionViewController = [[BuildingSelectionTableViewController alloc] initWithNibName:@"BuildingSelectionTableViewController" bundle:nil];
+    
+    // Add Navigation (For Bar Control)
+    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:selectionViewController];
+    
+    // Push Inventory Selection View
+    UIViewController* viewController = [[GameManager sharedInstance] view];
+    [viewController presentModalViewController:navigation animated:YES];
+}
 
 @end

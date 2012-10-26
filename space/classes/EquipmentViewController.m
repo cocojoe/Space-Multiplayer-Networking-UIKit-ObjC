@@ -8,7 +8,6 @@
 
 #import "EquipmentViewController.h"
 #import "GameManager.h"
-#import "PlayerProfileView.h"
 #import "PlayerPartsView.h"
 
 @interface EquipmentViewController ()
@@ -26,7 +25,6 @@
         // Custom initialization
         // Nav Title
         self.title = title;
-        
         [self setupNotification];
         
     }
@@ -89,7 +87,7 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
-                                                 name:@"playerRefresh"
+                                                 name:@"partsRefresh"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -100,7 +98,7 @@
 
 - (void) handleNotification:(NSNotification *) notification
 {
-    if ([[notification name] isEqualToString:@"playerRefresh"])
+    if ([[notification name] isEqualToString:@"partsRefresh"])
     {
         [self refreshData];
     } else if ([[notification name] isEqualToString:@"cancelPullDown"])
@@ -128,13 +126,13 @@
 -(void) refreshData
 {
     
-    [[GameManager sharedInstance] refreshPlayer:^(NSDictionary *jsonDict){
+    [[GameManager sharedInstance] refreshParts:^(NSDictionary *jsonDict){
         
         // Parent Player Dictionary
-        NSDictionary *playerDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"player"]];
+        NSDictionary *playerDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"parts"]];
         
         // Parts View
-        [_partsProfileView refresh:[playerDict objectForKey:@"parts"]];
+        [_partsProfileView refresh:[playerDict objectForKey:@"player"]];
         
     }];
     

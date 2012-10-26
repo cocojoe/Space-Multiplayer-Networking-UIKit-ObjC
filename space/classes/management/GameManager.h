@@ -40,6 +40,7 @@ typedef void (^BasicBlock)          ();
 
 #define URI_AUTH                        (@"/api/auth/")
 #define URI_PLAYER                      (@"/api/player/")
+#define URI_PARTS                       (@"/api/player/parts")
 #define URI_INVENTORY                   (@"/api/player/inventory")
 #define URI_INVENTORY_REMOVE_PART       (@"/api/player/inventory/remove")
 #define URI_INVENTORY_ATTACH_PART       (@"/api/player/inventory/attach")
@@ -48,6 +49,8 @@ typedef void (^BasicBlock)          ();
 #define URI_PART_MASTER                 (@"/api/part/")
 #define URI_PLAYER_PLANETS              (@"/api/player/planets")
 #define URI_PLANET                      (@"/api/planet/index")
+#define URI_MASTER_BUILDING             (@"/api/building/")
+#define URI_BUILDING_ALLOWED            (@"/api/player/buildings")
 
 // Simple Caching / Request Spam
 #define API_CACHE_TIME  30
@@ -65,9 +68,11 @@ enum eAuthenticationState {
     // API Data Caching
     NSMutableDictionary* _authDict;
     NSMutableDictionary* _playerDict;
+    NSMutableDictionary* _partsDict;
     NSMutableDictionary* _planetDict;
     NSMutableDictionary* _inventoryDict;
     NSMutableDictionary* _planetsDict;
+    NSMutableDictionary* _buildingsAllowedDict;
     
     // Queues (API Communication)
     NSOperationQueue *_requestQueue;
@@ -83,6 +88,7 @@ enum eAuthenticationState {
 @property (nonatomic) NSMutableArray* masterItemList;
 @property (nonatomic) NSMutableArray* masterPartList;
 @property (nonatomic) NSMutableArray* masterGroupList;
+@property (nonatomic) NSMutableArray* masterBuildingList;
 
 // Preferences
 @property (nonatomic, readwrite) int planetID;
@@ -107,10 +113,14 @@ enum eAuthenticationState {
 #pragma mark Player
 -(void) refreshPlayer:(ResponseBlock) actionBlock;
 
+#pragma mark Parts
+-(void) refreshParts:(ResponseBlock) actionBlock;
+
 #pragma mark Master Lists
 -(void) retrieveMasterItem:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
+-(void) retrieveMasterBuilding:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock;
@@ -122,5 +132,8 @@ enum eAuthenticationState {
 #pragma mark Planets
 -(void) refreshPlanets:(ResponseBlock) actionBlock;
 -(void) refreshPlanet:(ResponseBlock) actionBlock;
+
+#pragma mark Buildings
+-(void) refreshBuildingsAllowed:(ResponseBlock) actionBlock;
 
 @end

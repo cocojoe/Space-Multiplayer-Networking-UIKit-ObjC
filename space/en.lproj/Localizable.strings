@@ -13,4 +13,6 @@
 "EquipmentTitleKey" = "Equipment";
 "PlanetTitleKey"    = "Planet";
 "PlanetSelectionTitleKey" = "Select Planet";
-"PlanetOverviewTitleKey"  = "Planet Overview";
+"PlanetOverviewTitleKey"   = "Planet Overview";
+"BuildingOverviewTitleKey" = "Buildings";
+"BuildingSelectionTitleKey" = "Select Building";

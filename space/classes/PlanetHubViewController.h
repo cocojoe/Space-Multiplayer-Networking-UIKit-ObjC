@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class PlanetOverviewViewController;
+@class PlanetBuildingViewController;
 
 @interface PlanetHubViewController : UIViewController <UITabBarDelegate>
 
@@ -16,6 +17,7 @@
 
 // Controllers
 @property (nonatomic) PlanetOverviewViewController* planetOverviewViewController;
+@property (nonatomic) PlanetBuildingViewController* planetBuildingViewController;
 
 
 @end

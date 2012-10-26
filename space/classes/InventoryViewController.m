@@ -160,7 +160,7 @@
     [[GameManager sharedInstance] clearPart:_partID setBlock:^(NSDictionary *jsonDict){
         
         // Force Refresh Player Cache
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRefresh" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"partsRefresh" object:self];
         
         // Dismiss
         [self dismissModalViewControllerAnimated:YES];
@@ -177,7 +177,7 @@
     if(_partID) {
         [[GameManager sharedInstance] setPart:_partID setItem:[[[itemDict objectForKey:@"item"] objectForKey:@"id"] integerValue] setBlock:^(NSDictionary *jsonDict){
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRefresh" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"partsRefresh" object:self];
             
             // Dismiss
             [self dismissModalViewControllerAnimated:YES];

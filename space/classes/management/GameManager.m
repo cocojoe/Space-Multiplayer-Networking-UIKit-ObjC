@@ -50,16 +50,19 @@
         [_requestSuspendQueue setMaxConcurrentOperationCount:2]; // Concurrent Requests
         
         // API Data Object
-        _authDict       = [[NSMutableDictionary alloc] init];
-        _playerDict     = [[NSMutableDictionary alloc] init];
-        _planetDict     = [[NSMutableDictionary alloc] init];
-        _inventoryDict  = [[NSMutableDictionary alloc] init];
-        _planetsDict    = [[NSMutableDictionary alloc] init];
+        _authDict             = [[NSMutableDictionary alloc] init];
+        _playerDict           = [[NSMutableDictionary alloc] init];
+        _partsDict            = [[NSMutableDictionary alloc] init];
+        _planetDict           = [[NSMutableDictionary alloc] init];
+        _inventoryDict        = [[NSMutableDictionary alloc] init];
+        _planetsDict          = [[NSMutableDictionary alloc] init];
+        _buildingsAllowedDict = [[NSMutableDictionary alloc] init];
         
         // Data Store
-        _masterItemList  = [[NSMutableArray alloc] init];
-        _masterPartList  = [[NSMutableArray alloc] init];
-        _masterGroupList = [[NSMutableArray alloc] init];
+        _masterItemList     = [[NSMutableArray alloc] init];
+        _masterPartList     = [[NSMutableArray alloc] init];
+        _masterGroupList    = [[NSMutableArray alloc] init];
+        _masterBuildingList = [[NSMutableArray alloc] init]; 
         
         // Authorisation
         _eAuthenticationState = eAuthenticationNone;
@@ -97,11 +100,15 @@
 
 
 #pragma mark Authentication
--(void) loginStart
+-(void) authLock
 {
     // Auth In Progress (Queue Additional Requests)
     _eAuthenticationState = eAuthenticationInProgress;
     [_requestSuspendQueue setSuspended:YES];
+}
+-(void) loginStart
+{
+    [self authLock];
 
     UIViewController *topController = self.view; // Root/Master Controller
     
@@ -116,7 +123,6 @@
     
     // Created Login Controller
     LoginViewController* loginViewController = [[LoginViewController alloc] init];
-    //[topController presentModalViewController:loginViewController animated:NO];
     [topController presentViewController:loginViewController animated:NO completion:^(){}];
 }
 
@@ -175,6 +181,27 @@
     
 }
 
+#pragma mark Parts
+-(void) refreshParts:(ResponseBlock) actionBlock
+{
+    
+    if([self shouldUseCache:_partsDict setBlock:actionBlock])
+        return;
+    
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_PARTS setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            // Store Player Information
+            [_partsDict setDictionary:jsonDict];
+            
+            actionBlock(jsonDict);
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
 #pragma mark Master Lists
 -(void) retrieveMasterItem:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
 {
@@ -227,6 +254,23 @@
     
 }
 
+-(void) retrieveMasterBuilding:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
+{
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_MASTER_BUILDING setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Store Master List
+            [_masterBuildingList setArray:[jsonDict objectForKey:@"buildings"]];
+            //CCLOG(@"Master Building List Retrieved, %d Items", [_masterBuildingList count]);
+            actionBlock();
+        } setBlockFail:^(){errorBlock();}];
+        
+    }]];
+    
+}
+
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock
 {
@@ -258,7 +302,7 @@
         
         [self makeRequest:URI_INVENTORY_REMOVE_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
             // Clear Player Cache / Inventory Cache
-            [_playerDict removeAllObjects];
+            [_partsDict removeAllObjects];
             [_inventoryDict removeAllObjects];
             actionBlock(nil);
         } setBlockFail:nil];
@@ -279,7 +323,7 @@
         
         [self makeRequest:URI_INVENTORY_ATTACH_PART setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
             // Clear Player Cache / Inventory Cache
-            [_playerDict removeAllObjects];
+            [_partsDict removeAllObjects];
             [_inventoryDict removeAllObjects];
             actionBlock(nil);
         } setBlockFail:nil];
@@ -326,6 +370,27 @@
             
             // Cache Information
             [_planetDict setDictionary:jsonDict];
+            
+            actionBlock(jsonDict);
+        } setBlockFail:nil];
+        
+    }]];
+    
+}
+
+#pragma mark Buildings
+-(void) refreshBuildingsAllowed:(ResponseBlock)actionBlock
+{
+    
+    if([self shouldUseCache:_buildingsAllowedDict setBlock:actionBlock])
+        return;
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_BUILDING_ALLOWED setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Cache Information
+            [_buildingsAllowedDict setDictionary:jsonDict];
             
             actionBlock(jsonDict);
         } setBlockFail:nil];
@@ -401,14 +466,13 @@
                 // Soft Issue (ReAuthentication Required)
                 CCLOG(@"Re-Authentication Required: Invalid Session");
                 _eAuthenticationState = eAuthenticationNone;
-                [self loginStart];
+                [self authLock];
+                [self performSelector:@selector(loginStart) withObject:self afterDelay:0.75f];
                 
-                /*
                 // ReQueue Failed Request
                 [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
                 }]];
-                */
                 
             } else {
                 // Log API Issue

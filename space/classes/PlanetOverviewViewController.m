@@ -10,7 +10,6 @@
 #import "PlanetOverviewViewController.h"
 #import "PlanetViewController.h"
 
-
 @interface PlanetOverviewViewController ()
 
 @end
@@ -49,12 +48,6 @@
     [pull setDelegate:self];
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
-    
-    // Setup Planet Selection List
-    // Clear Item If Currently Equipped
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_planet.png"] style:UIBarButtonItemStylePlain target:self action:@selector(planetSelector)];
-    
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor greenColor];
     
 }
 
@@ -131,7 +124,7 @@
         // Parent Player Dictionary
         NSDictionary *planetDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
         
-        _planetName.text = [planetDict objectForKey:@"name"];
+        [_planetDetailView refresh:planetDict];
         
     }];
 }
