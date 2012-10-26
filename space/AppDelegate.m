@@ -61,6 +61,19 @@
     // Login
     [[GameManager sharedInstance] loginStart];
     
+    // Reset Badges
+    application.applicationIconBadgeNumber = 0;
+    
+    // Create Notificaiton
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:180]; // 3 Mins From Now
+    localNotification.alertBody = @"You're under attack!";
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
     return YES;
 
 }
@@ -80,6 +93,9 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    // Reset Badges
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
