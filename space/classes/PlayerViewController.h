@@ -23,6 +23,7 @@
 
 #pragma mark Data Processing
 -(void) refreshData;
+-(void) foregroundRefresh:(NSNotification *)notification;
 
 @end
 

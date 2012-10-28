@@ -113,16 +113,14 @@
 -(void) refreshData
 {
 
-    /*
+    
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
         // Parent Player Dictionary
         NSDictionary *planetDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
         
-        [_planetDetailView refresh:planetDict];
-        
     }];
-    */
+    
 }
 
 #pragma mark Navigation Extras

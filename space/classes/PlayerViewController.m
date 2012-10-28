@@ -99,6 +99,11 @@
                                              selector:@selector(handleNotification:)
                                                  name:@"cancelPullDown"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(foregroundRefresh:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
 }
 
 - (void) handleNotification:(NSNotification *) notification
@@ -138,6 +143,13 @@
 
     }];
     
+}
+
+-(void)foregroundRefresh:(NSNotification *)notification
+{
+    _mainScrollView.contentOffset = CGPointMake(0, -PULL_HEIGHT);
+    [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] setState:PullToRefreshViewStateLoading];
+    [self refreshData];
 }
 
 @end

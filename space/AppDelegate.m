@@ -65,14 +65,15 @@
     application.applicationIconBadgeNumber = 0;
     
     // Create Notificaiton
+    /*
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:180]; // 3 Mins From Now
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10]; // 3 Mins From Now
     localNotification.alertBody = @"You're under attack!";
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     localNotification.applicationIconBadgeNumber = 1;
-    
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+     */
     
     return YES;
 
