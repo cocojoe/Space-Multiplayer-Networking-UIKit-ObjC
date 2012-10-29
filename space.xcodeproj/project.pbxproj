@@ -93,6 +93,10 @@
 		5B906D0E1636A45C00C4C0DF /* icon_equipment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B906D081636A45C00C4C0DF /* icon_equipment@2x.png */; };
 		5B906D0F1636A45C00C4C0DF /* icon_planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B906D091636A45C00C4C0DF /* icon_planet.png */; };
 		5B906D101636A45C00C4C0DF /* icon_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B906D0A1636A45C00C4C0DF /* icon_planet@2x.png */; };
+		5B9BBCFC163F1D1E008C6B7E /* bg_space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B9BBCFA163F1D1E008C6B7E /* bg_space.jpg */; };
+		5B9BBCFD163F1D1E008C6B7E /* bg_space@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B9BBCFB163F1D1E008C6B7E /* bg_space@2x.jpg */; };
+		5B9BBCFF163F20E0008C6B7E /* BuildingBuildView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9BBCFE163F20DF008C6B7E /* BuildingBuildView.xib */; };
+		5B9BBD03163F2118008C6B7E /* BuildingBuildView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */; };
 		5BA22DB11624581A0006AE64 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA22DAF1624581A0006AE64 /* MenuViewController.m */; };
 		5BA22DB21624581A0006AE64 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA22DB01624581A0006AE64 /* MenuViewController.xib */; };
 		5BA22DBD1624603D0006AE64 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA22DBF1624603D0006AE64 /* Localizable.strings */; };
@@ -146,10 +150,6 @@
 		5BC4ECAE163AD19000974929 /* part_ship_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC4EC88163AD19000974929 /* part_ship_empty.png */; };
 		5BC4ECAF163AD19000974929 /* part_ship_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC4EC89163AD19000974929 /* part_ship_empty@2x.png */; };
 		5BCB9512162EF38E005AD7E5 /* PlayerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */; };
-		5BCB951E162EFA88005AD7E5 /* bg_space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB951A162EFA88005AD7E5 /* bg_space.jpg */; };
-		5BCB951F162EFA88005AD7E5 /* bg_space@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB951B162EFA88005AD7E5 /* bg_space@2x.jpg */; };
-		5BCB9522162EFE18005AD7E5 /* bg_deadspace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB9520162EFE18005AD7E5 /* bg_deadspace.jpg */; };
-		5BCB9523162EFE18005AD7E5 /* bg_deadspace@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BCB9521162EFE18005AD7E5 /* bg_deadspace@2x.jpg */; };
 		5BD07FAF163877C50035D38E /* PlanetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD07FAD163877C50035D38E /* PlanetViewController.m */; };
 		5BD07FB0163877C50035D38E /* PlanetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD07FAE163877C50035D38E /* PlanetViewController.xib */; };
 		5BD3C423162808D300974C3C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD3C422162808D300974C3C /* SystemConfiguration.framework */; };
@@ -312,6 +312,11 @@
 		5B906D081636A45C00C4C0DF /* icon_equipment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_equipment@2x.png"; sourceTree = "<group>"; };
 		5B906D091636A45C00C4C0DF /* icon_planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_planet.png; sourceTree = "<group>"; };
 		5B906D0A1636A45C00C4C0DF /* icon_planet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_planet@2x.png"; sourceTree = "<group>"; };
+		5B9BBCFA163F1D1E008C6B7E /* bg_space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_space.jpg; sourceTree = "<group>"; };
+		5B9BBCFB163F1D1E008C6B7E /* bg_space@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_space@2x.jpg"; sourceTree = "<group>"; };
+		5B9BBCFE163F20DF008C6B7E /* BuildingBuildView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BuildingBuildView.xib; path = classes/BuildingBuildView.xib; sourceTree = "<group>"; };
+		5B9BBD01163F2118008C6B7E /* BuildingBuildView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingBuildView.h; path = classes/BuildingBuildView.h; sourceTree = "<group>"; };
+		5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuildingBuildView.m; path = classes/BuildingBuildView.m; sourceTree = "<group>"; };
 		5BA22DAE1624581A0006AE64 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = classes/MenuViewController.h; sourceTree = "<group>"; };
 		5BA22DAF1624581A0006AE64 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = classes/MenuViewController.m; sourceTree = "<group>"; };
 		5BA22DB01624581A0006AE64 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuViewController.xib; path = classes/MenuViewController.xib; sourceTree = "<group>"; };
@@ -374,10 +379,6 @@
 		5BC4EC89163AD19000974929 /* part_ship_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "part_ship_empty@2x.png"; sourceTree = "<group>"; };
 		5BCB9510162EF38E005AD7E5 /* PlayerProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerProfileView.h; path = classes/PlayerProfileView.h; sourceTree = "<group>"; };
 		5BCB9511162EF38E005AD7E5 /* PlayerProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerProfileView.m; path = classes/PlayerProfileView.m; sourceTree = "<group>"; };
-		5BCB951A162EFA88005AD7E5 /* bg_space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_space.jpg; sourceTree = "<group>"; };
-		5BCB951B162EFA88005AD7E5 /* bg_space@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_space@2x.jpg"; sourceTree = "<group>"; };
-		5BCB9520162EFE18005AD7E5 /* bg_deadspace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_deadspace.jpg; sourceTree = "<group>"; };
-		5BCB9521162EFE18005AD7E5 /* bg_deadspace@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_deadspace@2x.jpg"; sourceTree = "<group>"; };
 		5BD07FAC163877C50035D38E /* PlanetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetViewController.h; path = classes/PlanetViewController.h; sourceTree = "<group>"; };
 		5BD07FAD163877C50035D38E /* PlanetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetViewController.m; path = classes/PlanetViewController.m; sourceTree = "<group>"; };
 		5BD07FAE163877C50035D38E /* PlanetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetViewController.xib; path = classes/PlanetViewController.xib; sourceTree = "<group>"; };
@@ -451,10 +452,8 @@
 		5B07A72E162EC38C006B56A5 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				5BCB9520162EFE18005AD7E5 /* bg_deadspace.jpg */,
-				5BCB9521162EFE18005AD7E5 /* bg_deadspace@2x.jpg */,
-				5BCB951A162EFA88005AD7E5 /* bg_space.jpg */,
-				5BCB951B162EFA88005AD7E5 /* bg_space@2x.jpg */,
+				5B9BBCFA163F1D1E008C6B7E /* bg_space.jpg */,
+				5B9BBCFB163F1D1E008C6B7E /* bg_space@2x.jpg */,
 			);
 			name = backgrounds;
 			path = assets/backgrounds;
@@ -819,6 +818,16 @@
 			name = Equipment;
 			sourceTree = "<group>";
 		};
+		5B9BBD00163F20E6008C6B7E /* Custom Building */ = {
+			isa = PBXGroup;
+			children = (
+				5B9BBCFE163F20DF008C6B7E /* BuildingBuildView.xib */,
+				5B9BBD01163F2118008C6B7E /* BuildingBuildView.h */,
+				5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */,
+			);
+			name = "Custom Building";
+			sourceTree = "<group>";
+		};
 		5BB6251D16314A76005BB81B /* Parts */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +855,7 @@
 				5BC4EC52163ABF7900974929 /* BuildingSelectionTableViewController.h */,
 				5BC4EC53163ABF7900974929 /* BuildingSelectionTableViewController.m */,
 				5BC4EC54163ABF7900974929 /* BuildingSelectionTableViewController.xib */,
+				5B9BBD00163F20E6008C6B7E /* Custom Building */,
 			);
 			name = "Building Selector";
 			sourceTree = "<group>";
@@ -1132,10 +1142,6 @@
 				5B07A741162ED4A9006B56A5 /* icon_cash@2x.png in Resources */,
 				5B07A742162ED4A9006B56A5 /* icon_premium.png in Resources */,
 				5B07A743162ED4A9006B56A5 /* icon_premium@2x.png in Resources */,
-				5BCB951E162EFA88005AD7E5 /* bg_space.jpg in Resources */,
-				5BCB951F162EFA88005AD7E5 /* bg_space@2x.jpg in Resources */,
-				5BCB9522162EFE18005AD7E5 /* bg_deadspace.jpg in Resources */,
-				5BCB9523162EFE18005AD7E5 /* bg_deadspace@2x.jpg in Resources */,
 				5BDD4A4B162FF7A2009FA697 /* item_default.png in Resources */,
 				5BDD4A4C162FF7A2009FA697 /* item_default@2x.png in Resources */,
 				5BDD4A53162FFFF8009FA697 /* InventoryCell.xib in Resources */,
@@ -1215,6 +1221,9 @@
 				5B85DA0D163EA0920050BDF7 /* building_icon_workers@2x.png in Resources */,
 				5B5BA5DC163EC47400B7FACE /* building_icon_time.png in Resources */,
 				5B5BA5DD163EC47400B7FACE /* building_icon_time@2x.png in Resources */,
+				5B9BBCFC163F1D1E008C6B7E /* bg_space.jpg in Resources */,
+				5B9BBCFD163F1D1E008C6B7E /* bg_space@2x.jpg in Resources */,
+				5B9BBCFF163F20E0008C6B7E /* BuildingBuildView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1271,6 +1280,7 @@
 				5B420A57163E88DE0015FBA6 /* BuildingListView.m in Sources */,
 				5B420A62163E90F00015FBA6 /* BuildingListItemView.m in Sources */,
 				5B85DA13163EB0E80050BDF7 /* UILabel+formatHelpers.m in Sources */,
+				5B9BBD03163F2118008C6B7E /* BuildingBuildView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

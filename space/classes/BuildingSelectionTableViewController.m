@@ -8,6 +8,7 @@
 
 #import "BuildingSelectionTableViewController.h"
 #import "BuildingCell.h"
+#import "BuildingBuildView.h"
 #import "GameManager.h"
 
 @interface BuildingSelectionTableViewController ()
@@ -114,7 +115,7 @@
 // Table Size (Custom Cell)
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 47;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,6 +129,7 @@
     }
     
     //[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Populate Cell
     [cell refresh:[_buildingsFiltered objectAtIndex:indexPath.row]];
@@ -178,13 +180,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    // Create Popup
+    [self createBuildingPopup:[_buildingsFiltered objectAtIndex:indexPath.row]];
+}
+
+#pragma mark Building Popup
+-(void) createBuildingPopup:(NSDictionary*) buildingDict
+{
+    // Create Grey Background
+    UIView *dimBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    dimBackgroundView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.75f];
+    [self.view addSubview:dimBackgroundView];
+    
+    // Disable Scroll
+    //[self.view setUserInteractionEnabled:NO];
+    
+    // Create Building Build View
+    BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
+    [buildingPopup setCenter:CGPointMake(self.view.bounds.size.width*0.5f, (self.view.bounds.size.height*0.5f)+self.tableView.contentOffset.y)];
+    [self.view addSubview:buildingPopup];
+
+    
+    // Populate Cell
+    [buildingPopup refresh:buildingDict];
+
 }
 
 @end

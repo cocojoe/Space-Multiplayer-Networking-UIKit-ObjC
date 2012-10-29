@@ -69,7 +69,7 @@
         _filterSearch.hidden                   = YES;
         
         // Part Selection Title
-        self.title = [NSString stringWithFormat:@"Select %@ item",_searchText];
+        self.title = [NSString stringWithFormat:@"Select item"];
         
         // Nav Style
         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];

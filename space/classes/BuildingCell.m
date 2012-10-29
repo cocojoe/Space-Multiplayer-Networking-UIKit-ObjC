@@ -37,28 +37,11 @@
     
     // Name
     _buildingName.text = [buildingDict objectForKey:@"name"];
-    _buildingDescription.text = [buildingDict objectForKey:@"description"];
     
     // Build Time
     float buildTime = [[buildingDict objectForKey:@"build_time"] floatValue];
     buildTime*=[[GameManager sharedInstance] speed];
     _buildingTime.text = [NSString stringWithFormat:@"%@s",[[NSNumber numberWithInt:buildTime] stringValue]];
-    
-    // Set Cost / Incomes
-    NSNumber* number;
-    // Food
-    number = [buildingDict objectForKey:@"cost_food"];
-    _buildingCostFood.text  = [formatter stringFromNumber:number];
-    // Workers
-    number = [buildingDict objectForKey:@"cost_workers"];
-    _buildingCostWorkers.text  = [formatter stringFromNumber:number];
-    // Energy
-    number = [buildingDict objectForKey:@"cost_energy"];
-    _buildingCostEnergy.text  = [formatter stringFromNumber:number];
-    // Minerals
-    number = [NSNumber numberWithInt:0];
-    _buildingCostMinerals.text  = [formatter stringFromNumber:number];
-    
 }
 
 @end

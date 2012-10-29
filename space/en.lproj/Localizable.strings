@@ -8,11 +8,11 @@
 "HubTitleKey"       = "Command HQ";
 "InventoryTitleKey" = "Inventory";
 "PlayerTitleKey"    = "Home";
-"HangarTitleKey"    = "Hangar";
+"HangarTitleKey"    = "Ship";
 "MenuTitleKey"      = "Menu";
 "EquipmentTitleKey" = "Equipment";
 "PlanetTitleKey"    = "Planet";
 "PlanetSelectionTitleKey" = "Select Planet";
 "PlanetOverviewTitleKey"   = "Planet Overview";
 "BuildingOverviewTitleKey" = "Buildings";
-"BuildingSelectionTitleKey" = "Select Building";
+"BuildingSelectionTitleKey" = "Add Building";

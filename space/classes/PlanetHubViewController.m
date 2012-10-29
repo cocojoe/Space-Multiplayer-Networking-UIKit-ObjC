@@ -100,6 +100,7 @@
 
     // Search Planet Option
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:_planetOverviewViewController action:@selector(showPlanetList)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
 }
 
 -(void) setPlanetBuildingController
@@ -111,6 +112,7 @@
     
     // Search Planet Option
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:_planetBuildingViewController action:@selector(showBuildingList)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
 }
 
 #pragma mark UITabBar Delegate
