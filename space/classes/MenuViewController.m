@@ -17,8 +17,8 @@
 #import "MenuObject.h"
 
 #define MENU_HUB            0
-#define MENU_INVENTORY      1
-#define MENU_PLANET         2
+#define MENU_PLANET         1
+#define MENU_INVENTORY      2
 
 @interface MenuViewController ()
 
@@ -74,16 +74,16 @@
     [menuItem setName:NSLocalizedString(@"PlayerTitleKey", @"")];
     [_menuList addObject:menuItem];
     
-    // Inventory
+    // Planet
     menuItem = [[MenuObject alloc] init];
-    [menuItem setIconName:@"icon_inventory.png"];
-    [menuItem setName:NSLocalizedString(@"InventoryTitleKey", @"")];
+    [menuItem setIconName:@"icon_planet.png"];
+    [menuItem setName:NSLocalizedString(@"PlanetTitleKey", @"")];
     [_menuList addObject:menuItem];
     
     // Inventory
     menuItem = [[MenuObject alloc] init];
-    [menuItem setIconName:@"icon_planet.png"];
-    [menuItem setName:NSLocalizedString(@"PlanetTitleKey", @"")];
+    [menuItem setIconName:@"icon_inventory.png"];
+    [menuItem setName:NSLocalizedString(@"InventoryTitleKey", @"")];
     [_menuList addObject:menuItem];
 }
 

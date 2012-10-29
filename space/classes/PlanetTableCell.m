@@ -33,8 +33,6 @@
     // Number Formatter
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    
-    
     NSNumber* number;
     
     // Name

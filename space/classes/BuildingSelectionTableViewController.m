@@ -37,7 +37,9 @@
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     // Navigation
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+    
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
     
     // Create Pull Loader
     _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
@@ -112,7 +114,7 @@
 // Table Size (Custom Cell)
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,7 +127,7 @@
         cell = [[BuildingCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    //[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
     // Populate Cell
     [cell refresh:[_buildingsFiltered objectAtIndex:indexPath.row]];

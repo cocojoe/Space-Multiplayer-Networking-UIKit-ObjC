@@ -7,6 +7,7 @@
 //
 
 #import "PlanetDetailView.h"
+#import "UILabel+formatHelpers.h"
 
 @implementation PlanetDetailView
 
@@ -52,27 +53,37 @@
     
     NSNumber* number;
     // Score
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"score"] integerValue]];
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"score"] intValue]];
     _planetScore.text = [formatter stringFromNumber:number];
     
     // Food
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"food"] integerValue]];
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"food"] intValue]];
     _planetFood.text = [formatter stringFromNumber:number];
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"food_rate"] integerValue]];
-    _planetFoodRate.text = [NSString stringWithFormat:@"+%@",[formatter stringFromNumber:number]];
+    
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"food_rate"] intValue]];
+    [_planetFoodRate setTextRate:number];
     
     // Workers
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"workers"] integerValue]];
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"workers"] intValue]];
     _planetWorker.text = [formatter stringFromNumber:number];
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"worker_rate"] integerValue]];
-    _planetWorkerRate.text = [NSString stringWithFormat:@"+%@",[formatter stringFromNumber:number]];
-
+    
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"worker_rate"] intValue]];
+    [_planetWorkerRate setTextRate:number];
+    
     
     // Energy
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"energy"] integerValue]];
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"energy"] intValue]];
     _planetEnergy.text = [formatter stringFromNumber:number];
-    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"energy_rate"] integerValue]];
-    _planetEnergyRate.text = [NSString stringWithFormat:@"+%@",[formatter stringFromNumber:number]];
+    
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"energy_rate"] intValue]];
+    [_planetEnergyRate setTextRate:number];
+    
+    // Mineral
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"mineral"] intValue]];
+    _planetMineral.text = [formatter stringFromNumber:number];
+    
+    number = [NSNumber numberWithInt:[[planetDict objectForKey:@"mineral_rate"] intValue]];
+    [_planetMineralRate setTextRate:number];
 
 }
 

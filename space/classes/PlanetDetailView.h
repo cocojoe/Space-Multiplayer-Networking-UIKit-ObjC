@@ -18,10 +18,12 @@
 @property (nonatomic) IBOutlet UILabel* planetFood;
 @property (nonatomic) IBOutlet UILabel* planetWorker;
 @property (nonatomic) IBOutlet UILabel* planetEnergy;
+@property (nonatomic) IBOutlet UILabel* planetMineral;
 
 @property (nonatomic) IBOutlet UILabel* planetFoodRate;
 @property (nonatomic) IBOutlet UILabel* planetWorkerRate;
 @property (nonatomic) IBOutlet UILabel* planetEnergyRate;
+@property (nonatomic) IBOutlet UILabel* planetMineralRate;
 
 -(void) refresh:(NSDictionary*) playerDict;
 

@@ -29,6 +29,9 @@ typedef void (^BasicBlock)          ();
 // TAGS
 #define TAG_PULL                800
 
+// Preferences
+#define DEFAULT_SPEED           60.0f
+
 // API Credentials
 #define APP_ID          (@"67542423701777489896990453036662")
 #define APP_SECRET      (@"ynTQL9cuckeX6FQ2wMFwJIVe70xLGd25qLL2LOnNZrBVWiOjUjFtSryPhWrO0kKh")
@@ -90,8 +93,12 @@ enum eAuthenticationState {
 @property (nonatomic) NSMutableArray* masterGroupList;
 @property (nonatomic) NSMutableArray* masterBuildingList;
 
-// Preferences
+// Preferences (Helpers)
 @property (nonatomic, readwrite) int planetID;
+-(void) setPlanet:(int) planet;
+
+// Game Time Multiplier
+@property (nonatomic, readwrite) float speed;
 
 // Alerts
 @property (retain,nonatomic) TKProgressAlertView *alertView;

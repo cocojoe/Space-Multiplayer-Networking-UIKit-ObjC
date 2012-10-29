@@ -37,8 +37,13 @@
     // Nav Style
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
-    // Navigation
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+    // Navigation (Only Show if We Have A Planet)
+    if([[GameManager sharedInstance] planetID])
+    {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
+    }
     
     // Create Pull Loader
     _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
@@ -105,7 +110,18 @@
     // Populate Cell
     [cell refresh:[_planets objectAtIndex:indexPath.row]];
 
+
     return cell;
+}
+
+// Colour Cell
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if([[[_planets objectAtIndex:indexPath.row] objectForKey:@"id"] intValue] == [[GameManager sharedInstance] planetID])
+    {
+        cell.backgroundColor = [UIColor lightGrayColor];
+    }
+
 }
 
 // Table Size (Custom Cell)
@@ -161,7 +177,7 @@
     NSDictionary* planetDict = [_planets objectAtIndex:indexPath.row];
     
     // Set Game Manager Planet
-    [[GameManager sharedInstance] setPlanetID:[[planetDict objectForKey:@"id"] integerValue]];
+    [[GameManager sharedInstance] setPlanet:[[planetDict objectForKey:@"id"] intValue]];
     
     // Refresh Planet
     [[NSNotificationCenter defaultCenter] postNotificationName:@"planetRefresh" object:self];

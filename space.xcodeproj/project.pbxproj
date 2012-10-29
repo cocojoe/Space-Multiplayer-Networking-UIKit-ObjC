@@ -37,6 +37,11 @@
 		5B4104CC1639D230003E8CAD /* PlanetDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4104CB1639D230003E8CAD /* PlanetDetailView.m */; };
 		5B4104D01639D83A003E8CAD /* PlanetTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4104CF1639D83A003E8CAD /* PlanetTableCell.xib */; };
 		5B4104D31639D86D003E8CAD /* PlanetTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4104D21639D86D003E8CAD /* PlanetTableCell.m */; };
+		5B420A57163E88DE0015FBA6 /* BuildingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B420A56163E88DE0015FBA6 /* BuildingListView.m */; };
+		5B420A5C163E8FB60015FBA6 /* BuildingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B420A5B163E8FB60015FBA6 /* BuildingListItemView.xib */; };
+		5B420A62163E90F00015FBA6 /* BuildingListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B420A61163E90F00015FBA6 /* BuildingListItemView.m */; };
+		5B5BA5DC163EC47400B7FACE /* building_icon_time.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5BA5DA163EC47400B7FACE /* building_icon_time.png */; };
+		5B5BA5DD163EC47400B7FACE /* building_icon_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5BA5DB163EC47400B7FACE /* building_icon_time@2x.png */; };
 		5B7A10A5162579680012E452 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A10A1162579680012E452 /* arrow.png */; };
 		5B7A10A6162579680012E452 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A10A2162579680012E452 /* arrow@2x.png */; };
 		5B7A10A7162579680012E452 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A10A4162579680012E452 /* PullToRefreshView.m */; };
@@ -65,6 +70,15 @@
 		5B7E187F1624360200E0315E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7E187C1624360200E0315E /* OpenAL.framework */; };
 		5B7E189116243D8900E0315E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E188E16243D8900E0315E /* NSString+MD5Addition.m */; };
 		5B7E189216243D8900E0315E /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E189016243D8900E0315E /* UIDevice+IdentifierAddition.m */; };
+		5B85DA06163EA0920050BDF7 /* building_icon_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85D9FE163EA0920050BDF7 /* building_icon_energy.png */; };
+		5B85DA07163EA0920050BDF7 /* building_icon_energy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85D9FF163EA0920050BDF7 /* building_icon_energy@2x.png */; };
+		5B85DA08163EA0920050BDF7 /* building_icon_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA00163EA0920050BDF7 /* building_icon_food.png */; };
+		5B85DA09163EA0920050BDF7 /* building_icon_food@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA01163EA0920050BDF7 /* building_icon_food@2x.png */; };
+		5B85DA0A163EA0920050BDF7 /* building_icon_minerals.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA02163EA0920050BDF7 /* building_icon_minerals.png */; };
+		5B85DA0B163EA0920050BDF7 /* building_icon_minerals@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA03163EA0920050BDF7 /* building_icon_minerals@2x.png */; };
+		5B85DA0C163EA0920050BDF7 /* building_icon_workers.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA04163EA0920050BDF7 /* building_icon_workers.png */; };
+		5B85DA0D163EA0920050BDF7 /* building_icon_workers@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA05163EA0920050BDF7 /* building_icon_workers@2x.png */; };
+		5B85DA13163EB0E80050BDF7 /* UILabel+formatHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B85DA12163EB0E80050BDF7 /* UILabel+formatHelpers.m */; };
 		5B8A29AF1635607C006FCB17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A29AE1635607C006FCB17 /* LoginViewController.m */; };
 		5B8F1A23162466AA00274D4E /* icon_inventory.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F1A21162466AA00274D4E /* icon_inventory.png */; };
 		5B8F1A24162466AA00274D4E /* icon_inventory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F1A22162466AA00274D4E /* icon_inventory@2x.png */; };
@@ -220,6 +234,13 @@
 		5B4104CF1639D83A003E8CAD /* PlanetTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetTableCell.xib; path = classes/PlanetTableCell.xib; sourceTree = "<group>"; };
 		5B4104D11639D86D003E8CAD /* PlanetTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetTableCell.h; path = classes/PlanetTableCell.h; sourceTree = "<group>"; };
 		5B4104D21639D86D003E8CAD /* PlanetTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetTableCell.m; path = classes/PlanetTableCell.m; sourceTree = "<group>"; };
+		5B420A55163E88DE0015FBA6 /* BuildingListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingListView.h; path = classes/BuildingListView.h; sourceTree = "<group>"; };
+		5B420A56163E88DE0015FBA6 /* BuildingListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuildingListView.m; path = classes/BuildingListView.m; sourceTree = "<group>"; };
+		5B420A5B163E8FB60015FBA6 /* BuildingListItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BuildingListItemView.xib; path = classes/BuildingListItemView.xib; sourceTree = "<group>"; };
+		5B420A60163E90F00015FBA6 /* BuildingListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingListItemView.h; path = classes/BuildingListItemView.h; sourceTree = "<group>"; };
+		5B420A61163E90F00015FBA6 /* BuildingListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuildingListItemView.m; path = classes/BuildingListItemView.m; sourceTree = "<group>"; };
+		5B5BA5DA163EC47400B7FACE /* building_icon_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_time.png; sourceTree = "<group>"; };
+		5B5BA5DB163EC47400B7FACE /* building_icon_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_time@2x.png"; sourceTree = "<group>"; };
 		5B7A10A1162579680012E452 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		5B7A10A2162579680012E452 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		5B7A10A3162579680012E452 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
@@ -264,6 +285,16 @@
 		5B7E188E16243D8900E0315E /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		5B7E188F16243D8900E0315E /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		5B7E189016243D8900E0315E /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		5B85D9FE163EA0920050BDF7 /* building_icon_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_energy.png; sourceTree = "<group>"; };
+		5B85D9FF163EA0920050BDF7 /* building_icon_energy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_energy@2x.png"; sourceTree = "<group>"; };
+		5B85DA00163EA0920050BDF7 /* building_icon_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_food.png; sourceTree = "<group>"; };
+		5B85DA01163EA0920050BDF7 /* building_icon_food@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_food@2x.png"; sourceTree = "<group>"; };
+		5B85DA02163EA0920050BDF7 /* building_icon_minerals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_minerals.png; sourceTree = "<group>"; };
+		5B85DA03163EA0920050BDF7 /* building_icon_minerals@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_minerals@2x.png"; sourceTree = "<group>"; };
+		5B85DA04163EA0920050BDF7 /* building_icon_workers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_workers.png; sourceTree = "<group>"; };
+		5B85DA05163EA0920050BDF7 /* building_icon_workers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_workers@2x.png"; sourceTree = "<group>"; };
+		5B85DA11163EB0E80050BDF7 /* UILabel+formatHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+formatHelpers.h"; sourceTree = "<group>"; };
+		5B85DA12163EB0E80050BDF7 /* UILabel+formatHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+formatHelpers.m"; sourceTree = "<group>"; };
 		5B8A29AD1635607C006FCB17 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = classes/LoginViewController.h; sourceTree = "<group>"; };
 		5B8A29AE1635607C006FCB17 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = classes/LoginViewController.m; sourceTree = "<group>"; };
 		5B8F1A21162466AA00274D4E /* icon_inventory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_inventory.png; sourceTree = "<group>"; };
@@ -518,6 +549,21 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
+		5B420A5A163E8E780015FBA6 /* Building Overview */ = {
+			isa = PBXGroup;
+			children = (
+				5BC4EC4C163ABBAA00974929 /* PlanetBuildingViewController.h */,
+				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
+				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
+				5B420A55163E88DE0015FBA6 /* BuildingListView.h */,
+				5B420A56163E88DE0015FBA6 /* BuildingListView.m */,
+				5B420A60163E90F00015FBA6 /* BuildingListItemView.h */,
+				5B420A61163E90F00015FBA6 /* BuildingListItemView.m */,
+				5B420A5B163E8FB60015FBA6 /* BuildingListItemView.xib */,
+			);
+			name = "Building Overview";
+			sourceTree = "<group>";
+		};
 		5B7A10A0162579680012E452 /* PullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +624,7 @@
 		5B7E182916241ECC00E0315E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B85D9FD163EA0920050BDF7 /* buildings */,
 				5B3FE69016355AEA00D9F2CC /* Bundles */,
 				5B3FE69116355B0000D9F2CC /* Default Icons */,
 				5BECBAE816302EBE004620B0 /* parts */,
@@ -666,6 +713,8 @@
 				5B7E186A162434CC00E0315E /* GameManager.m */,
 				5BF38E4516316B890029658A /* UIView+FindUIViewController.h */,
 				5BF38E4616316B890029658A /* UIView+FindUIViewController.m */,
+				5B85DA11163EB0E80050BDF7 /* UILabel+formatHelpers.h */,
+				5B85DA12163EB0E80050BDF7 /* UILabel+formatHelpers.m */,
 			);
 			name = Management;
 			path = classes/management;
@@ -697,6 +746,24 @@
 			);
 			path = DeviceID;
 			sourceTree = "<group>";
+		};
+		5B85D9FD163EA0920050BDF7 /* buildings */ = {
+			isa = PBXGroup;
+			children = (
+				5B5BA5DA163EC47400B7FACE /* building_icon_time.png */,
+				5B5BA5DB163EC47400B7FACE /* building_icon_time@2x.png */,
+				5B85D9FE163EA0920050BDF7 /* building_icon_energy.png */,
+				5B85D9FF163EA0920050BDF7 /* building_icon_energy@2x.png */,
+				5B85DA00163EA0920050BDF7 /* building_icon_food.png */,
+				5B85DA01163EA0920050BDF7 /* building_icon_food@2x.png */,
+				5B85DA02163EA0920050BDF7 /* building_icon_minerals.png */,
+				5B85DA03163EA0920050BDF7 /* building_icon_minerals@2x.png */,
+				5B85DA04163EA0920050BDF7 /* building_icon_workers.png */,
+				5B85DA05163EA0920050BDF7 /* building_icon_workers@2x.png */,
+			);
+			name = buildings;
+			path = assets/buildings;
+			sourceTree = SOURCE_ROOT;
 		};
 		5B8A29B216356083006FCB17 /* Loader */ = {
 			isa = PBXGroup;
@@ -766,15 +833,13 @@
 		5BC4EC4B163ABB9700974929 /* Building */ = {
 			isa = PBXGroup;
 			children = (
-				5BC4EC51163ABE4E00974929 /* Building Selection */,
-				5BC4EC4C163ABBAA00974929 /* PlanetBuildingViewController.h */,
-				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
-				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
+				5BC4EC51163ABE4E00974929 /* Building Selector */,
+				5B420A5A163E8E780015FBA6 /* Building Overview */,
 			);
 			name = Building;
 			sourceTree = "<group>";
 		};
-		5BC4EC51163ABE4E00974929 /* Building Selection */ = {
+		5BC4EC51163ABE4E00974929 /* Building Selector */ = {
 			isa = PBXGroup;
 			children = (
 				5BC4EC57163AC55200974929 /* Custom Cells */,
@@ -782,7 +847,7 @@
 				5BC4EC53163ABF7900974929 /* BuildingSelectionTableViewController.m */,
 				5BC4EC54163ABF7900974929 /* BuildingSelectionTableViewController.xib */,
 			);
-			name = "Building Selection";
+			name = "Building Selector";
 			sourceTree = "<group>";
 		};
 		5BC4EC57163AC55200974929 /* Custom Cells */ = {
@@ -1139,6 +1204,17 @@
 				5BC4ECAD163AD19000974929 /* parts_legs_sexy@2x.png in Resources */,
 				5BC4ECAE163AD19000974929 /* part_ship_empty.png in Resources */,
 				5BC4ECAF163AD19000974929 /* part_ship_empty@2x.png in Resources */,
+				5B420A5C163E8FB60015FBA6 /* BuildingListItemView.xib in Resources */,
+				5B85DA06163EA0920050BDF7 /* building_icon_energy.png in Resources */,
+				5B85DA07163EA0920050BDF7 /* building_icon_energy@2x.png in Resources */,
+				5B85DA08163EA0920050BDF7 /* building_icon_food.png in Resources */,
+				5B85DA09163EA0920050BDF7 /* building_icon_food@2x.png in Resources */,
+				5B85DA0A163EA0920050BDF7 /* building_icon_minerals.png in Resources */,
+				5B85DA0B163EA0920050BDF7 /* building_icon_minerals@2x.png in Resources */,
+				5B85DA0C163EA0920050BDF7 /* building_icon_workers.png in Resources */,
+				5B85DA0D163EA0920050BDF7 /* building_icon_workers@2x.png in Resources */,
+				5B5BA5DC163EC47400B7FACE /* building_icon_time.png in Resources */,
+				5B5BA5DD163EC47400B7FACE /* building_icon_time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,6 +1268,9 @@
 				5BC4EC55163ABF7900974929 /* BuildingSelectionTableViewController.m in Sources */,
 				5BC4EC5C163AC58500974929 /* BuildingCell.m in Sources */,
 				5BC4EC60163ACF3700974929 /* ShipPartsView.m in Sources */,
+				5B420A57163E88DE0015FBA6 /* BuildingListView.m in Sources */,
+				5B420A62163E90F00015FBA6 /* BuildingListItemView.m in Sources */,
+				5B85DA13163EB0E80050BDF7 /* UILabel+formatHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

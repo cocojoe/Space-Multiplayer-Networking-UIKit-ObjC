@@ -117,7 +117,10 @@
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
         // Parent Player Dictionary
-        NSDictionary *planetDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
+        NSDictionary *planetDict   = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
+ 
+        // Sub View Listing
+        [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];
         
     }];
     

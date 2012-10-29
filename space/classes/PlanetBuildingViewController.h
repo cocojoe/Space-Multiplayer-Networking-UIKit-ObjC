@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
-#import "PlanetDetailView.h"
+#import "BuildingListView.h"
 
 @interface PlanetBuildingViewController : UIViewController <PullToRefreshViewDelegate>
 
 @property (nonatomic) UIScrollView* mainScrollView;
+
+// Custom IBOutlet Views
+@property (nonatomic) IBOutlet BuildingListView* buildingListView;
+
 
 #pragma mark Data Processing
 -(void) refreshData;

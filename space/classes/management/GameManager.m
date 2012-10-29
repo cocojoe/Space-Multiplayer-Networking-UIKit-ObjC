@@ -72,6 +72,7 @@
         
         // Preferences Reset
         _planetID = 0;
+        _speed    = DEFAULT_SPEED;
         
 	}
 	
@@ -506,6 +507,13 @@
     
     [operation start];
     
+}
+
+// Preference Helpers
+-(void) setPlanet:(int)planet
+{
+    _planetID = planet;
+    [_planetDict removeAllObjects]; // Clear Cache
 }
 
 

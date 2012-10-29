@@ -74,14 +74,15 @@
         // Nav Style
         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
         
-        // Navigation 
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        // Navigation Cancel
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
         
         // Clear Item If Currently Equipped
         if(_showRemove==YES) {
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearItem)];
             
-            self.navigationItem.rightBarButtonItem.tintColor = [UIColor redColor];
+            self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
         }
     }
     
