@@ -9,6 +9,7 @@
 #import "GameManager.h"
 #import "BuildingQueueView.h"
 #import "BuildingQueueItemView.h"
+#import "UILabel+formatHelpers.h"
 
 @implementation BuildingQueueView
 
@@ -67,6 +68,9 @@
         // Calculate Progress
         double progressDivision = 1.0f / (([[itemQueue objectForKey:@"end_time"] doubleValue] - [[itemQueue objectForKey:@"start_time"] doubleValue]));
         double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
+        double ETA              = [[itemQueue objectForKey:@"end_time"] doubleValue] - currentProgress;
+        if(ETA<=0)
+            ETA = 0; // CAP ETA 0
         float progress          = 0.0f;
         
         // Check Completion
@@ -76,11 +80,13 @@
             progress = (currentProgress - [[itemQueue objectForKey:@"start_time"] doubleValue]) * progressDivision;
         }
                                                                                 
-        
         // Setup Item Details
         newItem.itemName.text         = [itemMasterDetail objectForKey:@"name"];
         newItem.itemAmount.text       = [NSString stringWithFormat:@"x%d",[[itemQueue objectForKey:@"amount"] intValue]];
-        newItem.itemProgress.progress = progress;
+        [[newItem itemProgress] setProgress:progress animated:NO];
+        //[[newItem itemProgress] setProgressTintColor:[UIColor blueColor]];
+        [newItem.itemETA setTimerText:[NSNumber numberWithDouble:ETA]];
+
         
         // View Alignment
         [newItem setCenter:centerView];

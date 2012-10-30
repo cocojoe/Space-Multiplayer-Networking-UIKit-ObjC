@@ -8,6 +8,7 @@
 
 #import "BuildingCell.h"
 #import "GameManager.h"
+#import "UILabel+formatHelpers.h"
 
 @implementation BuildingCell
 
@@ -41,7 +42,7 @@
     // Build Time
     float buildTime = [[buildingDict objectForKey:@"build_time"] floatValue];
     buildTime*=[[GameManager sharedInstance] speed];
-    _buildingTime.text = [NSString stringWithFormat:@"%@s",[[NSNumber numberWithInt:buildTime] stringValue]];
+    [_buildingTime setTimerText:[NSNumber numberWithDouble:buildTime]];
 }
 
 @end

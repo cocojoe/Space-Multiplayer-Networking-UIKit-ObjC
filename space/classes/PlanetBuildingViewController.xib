@@ -61,24 +61,23 @@
 								<string key="NSFrame">{{9, 10}, {302, 10}}</string>
 								<reference key="NSSuperview" ref="913950354"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="672140527"/>
+								<reference key="NSNextKeyView" ref="1054555755"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor" id="927221049">
+								<object class="NSColor" key="IBUIBackgroundColor" id="893286004">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
 								</object>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIView" id="672140527">
+							<object class="IBUIView" id="1054555755">
 								<reference key="NSNextResponder" ref="913950354"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{9, 30.5}, {302, 10}}</string>
 								<reference key="NSSuperview" ref="913950354"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="927221049"/>
+								<reference key="IBUIBackgroundColor" ref="893286004"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -91,6 +90,8 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 480}</string>
@@ -144,7 +145,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">buildingListView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="672140527"/>
+						<reference key="destination" ref="1054555755"/>
 					</object>
 					<int key="connectionID">90</int>
 				</object>
@@ -182,7 +183,7 @@
 						<reference key="object" ref="913950354"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="1069706333"/>
-							<reference ref="672140527"/>
+							<reference ref="1054555755"/>
 						</array>
 						<reference key="parent" ref="477048109"/>
 					</object>
@@ -200,7 +201,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">88</int>
-						<reference key="object" ref="672140527"/>
+						<reference key="object" ref="1054555755"/>
 						<reference key="parent" ref="913950354"/>
 					</object>
 				</array>

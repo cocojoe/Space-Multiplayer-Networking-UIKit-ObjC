@@ -9,6 +9,7 @@
 #import "BuildingBuildView.h"
 #import "GameManager.h"
 #import "UILabel+formatHelpers.h"
+#import "BuildingSelectionTableViewController.h"
 
 #define DEFAULT_BUILD_AMOUNT    1
 
@@ -54,6 +55,20 @@
     
     // Dynamic Updates
     [self updateAmount];
+    
+    // Store Frame
+    CGRect currentFrame = [self frame];
+    CGRect newFrame = CGRectMake(currentFrame.origin.x, currentFrame.origin.y, 0, currentFrame.size.width);
+    [self setFrame:newFrame];
+    
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         self.frame = currentFrame;
+                     }
+                     completion:^(BOOL finished){
+                     }];
 }
 
 -(void) updateAmount
@@ -65,7 +80,7 @@
     // Build Time
     float buildTime = [[_buildingDict objectForKey:@"build_time"] floatValue];
     buildTime=(buildTime*[[GameManager sharedInstance] speed])*_amount;
-    _buildingTime.text = [NSString stringWithFormat:@"%@s",[[NSNumber numberWithInt:buildTime] stringValue]];
+    [_buildingTime setTimerText:[NSNumber numberWithDouble:buildTime]];
     
     int value = 0;
     
@@ -140,7 +155,9 @@
         
         // Set Notification
         [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"%@ completed",_buildingName.text]];
-        [self unlockUI];
+        
+        // Dismiss
+        [_parent performSelector:@selector(dismissBuildingPopUp:) withObject:nil afterDelay:0.15f];
     } setBlockFail:^(){
         [self unlockUI];
     }];

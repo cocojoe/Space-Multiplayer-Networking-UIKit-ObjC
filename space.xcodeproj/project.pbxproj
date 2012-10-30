@@ -171,6 +171,12 @@
 		5BDE26BE163FF0640032BA98 /* BuildingQueueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE26BD163FF0640032BA98 /* BuildingQueueView.m */; };
 		5BDE26C1163FF3460032BA98 /* BuildingQueueItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE26C0163FF3450032BA98 /* BuildingQueueItemView.m */; };
 		5BDE26C4163FF3650032BA98 /* BuildingQueueItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26C3163FF3650032BA98 /* BuildingQueueItemView.xib */; };
+		5BDE26C716403AB80032BA98 /* background_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26C516403AB80032BA98 /* background_grey.png */; };
+		5BDE26C816403AB80032BA98 /* background_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26C616403AB80032BA98 /* background_grey@2x.png */; };
+		5BDE26CE16403BBD0032BA98 /* greyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CA16403BBD0032BA98 /* greyButton.png */; };
+		5BDE26CF16403BBD0032BA98 /* greyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */; };
+		5BDE26D016403BBD0032BA98 /* greyButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */; };
+		5BDE26D116403BBD0032BA98 /* greyButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */; };
 		5BECBB0016303364004620B0 /* icon_trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFE16303364004620B0 /* icon_trophy.png */; };
 		5BECBB0116303364004620B0 /* icon_trophy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFF16303364004620B0 /* icon_trophy@2x.png */; };
 		5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF38E4616316B890029658A /* UIView+FindUIViewController.m */; };
@@ -417,6 +423,12 @@
 		5BDE26BF163FF3450032BA98 /* BuildingQueueItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingQueueItemView.h; path = classes/BuildingQueueItemView.h; sourceTree = "<group>"; };
 		5BDE26C0163FF3450032BA98 /* BuildingQueueItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuildingQueueItemView.m; path = classes/BuildingQueueItemView.m; sourceTree = "<group>"; };
 		5BDE26C3163FF3650032BA98 /* BuildingQueueItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BuildingQueueItemView.xib; path = classes/BuildingQueueItemView.xib; sourceTree = "<group>"; };
+		5BDE26C516403AB80032BA98 /* background_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_grey.png; sourceTree = "<group>"; };
+		5BDE26C616403AB80032BA98 /* background_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_grey@2x.png"; sourceTree = "<group>"; };
+		5BDE26CA16403BBD0032BA98 /* greyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButton.png; sourceTree = "<group>"; };
+		5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButton@2x.png"; sourceTree = "<group>"; };
+		5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButtonHighlight.png; sourceTree = "<group>"; };
+		5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButtonHighlight@2x.png"; sourceTree = "<group>"; };
 		5BECBAFE16303364004620B0 /* icon_trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_trophy.png; sourceTree = "<group>"; };
 		5BECBAFF16303364004620B0 /* icon_trophy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_trophy@2x.png"; sourceTree = "<group>"; };
 		5BF38E4516316B890029658A /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
@@ -451,7 +463,7 @@
 				5B7E185916242CBF00E0315E /* HubViewController.m */,
 				5B7E185A16242CBF00E0315E /* HubViewController.xib */,
 				5BE7F8C71635973D00C5E0F7 /* Player Ship Controller */,
-				5BCB9504162EE1C0005AD7E5 /* Player Controller */,
+				5BCB9504162EE1C0005AD7E5 /* Player Default Controller */,
 				5B906D0416369C5C00C4C0DF /* Player Equipment Controller */,
 			);
 			name = "Menu Player";
@@ -460,6 +472,8 @@
 		5B07A72E162EC38C006B56A5 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				5BDE26C516403AB80032BA98 /* background_grey.png */,
+				5BDE26C616403AB80032BA98 /* background_grey@2x.png */,
 				5B9BBCFA163F1D1E008C6B7E /* bg_space.jpg */,
 				5B9BBCFB163F1D1E008C6B7E /* bg_space@2x.jpg */,
 			);
@@ -629,6 +643,7 @@
 		5B7E182916241ECC00E0315E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5BDE26C916403BBD0032BA98 /* buttons */,
 				5B85D9FD163EA0920050BDF7 /* buildings */,
 				5B3FE69016355AEA00D9F2CC /* Bundles */,
 				5B3FE69116355B0000D9F2CC /* Default Icons */,
@@ -940,7 +955,7 @@
 			path = ship;
 			sourceTree = "<group>";
 		};
-		5BCB9504162EE1C0005AD7E5 /* Player Controller */ = {
+		5BCB9504162EE1C0005AD7E5 /* Player Default Controller */ = {
 			isa = PBXGroup;
 			children = (
 				5BF38E4916318A200029658A /* Custom UIViews */,
@@ -948,7 +963,7 @@
 				5B1ACD28162DFA39003C157F /* PlayerViewController.m */,
 				5B1ACD29162DFA39003C157F /* PlayerViewController.xib */,
 			);
-			name = "Player Controller";
+			name = "Player Default Controller";
 			sourceTree = "<group>";
 		};
 		5BD07FAB1638779A0035D38E /* Menu Planets */ = {
@@ -1030,6 +1045,18 @@
 			);
 			name = "Queue View Helpers";
 			sourceTree = "<group>";
+		};
+		5BDE26C916403BBD0032BA98 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				5BDE26CA16403BBD0032BA98 /* greyButton.png */,
+				5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */,
+				5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */,
+				5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */,
+			);
+			name = buttons;
+			path = assets/buttons;
+			sourceTree = SOURCE_ROOT;
 		};
 		5BE7F8C71635973D00C5E0F7 /* Player Ship Controller */ = {
 			isa = PBXGroup;
@@ -1254,6 +1281,12 @@
 				5B9BBCFD163F1D1E008C6B7E /* bg_space@2x.jpg in Resources */,
 				5B9BBCFF163F20E0008C6B7E /* BuildingBuildView.xib in Resources */,
 				5BDE26C4163FF3650032BA98 /* BuildingQueueItemView.xib in Resources */,
+				5BDE26C716403AB80032BA98 /* background_grey.png in Resources */,
+				5BDE26C816403AB80032BA98 /* background_grey@2x.png in Resources */,
+				5BDE26CE16403BBD0032BA98 /* greyButton.png in Resources */,
+				5BDE26CF16403BBD0032BA98 /* greyButton@2x.png in Resources */,
+				5BDE26D016403BBD0032BA98 /* greyButtonHighlight.png in Resources */,
+				5BDE26D116403BBD0032BA98 /* greyButtonHighlight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

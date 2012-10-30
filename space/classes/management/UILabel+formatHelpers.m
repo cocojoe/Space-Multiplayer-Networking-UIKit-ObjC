@@ -33,5 +33,12 @@
     [self setColorDirection:rate];
 }
 
+-(void) setTimerText:(NSNumber *)time
+{
+    double buildTime = [time doubleValue];
+    float minutes = floorf(buildTime/60);
+    float seconds = roundf(buildTime - minutes * 60);
+    self.text = [NSString stringWithFormat:@"%02d:%02d",(int)minutes,(int)seconds];
+}
 
 @end

@@ -11,7 +11,7 @@
 #import "GameManager.h"
 
 #define BUILDING_LIST_VIEW_BORDER   10.0f
-#define BUILDING_LIST_VIEW_START    40.0f
+#define BUILDING_LIST_VIEW_START    55.0f
 
 @implementation BuildingListView
 

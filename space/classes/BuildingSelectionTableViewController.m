@@ -176,6 +176,15 @@
     }
 }
 
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self dismissBuildingPopUp:nil];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -189,7 +198,7 @@
 {
     // Create Grey Background
     UIView *dimBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    dimBackgroundView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.75f];
+    dimBackgroundView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.9f];
     dimBackgroundView.tag = TAG_POPUP_GREY;
     [self.view addSubview:dimBackgroundView];
     
@@ -205,6 +214,8 @@
     buildingPopup.tag = TAG_POPUP;
     [self.view addSubview:buildingPopup];
 
+    // Set Reference To This View (For Dismissal)
+    [buildingPopup setParent:self];
     
     // Setup Popup
     [buildingPopup setup:buildingDict];

@@ -27,13 +27,13 @@ typedef void (^ResponseBlock)       (NSDictionary *jsonDict);
 typedef void (^BasicBlock)          ();
 
 // TAGS
-#define TAG_PULL                800
-#define TAG_POPUP_GREY          900
-#define TAG_POPUP               901
+#define TAG_PULL                        800
+#define TAG_POPUP_GREY                  900
+#define TAG_POPUP                       901
 
 // Preferences
 #define DEFAULT_SPEED                   60.0f
-#define DEFAULT_QUEUE_VIEW_REFRESH      5.0f
+#define DEFAULT_QUEUE_VIEW_REFRESH      1.0f
 
 // API Credentials
 #define APP_ID          (@"67542423701777489896990453036662")

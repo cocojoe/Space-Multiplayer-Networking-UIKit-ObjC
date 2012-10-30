@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class BuildingSelectionTableViewController;
+
 @interface BuildingBuildView : UIView
 
+#pragma mark Original Data
 @property (nonatomic) NSDictionary* buildingDict;
 
+#pragma mark IB Outlets
 @property (nonatomic) IBOutlet UILabel* buildingName;
 @property (nonatomic) IBOutlet UILabel* buildingDescription;
 @property (nonatomic) IBOutlet UILabel* buildingTime;
@@ -28,15 +32,18 @@
 @property (nonatomic) IBOutlet UILabel* buildingRateMinerals;
 @property (nonatomic) IBOutlet UILabel* buildingRateAmount;
 
+#pragma mark Internal Reference
 @property (nonatomic,readwrite) int amount;
 @property (nonatomic,readwrite) int building_id;
+@property (weak,nonatomic) BuildingSelectionTableViewController* parent;
 
-// UI Controls
+#pragma mark Actions
 @property (nonatomic) IBOutlet UIStepper* stepperAmount;
 -(IBAction) stepperValueChanged:(id)sender;
 @property (nonatomic) IBOutlet UIButton* button;
 -(IBAction) buttonPressed:(id)sender;
 
+#pragma mark Creation
 -(void) setup:(NSDictionary*) buildingDict;
 
 @end

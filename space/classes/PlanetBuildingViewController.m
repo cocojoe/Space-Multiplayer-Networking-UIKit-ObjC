@@ -119,7 +119,9 @@
 #pragma mark Data Processing
 -(void) refreshData
 {
-    CCLOG(@"Refresh PlanetBuilding");
+    if(![[GameManager sharedInstance] planetID])
+        return;
+    
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
         // Parent Player Dictionary

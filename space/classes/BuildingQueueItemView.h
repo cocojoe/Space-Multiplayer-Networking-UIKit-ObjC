@@ -13,6 +13,7 @@
 
 @property (nonatomic) IBOutlet UILabel* itemName;
 @property (nonatomic) IBOutlet UILabel* itemAmount;
+@property (nonatomic) IBOutlet UILabel* itemETA;
 @property (nonatomic) IBOutlet UIProgressView* itemProgress;
 
 // Track Current Item

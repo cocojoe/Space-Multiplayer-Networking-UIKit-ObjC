@@ -22,7 +22,7 @@
     self = [super initWithNibName:@"PlayerViewController" bundle:nil];
     
     if (self) {
-
+        
         // Bar Title
         self.title = title;
         [self setupNotification];
