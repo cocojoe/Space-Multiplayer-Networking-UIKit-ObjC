@@ -129,7 +129,6 @@
  
         // Sub View Listing(s)
         [_buildingQueueView setupQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"building"]];
-        
         [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];
         
         // Push List Frame Down
@@ -139,6 +138,11 @@
         [_buildingListView setFrame:frameList];
         
         [self.view setNeedsLayout];
+        
+        // Set Size (No Auto Layout)
+        CGSize scrollSize = _mainScrollView.contentSize;
+        scrollSize.height-=frameList.size.height+frameQueue.size.height;
+        _mainScrollView.contentSize=frameList.size;
         
     }];
     

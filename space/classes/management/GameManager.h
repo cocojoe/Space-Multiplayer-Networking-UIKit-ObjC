@@ -79,7 +79,6 @@ enum eAuthenticationState {
     NSMutableDictionary* _authDict;
     NSMutableDictionary* _playerDict;
     NSMutableDictionary* _partsDict;
-    NSMutableDictionary* _planetDict;
     NSMutableDictionary* _inventoryDict;
     NSMutableDictionary* _planetsDict;
     NSMutableDictionary* _buildingsAllowedDict;
@@ -93,6 +92,9 @@ enum eAuthenticationState {
 @property (nonatomic) NSString* deviceUUID;
 @property (weak, nonatomic) UIViewController *view;
 @property (nonatomic, readwrite) enum eAuthenticationState eAuthenticationState;
+
+// Cache Stores
+@property (nonatomic) NSMutableDictionary* planetDict;
 
 // Data Stores
 @property (nonatomic) NSMutableArray* masterItemList;

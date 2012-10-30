@@ -43,10 +43,12 @@
 							<object class="IBUIImageView" id="123348602">
 								<reference key="NSNextResponder" ref="880352589"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{8, 10}, {32, 32}}</string>
+								<string key="NSFrame">{{8, 9}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="880352589"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1021681321"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -57,8 +59,9 @@
 							<object class="IBUILabel" id="1021681321">
 								<reference key="NSNextResponder" ref="880352589"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{48, 7}, {144, 21}}</string>
+								<string key="NSFrame">{{48, 8}, {144, 21}}</string>
 								<reference key="NSSuperview" ref="880352589"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="342632055"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -88,8 +91,9 @@
 							<object class="IBUILabel" id="31187074">
 								<reference key="NSNextResponder" ref="880352589"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{174, 28}, {137, 21}}</string>
+								<string key="NSFrame">{{200, 28}, {111, 21}}</string>
 								<reference key="NSSuperview" ref="880352589"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -104,13 +108,13 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">2</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="506248247">
 									<int key="type">3</int>
-									<double key="pointSize">14</double>
+									<double key="pointSize">13</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="652530861">
 									<string key="NSName">Helvetica-Oblique</string>
-									<double key="NSSize">14</double>
+									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -118,8 +122,9 @@
 							<object class="IBUILabel" id="342632055">
 								<reference key="NSNextResponder" ref="880352589"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{48, 21}, {118, 21}}</string>
+								<string key="NSFrame">{{48, 28}, {144, 21}}</string>
 								<reference key="NSSuperview" ref="880352589"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="31187074"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -130,20 +135,14 @@
 								<string key="IBUIText">- score -</string>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">3</int>
-									<double key="pointSize">13</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Oblique</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="506248247"/>
+								<reference key="IBUIFont" ref="652530861"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 49}</string>
 						<reference key="NSSuperview" ref="8728011"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="123348602"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -159,6 +158,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 50}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="880352589"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -216,9 +216,9 @@
 						<int key="objectID">3</int>
 						<reference key="object" ref="8728011"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="123348602"/>
 							<reference ref="1021681321"/>
 							<reference ref="342632055"/>
+							<reference ref="123348602"/>
 							<reference ref="31187074"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -264,7 +264,37 @@
 			<nil key="sourceID"/>
 			<int key="maxID">39</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">PlanetTableCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="planetName">UILabel</string>
+						<string key="planetScore">UILabel</string>
+						<string key="planetSystem">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="planetName">
+							<string key="name">planetName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="planetScore">
+							<string key="name">planetScore</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="planetSystem">
+							<string key="name">planetSystem</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PlanetTableCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

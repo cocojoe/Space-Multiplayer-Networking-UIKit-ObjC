@@ -43,6 +43,11 @@
     _stepperAmount.value        = _amount;
     _stepperAmount.stepValue    = 1;
     
+    // Modify Button
+    UIImage *buttonImage = [[UIImage imageNamed:@"greyButton"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(8, 16, 8, 16)];
+    [_button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    
     // Store Dictionary
     _buildingDict = [NSDictionary dictionaryWithDictionary:buildingDict];
     

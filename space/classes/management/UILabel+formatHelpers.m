@@ -36,9 +36,11 @@
 -(void) setTimerText:(NSNumber *)time
 {
     double buildTime = [time doubleValue];
+    
+    float hours   = floorf(buildTime/(60*24));
     float minutes = floorf(buildTime/60);
     float seconds = roundf(buildTime - minutes * 60);
-    self.text = [NSString stringWithFormat:@"%02d:%02d",(int)minutes,(int)seconds];
+    self.text = [NSString stringWithFormat:@"%02d:%02d:%02d",(int)hours,(int)minutes,(int)seconds];
 }
 
 @end

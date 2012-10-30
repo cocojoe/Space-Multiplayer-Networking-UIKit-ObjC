@@ -70,7 +70,13 @@
         double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
         double ETA              = [[itemQueue objectForKey:@"end_time"] doubleValue] - currentProgress;
         if(ETA<=0)
+        {
             ETA = 0; // CAP ETA 0
+            
+            // Clear Cache / Refresh
+            [[[GameManager sharedInstance] planetDict] removeAllObjects];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
+        } 
         float progress          = 0.0f;
         
         // Check Completion

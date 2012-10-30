@@ -198,7 +198,7 @@
 {
     // Create Grey Background
     UIView *dimBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    dimBackgroundView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.9f];
+    dimBackgroundView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.8f];
     dimBackgroundView.tag = TAG_POPUP_GREY;
     [self.view addSubview:dimBackgroundView];
     
@@ -234,6 +234,9 @@
     
     [dimBackgroundView removeFromSuperview];
     [buildingPopup removeFromSuperview];
+    
+    // Reset View
+    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 @end
