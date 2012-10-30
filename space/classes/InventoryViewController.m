@@ -74,9 +74,11 @@
         // Nav Style
         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
         
-        // Navigation Cancel
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
+        // Navigation Back
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"BACK" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+
         
         // Clear Item If Currently Equipped
         if(_showRemove==YES) {

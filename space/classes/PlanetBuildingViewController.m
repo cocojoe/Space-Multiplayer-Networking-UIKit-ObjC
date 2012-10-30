@@ -10,6 +10,8 @@
 #import "BuildingSelectionTableViewController.h"
 
 #import "GameManager.h"
+#import "BuildingListView.h"
+#import "BuildingQueueView.h"
 
 @interface PlanetBuildingViewController ()
 
@@ -48,6 +50,10 @@
     [pull setDelegate:self];
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
+    
+    // Setup Timer
+    _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:DEFAULT_QUEUE_VIEW_REFRESH target:self selector:@selector(refreshData) userInfo:nil repeats:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +107,7 @@
     // will continue to try and send notification objects to the deallocated
     // object.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_refreshTimer invalidate];
 }
 
 
@@ -112,15 +119,24 @@
 #pragma mark Data Processing
 -(void) refreshData
 {
-
-    
+    CCLOG(@"Refresh PlanetBuilding");
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
         // Parent Player Dictionary
         NSDictionary *planetDict   = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
  
-        // Sub View Listing
+        // Sub View Listing(s)
+        [_buildingQueueView setupQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"building"]];
+        
         [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];
+        
+        // Push List Frame Down
+        CGRect frameList  = [_buildingListView frame];
+        CGRect frameQueue = [_buildingQueueView frame];
+        frameList.origin.y = frameQueue.size.height + 20.0f;
+        [_buildingListView setFrame:frameList];
+        
+        [self.view setNeedsLayout];
         
     }];
     

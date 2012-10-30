@@ -150,7 +150,7 @@
         _authDict = [jsonDict objectForKey:@"session"];
         _eAuthenticationState = eAuthenticationOK;
         
-        CCLOG(@"_authDict: %@",_authDict);
+        CCLOG(@"_authDict: %@",_authDict); // Handy For Grabbing Token (Testing)
         successBlock();
         
     } setBlockFail:^{
@@ -400,6 +400,27 @@
     
 }
 
+-(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock
+{
+    // Create DATA Dictionary
+    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithInt:buildingID], @"building_id",
+                              [NSNumber numberWithInt:planetID]  , @"planet_id",
+                              [NSNumber numberWithInt:amount]    , @"amount",
+                              nil];
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_BUILDING_ADD setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            // Clear Planet Cache
+            [_planetDict removeAllObjects];
+            actionBlock(jsonDict);
+        } setBlockFail:failBlock];
+        
+    }]];
+
+}
+
 #pragma mark General Caching
 -(BOOL) shouldUseCache:(NSDictionary*) checkDictionary setBlock:(ResponseBlock) actionBlock
 {
@@ -450,7 +471,8 @@
     // Create URL Request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
+    //CCLOG(@"REQUEST URI:%@ POST: %@",URI,completeDict);
+    CCLOG(@"REQUEST URI:%@",URI);
     
     // Params
     [request setHTTPMethod: @"POST"];
@@ -465,16 +487,24 @@
             if([[JSON objectForKey:@"error_code"] integerValue]==1)
             {
                 // Soft Issue (ReAuthentication Required)
+                /*
                 CCLOG(@"Re-Authentication Required: Invalid Session");
                 _eAuthenticationState = eAuthenticationNone;
                 [self authLock];
                 [self performSelector:@selector(loginStart) withObject:self afterDelay:0.75f];
+                */
                 
                 // ReQueue Failed Request
+                /*
                 [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
                 }]];
+                */
                 
+                CCLOG(@"API Error: %@",JSON);
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:[JSON objectForKey:@"error_description"]];
+                if(failBlock)
+                    failBlock();
             } else {
                 // Log API Issue
                 CCLOG(@"%@",[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]);
@@ -488,7 +518,7 @@
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         
-         CCLOG(@"Connection Error: %@",error);
+        CCLOG(@"Connection Error: %@",error);
         
         // Execture Fail Block (Optional Custom Handler)
         if(failBlock)
@@ -509,12 +539,36 @@
     
 }
 
-// Preference Helpers
+// General Helpers
 -(void) setPlanet:(int)planet
 {
     _planetID = planet;
     [_planetDict removeAllObjects]; // Clear Cache
 }
 
+-(NSDictionary*) getBuilding:(int) building_id
+{
+    for(NSDictionary* item in [[GameManager sharedInstance] masterBuildingList])
+    {
+        // Check Master Buildings / Add
+        if([[item objectForKey:@"id"] intValue]==building_id)
+            return item;
+    }
+    
+    return nil;
+}
+
+#pragma mark Notifications
+-(void) createNotification:(double)time setMessage:(NSString *)message
+{
+    // Create Local Notificaiton
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    localNotification.fireDate                   = [NSDate dateWithTimeIntervalSince1970:time];
+    localNotification.alertBody                  = message;
+    localNotification.soundName                  = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
 
 @end

@@ -29,11 +29,14 @@
 @property (nonatomic) IBOutlet UILabel* buildingRateAmount;
 
 @property (nonatomic,readwrite) int amount;
+@property (nonatomic,readwrite) int building_id;
 
 // UI Controls
 @property (nonatomic) IBOutlet UIStepper* stepperAmount;
 -(IBAction) stepperValueChanged:(id)sender;
+@property (nonatomic) IBOutlet UIButton* button;
+-(IBAction) buttonPressed:(id)sender;
 
--(void) refresh:(NSDictionary*) buildingDict;
+-(void) setup:(NSDictionary*) buildingDict;
 
 @end

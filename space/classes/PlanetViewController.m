@@ -40,9 +40,11 @@
     // Navigation (Only Show if We Have A Planet)
     if([[GameManager sharedInstance] planetID])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        // Navigation
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"BACK" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
         
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+
     }
     
     // Create Pull Loader

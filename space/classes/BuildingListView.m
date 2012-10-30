@@ -11,7 +11,7 @@
 #import "GameManager.h"
 
 #define BUILDING_LIST_VIEW_BORDER   10.0f
-#define BUILDING_LIST_VIEW_START    60.0f
+#define BUILDING_LIST_VIEW_START    40.0f
 
 @implementation BuildingListView
 
@@ -44,40 +44,38 @@
 -(void) refresh:(NSMutableArray*) buildingDict
 {
     
-    // Create Views
-    if([_viewArray count]==0)
+    // Remove Views
+    for(BuildingListItemView* item in _viewArray)
     {
-        CCLOG(@"Creating Views");
-        // Center in Parent View Horizontal, Border From Top
-        CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, BUILDING_LIST_VIEW_START);
-        
-        for(NSDictionary* building in buildingDict)
-        {
-            // Create UIView
-            BuildingListItemView *buildingItem = [[[NSBundle mainBundle] loadNibNamed:@"BuildingListItemView" owner:self options:nil] objectAtIndex:0];
-            [self addSubview:buildingItem];
-            [buildingItem refresh:building];
-            
-            // Alignment
-            [buildingItem setCenter:centerView];
-            centerView.y+=BUILDING_LIST_VIEW_BORDER+(buildingItem.bounds.size.height);
-            
-            [_viewArray addObject:buildingItem];
-            
-        }
-    } else {
-        CCLOG(@"Refreshing Views");
-        for(BuildingListItemView* buildingView in _viewArray)
-        {
-            for(NSDictionary* building in buildingDict)
-            {
-                if([[building objectForKey:@"building_id"] intValue]==[buildingView buildingID])
-                {
-                    [buildingView refresh:building];
-                }
-            }
-        }
+        [item removeFromSuperview];
     }
+    
+
+    // Center in Parent View Horizontal, Border From Top
+    CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, BUILDING_LIST_VIEW_START);
+    float totalHeight  = BUILDING_LIST_VIEW_START;
+    
+    for(NSDictionary* building in buildingDict)
+    {
+        // Create UIView
+        BuildingListItemView *buildingItem = [[[NSBundle mainBundle] loadNibNamed:@"BuildingListItemView" owner:self options:nil] objectAtIndex:0];
+        [self addSubview:buildingItem];
+        [buildingItem refresh:building];
+        
+        // Alignment
+        [buildingItem setCenter:centerView];
+        centerView.y+=BUILDING_LIST_VIEW_BORDER+(buildingItem.bounds.size.height);
+        totalHeight+=buildingItem.bounds.size.height;
+        
+        [_viewArray addObject:buildingItem];
+        
+    }
+    
+    // Correct Frame Bounds
+    CGRect frame = [self frame];
+    frame.size.height = totalHeight;
+    [self setFrame:frame];
+    
 }
 
 

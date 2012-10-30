@@ -28,9 +28,12 @@ typedef void (^BasicBlock)          ();
 
 // TAGS
 #define TAG_PULL                800
+#define TAG_POPUP_GREY          900
+#define TAG_POPUP               901
 
 // Preferences
-#define DEFAULT_SPEED           60.0f
+#define DEFAULT_SPEED                   60.0f
+#define DEFAULT_QUEUE_VIEW_REFRESH      5.0f
 
 // API Credentials
 #define APP_ID          (@"67542423701777489896990453036662")
@@ -44,16 +47,20 @@ typedef void (^BasicBlock)          ();
 #define URI_AUTH                        (@"/api/auth/")
 #define URI_PLAYER                      (@"/api/player/")
 #define URI_PARTS                       (@"/api/player/parts")
+
 #define URI_INVENTORY                   (@"/api/player/inventory")
 #define URI_INVENTORY_REMOVE_PART       (@"/api/player/inventory/remove")
 #define URI_INVENTORY_ATTACH_PART       (@"/api/player/inventory/attach")
 #define URI_INVENTORY_ITEM_MASTER       (@"/api/inventory/item/")
 #define URI_INVENTORY_GROUP_MASTER      (@"/api/inventory/group/")
+
 #define URI_PART_MASTER                 (@"/api/part/")
 #define URI_PLAYER_PLANETS              (@"/api/player/planets")
 #define URI_PLANET                      (@"/api/planet/index")
 #define URI_MASTER_BUILDING             (@"/api/building/")
 #define URI_BUILDING_ALLOWED            (@"/api/player/buildings")
+
+#define URI_BUILDING_ADD                (@"/api/planet/build")
 
 // Simple Caching / Request Spam
 #define API_CACHE_TIME  30
@@ -142,5 +149,12 @@ enum eAuthenticationState {
 
 #pragma mark Buildings
 -(void) refreshBuildingsAllowed:(ResponseBlock) actionBlock;
+-(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
+
+#pragma mark Notifications
+-(void) createNotification:(double) time setMessage:(NSString*) message;
+
+#pragma mark General Helpers
+-(NSDictionary*) getBuilding:(int) building_id;
 
 @end

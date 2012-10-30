@@ -38,9 +38,9 @@
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     // Navigation
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"BACK" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
     
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
     
     // Create Pull Loader
     _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
@@ -190,20 +190,39 @@
     // Create Grey Background
     UIView *dimBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     dimBackgroundView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.75f];
+    dimBackgroundView.tag = TAG_POPUP_GREY;
     [self.view addSubview:dimBackgroundView];
     
-    // Disable Scroll
-    //[self.view setUserInteractionEnabled:NO];
+    // Add Tap  (Dismiss Popup)
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dismissBuildingPopUp:)];
+    [dimBackgroundView addGestureRecognizer:singleFingerTap];
     
     // Create Building Build View
     BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
     [buildingPopup setCenter:CGPointMake(self.view.bounds.size.width*0.5f, (self.view.bounds.size.height*0.5f)+self.tableView.contentOffset.y)];
+    buildingPopup.tag = TAG_POPUP;
     [self.view addSubview:buildingPopup];
 
     
-    // Populate Cell
-    [buildingPopup refresh:buildingDict];
+    // Setup Popup
+    [buildingPopup setup:buildingDict];
 
+}
+
+// Dismiss Popup
+- (void)dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer {
+    UIView *dimBackgroundView   = [self.view viewWithTag:TAG_POPUP_GREY];
+    UIView *buildingPopup       = [self.view viewWithTag:TAG_POPUP];
+    
+    // Remove Recognizer
+    for (UIGestureRecognizer *recognizer in dimBackgroundView.gestureRecognizers) {
+        [dimBackgroundView removeGestureRecognizer:recognizer];
+    }
+    
+    [dimBackgroundView removeFromSuperview];
+    [buildingPopup removeFromSuperview];
 }
 
 @end

@@ -168,6 +168,9 @@
 		5BDD4A4C162FF7A2009FA697 /* item_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDD4A4A162FF7A2009FA697 /* item_default@2x.png */; };
 		5BDD4A51162FF7DA009FA697 /* InventoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD4A50162FF7DA009FA697 /* InventoryCell.m */; };
 		5BDD4A53162FFFF8009FA697 /* InventoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BDD4A52162FFFF8009FA697 /* InventoryCell.xib */; };
+		5BDE26BE163FF0640032BA98 /* BuildingQueueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE26BD163FF0640032BA98 /* BuildingQueueView.m */; };
+		5BDE26C1163FF3460032BA98 /* BuildingQueueItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE26C0163FF3450032BA98 /* BuildingQueueItemView.m */; };
+		5BDE26C4163FF3650032BA98 /* BuildingQueueItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26C3163FF3650032BA98 /* BuildingQueueItemView.xib */; };
 		5BECBB0016303364004620B0 /* icon_trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFE16303364004620B0 /* icon_trophy.png */; };
 		5BECBB0116303364004620B0 /* icon_trophy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFF16303364004620B0 /* icon_trophy@2x.png */; };
 		5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF38E4616316B890029658A /* UIView+FindUIViewController.m */; };
@@ -409,6 +412,11 @@
 		5BDD4A4F162FF7DA009FA697 /* InventoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryCell.h; path = classes/InventoryCell.h; sourceTree = "<group>"; };
 		5BDD4A50162FF7DA009FA697 /* InventoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryCell.m; path = classes/InventoryCell.m; sourceTree = "<group>"; };
 		5BDD4A52162FFFF8009FA697 /* InventoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InventoryCell.xib; path = classes/InventoryCell.xib; sourceTree = "<group>"; };
+		5BDE26BC163FF0640032BA98 /* BuildingQueueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingQueueView.h; path = classes/BuildingQueueView.h; sourceTree = "<group>"; };
+		5BDE26BD163FF0640032BA98 /* BuildingQueueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuildingQueueView.m; path = classes/BuildingQueueView.m; sourceTree = "<group>"; };
+		5BDE26BF163FF3450032BA98 /* BuildingQueueItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingQueueItemView.h; path = classes/BuildingQueueItemView.h; sourceTree = "<group>"; };
+		5BDE26C0163FF3450032BA98 /* BuildingQueueItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuildingQueueItemView.m; path = classes/BuildingQueueItemView.m; sourceTree = "<group>"; };
+		5BDE26C3163FF3650032BA98 /* BuildingQueueItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BuildingQueueItemView.xib; path = classes/BuildingQueueItemView.xib; sourceTree = "<group>"; };
 		5BECBAFE16303364004620B0 /* icon_trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_trophy.png; sourceTree = "<group>"; };
 		5BECBAFF16303364004620B0 /* icon_trophy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_trophy@2x.png"; sourceTree = "<group>"; };
 		5BF38E4516316B890029658A /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
@@ -436,17 +444,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B07A728162EA61A006B56A5 /* Command HQ */ = {
+		5B07A728162EA61A006B56A5 /* Menu Player */ = {
 			isa = PBXGroup;
 			children = (
 				5B7E185816242CBF00E0315E /* HubViewController.h */,
 				5B7E185916242CBF00E0315E /* HubViewController.m */,
 				5B7E185A16242CBF00E0315E /* HubViewController.xib */,
-				5BE7F8C71635973D00C5E0F7 /* Hangar */,
-				5BCB9504162EE1C0005AD7E5 /* Player */,
-				5B906D0416369C5C00C4C0DF /* Equipment */,
+				5BE7F8C71635973D00C5E0F7 /* Player Ship Controller */,
+				5BCB9504162EE1C0005AD7E5 /* Player Controller */,
+				5B906D0416369C5C00C4C0DF /* Player Equipment Controller */,
 			);
-			name = "Command HQ";
+			name = "Menu Player";
 			sourceTree = "<group>";
 		};
 		5B07A72E162EC38C006B56A5 /* backgrounds */ = {
@@ -475,26 +483,26 @@
 			path = assets/profile;
 			sourceTree = SOURCE_ROOT;
 		};
-		5B369FF7163948C500FA8BC8 /* Planet Selection */ = {
+		5B369FF7163948C500FA8BC8 /* Planet Selector Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B4104CE1639D7EE003E8CAD /* Custom Cells */,
+				5B4104CE1639D7EE003E8CAD /* Planet Table Selection Cell */,
 				5BD07FAC163877C50035D38E /* PlanetViewController.h */,
 				5BD07FAD163877C50035D38E /* PlanetViewController.m */,
 				5BD07FAE163877C50035D38E /* PlanetViewController.xib */,
 			);
-			name = "Planet Selection";
+			name = "Planet Selector Controller";
 			sourceTree = "<group>";
 		};
-		5B369FF81639512800FA8BC8 /* Overivew */ = {
+		5B369FF81639512800FA8BC8 /* Planet Overview Controller */ = {
 			isa = PBXGroup;
 			children = (
 				5B369FF91639515400FA8BC8 /* PlanetOverviewViewController.h */,
 				5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */,
 				5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */,
-				5B4104CD1639D241003E8CAD /* Custom UIViews */,
+				5B4104CD1639D241003E8CAD /* Planet Detail View */,
 			);
-			name = Overivew;
+			name = "Planet Overview Controller";
 			sourceTree = "<group>";
 		};
 		5B3FE69016355AEA00D9F2CC /* Bundles */ = {
@@ -529,38 +537,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5B4104CD1639D241003E8CAD /* Custom UIViews */ = {
+		5B4104CD1639D241003E8CAD /* Planet Detail View */ = {
 			isa = PBXGroup;
 			children = (
 				5B4104CA1639D230003E8CAD /* PlanetDetailView.h */,
 				5B4104CB1639D230003E8CAD /* PlanetDetailView.m */,
 			);
-			name = "Custom UIViews";
+			name = "Planet Detail View";
 			sourceTree = "<group>";
 		};
-		5B4104CE1639D7EE003E8CAD /* Custom Cells */ = {
+		5B4104CE1639D7EE003E8CAD /* Planet Table Selection Cell */ = {
 			isa = PBXGroup;
 			children = (
 				5B4104D11639D86D003E8CAD /* PlanetTableCell.h */,
 				5B4104D21639D86D003E8CAD /* PlanetTableCell.m */,
 				5B4104CF1639D83A003E8CAD /* PlanetTableCell.xib */,
 			);
-			name = "Custom Cells";
+			name = "Planet Table Selection Cell";
 			sourceTree = "<group>";
 		};
-		5B420A5A163E8E780015FBA6 /* Building Overview */ = {
+		5B420A5A163E8E780015FBA6 /* Buildings Overview Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BC4EC4C163ABBAA00974929 /* PlanetBuildingViewController.h */,
-				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
-				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
+				5BDE26BC163FF0640032BA98 /* BuildingQueueView.h */,
+				5BDE26BD163FF0640032BA98 /* BuildingQueueView.m */,
 				5B420A55163E88DE0015FBA6 /* BuildingListView.h */,
 				5B420A56163E88DE0015FBA6 /* BuildingListView.m */,
-				5B420A60163E90F00015FBA6 /* BuildingListItemView.h */,
-				5B420A61163E90F00015FBA6 /* BuildingListItemView.m */,
-				5B420A5B163E8FB60015FBA6 /* BuildingListItemView.xib */,
+				5BDE26BB163FF0110032BA98 /* List View Helpers */,
+				5BDE26C2163FF3490032BA98 /* Queue View Helpers */,
 			);
-			name = "Building Overview";
+			name = "Buildings Overview Views";
 			sourceTree = "<group>";
 		};
 		5B7A10A0162579680012E452 /* PullToRefresh */ = {
@@ -697,9 +703,9 @@
 		5B7E185F1624308A00E0315E /* Front Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5BD07FAB1638779A0035D38E /* Planets */,
-				5B07A728162EA61A006B56A5 /* Command HQ */,
-				5BDD4A4E162FF7B4009FA697 /* Inventory */,
+				5BD07FAB1638779A0035D38E /* Menu Planets */,
+				5B07A728162EA61A006B56A5 /* Menu Player */,
+				5BDD4A4E162FF7B4009FA697 /* Menu Inventory */,
 			);
 			name = "Front Controllers";
 			sourceTree = "<group>";
@@ -807,7 +813,7 @@
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		5B906D0416369C5C00C4C0DF /* Equipment */ = {
+		5B906D0416369C5C00C4C0DF /* Player Equipment Controller */ = {
 			isa = PBXGroup;
 			children = (
 				5BB6251D16314A76005BB81B /* Parts */,
@@ -815,17 +821,17 @@
 				5B906D0016369C5800C4C0DF /* EquipmentViewController.m */,
 				5B906D0116369C5800C4C0DF /* EquipmentViewController.xib */,
 			);
-			name = Equipment;
+			name = "Player Equipment Controller";
 			sourceTree = "<group>";
 		};
-		5B9BBD00163F20E6008C6B7E /* Custom Building */ = {
+		5B9BBD00163F20E6008C6B7E /* Building Popup Option */ = {
 			isa = PBXGroup;
 			children = (
 				5B9BBCFE163F20DF008C6B7E /* BuildingBuildView.xib */,
 				5B9BBD01163F2118008C6B7E /* BuildingBuildView.h */,
 				5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */,
 			);
-			name = "Custom Building";
+			name = "Building Popup Option";
 			sourceTree = "<group>";
 		};
 		5BB6251D16314A76005BB81B /* Parts */ = {
@@ -839,35 +845,38 @@
 			name = Parts;
 			sourceTree = "<group>";
 		};
-		5BC4EC4B163ABB9700974929 /* Building */ = {
+		5BC4EC4B163ABB9700974929 /* Planet Buildings Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5BC4EC51163ABE4E00974929 /* Building Selector */,
-				5B420A5A163E8E780015FBA6 /* Building Overview */,
+				5BC4EC4C163ABBAA00974929 /* PlanetBuildingViewController.h */,
+				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
+				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
+				5B420A5A163E8E780015FBA6 /* Buildings Overview Views */,
+				5BC4EC51163ABE4E00974929 /* Building Selector Controller */,
 			);
-			name = Building;
+			name = "Planet Buildings Controller";
 			sourceTree = "<group>";
 		};
-		5BC4EC51163ABE4E00974929 /* Building Selector */ = {
+		5BC4EC51163ABE4E00974929 /* Building Selector Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5BC4EC57163AC55200974929 /* Custom Cells */,
+				5B9BBD00163F20E6008C6B7E /* Building Popup Option */,
+				5BC4EC57163AC55200974929 /* Building Selector Cells */,
 				5BC4EC52163ABF7900974929 /* BuildingSelectionTableViewController.h */,
 				5BC4EC53163ABF7900974929 /* BuildingSelectionTableViewController.m */,
 				5BC4EC54163ABF7900974929 /* BuildingSelectionTableViewController.xib */,
-				5B9BBD00163F20E6008C6B7E /* Custom Building */,
 			);
-			name = "Building Selector";
+			name = "Building Selector Controller";
 			sourceTree = "<group>";
 		};
-		5BC4EC57163AC55200974929 /* Custom Cells */ = {
+		5BC4EC57163AC55200974929 /* Building Selector Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5BC4EC58163AC56600974929 /* BuildingCell.xib */,
 				5BC4EC5A163AC58500974929 /* BuildingCell.h */,
 				5BC4EC5B163AC58500974929 /* BuildingCell.m */,
 			);
-			name = "Custom Cells";
+			name = "Building Selector Cells";
 			sourceTree = "<group>";
 		};
 		5BC4EC5D163ACF1E00974929 /* Parts */ = {
@@ -931,7 +940,7 @@
 			path = ship;
 			sourceTree = "<group>";
 		};
-		5BCB9504162EE1C0005AD7E5 /* Player */ = {
+		5BCB9504162EE1C0005AD7E5 /* Player Controller */ = {
 			isa = PBXGroup;
 			children = (
 				5BF38E4916318A200029658A /* Custom UIViews */,
@@ -939,20 +948,20 @@
 				5B1ACD28162DFA39003C157F /* PlayerViewController.m */,
 				5B1ACD29162DFA39003C157F /* PlayerViewController.xib */,
 			);
-			name = Player;
+			name = "Player Controller";
 			sourceTree = "<group>";
 		};
-		5BD07FAB1638779A0035D38E /* Planets */ = {
+		5BD07FAB1638779A0035D38E /* Menu Planets */ = {
 			isa = PBXGroup;
 			children = (
-				5BC4EC4B163ABB9700974929 /* Building */,
-				5B369FF81639512800FA8BC8 /* Overivew */,
-				5B369FF7163948C500FA8BC8 /* Planet Selection */,
+				5BC4EC4B163ABB9700974929 /* Planet Buildings Controller */,
+				5B369FF81639512800FA8BC8 /* Planet Overview Controller */,
+				5B369FF7163948C500FA8BC8 /* Planet Selector Controller */,
 				5B369FF21639489000FA8BC8 /* PlanetHubViewController.h */,
 				5B369FF31639489000FA8BC8 /* PlanetHubViewController.m */,
 				5B369FF41639489000FA8BC8 /* PlanetHubViewController.xib */,
 			);
-			name = Planets;
+			name = "Menu Planets";
 			sourceTree = "<group>";
 		};
 		5BDB9C211626CD950074EBB7 /* AFNetworking */ = {
@@ -991,18 +1000,38 @@
 			path = assets/inventory;
 			sourceTree = SOURCE_ROOT;
 		};
-		5BDD4A4E162FF7B4009FA697 /* Inventory */ = {
+		5BDD4A4E162FF7B4009FA697 /* Menu Inventory */ = {
 			isa = PBXGroup;
 			children = (
 				5BA22DC0162461DD0006AE64 /* InventoryViewController.h */,
 				5BA22DC1162461DD0006AE64 /* InventoryViewController.m */,
 				5BA22DC2162461DE0006AE64 /* InventoryViewController.xib */,
-				5BE7F8C81635974F00C5E0F7 /* Custom Cells */,
+				5BE7F8C81635974F00C5E0F7 /* Inventory Cells */,
 			);
-			name = Inventory;
+			name = "Menu Inventory";
 			sourceTree = "<group>";
 		};
-		5BE7F8C71635973D00C5E0F7 /* Hangar */ = {
+		5BDE26BB163FF0110032BA98 /* List View Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5B420A60163E90F00015FBA6 /* BuildingListItemView.h */,
+				5B420A61163E90F00015FBA6 /* BuildingListItemView.m */,
+				5B420A5B163E8FB60015FBA6 /* BuildingListItemView.xib */,
+			);
+			name = "List View Helpers";
+			sourceTree = "<group>";
+		};
+		5BDE26C2163FF3490032BA98 /* Queue View Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5BDE26BF163FF3450032BA98 /* BuildingQueueItemView.h */,
+				5BDE26C0163FF3450032BA98 /* BuildingQueueItemView.m */,
+				5BDE26C3163FF3650032BA98 /* BuildingQueueItemView.xib */,
+			);
+			name = "Queue View Helpers";
+			sourceTree = "<group>";
+		};
+		5BE7F8C71635973D00C5E0F7 /* Player Ship Controller */ = {
 			isa = PBXGroup;
 			children = (
 				5BC4EC5D163ACF1E00974929 /* Parts */,
@@ -1010,17 +1039,17 @@
 				5B07A72A162EB864006B56A5 /* HangarViewController.m */,
 				5B07A72B162EB864006B56A5 /* HangarViewController.xib */,
 			);
-			name = Hangar;
+			name = "Player Ship Controller";
 			sourceTree = "<group>";
 		};
-		5BE7F8C81635974F00C5E0F7 /* Custom Cells */ = {
+		5BE7F8C81635974F00C5E0F7 /* Inventory Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5BDD4A4F162FF7DA009FA697 /* InventoryCell.h */,
 				5BDD4A50162FF7DA009FA697 /* InventoryCell.m */,
 				5BDD4A52162FFFF8009FA697 /* InventoryCell.xib */,
 			);
-			name = "Custom Cells";
+			name = "Inventory Cells";
 			sourceTree = "<group>";
 		};
 		5BECBAE816302EBE004620B0 /* parts */ = {
@@ -1224,6 +1253,7 @@
 				5B9BBCFC163F1D1E008C6B7E /* bg_space.jpg in Resources */,
 				5B9BBCFD163F1D1E008C6B7E /* bg_space@2x.jpg in Resources */,
 				5B9BBCFF163F20E0008C6B7E /* BuildingBuildView.xib in Resources */,
+				5BDE26C4163FF3650032BA98 /* BuildingQueueItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1311,8 @@
 				5B420A62163E90F00015FBA6 /* BuildingListItemView.m in Sources */,
 				5B85DA13163EB0E80050BDF7 /* UILabel+formatHelpers.m in Sources */,
 				5B9BBD03163F2118008C6B7E /* BuildingBuildView.m in Sources */,
+				5BDE26BE163FF0640032BA98 /* BuildingQueueView.m in Sources */,
+				5BDE26C1163FF3460032BA98 /* BuildingQueueItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

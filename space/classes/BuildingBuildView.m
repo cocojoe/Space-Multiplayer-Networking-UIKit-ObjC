@@ -34,7 +34,7 @@
 }
 
 
--(void) refresh:(NSDictionary *)buildingDict
+-(void) setup:(NSDictionary *)buildingDict
 {
     // Setup Stepper
     _stepperAmount.maximumValue = 10;
@@ -45,10 +45,14 @@
     // Store Dictionary
     _buildingDict = [NSDictionary dictionaryWithDictionary:buildingDict];
     
-    // Name
-    _buildingName.text = [buildingDict objectForKey:@"name"];
+    // Basic Outlets
+    _buildingName.text        = [buildingDict objectForKey:@"name"];
     _buildingDescription.text = [buildingDict objectForKey:@"description"];
     
+    // Building ID
+    _building_id = [[buildingDict objectForKey:@"id"] intValue];
+    
+    // Dynamic Updates
     [self updateAmount];
 }
 
@@ -107,6 +111,7 @@
     // Rate Multiplier
     _buildingCostAmount.text = [NSString stringWithFormat:@"x%d",_amount];
     _buildingRateAmount.text = [NSString stringWithFormat:@"x%d",_amount];
+    
 }
 
 #pragma mark UI Action Controls
@@ -116,6 +121,43 @@
     [self updateAmount];
 }
 
+-(IBAction) buttonPressed:(id)sender
+{
+    [self lockUI];
+    
+    [[GameManager sharedInstance] addBuilding:_building_id setAmount:_amount setPlanet:[[GameManager sharedInstance] planetID]  setBlock:^(NSDictionary *jsonDict){
+        
+        double time = [[[jsonDict objectForKey:@"build"] objectForKey:@"end_time"] doubleValue];
+        // Format Time
+        // Date Formatter from Unix Timestamp
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy'-'MM'-'dd HH':'mm':'ss"];
+        
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Building Added to Queue\n ETA: %@",[dateFormat stringFromDate:date]]];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
+        
+        // Set Notification
+        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"%@ completed",_buildingName.text]];
+        [self unlockUI];
+    } setBlockFail:^(){
+        [self unlockUI];
+    }];
+
+}
+
+-(void) lockUI
+{
+    [_button setUserInteractionEnabled:NO];
+    [_stepperAmount setUserInteractionEnabled:NO];
+}
+
+-(void) unlockUI
+{
+    [_button setUserInteractionEnabled:YES];
+    [_stepperAmount setUserInteractionEnabled:YES];
+}
 
 
 @end

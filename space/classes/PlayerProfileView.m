@@ -39,15 +39,7 @@
 -(void) refresh:(NSDictionary*) playerDict
 {
     // Process JSON
-    
-    // Date Formatter from Unix Timestamp
-    /*
-     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[jsonDict objectForKey:@"time"] doubleValue]];
-     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-     [dateFormat setDateFormat:@"yyyy'-'MM'-'dd HH':'mm':'ss"];
-     _labelServerTime.text = [dateFormat stringFromDate:date];
-     */
-    
+
     // Currency Child Dictionary
     NSDictionary *currencyDict = [NSDictionary dictionaryWithDictionary:[playerDict objectForKey:@"currency"]];
     
