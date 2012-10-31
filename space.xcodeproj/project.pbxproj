@@ -874,6 +874,7 @@
 				5BC4EC4C163ABBAA00974929 /* PlanetBuildingViewController.h */,
 				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
 				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
+				5BEAAB3516414A67004271DB /* Planet Research */,
 				5B420A5A163E8E780015FBA6 /* Buildings Overview Views */,
 				5BC4EC51163ABE4E00974929 /* Building Selector Controller */,
 			);
@@ -1089,6 +1090,13 @@
 				5BDD4A52162FFFF8009FA697 /* InventoryCell.xib */,
 			);
 			name = "Inventory Cells";
+			sourceTree = "<group>";
+		};
+		5BEAAB3516414A67004271DB /* Planet Research */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Planet Research";
 			sourceTree = "<group>";
 		};
 		5BECBAE816302EBE004620B0 /* parts */ = {

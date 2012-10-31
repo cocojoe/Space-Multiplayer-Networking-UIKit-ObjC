@@ -44,6 +44,7 @@ typedef void (^BasicBlock)          ();
 #define HOST_TIMEOUT    8
 #define HOST_RETRY      5
 
+// API
 #define URI_AUTH                        (@"/api/auth/")
 #define URI_PLAYER                      (@"/api/player/")
 #define URI_PARTS                       (@"/api/player/parts")
@@ -61,6 +62,9 @@ typedef void (^BasicBlock)          ();
 #define URI_BUILDING_ALLOWED            (@"/api/player/buildings")
 
 #define URI_BUILDING_ADD                (@"/api/planet/build")
+
+// API Research
+#define URI_MASTER_RESEARCH             (@"/api/research/")
 
 // Errors
 #define ERROR_WARNING                   1000
@@ -84,7 +88,10 @@ enum eAuthenticationState {
     NSMutableDictionary* _partsDict;
     NSMutableDictionary* _inventoryDict;
     NSMutableDictionary* _planetsDict;
+    
+    // Planet Available
     NSMutableDictionary* _buildingsAllowedDict;
+    NSMutableDictionary* _researchAllowedDict;
     
     // Queues (API Communication)
     NSOperationQueue *_requestQueue;
@@ -104,6 +111,7 @@ enum eAuthenticationState {
 @property (nonatomic) NSMutableArray* masterPartList;
 @property (nonatomic) NSMutableArray* masterGroupList;
 @property (nonatomic) NSMutableArray* masterBuildingList;
+@property (nonatomic) NSMutableArray* masterResearchList;
 
 // Preferences (Helpers)
 @property (nonatomic, readwrite) int planetID;
@@ -140,6 +148,7 @@ enum eAuthenticationState {
 -(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterBuilding:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
+-(void) retrieveMasterResearch:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock;

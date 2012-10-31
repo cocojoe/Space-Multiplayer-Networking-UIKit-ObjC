@@ -56,13 +56,16 @@
         _planetDict           = [[NSMutableDictionary alloc] init];
         _inventoryDict        = [[NSMutableDictionary alloc] init];
         _planetsDict          = [[NSMutableDictionary alloc] init];
+        
         _buildingsAllowedDict = [[NSMutableDictionary alloc] init];
+        _researchAllowedDict  = [[NSMutableDictionary alloc] init];
         
         // Data Store
         _masterItemList     = [[NSMutableArray alloc] init];
         _masterPartList     = [[NSMutableArray alloc] init];
         _masterGroupList    = [[NSMutableArray alloc] init];
-        _masterBuildingList = [[NSMutableArray alloc] init]; 
+        _masterBuildingList = [[NSMutableArray alloc] init];
+        _masterResearchList = [[NSMutableArray alloc] init];
         
         // Authorisation
         _eAuthenticationState = eAuthenticationNone;
@@ -265,6 +268,23 @@
             // Store Master List
             [_masterBuildingList setArray:[jsonDict objectForKey:@"buildings"]];
             //CCLOG(@"Master Building List Retrieved, %d Items", [_masterBuildingList count]);
+            actionBlock();
+        } setBlockFail:^(){errorBlock();}];
+        
+    }]];
+    
+}
+
+-(void) retrieveMasterResearch:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
+{
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_MASTER_RESEARCH setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Store Master List
+            //[_masterResearchList setArray:[jsonDict objectForKey:@"research"]];
+           // CCLOG(@"Master Research List Retrieved, %d Items", [_masterResearchList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         
@@ -481,37 +501,36 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         
-        if([[JSON valueForKey:@"success"] intValue]!=1)
+        if([[JSON valueForKey:@"success"] intValue]!=1) // Error
         {
-
-            if([[JSON objectForKey:@"error_code"] integerValue]==1)
+            if([[JSON objectForKey:@"error_code"] integerValue]>=1)
             {
-                // Soft Issue (ReAuthentication Required)
-                CCLOG(@"Re-Authentication Required: Invalid Session");
-                _eAuthenticationState = eAuthenticationNone;
-                [self authLock];
-                
-                // Time Allowance for any Modals in Animation
-                [self performSelector:@selector(loginStart) withObject:self afterDelay:0.75f];
-                
-                // ReQueue Failed Request
-                /*
-                [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-                    [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
-                }]];
-                */
-            } else {
                 // Debug API Issue
                 int errorCode = [[JSON objectForKey:@"error_code"] intValue];
                 CCLOG(@"%@",[NSString stringWithFormat:@"API Error Code: %d, Description: %@",errorCode,[JSON objectForKey:@"error_description"]]);
                 
-                // Soft Error Display
-                if(errorCode>=ERROR_WARNING)
+                if(errorCode==1)
                 {
+                    // Soft Issue (ReAuthentication Required)
+                    CCLOG(@"Re-Authentication Required: Invalid Session");
+                    _eAuthenticationState = eAuthenticationNone;
+                    [self authLock];
+                    
+                    // Time Allowance for any Modals in Animation
+                    [self performSelector:@selector(loginStart) withObject:self afterDelay:0.75f];
+                    
+                    // ReQueue Failed Request
+                    /*
+                     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
+                     }]];
+                     */
+                } else if(errorCode>=ERROR_WARNING) {
+ 
                     [[TKAlertCenter defaultCenter] postAlertWithMessage:[JSON objectForKey:@"error_description"]];
                 }
                 
-                // Custom Additional Handler (If Any)
+                // Custom Failure Handler
                 if(failBlock)
                     failBlock();
             }
