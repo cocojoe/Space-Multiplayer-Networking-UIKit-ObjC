@@ -487,12 +487,12 @@
             if([[JSON objectForKey:@"error_code"] integerValue]==1)
             {
                 // Soft Issue (ReAuthentication Required)
-                /*
                 CCLOG(@"Re-Authentication Required: Invalid Session");
                 _eAuthenticationState = eAuthenticationNone;
                 [self authLock];
+                
+                // Time Allowance for any Modals in Animation
                 [self performSelector:@selector(loginStart) withObject:self afterDelay:0.75f];
-                */
                 
                 // ReQueue Failed Request
                 /*
@@ -500,20 +500,27 @@
                     [self makeRequest:URI setPostDictionary:postDict setBlock:responseBlock setBlockFail:failBlock];
                 }]];
                 */
+            } else {
+                // Debug API Issue
+                int errorCode = [[JSON objectForKey:@"error_code"] intValue];
+                CCLOG(@"%@",[NSString stringWithFormat:@"API Error Code: %d, Description: %@",errorCode,[JSON objectForKey:@"error_description"]]);
                 
-                CCLOG(@"API Error: %@",JSON);
-                [[TKAlertCenter defaultCenter] postAlertWithMessage:[JSON objectForKey:@"error_description"]];
+                // Soft Error Display
+                if(errorCode>=ERROR_WARNING)
+                {
+                    [[TKAlertCenter defaultCenter] postAlertWithMessage:[JSON objectForKey:@"error_description"]];
+                }
+                
+                // Custom Additional Handler (If Any)
                 if(failBlock)
                     failBlock();
-            } else {
-                // Log API Issue
-                CCLOG(@"%@",[NSString stringWithFormat:@"API Error: %@",[JSON objectForKey:@"error_description"]]);
             }
         } else {
             // Success
             responseBlock(JSON);
         }
         
+        // Cancel Any Pulldowns (Regardless)
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelPullDown" object:self];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

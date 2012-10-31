@@ -38,7 +38,7 @@
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     // Navigation
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"BACK" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
     
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
     

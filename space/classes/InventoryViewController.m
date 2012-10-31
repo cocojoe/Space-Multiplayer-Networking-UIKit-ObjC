@@ -55,7 +55,7 @@
         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
         self.title = NSLocalizedString(@"InventoryTitleKey", @"");
-	} else if(_partID) { // Part Selection
+	} else if(_partID) { // Part Selection Modal
         
         // Manually Presented Search
         _filterSearch.placeholder              = _searchText;
@@ -75,10 +75,9 @@
         [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
         
         // Navigation Back
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"BACK" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self.navigationController.parentViewController action:@selector(dismissModalViewControllerAnimated:)];
         
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-
         
         // Clear Item If Currently Equipped
         if(_showRemove==YES) {

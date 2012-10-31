@@ -44,7 +44,7 @@
     _stepperAmount.stepValue    = 1;
     
     // Modify Button
-    UIImage *buttonImage = [[UIImage imageNamed:@"greyButton"]
+    UIImage *buttonImage = [[UIImage imageNamed:@"blueButton"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(8, 16, 8, 16)];
     [_button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
@@ -61,16 +61,12 @@
     // Dynamic Updates
     [self updateAmount];
     
-    // Store Frame
-    CGRect currentFrame = [self frame];
-    CGRect newFrame = CGRectMake(currentFrame.origin.x, currentFrame.origin.y, 0, currentFrame.size.width);
-    [self setFrame:newFrame];
-    
-    [UIView animateWithDuration:0.5f
+    self.alpha = 0.0f;
+    [UIView animateWithDuration:0.25f
                           delay:0.0f
-                        options: UIViewAnimationCurveEaseOut
+                        options: UIViewAnimationCurveLinear
                      animations:^{
-                         self.frame = currentFrame;
+                         self.alpha = 1.0f;
                      }
                      completion:^(BOOL finished){
                      }];

@@ -75,7 +75,8 @@
             
             // Clear Cache / Refresh
             [[[GameManager sharedInstance] planetDict] removeAllObjects];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
+            // General Timer Will Catch Refresh
+            // [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
         } 
         float progress          = 0.0f;
         

@@ -62,6 +62,9 @@ typedef void (^BasicBlock)          ();
 
 #define URI_BUILDING_ADD                (@"/api/planet/build")
 
+// Errors
+#define ERROR_WARNING                   1000
+
 // Simple Caching / Request Spam
 #define API_CACHE_TIME  30
 
@@ -93,7 +96,7 @@ enum eAuthenticationState {
 @property (weak, nonatomic) UIViewController *view;
 @property (nonatomic, readwrite) enum eAuthenticationState eAuthenticationState;
 
-// Cache Stores
+// Cache Stores (So Can Clear 'Cache' Publically)
 @property (nonatomic) NSMutableDictionary* planetDict;
 
 // Data Stores

@@ -177,6 +177,10 @@
 		5BDE26CF16403BBD0032BA98 /* greyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */; };
 		5BDE26D016403BBD0032BA98 /* greyButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */; };
 		5BDE26D116403BBD0032BA98 /* greyButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */; };
+		5BEAAB3116412568004271DB /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB2D16412568004271DB /* blueButton.png */; };
+		5BEAAB3216412568004271DB /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB2E16412568004271DB /* blueButton@2x.png */; };
+		5BEAAB3316412568004271DB /* blueButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB2F16412568004271DB /* blueButtonHighlight.png */; };
+		5BEAAB3416412568004271DB /* blueButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB3016412568004271DB /* blueButtonHighlight@2x.png */; };
 		5BECBB0016303364004620B0 /* icon_trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFE16303364004620B0 /* icon_trophy.png */; };
 		5BECBB0116303364004620B0 /* icon_trophy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BECBAFF16303364004620B0 /* icon_trophy@2x.png */; };
 		5BF38E4716316B890029658A /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF38E4616316B890029658A /* UIView+FindUIViewController.m */; };
@@ -429,6 +433,10 @@
 		5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButton@2x.png"; sourceTree = "<group>"; };
 		5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButtonHighlight.png; sourceTree = "<group>"; };
 		5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		5BEAAB2D16412568004271DB /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		5BEAAB2E16412568004271DB /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
+		5BEAAB2F16412568004271DB /* blueButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButtonHighlight.png; sourceTree = "<group>"; };
+		5BEAAB3016412568004271DB /* blueButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButtonHighlight@2x.png"; sourceTree = "<group>"; };
 		5BECBAFE16303364004620B0 /* icon_trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_trophy.png; sourceTree = "<group>"; };
 		5BECBAFF16303364004620B0 /* icon_trophy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_trophy@2x.png"; sourceTree = "<group>"; };
 		5BF38E4516316B890029658A /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
@@ -1049,6 +1057,10 @@
 		5BDE26C916403BBD0032BA98 /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				5BEAAB2D16412568004271DB /* blueButton.png */,
+				5BEAAB2E16412568004271DB /* blueButton@2x.png */,
+				5BEAAB2F16412568004271DB /* blueButtonHighlight.png */,
+				5BEAAB3016412568004271DB /* blueButtonHighlight@2x.png */,
 				5BDE26CA16403BBD0032BA98 /* greyButton.png */,
 				5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */,
 				5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */,
@@ -1287,6 +1299,10 @@
 				5BDE26CF16403BBD0032BA98 /* greyButton@2x.png in Resources */,
 				5BDE26D016403BBD0032BA98 /* greyButtonHighlight.png in Resources */,
 				5BDE26D116403BBD0032BA98 /* greyButtonHighlight@2x.png in Resources */,
+				5BEAAB3116412568004271DB /* blueButton.png in Resources */,
+				5BEAAB3216412568004271DB /* blueButton@2x.png in Resources */,
+				5BEAAB3316412568004271DB /* blueButtonHighlight.png in Resources */,
+				5BEAAB3416412568004271DB /* blueButtonHighlight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
