@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11G56</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">1929</string>
@@ -40,11 +40,12 @@
 					<object class="IBUIImageView" id="803290593">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 514}</string>
+						<string key="NSFrameSize">{320, 450}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="766714767"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -143,7 +144,7 @@
 												<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											</object>
 										</array>
-										<string key="NSFrame">{{16, 8}, {271, 51}}</string>
+										<string key="NSFrame">{{16, 9}, {271, 51}}</string>
 										<reference key="NSSuperview" ref="804369801"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="975050522"/>
@@ -218,7 +219,7 @@
 												<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											</object>
 										</array>
-										<string key="NSFrame">{{16, 185}, {271, 51}}</string>
+										<string key="NSFrame">{{16, 186}, {271, 51}}</string>
 										<reference key="NSSuperview" ref="804369801"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="682760077"/>
@@ -290,7 +291,7 @@
 												<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											</object>
 										</array>
-										<string key="NSFrame">{{16, 244}, {271, 51}}</string>
+										<string key="NSFrame">{{16, 245}, {271, 51}}</string>
 										<reference key="NSSuperview" ref="804369801"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="588118250"/>
@@ -361,7 +362,7 @@
 												<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											</object>
 										</array>
-										<string key="NSFrame">{{16, 303}, {271, 51}}</string>
+										<string key="NSFrame">{{16, 304}, {271, 51}}</string>
 										<reference key="NSSuperview" ref="804369801"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="820503851"/>
@@ -433,7 +434,7 @@
 												<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											</object>
 										</array>
-										<string key="NSFrame">{{16, 67}, {271, 51}}</string>
+										<string key="NSFrame">{{16, 68}, {271, 51}}</string>
 										<reference key="NSSuperview" ref="804369801"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="629970693"/>
@@ -505,7 +506,7 @@
 												<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											</object>
 										</array>
-										<string key="NSFrame">{{16, 126}, {271, 51}}</string>
+										<string key="NSFrame">{{16, 127}, {271, 51}}</string>
 										<reference key="NSSuperview" ref="804369801"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="877340853"/>
@@ -514,7 +515,7 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
 								</array>
-								<string key="NSFrame">{{9, 9}, {302, 384}}</string>
+								<string key="NSFrame">{{9, 0}, {302, 393}}</string>
 								<reference key="NSSuperview" ref="766714767"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="247371159"/>
@@ -527,7 +528,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 424}</string>
+						<string key="NSFrameSize">{320, 413}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="804369801"/>
@@ -539,7 +540,7 @@
 						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 480}</string>
+				<string key="NSFrame">{{0, 44}, {320, 392}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="803290593"/>
@@ -549,6 +550,13 @@
 					<object class="NSColorSpace" key="NSCustomColorSpace">
 						<int key="NSID">2</int>
 					</object>
+				</object>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<int key="IBUIBarStyle">1</int>
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
+				<object class="IBUISimulatedToolbarMetrics" key="IBUISimulatedBottomBarMetrics">
+					<int key="IBUIBarStyle">1</int>
 				</object>
 				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>

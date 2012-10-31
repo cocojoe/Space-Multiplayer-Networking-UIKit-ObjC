@@ -40,9 +40,7 @@
     _buildingName.text = [buildingDict objectForKey:@"name"];
     
     // Build Time
-    float buildTime = [[buildingDict objectForKey:@"build_time"] floatValue];
-    buildTime*=[[GameManager sharedInstance] speed];
-    [_buildingTime setTimerText:[NSNumber numberWithDouble:buildTime]];
+    [_buildingTime setTimerText:[buildingDict objectForKey:@"time"]];
 }
 
 @end

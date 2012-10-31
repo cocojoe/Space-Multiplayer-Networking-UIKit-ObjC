@@ -23,7 +23,6 @@
 // UI Kit Find Parent Controller
 #import "UIView+FindUIViewController.h"
 
-
 // Master View (ZUUReval)
 
 @implementation GameManager
@@ -75,7 +74,6 @@
         
         // Preferences Reset
         _planetID = 0;
-        _speed    = DEFAULT_SPEED;
         
 	}
 	
@@ -266,7 +264,7 @@
         [self makeRequest:URI_MASTER_BUILDING setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             
             // Store Master List
-            [_masterBuildingList setArray:[jsonDict objectForKey:@"buildings"]];
+            [_masterBuildingList setArray:[jsonDict objectForKey:@"building"]];
             //CCLOG(@"Master Building List Retrieved, %d Items", [_masterBuildingList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
@@ -283,8 +281,8 @@
         [self makeRequest:URI_MASTER_RESEARCH setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             
             // Store Master List
-            //[_masterResearchList setArray:[jsonDict objectForKey:@"research"]];
-           // CCLOG(@"Master Research List Retrieved, %d Items", [_masterResearchList count]);
+            [_masterResearchList setArray:[jsonDict objectForKey:@"research"]];
+            CCLOG(@"Master Research List Retrieved, %d Items", [_masterResearchList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         

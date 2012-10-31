@@ -131,6 +131,7 @@
         [_buildingQueueView setupQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"building"]];
         [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];
         
+        /*
         // Push List Frame Down
         CGRect frameList  = [_buildingListView frame];
         CGRect frameQueue = [_buildingQueueView frame];
@@ -143,6 +144,12 @@
         CGSize scrollSize = _mainScrollView.contentSize;
         scrollSize.height-=frameList.size.height+frameQueue.size.height;
         _mainScrollView.contentSize=frameList.size;
+        */
+        
+        int buildingRows = [[planetDict objectForKey:@"buildings"] count];
+        CGSize content = _mainScrollView.contentSize;
+        //content.height*=buildingRows*40;
+        _mainScrollView.contentSize = content;
         
     }];
     

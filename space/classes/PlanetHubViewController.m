@@ -11,6 +11,7 @@
 // Sub Views
 #import "PlanetOverviewViewController.h"
 #import "PlanetBuildingViewController.h"
+#import "PlanetResearchViewController.h"
 
 // Modals
 #import "PlanetViewController.h"
@@ -20,6 +21,7 @@
 
 #define TAG_PLANET_PLANETS_VIEW     1
 #define TAG_PLANET_BUILDING_VIEW    2
+#define TAG_PLANET_RESEARCH_VIEW    3
 
 @interface PlanetHubViewController ()
 
@@ -63,6 +65,10 @@
     // Add Planet Building Controller 
     _planetBuildingViewController = [[PlanetBuildingViewController alloc] initWithNibName:@"PlanetBuildingViewController" bundle:nil];
     [self.view insertSubview:_planetBuildingViewController.view belowSubview:_planetOverviewViewController.view];
+    
+    // Add Research Building Controller
+    _planetResearchViewController = [[PlanetResearchViewController alloc] initWithNibName:@"PlanetResearchViewController" bundle:nil];
+    [self.view insertSubview:_planetResearchViewController.view belowSubview:_planetOverviewViewController.view];
     
     // Default Selection
     [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
@@ -115,6 +121,18 @@
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
 }
 
+-(void) setPlanetResearchController
+{
+    
+    self.navigationItem.title = _planetResearchViewController.title;
+    [self.view bringSubviewToFront:_planetResearchViewController.view];
+    [_planetResearchViewController refreshData];
+    
+    // Search Planet Option
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:_planetResearchViewController action:@selector(refreshData)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
+}
+
 #pragma mark UITabBar Delegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
@@ -125,6 +143,9 @@
             break;
         case TAG_PLANET_BUILDING_VIEW:
             [self setPlanetBuildingController];
+            break;
+        case TAG_PLANET_RESEARCH_VIEW:
+            [self setPlanetResearchController];
             break;
 
     }

@@ -117,9 +117,6 @@ enum eAuthenticationState {
 @property (nonatomic, readwrite) int planetID;
 -(void) setPlanet:(int) planet;
 
-// Game Time Multiplier
-@property (nonatomic, readwrite) float speed;
-
 // Alerts
 @property (retain,nonatomic) TKProgressAlertView *alertView;
 

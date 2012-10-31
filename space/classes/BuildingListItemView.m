@@ -66,24 +66,25 @@
             _buildingAmount.text  = [NSString stringWithFormat:@"x%@",[formatter stringFromNumber:[NSNumber numberWithInt:qty]]];
             
             // Incomes
+            NSDictionary* incomeDict = [buildingDetail objectForKey:@"income"];
             
             // Food
-            value = [[buildingDetail objectForKey:@"income_food"] intValue];
+            value = [[incomeDict objectForKey:@"food"] intValue];
             value*=qty;
             [_buildingFood setTextRate:[NSNumber numberWithInt:value]];
             
             // Workers
-            value = [[buildingDetail objectForKey:@"income_workers"] intValue];
+            value = [[incomeDict objectForKey:@"workers"] intValue];
             value*=qty;
             [_buildingWorkers setTextRate:[NSNumber numberWithInt:value]];
             
             // Energy
-            value = [[buildingDetail objectForKey:@"income_energy"] intValue];
+            value = [[incomeDict objectForKey:@"energy"] intValue];
             value*=qty;
             [_buildingEnergy setTextRate:[NSNumber numberWithInt:value]];
             
             // Minerals
-            value = [[buildingDetail objectForKey:@"income_minerals"] intValue];
+            value = [[incomeDict objectForKey:@"minerals"] intValue];
             value*=qty;
             [_buildingMinerals setTextRate:[NSNumber numberWithInt:value]];
           

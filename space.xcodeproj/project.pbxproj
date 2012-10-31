@@ -23,6 +23,10 @@
 		5B07A741162ED4A9006B56A5 /* icon_cash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73D162ED4A9006B56A5 /* icon_cash@2x.png */; };
 		5B07A742162ED4A9006B56A5 /* icon_premium.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73E162ED4A9006B56A5 /* icon_premium.png */; };
 		5B07A743162ED4A9006B56A5 /* icon_premium@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73F162ED4A9006B56A5 /* icon_premium@2x.png */; };
+		5B19008A1641C7100092EE86 /* icon_research.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1900881641C7100092EE86 /* icon_research.png */; };
+		5B19008B1641C7100092EE86 /* icon_research@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1900891641C7100092EE86 /* icon_research@2x.png */; };
+		5B19008F1641C7E00092EE86 /* PlanetResearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19008D1641C7E00092EE86 /* PlanetResearchViewController.m */; };
+		5B1900901641C7E00092EE86 /* PlanetResearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B19008E1641C7E00092EE86 /* PlanetResearchViewController.xib */; };
 		5B1ACD2A162DFA39003C157F /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1ACD28162DFA39003C157F /* PlayerViewController.m */; };
 		5B1ACD2B162DFA39003C157F /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1ACD29162DFA39003C157F /* PlayerViewController.xib */; };
 		5B369FF51639489000FA8BC8 /* PlanetHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B369FF31639489000FA8BC8 /* PlanetHubViewController.m */; };
@@ -228,6 +232,11 @@
 		5B07A73D162ED4A9006B56A5 /* icon_cash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cash@2x.png"; sourceTree = "<group>"; };
 		5B07A73E162ED4A9006B56A5 /* icon_premium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_premium.png; sourceTree = "<group>"; };
 		5B07A73F162ED4A9006B56A5 /* icon_premium@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_premium@2x.png"; sourceTree = "<group>"; };
+		5B1900881641C7100092EE86 /* icon_research.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_research.png; sourceTree = "<group>"; };
+		5B1900891641C7100092EE86 /* icon_research@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_research@2x.png"; sourceTree = "<group>"; };
+		5B19008C1641C7E00092EE86 /* PlanetResearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetResearchViewController.h; path = classes/PlanetResearchViewController.h; sourceTree = "<group>"; };
+		5B19008D1641C7E00092EE86 /* PlanetResearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetResearchViewController.m; path = classes/PlanetResearchViewController.m; sourceTree = "<group>"; };
+		5B19008E1641C7E00092EE86 /* PlanetResearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetResearchViewController.xib; path = classes/PlanetResearchViewController.xib; sourceTree = "<group>"; };
 		5B1ACD27162DFA39003C157F /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerViewController.h; path = classes/PlayerViewController.h; sourceTree = "<group>"; };
 		5B1ACD28162DFA39003C157F /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerViewController.m; path = classes/PlayerViewController.m; sourceTree = "<group>"; };
 		5B1ACD29162DFA39003C157F /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlayerViewController.xib; path = classes/PlayerViewController.xib; sourceTree = "<group>"; };
@@ -583,10 +592,10 @@
 			children = (
 				5BDE26BC163FF0640032BA98 /* BuildingQueueView.h */,
 				5BDE26BD163FF0640032BA98 /* BuildingQueueView.m */,
+				5BDE26C2163FF3490032BA98 /* Queue View Helpers */,
 				5B420A55163E88DE0015FBA6 /* BuildingListView.h */,
 				5B420A56163E88DE0015FBA6 /* BuildingListView.m */,
 				5BDE26BB163FF0110032BA98 /* List View Helpers */,
-				5BDE26C2163FF3490032BA98 /* Queue View Helpers */,
 			);
 			name = "Buildings Overview Views";
 			sourceTree = "<group>";
@@ -805,6 +814,8 @@
 		5B8F1A20162466AA00274D4E /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5B1900881641C7100092EE86 /* icon_research.png */,
+				5B1900891641C7100092EE86 /* icon_research@2x.png */,
 				5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */,
 				5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */,
 				5B906D051636A45C00C4C0DF /* icon_bank.png */,
@@ -874,7 +885,6 @@
 				5BC4EC4C163ABBAA00974929 /* PlanetBuildingViewController.h */,
 				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
 				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
-				5BEAAB3516414A67004271DB /* Planet Research */,
 				5B420A5A163E8E780015FBA6 /* Buildings Overview Views */,
 				5BC4EC51163ABE4E00974929 /* Building Selector Controller */,
 			);
@@ -978,6 +988,7 @@
 		5BD07FAB1638779A0035D38E /* Menu Planets */ = {
 			isa = PBXGroup;
 			children = (
+				5BEAAB3516414A67004271DB /* Planet Research Controller */,
 				5BC4EC4B163ABB9700974929 /* Planet Buildings Controller */,
 				5B369FF81639512800FA8BC8 /* Planet Overview Controller */,
 				5B369FF7163948C500FA8BC8 /* Planet Selector Controller */,
@@ -1092,11 +1103,14 @@
 			name = "Inventory Cells";
 			sourceTree = "<group>";
 		};
-		5BEAAB3516414A67004271DB /* Planet Research */ = {
+		5BEAAB3516414A67004271DB /* Planet Research Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5B19008C1641C7E00092EE86 /* PlanetResearchViewController.h */,
+				5B19008D1641C7E00092EE86 /* PlanetResearchViewController.m */,
+				5B19008E1641C7E00092EE86 /* PlanetResearchViewController.xib */,
 			);
-			name = "Planet Research";
+			name = "Planet Research Controller";
 			sourceTree = "<group>";
 		};
 		5BECBAE816302EBE004620B0 /* parts */ = {
@@ -1311,6 +1325,9 @@
 				5BEAAB3216412568004271DB /* blueButton@2x.png in Resources */,
 				5BEAAB3316412568004271DB /* blueButtonHighlight.png in Resources */,
 				5BEAAB3416412568004271DB /* blueButtonHighlight@2x.png in Resources */,
+				5B19008A1641C7100092EE86 /* icon_research.png in Resources */,
+				5B19008B1641C7100092EE86 /* icon_research@2x.png in Resources */,
+				5B1900901641C7E00092EE86 /* PlanetResearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1370,6 +1387,7 @@
 				5B9BBD03163F2118008C6B7E /* BuildingBuildView.m in Sources */,
 				5BDE26BE163FF0640032BA98 /* BuildingQueueView.m in Sources */,
 				5BDE26C1163FF3460032BA98 /* BuildingQueueItemView.m in Sources */,
+				5B19008F1641C7E00092EE86 /* PlanetResearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

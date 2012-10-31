@@ -79,23 +79,26 @@
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     
     // Build Time
-    float buildTime = [[_buildingDict objectForKey:@"build_time"] floatValue];
-    buildTime=(buildTime*[[GameManager sharedInstance] speed])*_amount;
+    double buildTime = [[_buildingDict objectForKey:@"time"] doubleValue];
+    buildTime*=_amount;
     [_buildingTime setTimerText:[NSNumber numberWithDouble:buildTime]];
     
     int value = 0;
     
+    // Costs
+    NSDictionary* costDict = [_buildingDict objectForKey:@"cost"];
+    
     // Set Cost / Incomes
     // Food
-    value = [[_buildingDict objectForKey:@"cost_food"] intValue];
+    value = [[costDict objectForKey:@"food"] intValue];
     value*=_amount;
     _buildingCostFood.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
     // Workers
-    value = [[_buildingDict objectForKey:@"cost_workers"] intValue];
+    value = [[costDict objectForKey:@"workers"] intValue];
     value*=_amount;
     _buildingCostWorkers.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
     // Energy
-    value = [[_buildingDict objectForKey:@"cost_energy"] intValue];
+    value = [[costDict objectForKey:@"energy"] intValue];
     value*=_amount;
     _buildingCostEnergy.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
     // Minerals
@@ -103,24 +106,27 @@
     value*=_amount;
     _buildingCostMinerals.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
   
+    
+    NSDictionary* incomeDict = [_buildingDict objectForKey:@"income"];
+    
     // Set Rates
     // Food
-    value = [[_buildingDict objectForKey:@"income_food"] intValue];
+    value = [[incomeDict objectForKey:@"food"] intValue];
     value*=_amount;
     [_buildingRateFood setTextRate:[NSNumber numberWithInt:value]];
     
     // Workers
-    value = [[_buildingDict objectForKey:@"income_workers"] intValue];
+    value = [[incomeDict objectForKey:@"workers"] intValue];
     value*=_amount;
     [_buildingRateWorkers setTextRate:[NSNumber numberWithInt:value]];
     
     // Energy
-    value = [[_buildingDict objectForKey:@"income_energy"] intValue];
+    value = [[incomeDict objectForKey:@"energy"] intValue];
     value*=_amount;
     [_buildingRateEnergy setTextRate:[NSNumber numberWithInt:value]];
     
     // Minerals
-    value = [[_buildingDict objectForKey:@"income_minerals"] intValue];
+    value = [[incomeDict objectForKey:@"minerals"] intValue];
     value*=_amount;
     [_buildingRateMinerals setTextRate:[NSNumber numberWithInt:value]];
 

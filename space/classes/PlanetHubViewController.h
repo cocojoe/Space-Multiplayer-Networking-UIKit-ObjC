@@ -10,6 +10,7 @@
 
 @class PlanetOverviewViewController;
 @class PlanetBuildingViewController;
+@class PlanetResearchViewController;
 
 @interface PlanetHubViewController : UIViewController <UITabBarDelegate>
 
@@ -18,6 +19,7 @@
 // Controllers
 @property (nonatomic) PlanetOverviewViewController* planetOverviewViewController;
 @property (nonatomic) PlanetBuildingViewController* planetBuildingViewController;
+@property (nonatomic) PlanetResearchViewController* planetResearchViewController;
 
 
 @end
