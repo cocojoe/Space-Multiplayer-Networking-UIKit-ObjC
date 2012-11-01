@@ -53,7 +53,6 @@
     
     // Basic Outlets
     _buildingName.text        = [buildingDict objectForKey:@"name"];
-    _buildingDescription.text = [buildingDict objectForKey:@"description"];
     
     // Building ID
     _building_id = [[buildingDict objectForKey:@"id"] intValue];
@@ -131,7 +130,6 @@
     [_buildingRateMinerals setTextRate:[NSNumber numberWithInt:value]];
 
     // Rate Multiplier
-    _buildingCostAmount.text = [NSString stringWithFormat:@"x%d",_amount];
     _buildingRateAmount.text = [NSString stringWithFormat:@"x%d",_amount];
     
 }

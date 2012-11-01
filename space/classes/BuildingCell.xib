@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">11G56</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1138.51</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">1929</string>
@@ -58,7 +58,7 @@
 							<object class="IBUILabel" id="779375596">
 								<reference key="NSNextResponder" ref="590628779"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{44, 14}, {171, 21}}</string>
+								<string key="NSFrame">{{48, 14}, {168, 21}}</string>
 								<reference key="NSSuperview" ref="590628779"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -85,7 +85,7 @@
 							<object class="IBUIImageView" id="300292869">
 								<reference key="NSNextResponder" ref="590628779"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{290, 13}, {24, 24}}</string>
+								<string key="NSFrame">{{282, 9}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="590628779"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1073722839"/>
@@ -101,7 +101,7 @@
 							<object class="IBUILabel" id="1073722839">
 								<reference key="NSNextResponder" ref="590628779"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{223, 14}, {59, 21}}</string>
+								<string key="NSFrame">{{215, 14}, {59, 21}}</string>
 								<reference key="NSSuperview" ref="590628779"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -178,6 +178,14 @@
 					</object>
 					<int key="connectionID">62</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">buildingIcon</string>
+						<reference key="source" ref="633110767"/>
+						<reference key="destination" ref="212601621"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -203,9 +211,9 @@
 						<reference key="object" ref="633110767"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="212601621"/>
-							<reference ref="779375596"/>
 							<reference ref="1073722839"/>
 							<reference ref="300292869"/>
+							<reference ref="779375596"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -248,7 +256,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">70</int>
+			<int key="maxID">71</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -256,10 +264,15 @@
 					<string key="className">BuildingCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="buildingIcon">UIImageView</string>
 						<string key="buildingName">UILabel</string>
 						<string key="buildingTime">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="buildingIcon">
+							<string key="name">buildingIcon</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="buildingName">
 							<string key="name">buildingName</string>
 							<string key="candidateClassName">UILabel</string>
@@ -281,7 +294,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="building_icon_time.png">{24, 24}</string>
+			<string key="building_icon_time.png">{32, 32}</string>
 			<string key="icon_home.png">{26, 26}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1929</string>

@@ -33,8 +33,6 @@
 		5B369FF61639489000FA8BC8 /* PlanetHubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FF41639489000FA8BC8 /* PlanetHubViewController.xib */; };
 		5B369FFC1639515400FA8BC8 /* PlanetOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */; };
 		5B369FFD1639515400FA8BC8 /* PlanetOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */; };
-		5B36A00016395BF300FA8BC8 /* icon_planet_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */; };
-		5B36A00116395BF300FA8BC8 /* icon_planet_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */; };
 		5B3FE69916355D6800D9F2CC /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */; };
 		5B3FE6A216355D8A00D9F2CC /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */; };
 		5B3FE6A416355D9300D9F2CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE6A316355D9300D9F2CC /* MapKit.framework */; };
@@ -181,6 +179,22 @@
 		5BDE26CF16403BBD0032BA98 /* greyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */; };
 		5BDE26D016403BBD0032BA98 /* greyButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */; };
 		5BDE26D116403BBD0032BA98 /* greyButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */; };
+		5BE2199B164290C5005C3159 /* planet_icon_planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE21997164290C5005C3159 /* planet_icon_planet.png */; };
+		5BE2199C164290C5005C3159 /* planet_icon_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE21998164290C5005C3159 /* planet_icon_planet@2x.png */; };
+		5BE2199D164290C5005C3159 /* planet_icon_system.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE21999164290C5005C3159 /* planet_icon_system.png */; };
+		5BE2199E164290C5005C3159 /* planet_icon_system@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE2199A164290C5005C3159 /* planet_icon_system@2x.png */; };
+		5BE219A7164296F0005C3159 /* building_bio.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE2199F164296EF005C3159 /* building_bio.png */; };
+		5BE219A8164296F0005C3159 /* building_bio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A0164296EF005C3159 /* building_bio@2x.png */; };
+		5BE219A9164296F0005C3159 /* building_farm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A1164296EF005C3159 /* building_farm.png */; };
+		5BE219AA164296F0005C3159 /* building_farm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A2164296EF005C3159 /* building_farm@2x.png */; };
+		5BE219AB164296F0005C3159 /* building_mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A3164296EF005C3159 /* building_mine.png */; };
+		5BE219AC164296F0005C3159 /* building_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A4164296EF005C3159 /* building_mine@2x.png */; };
+		5BE219AD164296F0005C3159 /* building_power.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A5164296EF005C3159 /* building_power.png */; };
+		5BE219AE164296F0005C3159 /* building_power@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219A6164296EF005C3159 /* building_power@2x.png */; };
+		5BE219B316429976005C3159 /* planet_icon_cost.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219AF16429976005C3159 /* planet_icon_cost.png */; };
+		5BE219B416429976005C3159 /* planet_icon_cost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219B016429976005C3159 /* planet_icon_cost@2x.png */; };
+		5BE219B516429976005C3159 /* planet_icon_income.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219B116429976005C3159 /* planet_icon_income.png */; };
+		5BE219B616429976005C3159 /* planet_icon_income@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE219B216429976005C3159 /* planet_icon_income@2x.png */; };
 		5BEAAB3116412568004271DB /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB2D16412568004271DB /* blueButton.png */; };
 		5BEAAB3216412568004271DB /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB2E16412568004271DB /* blueButton@2x.png */; };
 		5BEAAB3316412568004271DB /* blueButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAAB2F16412568004271DB /* blueButtonHighlight.png */; };
@@ -246,8 +260,6 @@
 		5B369FF91639515400FA8BC8 /* PlanetOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetOverviewViewController.h; path = classes/PlanetOverviewViewController.h; sourceTree = "<group>"; };
 		5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetOverviewViewController.m; path = classes/PlanetOverviewViewController.m; sourceTree = "<group>"; };
 		5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetOverviewViewController.xib; path = classes/PlanetOverviewViewController.xib; sourceTree = "<group>"; };
-		5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_planet_search.png; sourceTree = "<group>"; };
-		5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_planet_search@2x.png"; sourceTree = "<group>"; };
 		5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = ../../tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
 		5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = ../tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
 		5B3FE6A316355D9300D9F2CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -442,6 +454,22 @@
 		5BDE26CB16403BBD0032BA98 /* greyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButton@2x.png"; sourceTree = "<group>"; };
 		5BDE26CC16403BBD0032BA98 /* greyButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButtonHighlight.png; sourceTree = "<group>"; };
 		5BDE26CD16403BBD0032BA98 /* greyButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		5BE21997164290C5005C3159 /* planet_icon_planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_icon_planet.png; sourceTree = "<group>"; };
+		5BE21998164290C5005C3159 /* planet_icon_planet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet_icon_planet@2x.png"; sourceTree = "<group>"; };
+		5BE21999164290C5005C3159 /* planet_icon_system.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_icon_system.png; sourceTree = "<group>"; };
+		5BE2199A164290C5005C3159 /* planet_icon_system@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet_icon_system@2x.png"; sourceTree = "<group>"; };
+		5BE2199F164296EF005C3159 /* building_bio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_bio.png; sourceTree = "<group>"; };
+		5BE219A0164296EF005C3159 /* building_bio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_bio@2x.png"; sourceTree = "<group>"; };
+		5BE219A1164296EF005C3159 /* building_farm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_farm.png; sourceTree = "<group>"; };
+		5BE219A2164296EF005C3159 /* building_farm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_farm@2x.png"; sourceTree = "<group>"; };
+		5BE219A3164296EF005C3159 /* building_mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_mine.png; sourceTree = "<group>"; };
+		5BE219A4164296EF005C3159 /* building_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_mine@2x.png"; sourceTree = "<group>"; };
+		5BE219A5164296EF005C3159 /* building_power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_power.png; sourceTree = "<group>"; };
+		5BE219A6164296EF005C3159 /* building_power@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_power@2x.png"; sourceTree = "<group>"; };
+		5BE219AF16429976005C3159 /* planet_icon_cost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_icon_cost.png; sourceTree = "<group>"; };
+		5BE219B016429976005C3159 /* planet_icon_cost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet_icon_cost@2x.png"; sourceTree = "<group>"; };
+		5BE219B116429976005C3159 /* planet_icon_income.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_icon_income.png; sourceTree = "<group>"; };
+		5BE219B216429976005C3159 /* planet_icon_income@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet_icon_income@2x.png"; sourceTree = "<group>"; };
 		5BEAAB2D16412568004271DB /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		5BEAAB2E16412568004271DB /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
 		5BEAAB2F16412568004271DB /* blueButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButtonHighlight.png; sourceTree = "<group>"; };
@@ -660,6 +688,7 @@
 		5B7E182916241ECC00E0315E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5BE21996164290C5005C3159 /* planet */,
 				5BDE26C916403BBD0032BA98 /* buttons */,
 				5B85D9FD163EA0920050BDF7 /* buildings */,
 				5B3FE69016355AEA00D9F2CC /* Bundles */,
@@ -787,6 +816,14 @@
 		5B85D9FD163EA0920050BDF7 /* buildings */ = {
 			isa = PBXGroup;
 			children = (
+				5BE2199F164296EF005C3159 /* building_bio.png */,
+				5BE219A0164296EF005C3159 /* building_bio@2x.png */,
+				5BE219A1164296EF005C3159 /* building_farm.png */,
+				5BE219A2164296EF005C3159 /* building_farm@2x.png */,
+				5BE219A3164296EF005C3159 /* building_mine.png */,
+				5BE219A4164296EF005C3159 /* building_mine@2x.png */,
+				5BE219A5164296EF005C3159 /* building_power.png */,
+				5BE219A6164296EF005C3159 /* building_power@2x.png */,
 				5B5BA5DA163EC47400B7FACE /* building_icon_time.png */,
 				5B5BA5DB163EC47400B7FACE /* building_icon_time@2x.png */,
 				5B85D9FE163EA0920050BDF7 /* building_icon_energy.png */,
@@ -816,8 +853,6 @@
 			children = (
 				5B1900881641C7100092EE86 /* icon_research.png */,
 				5B1900891641C7100092EE86 /* icon_research@2x.png */,
-				5B369FFE16395BF300FA8BC8 /* icon_planet_search.png */,
-				5B369FFF16395BF300FA8BC8 /* icon_planet_search@2x.png */,
 				5B906D051636A45C00C4C0DF /* icon_bank.png */,
 				5B906D061636A45C00C4C0DF /* icon_bank@2x.png */,
 				5B906D071636A45C00C4C0DF /* icon_equipment.png */,
@@ -1082,6 +1117,22 @@
 			path = assets/buttons;
 			sourceTree = SOURCE_ROOT;
 		};
+		5BE21996164290C5005C3159 /* planet */ = {
+			isa = PBXGroup;
+			children = (
+				5BE219AF16429976005C3159 /* planet_icon_cost.png */,
+				5BE219B016429976005C3159 /* planet_icon_cost@2x.png */,
+				5BE219B116429976005C3159 /* planet_icon_income.png */,
+				5BE219B216429976005C3159 /* planet_icon_income@2x.png */,
+				5BE21997164290C5005C3159 /* planet_icon_planet.png */,
+				5BE21998164290C5005C3159 /* planet_icon_planet@2x.png */,
+				5BE21999164290C5005C3159 /* planet_icon_system.png */,
+				5BE2199A164290C5005C3159 /* planet_icon_system@2x.png */,
+			);
+			name = planet;
+			path = assets/planet;
+			sourceTree = SOURCE_ROOT;
+		};
 		5BE7F8C71635973D00C5E0F7 /* Player Ship Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1256,8 +1307,6 @@
 				5BD07FB0163877C50035D38E /* PlanetViewController.xib in Resources */,
 				5B369FF61639489000FA8BC8 /* PlanetHubViewController.xib in Resources */,
 				5B369FFD1639515400FA8BC8 /* PlanetOverviewViewController.xib in Resources */,
-				5B36A00016395BF300FA8BC8 /* icon_planet_search.png in Resources */,
-				5B36A00116395BF300FA8BC8 /* icon_planet_search@2x.png in Resources */,
 				5B4104D01639D83A003E8CAD /* PlanetTableCell.xib in Resources */,
 				5BC4EC50163ABBAA00974929 /* PlanetBuildingViewController.xib in Resources */,
 				5BC4EC56163ABF7900974929 /* BuildingSelectionTableViewController.xib in Resources */,
@@ -1328,6 +1377,22 @@
 				5B19008A1641C7100092EE86 /* icon_research.png in Resources */,
 				5B19008B1641C7100092EE86 /* icon_research@2x.png in Resources */,
 				5B1900901641C7E00092EE86 /* PlanetResearchViewController.xib in Resources */,
+				5BE2199B164290C5005C3159 /* planet_icon_planet.png in Resources */,
+				5BE2199C164290C5005C3159 /* planet_icon_planet@2x.png in Resources */,
+				5BE2199D164290C5005C3159 /* planet_icon_system.png in Resources */,
+				5BE2199E164290C5005C3159 /* planet_icon_system@2x.png in Resources */,
+				5BE219A7164296F0005C3159 /* building_bio.png in Resources */,
+				5BE219A8164296F0005C3159 /* building_bio@2x.png in Resources */,
+				5BE219A9164296F0005C3159 /* building_farm.png in Resources */,
+				5BE219AA164296F0005C3159 /* building_farm@2x.png in Resources */,
+				5BE219AB164296F0005C3159 /* building_mine.png in Resources */,
+				5BE219AC164296F0005C3159 /* building_mine@2x.png in Resources */,
+				5BE219AD164296F0005C3159 /* building_power.png in Resources */,
+				5BE219AE164296F0005C3159 /* building_power@2x.png in Resources */,
+				5BE219B316429976005C3159 /* planet_icon_cost.png in Resources */,
+				5BE219B416429976005C3159 /* planet_icon_cost@2x.png in Resources */,
+				5BE219B516429976005C3159 /* planet_icon_income.png in Resources */,
+				5BE219B616429976005C3159 /* planet_icon_income@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

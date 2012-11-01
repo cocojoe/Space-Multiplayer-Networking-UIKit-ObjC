@@ -17,14 +17,13 @@
 
 #pragma mark IB Outlets
 @property (nonatomic) IBOutlet UILabel* buildingName;
-@property (nonatomic) IBOutlet UILabel* buildingDescription;
+@property (nonatomic) IBOutlet UIImageView* buildingIcon;
 @property (nonatomic) IBOutlet UILabel* buildingTime;
 
 @property (nonatomic) IBOutlet UILabel* buildingCostEnergy;
 @property (nonatomic) IBOutlet UILabel* buildingCostWorkers;
 @property (nonatomic) IBOutlet UILabel* buildingCostFood;
 @property (nonatomic) IBOutlet UILabel* buildingCostMinerals;
-@property (nonatomic) IBOutlet UILabel* buildingCostAmount;
 
 @property (nonatomic) IBOutlet UILabel* buildingRateEnergy;
 @property (nonatomic) IBOutlet UILabel* buildingRateWorkers;

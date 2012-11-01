@@ -48,10 +48,21 @@
         [item removeFromSuperview];
     }
     
-    // Track Vertical
-    // Initial Center in Parent UIView Horizontal, Variable Gap From Top
-    CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, BUILDING_QUEUE_ITEM_VERTICAL_OFFSET);
+    // Items to Add?
+    if([itemQueueArray count]==0)
+    {
+        // Rest Frame Height
+        CGRect frame = [self frame];
+        frame.size.height = 0;
+        [self setFrame:frame];
+        return;
+    }
+    
+    // Start Point (Relative to View)
     float totalHeight  = 0;
+    float itemHeight   = 0;
+    // Center in Parent View Horizontal, Border From Top
+    CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, totalHeight);
     
     // Build Views
     for(NSDictionary* itemQueue in itemQueueArray)
@@ -72,11 +83,8 @@
         if(ETA<=0)
         {
             ETA = 0; // CAP ETA 0
-            
-            // Clear Cache / Refresh
+            // Invalidate Cache (Will Force Update on Next Timer Cycle)
             [[[GameManager sharedInstance] planetDict] removeAllObjects];
-            // General Timer Will Catch Refresh
-            // [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
         } 
         float progress          = 0.0f;
         
@@ -94,19 +102,28 @@
         //[[newItem itemProgress] setProgressTintColor:[UIColor blueColor]];
         [newItem.itemETA setTimerText:[NSNumber numberWithDouble:ETA]];
 
-        
-        // View Alignment
+        // Alignment
+        if(totalHeight==0)
+        {
+            totalHeight+=newItem.frame.size.height*0.5f; // First Centre Point
+        } else {
+            totalHeight+=newItem.frame.size.height; // Next Centre Point
+        }
+        totalHeight+=BUILDING_QUEUE_ITEM_BORDER; // Border Top, Between Views
+        centerView.y=totalHeight;
         [newItem setCenter:centerView];
-        
-        // Next Position
-        centerView.y+=BUILDING_QUEUE_ITEM_BORDER+(newItem.bounds.size.height);
-        totalHeight+=newItem.bounds.size.height;
         
         [self addSubview:newItem];
         [_items addObject:newItem];
+        
+        // Required for Final Frame Height
+        itemHeight = newItem.frame.size.height;
     }
     
-    // Correct Frame Bounds
+    // Bottom Border
+    totalHeight+=BUILDING_QUEUE_ITEM_BORDER+(itemHeight*0.5f);
+    
+    // Correct Frame Height (Dynamic)
     CGRect frame = [self frame];
     frame.size.height = totalHeight;
     [self setFrame:frame];

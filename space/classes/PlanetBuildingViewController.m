@@ -13,6 +13,8 @@
 #import "BuildingListView.h"
 #import "BuildingQueueView.h"
 
+#define PLANET_BUILDING_VIEW_SPACER     10.0f
+
 @interface PlanetBuildingViewController ()
 
 @end
@@ -40,7 +42,7 @@
             _mainScrollView = (UIScrollView *)subView;
             _mainScrollView.delegate = (id) self;
             
-            // Set Size (No Auto Layout)
+            // Set Content Size (No Auto Layout)
             _mainScrollView.contentSize=self.view.frame.size;
         }
     }
@@ -131,25 +133,15 @@
         [_buildingQueueView setupQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"building"]];
         [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];
         
-        /*
-        // Push List Frame Down
-        CGRect frameList  = [_buildingListView frame];
-        CGRect frameQueue = [_buildingQueueView frame];
-        frameList.origin.y = frameQueue.size.height + 20.0f;
-        [_buildingListView setFrame:frameList];
+        // Push List Down (From Queue)
+        CGRect newFrame    = [_buildingListView frame];
+        newFrame.origin.y  = _buildingQueueView.frame.size.height+PLANET_BUILDING_VIEW_SPACER;
+        [_buildingListView setFrame:newFrame];
         
-        [self.view setNeedsLayout];
-        
-        // Set Size (No Auto Layout)
-        CGSize scrollSize = _mainScrollView.contentSize;
-        scrollSize.height-=frameList.size.height+frameQueue.size.height;
-        _mainScrollView.contentSize=frameList.size;
-        */
-        
-        int buildingRows = [[planetDict objectForKey:@"buildings"] count];
-        CGSize content = _mainScrollView.contentSize;
-        //content.height*=buildingRows*40;
-        _mainScrollView.contentSize = content;
+        // Adjust Content Size
+        CGSize contentSize = _mainScrollView.contentSize;
+        contentSize.height  = _buildingListView.frame.size.height+_buildingQueueView.frame.size.height+(PLANET_BUILDING_VIEW_SPACER*2.0f); // 2 Views + Padding
+        _mainScrollView.contentSize=contentSize;
         
     }];
     

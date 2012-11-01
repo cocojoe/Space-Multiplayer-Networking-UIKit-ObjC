@@ -121,7 +121,7 @@
     
     if([[[_planets objectAtIndex:indexPath.row] objectForKey:@"id"] intValue] == [[GameManager sharedInstance] planetID])
     {
-        cell.backgroundColor = [UIColor blueColor];
+        cell.backgroundColor = [UIColor colorWithRed:6/255.0f green:50/255.0f blue:65/255.0f alpha:0.7f];
     }
 
 }

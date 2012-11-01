@@ -12,7 +12,6 @@
 @interface BuildingListItemView : UIView
 
 @property (nonatomic) IBOutlet UILabel* buildingName;
-@property (nonatomic) IBOutlet UILabel* buildingDescription;
 @property (nonatomic) IBOutlet UILabel* buildingAmount;
 
 @property (nonatomic) IBOutlet UILabel* buildingEnergy;

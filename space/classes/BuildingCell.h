@@ -12,6 +12,7 @@
 
 @property (nonatomic) IBOutlet UILabel* buildingName;
 @property (nonatomic) IBOutlet UILabel* buildingTime;
+@property (nonatomic) IBOutlet UIImageView* buildingIcon;
 
 -(void) refresh:(NSDictionary*) buildingDict;
 

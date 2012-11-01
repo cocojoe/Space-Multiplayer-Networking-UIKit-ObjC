@@ -415,7 +415,6 @@
         } setBlockFail:nil];
         
     }]];
-    
 }
 
 -(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock
@@ -585,6 +584,7 @@
 #pragma mark Notifications
 -(void) createNotification:(double)time setMessage:(NSString *)message
 {
+   
     // Create Local Notificaiton
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     

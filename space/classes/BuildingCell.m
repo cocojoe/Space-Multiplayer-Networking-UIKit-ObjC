@@ -41,6 +41,12 @@
     
     // Build Time
     [_buildingTime setTimerText:[buildingDict objectForKey:@"time"]];
+    
+    // Load Icon
+    if([buildingDict objectForKey:@"image"]!=[NSNull null])
+    {
+        [_buildingIcon setImage:[UIImage imageNamed:[buildingDict objectForKey:@"image"]]];
+    }
 }
 
 @end

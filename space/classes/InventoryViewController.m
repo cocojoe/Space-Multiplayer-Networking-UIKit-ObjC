@@ -131,6 +131,10 @@
         cell = [[InventoryCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    // Disable Selection On General Inventory
+    if(!_partID)
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     // Populate Cell
     NSDictionary* cellDict  = [_inventoryFiltered objectAtIndex:indexPath.row];
     [cell refresh:cellDict];

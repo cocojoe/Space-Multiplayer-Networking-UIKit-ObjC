@@ -36,6 +36,8 @@
     
     // Cornered
     self.layer.cornerRadius = 4;
+    self.layer.borderColor = [UIColor colorWithRed:6/255.0f green:50/255.0f blue:65/255.0f alpha:1.0f].CGColor;
+    self.layer.borderWidth = 2.0f;
 }
 
 -(void) refresh:(NSDictionary*) buildingDict
@@ -59,7 +61,6 @@
             
             // Basics
             [_buildingName setText:[buildingDetail objectForKey:@"name"]];
-            [_buildingDescription setText:[buildingDetail objectForKey:@"description"]];
             
             // Amount (QTY)
             qty = [[buildingDict objectForKey:@"amount"] intValue];

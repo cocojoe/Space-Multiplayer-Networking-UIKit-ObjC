@@ -40,6 +40,7 @@
             
             // Set Size (No Auto Layout)
             _mainScrollView.contentSize=self.view.frame.size;
+            
         }
     }
     
