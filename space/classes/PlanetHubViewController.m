@@ -116,9 +116,14 @@
     [self.view bringSubviewToFront:_planetBuildingViewController.view];
     [_planetBuildingViewController refreshData];
     
+    /*
     // Search Planet Option
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:_planetBuildingViewController action:@selector(showBuildingList)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
+    */
+    
+    [[self navigationItem] setRightBarButtonItem:nil];
+   
 }
 
 -(void) setPlanetResearchController

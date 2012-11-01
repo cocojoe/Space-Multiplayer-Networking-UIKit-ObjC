@@ -777,6 +777,7 @@
 				5B8F1A2D1624684500274D4E /* Objects */,
 				5B7E1869162434CC00E0315E /* GameManager.h */,
 				5B7E186A162434CC00E0315E /* GameManager.m */,
+				5B9BBD00163F20E6008C6B7E /* Building Popup Option */,
 				5BF38E4516316B890029658A /* UIView+FindUIViewController.h */,
 				5BF38E4616316B890029658A /* UIView+FindUIViewController.m */,
 				5B85DA11163EB0E80050BDF7 /* UILabel+formatHelpers.h */,
@@ -901,6 +902,7 @@
 				5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */,
 			);
 			name = "Building Popup Option";
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		5BB6251D16314A76005BB81B /* Parts */ = {
@@ -921,21 +923,20 @@
 				5BC4EC4D163ABBAA00974929 /* PlanetBuildingViewController.m */,
 				5BC4EC4E163ABBAA00974929 /* PlanetBuildingViewController.xib */,
 				5B420A5A163E8E780015FBA6 /* Buildings Overview Views */,
-				5BC4EC51163ABE4E00974929 /* Building Selector Controller */,
+				5BC4EC51163ABE4E00974929 /* (Defunct) Building Selector Controller */,
 			);
 			name = "Planet Buildings Controller";
 			sourceTree = "<group>";
 		};
-		5BC4EC51163ABE4E00974929 /* Building Selector Controller */ = {
+		5BC4EC51163ABE4E00974929 /* (Defunct) Building Selector Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B9BBD00163F20E6008C6B7E /* Building Popup Option */,
 				5BC4EC57163AC55200974929 /* Building Selector Cells */,
 				5BC4EC52163ABF7900974929 /* BuildingSelectionTableViewController.h */,
 				5BC4EC53163ABF7900974929 /* BuildingSelectionTableViewController.m */,
 				5BC4EC54163ABF7900974929 /* BuildingSelectionTableViewController.xib */,
 			);
-			name = "Building Selector Controller";
+			name = "(Defunct) Building Selector Controller";
 			sourceTree = "<group>";
 		};
 		5BC4EC57163AC55200974929 /* Building Selector Cells */ = {

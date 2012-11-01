@@ -167,8 +167,6 @@
         // Set Notification
         [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"%@ completed",_buildingName.text]];
         
-        // Dismiss
-        [_parent performSelector:@selector(dismissBuildingPopUp:) withObject:nil afterDelay:0.15f];
     } setBlockFail:^(){
         [self unlockUI];
     }];

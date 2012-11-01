@@ -23,6 +23,9 @@
 // UI Kit Find Parent Controller
 #import "UIView+FindUIViewController.h"
 
+// Building View (Popup)
+#import "BuildingBuildView.h"
+
 // Master View (ZUUReval)
 
 @implementation GameManager
@@ -55,8 +58,7 @@
         _planetDict           = [[NSMutableDictionary alloc] init];
         _inventoryDict        = [[NSMutableDictionary alloc] init];
         _planetsDict          = [[NSMutableDictionary alloc] init];
-        
-        _buildingsAllowedDict = [[NSMutableDictionary alloc] init];
+
         _researchAllowedDict  = [[NSMutableDictionary alloc] init];
         
         // Data Store
@@ -282,7 +284,7 @@
             
             // Store Master List
             [_masterResearchList setArray:[jsonDict objectForKey:@"research"]];
-            CCLOG(@"Master Research List Retrieved, %d Items", [_masterResearchList count]);
+            //CCLOG(@"Master Research List Retrieved, %d Items", [_masterResearchList count]);
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         
@@ -398,25 +400,6 @@
 }
 
 #pragma mark Buildings
--(void) refreshBuildingsAllowed:(ResponseBlock)actionBlock
-{
-    
-    if([self shouldUseCache:_buildingsAllowedDict setBlock:actionBlock])
-        return;
-    
-    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-        
-        [self makeRequest:URI_BUILDING_ALLOWED setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            
-            // Cache Information
-            [_buildingsAllowedDict setDictionary:jsonDict];
-            
-            actionBlock(jsonDict);
-        } setBlockFail:nil];
-        
-    }]];
-}
-
 -(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock
 {
     // Create DATA Dictionary
@@ -593,6 +576,72 @@
     localNotification.soundName                  = UILocalNotificationDefaultSoundName;
     localNotification.applicationIconBadgeNumber = 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
+#pragma mark Building Popup
+-(void) createBuildingPopup:(int) buildingID
+{
+    // Lookup Building
+    NSDictionary* buildingDict;
+    
+    for(NSDictionary* buildingDetail in [[GameManager sharedInstance] masterBuildingList])
+    {
+        // Check Master Buildings / Add
+        if([[buildingDetail objectForKey:@"id"] integerValue]==buildingID)
+        {
+            buildingDict = [NSDictionary dictionaryWithDictionary:buildingDetail];
+        }
+    }
+    // Current Window
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    // Root ViewController
+    UIViewController *rootViewController = window.rootViewController;
+    // Root View
+    UIView* masterView = rootViewController.view;
+    
+    // Create Grey Background
+    UIView *dimBackgroundView = [[UIView alloc] initWithFrame:masterView.bounds];
+    dimBackgroundView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7f];
+    dimBackgroundView.tag = TAG_POPUP_GREY;
+    [masterView addSubview:dimBackgroundView];
+    
+    // Add Tap (Cancel Popup)
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dismissBuildingPopUp:)];
+    [dimBackgroundView addGestureRecognizer:singleFingerTap];
+    
+    // Create Building Build View
+    BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
+    [buildingPopup setCenter:CGPointMake(masterView.frame.size.width*0.5f, masterView.frame.size.height*0.5f)];
+    buildingPopup.tag = TAG_POPUP;
+    [masterView addSubview:buildingPopup];
+    
+    // Setup Popup
+    [buildingPopup setup:buildingDict];
+    
+}
+
+// Dismiss Popup
+-(void) dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer {
+    
+    // Current Window
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    // Root ViewController
+    UIViewController *rootViewController = window.rootViewController;
+    // Root View
+    UIView* masterView = rootViewController.view;
+    
+    UIView *dimBackgroundView   = [masterView viewWithTag:TAG_POPUP_GREY];
+    UIView *buildingPopup       = [masterView viewWithTag:TAG_POPUP];
+    
+    // Remove Recognizer
+    for (UIGestureRecognizer *recognizer in dimBackgroundView.gestureRecognizers) {
+        [dimBackgroundView removeGestureRecognizer:recognizer];
+    }
+    
+    [dimBackgroundView removeFromSuperview];
+    [buildingPopup removeFromSuperview];
 }
 
 @end

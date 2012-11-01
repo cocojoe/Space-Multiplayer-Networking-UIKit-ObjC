@@ -52,6 +52,7 @@
 #pragma mark Data Processing
 -(void) refreshData
 {
+    /*
     [[GameManager sharedInstance] refreshBuildingsAllowed:^(NSDictionary *jsonDict){
         
         // Assign Inventory JSON
@@ -59,6 +60,7 @@
         
         [self defaultFilter];
     }];
+    */
 
 }
 

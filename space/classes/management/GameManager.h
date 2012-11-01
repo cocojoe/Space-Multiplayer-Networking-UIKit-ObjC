@@ -90,7 +90,6 @@ enum eAuthenticationState {
     NSMutableDictionary* _planetsDict;
     
     // Planet Available
-    NSMutableDictionary* _buildingsAllowedDict;
     NSMutableDictionary* _researchAllowedDict;
     
     // Queues (API Communication)
@@ -159,7 +158,6 @@ enum eAuthenticationState {
 -(void) refreshPlanet:(ResponseBlock) actionBlock;
 
 #pragma mark Buildings
--(void) refreshBuildingsAllowed:(ResponseBlock) actionBlock;
 -(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
 
 #pragma mark Notifications
@@ -167,5 +165,9 @@ enum eAuthenticationState {
 
 #pragma mark General Helpers
 -(NSDictionary*) getBuilding:(int) building_id;
+
+#pragma mark Building Popup
+-(void) createBuildingPopup:(int) buildingID;
+-(void) dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer;
 
 @end
