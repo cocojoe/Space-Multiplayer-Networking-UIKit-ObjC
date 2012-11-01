@@ -13,7 +13,7 @@
 #import "BuildingListView.h"
 #import "BuildingQueueView.h"
 
-#define PLANET_BUILDING_VIEW_SPACER     10.0f
+#define PLANET_BUILDING_VIEW_SPACER     5.0f
 
 @interface PlanetBuildingViewController ()
 
@@ -52,6 +52,9 @@
     [pull setDelegate:self];
     pull.tag = TAG_PULL;
     [_mainScrollView addSubview:pull];
+    
+    // Store Original List View Frame
+    originalListFrame = [_buildingListView frame];
     
     // Setup Timer
     _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:DEFAULT_QUEUE_VIEW_REFRESH target:self selector:@selector(refreshData) userInfo:nil repeats:YES];
@@ -135,12 +138,12 @@
         
         // Push List Down (From Queue)
         CGRect newFrame    = [_buildingListView frame];
-        newFrame.origin.y  = _buildingQueueView.frame.size.height+PLANET_BUILDING_VIEW_SPACER;
+        newFrame.origin.y  = originalListFrame.origin.y + _buildingQueueView.frame.size.height+PLANET_BUILDING_VIEW_SPACER;
         [_buildingListView setFrame:newFrame];
         
         // Adjust Content Size
-        CGSize contentSize = _mainScrollView.contentSize;
-        contentSize.height  = _buildingListView.frame.size.height+_buildingQueueView.frame.size.height+(PLANET_BUILDING_VIEW_SPACER*2.0f); // 2 Views + Padding
+        CGSize contentSize  = _mainScrollView.contentSize;
+        contentSize.height  = originalListFrame.origin.y+ _buildingListView.frame.size.height+_buildingQueueView.frame.size.height+(PLANET_BUILDING_VIEW_SPACER*2.0f); // 2 Views + Padding
         _mainScrollView.contentSize=contentSize;
         
     }];
@@ -159,6 +162,16 @@
     // Push Inventory Selection View
     UIViewController* viewController = [[GameManager sharedInstance] view];
     [viewController presentModalViewController:navigation animated:YES];
+}
+
+#pragma mark Segment 
+- (IBAction)segmentSwitch:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    segmentedControl.selectedSegmentIndex = selectedSegment;
+    
+    CCLOG(@"Segment Selected: %d",selectedSegment);
 }
 
 @end

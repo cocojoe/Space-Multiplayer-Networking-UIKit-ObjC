@@ -23,5 +23,9 @@
 
 -(void) refresh:(NSDictionary*) buildingDict;
 
+// Buttons
+@property (nonatomic) IBOutlet UIButton* button;
+-(IBAction) buttonPressed:(id)sender;
+
 
 @end

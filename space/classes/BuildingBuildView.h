@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class BuildingSelectionTableViewController;
-
 @interface BuildingBuildView : UIView
 
 #pragma mark Original Data
@@ -34,11 +32,12 @@
 #pragma mark Internal Reference
 @property (nonatomic,readwrite) int amount;
 @property (nonatomic,readwrite) int building_id;
-@property (weak,nonatomic) BuildingSelectionTableViewController* parent;
+@property (weak,nonatomic) UIViewController* parent;
 
 #pragma mark Actions
 @property (nonatomic) IBOutlet UIStepper* stepperAmount;
 -(IBAction) stepperValueChanged:(id)sender;
+
 @property (nonatomic) IBOutlet UIButton* button;
 -(IBAction) buttonPressed:(id)sender;
 

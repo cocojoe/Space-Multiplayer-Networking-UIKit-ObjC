@@ -61,7 +61,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="204775877"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<float key="IBUIAlpha">0.40000000596046448</float>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -119,13 +119,13 @@
 						<reference key="IBUITextColor" ref="117788107"/>
 						<reference key="IBUIHighlightedColor" ref="117788107"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="129140716">
 							<string key="name">Optima-ExtraBlack</string>
 							<string key="family">Optima</string>
 							<int key="traits">2</int>
 							<double key="pointSize">16</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="255494559">
 							<string key="NSName">Optima-ExtraBlack</string>
 							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
@@ -172,17 +172,8 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="51240302">
-									<string key="name">Optima-ExtraBlack</string>
-									<string key="family">Optima</string>
-									<int key="traits">2</int>
-									<double key="pointSize">15</double>
-								</object>
-								<object class="NSFont" key="IBUIFont" id="599375864">
-									<string key="NSName">Optima-ExtraBlack</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="843935093">
@@ -205,8 +196,8 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="420218617">
@@ -229,8 +220,8 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIImageView" id="929103815">
@@ -285,8 +276,8 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIImageView" id="68914945">
@@ -321,7 +312,7 @@
 									<string key="NSResourceName">building_icon_minerals.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="27601196">
+							<object class="IBUIImageView" id="88378292">
 								<reference key="NSNextResponder" ref="897904345"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 20}, {32, 32}}</string>
@@ -329,6 +320,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="68914945"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -340,7 +332,7 @@
 						<string key="NSFrame">{{7, 64}, {307, 72}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="27601196"/>
+						<reference key="NSNextKeyView" ref="88378292"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="329037822">
 							<int key="NSColorSpace">3</int>
@@ -369,8 +361,8 @@
 								<reference key="IBUITextColor" ref="117788107"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="804628769">
@@ -390,8 +382,8 @@
 								<reference key="IBUITextColor" ref="117788107"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="57050468">
@@ -411,8 +403,8 @@
 								<reference key="IBUITextColor" ref="117788107"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIImageView" id="843724720">
@@ -458,8 +450,8 @@
 								<reference key="IBUITextColor" ref="117788107"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="51240302"/>
-								<reference key="IBUIFont" ref="599375864"/>
+								<reference key="IBUIFontDescription" ref="129140716"/>
+								<reference key="IBUIFont" ref="255494559"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIImageView" id="959804256">
@@ -488,7 +480,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIImage" ref="51326736"/>
 							</object>
-							<object class="IBUIImageView" id="589069088">
+							<object class="IBUIImageView" id="827725603">
 								<reference key="NSNextResponder" ref="329740437"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 19}, {32, 32}}</string>
@@ -508,7 +500,7 @@
 						<string key="NSFrame">{{7, 144}, {307, 69}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="589069088"/>
+						<reference key="NSNextKeyView" ref="827725603"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="329037822"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -573,11 +565,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">x1</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEgMC42AA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">lightTextColor</string>
-						</object>
+						<reference key="IBUITextColor" ref="117788107"/>
 						<reference key="IBUIHighlightedColor" ref="117788107"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<reference key="IBUIFontDescription" ref="738488191"/>
@@ -779,13 +767,13 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="239898638"/>
 							<reference ref="929103815"/>
-							<reference ref="339963355"/>
 							<reference ref="245113317"/>
 							<reference ref="843935093"/>
 							<reference ref="420218617"/>
 							<reference ref="693845698"/>
 							<reference ref="68914945"/>
-							<reference ref="27601196"/>
+							<reference ref="88378292"/>
+							<reference ref="339963355"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -840,13 +828,13 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="959804256"/>
 							<reference ref="227164215"/>
-							<reference ref="627093244"/>
 							<reference ref="681762968"/>
 							<reference ref="382228121"/>
 							<reference ref="57050468"/>
 							<reference ref="804628769"/>
 							<reference ref="843724720"/>
-							<reference ref="589069088"/>
+							<reference ref="827725603"/>
+							<reference ref="627093244"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -917,12 +905,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">134</int>
-						<reference key="object" ref="27601196"/>
+						<reference key="object" ref="88378292"/>
 						<reference key="parent" ref="897904345"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">135</int>
-						<reference key="object" ref="589069088"/>
+						<reference key="object" ref="827725603"/>
 						<reference key="parent" ref="329740437"/>
 					</object>
 				</array>

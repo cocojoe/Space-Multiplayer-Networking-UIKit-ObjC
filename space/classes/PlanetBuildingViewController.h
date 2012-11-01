@@ -13,6 +13,9 @@
 @class BuildingQueueView;
 
 @interface PlanetBuildingViewController : UIViewController <PullToRefreshViewDelegate>
+{
+    CGRect originalListFrame;
+}
 
 @property (nonatomic) NSTimer* refreshTimer;
 @property (nonatomic) UIScrollView* mainScrollView;
@@ -20,6 +23,10 @@
 // Custom IBOutlet Views
 @property (nonatomic) IBOutlet BuildingListView* buildingListView;
 @property (nonatomic) IBOutlet BuildingQueueView* buildingQueueView;
+@property (nonatomic) IBOutlet UISegmentedControl* groupControl;
+
+#pragma mark Segment
+- (IBAction)segmentSwitch:(id)sender;
 
 #pragma mark Data Processing
 -(void) refreshData;

@@ -234,9 +234,6 @@
     
     [dimBackgroundView removeFromSuperview];
     [buildingPopup removeFromSuperview];
-    
-    // Reset View
-    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 @end

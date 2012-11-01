@@ -7,6 +7,7 @@
 //
 
 #import "BuildingListItemView.h"
+#import "BuildingBuildView.h"
 #import "GameManager.h"
 #import "UILabel+formatHelpers.h"
 
@@ -42,6 +43,11 @@
 
 -(void) refresh:(NSDictionary*) buildingDict
 {
+    
+    // Modify Button
+    UIImage *buttonImage = [[UIImage imageNamed:@"blueButton"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [_button setBackgroundImage:buttonImage forState:UIControlStateNormal];
    
     // Number Formatter
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -92,5 +98,79 @@
         }
     }
 }
+
+// Button Pressed
+-(IBAction) buttonPressed:(id)sender
+{
+    //UIButton *button = (UIButton *) sender;
+    [self createBuildingPopup];
+}
+
+#pragma mark Building Popup
+-(void) createBuildingPopup
+{
+    // Lookup Building
+    NSDictionary* buildingDict;
+    
+    for(NSDictionary* buildingDetail in [[GameManager sharedInstance] masterBuildingList])
+    {
+        // Check Master Buildings / Add
+        if([[buildingDetail objectForKey:@"id"] integerValue]==_buildingID)
+        {
+            buildingDict = [NSDictionary dictionaryWithDictionary:buildingDetail];
+        }
+    }
+    // Current Window
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    // Root ViewController
+    UIViewController *rootViewController = window.rootViewController;
+    // Root View
+    UIView* masterView = rootViewController.view;
+    
+    // Create Grey Background
+    UIView *dimBackgroundView = [[UIView alloc] initWithFrame:masterView.bounds];
+    dimBackgroundView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7f];
+    dimBackgroundView.tag = TAG_POPUP_GREY;
+    [masterView addSubview:dimBackgroundView];
+    
+    // Add Tap (Cancel Popup)
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dismissBuildingPopUp:)];
+    [dimBackgroundView addGestureRecognizer:singleFingerTap];
+    
+    // Create Building Build View
+    BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
+    [buildingPopup setCenter:CGPointMake(masterView.frame.size.width*0.5f, masterView.frame.size.height*0.5f)];
+    buildingPopup.tag = TAG_POPUP;
+    [masterView addSubview:buildingPopup];
+    
+    // Setup Popup
+    [buildingPopup setup:buildingDict];
+    
+}
+
+// Dismiss Popup
+- (void)dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer {
+    
+    // Current Window
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    // Root ViewController
+    UIViewController *rootViewController = window.rootViewController;
+    // Root View
+    UIView* masterView = rootViewController.view;
+    
+    UIView *dimBackgroundView   = [masterView viewWithTag:TAG_POPUP_GREY];
+    UIView *buildingPopup       = [masterView viewWithTag:TAG_POPUP];
+    
+    // Remove Recognizer
+    for (UIGestureRecognizer *recognizer in dimBackgroundView.gestureRecognizers) {
+        [dimBackgroundView removeGestureRecognizer:recognizer];
+    }
+    
+    [dimBackgroundView removeFromSuperview];
+    [buildingPopup removeFromSuperview];
+}
+
 
 @end

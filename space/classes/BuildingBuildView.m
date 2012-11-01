@@ -45,7 +45,7 @@
     
     // Modify Button
     UIImage *buttonImage = [[UIImage imageNamed:@"blueButton"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(8, 16, 8, 16)];
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
     [_button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
     // Store Dictionary
@@ -56,6 +56,12 @@
     
     // Building ID
     _building_id = [[buildingDict objectForKey:@"id"] intValue];
+    
+    // Load Icon
+    if([buildingDict objectForKey:@"image"]!=[NSNull null])
+    {
+        [_buildingIcon setImage:[UIImage imageNamed:[buildingDict objectForKey:@"image"]]];
+    }
     
     // Dynamic Updates
     [self updateAmount];
