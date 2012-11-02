@@ -36,13 +36,13 @@ typedef void (^BasicBlock)          ();
 #define DEFAULT_QUEUE_VIEW_REFRESH      1.0f
 
 // API Credentials
-#define APP_ID          (@"67542423701777489896990453036662")
-#define APP_SECRET      (@"ynTQL9cuckeX6FQ2wMFwJIVe70xLGd25qLL2LOnNZrBVWiOjUjFtSryPhWrO0kKh")
+#define APP_ID                          (@"67542423701777489896990453036662")
+#define APP_SECRET                      (@"ynTQL9cuckeX6FQ2wMFwJIVe70xLGd25qLL2LOnNZrBVWiOjUjFtSryPhWrO0kKh")
 
 // REQUESTS
-#define HOST_NAME       (@"http://darkmatter.andyburton.co.uk")
-#define HOST_TIMEOUT    8
-#define HOST_RETRY      5
+#define HOST_NAME                       (@"http://darkmatter.andyburton.co.uk")
+#define HOST_TIMEOUT                    8
+#define HOST_RETRY                      5
 
 // API
 #define URI_AUTH                        (@"/api/auth/")
@@ -58,10 +58,11 @@ typedef void (^BasicBlock)          ();
 #define URI_PART_MASTER                 (@"/api/part/")
 #define URI_PLAYER_PLANETS              (@"/api/player/planets")
 #define URI_PLANET                      (@"/api/planet/index")
-#define URI_MASTER_BUILDING             (@"/api/building/")
-#define URI_BUILDING_ALLOWED            (@"/api/player/buildings")
 
+// Buildings
+#define URI_MASTER_BUILDING             (@"/api/building/")
 #define URI_BUILDING_ADD                (@"/api/planet/build")
+#define URI_BUILDING_GROUP              (@"/api/building/group/")
 
 // API Research
 #define URI_MASTER_RESEARCH             (@"/api/research/")
@@ -105,12 +106,13 @@ enum eAuthenticationState {
 // Cache Stores (So Can Clear 'Cache' Publically)
 @property (nonatomic) NSMutableDictionary* planetDict;
 
-// Data Stores
+// Master Data Stores
 @property (nonatomic) NSMutableArray* masterItemList;
 @property (nonatomic) NSMutableArray* masterPartList;
 @property (nonatomic) NSMutableArray* masterGroupList;
 @property (nonatomic) NSMutableArray* masterBuildingList;
 @property (nonatomic) NSMutableArray* masterResearchList;
+@property (nonatomic) NSMutableArray* masterBuildingGrouplist;
 
 // Preferences (Helpers)
 @property (nonatomic, readwrite) int planetID;
@@ -144,6 +146,7 @@ enum eAuthenticationState {
 -(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterBuilding:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
+-(void) retrieveMasterBuildingGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 -(void) retrieveMasterResearch:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 
 #pragma mark Inventory
@@ -165,6 +168,7 @@ enum eAuthenticationState {
 
 #pragma mark General Helpers
 -(NSDictionary*) getBuilding:(int) building_id;
+-(NSMutableArray*) getBuildingGroup:(NSString*) name;
 
 #pragma mark Building Popup
 -(void) createBuildingPopup:(int) buildingID;

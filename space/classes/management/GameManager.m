@@ -62,11 +62,12 @@
         _researchAllowedDict  = [[NSMutableDictionary alloc] init];
         
         // Data Store
-        _masterItemList     = [[NSMutableArray alloc] init];
-        _masterPartList     = [[NSMutableArray alloc] init];
-        _masterGroupList    = [[NSMutableArray alloc] init];
-        _masterBuildingList = [[NSMutableArray alloc] init];
-        _masterResearchList = [[NSMutableArray alloc] init];
+        _masterItemList             = [[NSMutableArray alloc] init];
+        _masterPartList             = [[NSMutableArray alloc] init];
+        _masterGroupList            = [[NSMutableArray alloc] init];
+        _masterBuildingList         = [[NSMutableArray alloc] init];
+        _masterResearchList         = [[NSMutableArray alloc] init];
+        _masterBuildingGrouplist    = [[NSMutableArray alloc] init];
         
         // Authorisation
         _eAuthenticationState = eAuthenticationNone;
@@ -275,6 +276,23 @@
     
 }
 
+-(void) retrieveMasterBuildingGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
+{
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_BUILDING_GROUP setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+            
+            // Store Master List
+            [_masterBuildingGrouplist setArray:[jsonDict objectForKey:@"groups"]];
+            //CCLOG(@"Master Building Group List Retrieved, %d Items", [_masterBuildingGrouplist count]);
+            actionBlock();
+        } setBlockFail:^(){errorBlock();}];
+        
+    }]];
+    
+}
+
 -(void) retrieveMasterResearch:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
 {
     
@@ -376,6 +394,10 @@
 
 -(void) refreshPlanet:(ResponseBlock) actionBlock
 {
+    
+    // Check A Planet Currently Selected 
+    if(!_planetID)
+        return;
     
     if([self shouldUseCache:_planetDict setBlock:actionBlock])
         return;
@@ -562,6 +584,37 @@
     }
     
     return nil;
+}
+
+-(NSMutableArray*) getBuildingGroup:(NSString*) name
+{
+    NSMutableArray* groupList = [[NSMutableArray alloc] init];
+    
+    int groupID = 0;
+    for(NSDictionary* groupItem in [[GameManager sharedInstance] masterBuildingGrouplist])
+    {
+        // Find Matching Group
+        if([[groupItem objectForKey:@"name"] isEqualToString:name])
+        {
+            groupID = [[groupItem objectForKey:@"id"] intValue];
+            [groupList addObject:[NSNumber numberWithInt:groupID]];
+            break;
+        }
+    }
+    
+    // Find Children
+    for(NSDictionary* groupItem in [[GameManager sharedInstance] masterBuildingGrouplist])
+    {
+        // Find Matching Group
+        if([groupItem objectForKey:@"parent_id"]!=[NSNull null])
+        {
+            if([[groupItem objectForKey:@"parent_id"] intValue]==groupID)
+                [groupList addObject:[NSNumber numberWithInt:[[groupItem objectForKey:@"id"] intValue]]];
+        }
+    }
+
+    
+    return groupList;
 }
 
 #pragma mark Notifications

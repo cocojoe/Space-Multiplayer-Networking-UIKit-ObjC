@@ -23,7 +23,7 @@
 // Custom IBOutlet Views
 @property (nonatomic) IBOutlet BuildingListView* buildingListView;
 @property (nonatomic) IBOutlet BuildingQueueView* buildingQueueView;
-@property (nonatomic) IBOutlet UISegmentedControl* groupControl;
+@property (nonatomic) IBOutlet UISegmentedControl* segmentGroup;
 
 #pragma mark Segment
 - (IBAction)segmentSwitch:(id)sender;

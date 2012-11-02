@@ -12,8 +12,14 @@
 @interface BuildingListView : UIView
 {
     NSMutableArray* _viewArray;
+    
+    NSMutableArray* _building;
+    NSMutableArray* _buildingFiltered;
 }
 
--(void) refresh:(NSMutableArray*) buildingDict;
+@property (nonatomic) NSString* groupFilter;
+
+#pragma mark Data Handling
+-(void) refresh:(NSMutableArray*) buildingList;
 
 @end

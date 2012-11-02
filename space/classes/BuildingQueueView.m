@@ -42,13 +42,14 @@
 -(void) setupQueue:(NSMutableArray*) itemQueueArray
 {
     
-    // Remove Views
+    // Remove Existing Views
     for(BuildingQueueItemView* item in _items)
     {
         [item removeFromSuperview];
     }
+    [_items removeAllObjects];
     
-    // Items to Add?
+    // Items to Add
     if([itemQueueArray count]==0)
     {
         // Rest Frame Height
@@ -73,34 +74,19 @@
         // Set Items(id)
         [newItem setItemID:[[itemQueue objectForKey:@"building_id"] intValue]];
         
+        // Set Time(s)
+        [newItem setEndTime:[[itemQueue objectForKey:@"end_time"] doubleValue]];
+        [newItem setStartTime:[[itemQueue objectForKey:@"start_time"] doubleValue]];
+        
         // Grab Building Data
         NSDictionary* itemMasterDetail = [[GameManager sharedInstance] getBuilding:[newItem itemID]];
-
-        // Calculate Progress
-        double progressDivision = 1.0f / (([[itemQueue objectForKey:@"end_time"] doubleValue] - [[itemQueue objectForKey:@"start_time"] doubleValue]));
-        double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
-        double ETA              = [[itemQueue objectForKey:@"end_time"] doubleValue] - currentProgress;
-        if(ETA<=0)
-        {
-            ETA = 0; // CAP ETA 0
-            // Invalidate Cache (Will Force Update on Next Timer Cycle)
-            [[[GameManager sharedInstance] planetDict] removeAllObjects];
-        } 
-        float progress          = 0.0f;
-        
-        // Check Completion
-        if(currentProgress>=[[itemQueue objectForKey:@"end_time"] doubleValue])
-            progress = 1.0f;
-        else { // Calculate Progress
-            progress = (currentProgress - [[itemQueue objectForKey:@"start_time"] doubleValue]) * progressDivision;
-        }
                                                                                 
         // Setup Item Details
         newItem.itemName.text         = [itemMasterDetail objectForKey:@"name"];
         newItem.itemAmount.text       = [NSString stringWithFormat:@"x%d",[[itemQueue objectForKey:@"amount"] intValue]];
-        [[newItem itemProgress] setProgress:progress animated:NO];
-        //[[newItem itemProgress] setProgressTintColor:[UIColor blueColor]];
-        [newItem.itemETA setTimerText:[NSNumber numberWithDouble:ETA]];
+        
+        // Set Timer / Progress
+        [self updateQueueTimer:newItem];
 
         // Alignment
         if(totalHeight==0)
@@ -127,6 +113,54 @@
     CGRect frame = [self frame];
     frame.size.height = totalHeight;
     [self setFrame:frame];
+}
+
+-(void) updateQueue
+{
+    // Just In Case
+    if([_items count]==0)
+        return;
+    
+    BOOL bRefresh = NO;
+    for(BuildingQueueItemView* newItem in _items) {
+        if([self updateQueueTimer:newItem])
+            bRefresh = YES;
+    }
+    
+    // Refresh Required
+    if(bRefresh)
+    {
+        // Invalidate Cache / Full Refresh
+        [[[GameManager sharedInstance] planetDict] removeAllObjects];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
+    }
+}
+
+-(BOOL) updateQueueTimer:(BuildingQueueItemView*) newItem
+{
+    // Calculate Progress
+    double progressDivision = 1.0f / ([newItem endTime] - [newItem startTime]);
+    double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
+    double ETA              = [newItem endTime] - currentProgress;
+    float progress          = 0.0f;
+    if(ETA<=0)
+        ETA = 0; // CAP ETA 0
+    
+    // Cap Completion
+    if(ETA==0) {
+        progress = 1.0f;
+    } else { // Calculate Progress
+        progress = (currentProgress - [newItem startTime]) * progressDivision;
+    }
+    
+    // Set Progress Bar
+    [[newItem itemProgress] setProgress:progress animated:NO];
+    [newItem.itemETA setTimerText:[NSNumber numberWithDouble:ETA]];
+    
+    if(ETA==0)
+        return YES; // Refresh
+    
+    return NO;
 
 }
 

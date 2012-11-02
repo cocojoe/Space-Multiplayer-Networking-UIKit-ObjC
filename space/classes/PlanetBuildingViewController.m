@@ -56,8 +56,11 @@
     // Store Original List View Frame
     originalListFrame = [_buildingListView frame];
     
+    // Populate Segment
+    [self setupSegment];
+    
     // Setup Timer
-    _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:DEFAULT_QUEUE_VIEW_REFRESH target:self selector:@selector(refreshData) userInfo:nil repeats:YES];
+    _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:DEFAULT_QUEUE_VIEW_REFRESH target:self selector:@selector(refreshQueue) userInfo:nil repeats:YES];
     
 }
 
@@ -121,19 +124,25 @@
     [self refreshData];
 }
 
+#pragma mark Queue Timer Processor
+-(void) refreshQueue
+{
+    // Refresh Queue View
+    [_buildingQueueView updateQueue];
+}
+
 #pragma mark Data Processing
 -(void) refreshData
 {
-    if(![[GameManager sharedInstance] planetID])
-        return;
-    
+ 
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
-        // Parent Player Dictionary
+        // Parent Planrt Dictionary
         NSDictionary *planetDict   = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
  
         // Sub View Listing(s)
         [_buildingQueueView setupQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"building"]];
+        
         [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];
         
         // Push List Down (From Queue)
@@ -169,9 +178,32 @@
     UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
     
-    segmentedControl.selectedSegmentIndex = selectedSegment;
+    // Switch
+    NSString *segmentName = [segmentedControl titleForSegmentAtIndex:selectedSegment];
+    [_buildingListView setGroupFilter:segmentName];
+    [self refreshData];
+}
+
+-(void) setupSegment
+{
     
-    CCLOG(@"Segment Selected: %d",selectedSegment);
+    int index = 0;
+    // Clear 'Display' Segments
+    [_segmentGroup removeAllSegments];
+    
+    for(NSDictionary* buildingGroupDict in [[GameManager sharedInstance] masterBuildingGrouplist])
+    {
+        
+        // Create Parent Categories
+        if([buildingGroupDict objectForKey:@"parent_id"]==[NSNull null])
+        {
+            [_segmentGroup insertSegmentWithTitle:[buildingGroupDict objectForKey:@"name"] atIndex:index animated:NO];
+            index++;
+        }
+    }
+    
+    _segmentGroup.selectedSegmentIndex = 0; // Default
+    [_buildingListView setGroupFilter:[_segmentGroup titleForSegmentAtIndex:_segmentGroup.selectedSegmentIndex]];
 }
 
 @end

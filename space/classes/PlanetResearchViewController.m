@@ -64,9 +64,7 @@
 #pragma mark Data Processing
 -(void) refreshData
 {
-    if(![[GameManager sharedInstance] planetID])
-        return;
-    
+
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
     }];

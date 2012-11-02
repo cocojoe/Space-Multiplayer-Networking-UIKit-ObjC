@@ -29,7 +29,10 @@
     self = [super initWithCoder:coder];
     if(self) {
         [self applyDefaultStyle];
-        _viewArray = [[NSMutableArray alloc] init];
+        _viewArray          = [[NSMutableArray alloc] init];
+        _building           = [[NSMutableArray alloc] init];
+        _buildingFiltered   = [[NSMutableArray alloc] init];
+        _groupFilter        = @"";
     }
     return self;
 }
@@ -40,7 +43,7 @@
     self.layer.cornerRadius = 4;
 }
 
--(void) refresh:(NSMutableArray*) buildingDict
+-(void) refresh:(NSMutableArray*) buildingList
 {
     
     // Remove Views
@@ -48,10 +51,22 @@
     {
         [item removeFromSuperview];
     }
+    [_viewArray removeAllObjects];
     
-    // Items to Add?
-    if([buildingDict count]==0)
+    
+    // Update Interal Dictionary
+    _building = [NSMutableArray arrayWithArray:buildingList];
+    
+    // Filter
+    [self filterBuildings];
+    
+    // Anything to Add?
+    if([_buildingFiltered count]==0)
     {
+        // Rest Frame Height
+        CGRect frame = [self frame];
+        frame.size.height = 0;
+        [self setFrame:frame];
         return;
     }
     
@@ -62,7 +77,7 @@
     // Center in Parent View Horizontal, Border From Top
     CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, totalHeight);
     
-    for(NSDictionary* building in buildingDict)
+    for(NSDictionary* building in _buildingFiltered)
     {
         // Create UIView
         BuildingListItemView *buildingItem = [[[NSBundle mainBundle] loadNibNamed:@"BuildingListItemView" owner:self options:nil] objectAtIndex:0];
@@ -93,6 +108,35 @@
     CGRect frame = [self frame];
     frame.size.height = totalHeight;
     [self setFrame:frame];
+    
+}
+
+#pragma mark Data Filtering
+-(void) filterBuildings
+{
+    // Filter
+    NSMutableArray* buildingGroup = [[GameManager sharedInstance] getBuildingGroup:_groupFilter];
+    //CCLOG(@"Segment Filter: %@",buildingGroup);
+    
+    // Filtering
+    [_buildingFiltered removeAllObjects];
+    
+    // Loop Through Planet Buildings
+    for(NSDictionary* buildingItem in _building)
+    {
+        NSDictionary* buildingEntry = [[GameManager sharedInstance] getBuilding:[[buildingItem objectForKey:@"building_id"] intValue]];
+        
+        // Matching Group Filtering
+        for(NSNumber* groupID in buildingGroup)
+        {
+            if([[buildingEntry objectForKey:@"group_id"] intValue]==[groupID intValue])
+            {
+                // Add Building
+                [_buildingFiltered addObject:buildingItem];
+            }
+        }
+        
+    }
     
 }
 

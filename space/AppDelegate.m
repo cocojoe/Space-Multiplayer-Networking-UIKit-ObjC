@@ -69,8 +69,14 @@
 }
 
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
-    // Handle the notificaton when the app is running
-    CCLOG(@"Recieved Notification %@",notif);
+    
+    UIApplicationState state = [app applicationState];
+    if (state == UIApplicationStateActive) {
+        CCLOG(@"Notification UIApplicationStateActive");
+    }
+    else if(state == UIApplicationStateInactive){
+        CCLOG(@"Notification UIApplicationStateInActive");
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

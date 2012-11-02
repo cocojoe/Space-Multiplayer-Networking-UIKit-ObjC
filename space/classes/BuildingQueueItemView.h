@@ -18,5 +18,7 @@
 
 // Track Current Item
 @property (nonatomic, readwrite) int itemID;
+@property (nonatomic, readwrite) double startTime;
+@property (nonatomic, readwrite) double endTime;
 
 @end

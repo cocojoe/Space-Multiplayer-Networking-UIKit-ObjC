@@ -16,5 +16,6 @@
 }
 
 -(void) setupQueue:(NSMutableArray*) itemQueueArray;
+-(void) updateQueue;
 
 @end
