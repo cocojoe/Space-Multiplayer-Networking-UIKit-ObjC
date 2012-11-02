@@ -124,7 +124,7 @@
     // Loop Through Planet Buildings
     for(NSDictionary* buildingItem in _building)
     {
-        NSDictionary* buildingEntry = [[GameManager sharedInstance] getBuilding:[[buildingItem objectForKey:@"building_id"] intValue]];
+        NSDictionary* buildingEntry = [[GameManager sharedInstance] getBuilding:[[buildingItem objectForKey:@"id"] intValue]];
         
         // Matching Group Filtering
         for(NSNumber* groupID in buildingGroup)

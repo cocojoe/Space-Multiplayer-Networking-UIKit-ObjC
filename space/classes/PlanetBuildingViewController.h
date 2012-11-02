@@ -14,10 +14,10 @@
 
 @interface PlanetBuildingViewController : UIViewController <PullToRefreshViewDelegate>
 {
-    CGRect originalListFrame;
+    CGRect _originalListFrame;
+    NSTimer* _refreshTimer;
 }
 
-@property (nonatomic) NSTimer* refreshTimer;
 @property (nonatomic) UIScrollView* mainScrollView;
 
 // Custom IBOutlet Views

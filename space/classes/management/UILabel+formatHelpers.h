@@ -12,6 +12,7 @@
 
 -(void) setColorDirection:(NSNumber*) number;
 -(void) setTextRate:(NSNumber*) rate;
+-(void) setTextNegativeRate:(NSNumber*) rate;
 -(void) setTimerText:(NSNumber*) time;
 
 @end

@@ -33,14 +33,25 @@
     [self setColorDirection:rate];
 }
 
+-(void) setTextNegativeRate:(NSNumber*) rate
+{
+    // Number Formatter
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+    [self setText:[NSString stringWithFormat:@"-%@",[formatter stringFromNumber:rate]]];
+    
+   [self setTextColor:[UIColor redColor]];
+}
+
 -(void) setTimerText:(NSNumber *)time
 {
-    double buildTime = [time doubleValue];
+    int buildTime = [time intValue];
     
-    float hours   = floorf(buildTime/(60*24));
-    float minutes = floorf(buildTime/60);
-    float seconds = roundf(buildTime - minutes * 60);
-    self.text = [NSString stringWithFormat:@"%02d:%02d:%02d",(int)hours,(int)minutes,(int)seconds];
+    int hours   = floor(buildTime / 3600);
+    int minutes = floor((buildTime / 60) % 60);
+    int seconds = round(buildTime % 60);
+    self.text = [NSString stringWithFormat:@"%02d:%02d:%02d",hours,minutes,seconds];
 }
 
 @end

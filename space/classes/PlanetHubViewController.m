@@ -104,7 +104,7 @@
     [self.view bringSubviewToFront:_planetOverviewViewController.view];
     [_planetOverviewViewController refreshData];
 
-    // Search Planet Option
+    // Select Planet Option
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:_planetOverviewViewController action:@selector(showPlanetList)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
 }
@@ -115,13 +115,6 @@
     self.navigationItem.title = _planetBuildingViewController.title;
     [self.view bringSubviewToFront:_planetBuildingViewController.view];
     [_planetBuildingViewController refreshData];
-    
-    /*
-    // Search Planet Option
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:_planetBuildingViewController action:@selector(showBuildingList)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
-    */
-    
     [[self navigationItem] setRightBarButtonItem:nil];
    
 }
@@ -132,10 +125,7 @@
     self.navigationItem.title = _planetResearchViewController.title;
     [self.view bringSubviewToFront:_planetResearchViewController.view];
     [_planetResearchViewController refreshData];
-    
-    // Search Planet Option
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:_planetResearchViewController action:@selector(refreshData)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
+    [[self navigationItem] setRightBarButtonItem:nil];
 }
 
 #pragma mark UITabBar Delegate

@@ -208,101 +208,21 @@
 }
 
 #pragma mark Master Lists
--(void) retrieveMasterItem:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
+-(void) retrieveMaster:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
 {
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
         
-        [self makeRequest:URI_INVENTORY_ITEM_MASTER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
+        [self makeRequest:URI_MASTER_DATA setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
             
-            // Store Master List
-            [_masterItemList setArray:[jsonDict objectForKey:@"items"]];
-            //CCLOG(@"Master Item List Retrieved, %d Items", [_masterItemList count]);
-            actionBlock();
-        } setBlockFail:^(){errorBlock();}];
-        
-    }]];
-    
-}
-
--(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
-{
-    
-    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-        
-        [self makeRequest:URI_PART_MASTER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            
-            // Store Master List
-            [_masterPartList setArray:[jsonDict objectForKey:@"parts"]];
-            //CCLOG(@"Master Part List Retrieved, %d Items", [_masterPartList count]);
-            actionBlock();
-        } setBlockFail:^(){errorBlock();}];
-        
-    }]];
-    
-}
-
--(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
-{
-    
-    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-        
-        [self makeRequest:URI_INVENTORY_GROUP_MASTER setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            
-            // Store Master List
-            [_masterGroupList setArray:[jsonDict objectForKey:@"groups"]];
-            //CCLOG(@"Master Group List Retrieved, %d Items", [_masterGroupList count]);
-            actionBlock();
-        } setBlockFail:^(){errorBlock();}];
-        
-    }]];
-    
-}
-
--(void) retrieveMasterBuilding:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
-{
-    
-    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-        
-        [self makeRequest:URI_MASTER_BUILDING setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            
-            // Store Master List
-            [_masterBuildingList setArray:[jsonDict objectForKey:@"building"]];
-            //CCLOG(@"Master Building List Retrieved, %d Items", [_masterBuildingList count]);
-            actionBlock();
-        } setBlockFail:^(){errorBlock();}];
-        
-    }]];
-    
-}
-
--(void) retrieveMasterBuildingGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
-{
-    
-    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-        
-        [self makeRequest:URI_BUILDING_GROUP setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            
-            // Store Master List
-            [_masterBuildingGrouplist setArray:[jsonDict objectForKey:@"groups"]];
-            //CCLOG(@"Master Building Group List Retrieved, %d Items", [_masterBuildingGrouplist count]);
-            actionBlock();
-        } setBlockFail:^(){errorBlock();}];
-        
-    }]];
-    
-}
-
--(void) retrieveMasterResearch:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock
-{
-    
-    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
-        
-        [self makeRequest:URI_MASTER_RESEARCH setPostDictionary:nil setBlock:^(NSDictionary *jsonDict) {
-            
-            // Store Master List
+            // Split Master Data
+            [_masterBuildingList setArray:[jsonDict objectForKey:@"buildings"]];
+            [_masterBuildingGrouplist setArray:[jsonDict objectForKey:@"building_groups"]];
             [_masterResearchList setArray:[jsonDict objectForKey:@"research"]];
-            //CCLOG(@"Master Research List Retrieved, %d Items", [_masterResearchList count]);
+            [_masterGroupList setArray:[jsonDict objectForKey:@"inventory_groups"]];
+            [_masterItemList setArray:[jsonDict objectForKey:@"inventory_items"]];
+            [_masterPartList setArray:[jsonDict objectForKey:@"parts"]];
+            
             actionBlock();
         } setBlockFail:^(){errorBlock();}];
         
@@ -580,6 +500,18 @@
     {
         // Check Master Buildings / Add
         if([[item objectForKey:@"id"] intValue]==building_id)
+            return item;
+    }
+    
+    return nil;
+}
+
+-(NSDictionary*) getResearch:(int) research_id
+{
+    for(NSDictionary* item in [[GameManager sharedInstance] masterBuildingList])
+    {
+        // Check Master Buildings / Add
+        if([[item objectForKey:@"id"] intValue]==research_id)
             return item;
     }
     

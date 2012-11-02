@@ -54,7 +54,7 @@
     [_mainScrollView addSubview:pull];
     
     // Store Original List View Frame
-    originalListFrame = [_buildingListView frame];
+    _originalListFrame = [_buildingListView frame];
     
     // Populate Segment
     [self setupSegment];
@@ -147,12 +147,12 @@
         
         // Push List Down (From Queue)
         CGRect newFrame    = [_buildingListView frame];
-        newFrame.origin.y  = originalListFrame.origin.y + _buildingQueueView.frame.size.height+PLANET_BUILDING_VIEW_SPACER;
+        newFrame.origin.y  = _originalListFrame.origin.y + _buildingQueueView.frame.size.height+PLANET_BUILDING_VIEW_SPACER;
         [_buildingListView setFrame:newFrame];
         
         // Adjust Content Size
         CGSize contentSize  = _mainScrollView.contentSize;
-        contentSize.height  = originalListFrame.origin.y+ _buildingListView.frame.size.height+_buildingQueueView.frame.size.height+(PLANET_BUILDING_VIEW_SPACER*2.0f); // 2 Views + Padding
+        contentSize.height  = _originalListFrame.origin.y+ _buildingListView.frame.size.height+_buildingQueueView.frame.size.height+(PLANET_BUILDING_VIEW_SPACER*2.0f); // 2 Views + Padding
         _mainScrollView.contentSize=contentSize;
         
     }];

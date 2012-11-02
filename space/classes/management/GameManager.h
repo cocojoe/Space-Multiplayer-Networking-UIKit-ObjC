@@ -48,24 +48,19 @@ typedef void (^BasicBlock)          ();
 #define URI_AUTH                        (@"/api/auth/")
 #define URI_PLAYER                      (@"/api/player/")
 #define URI_PARTS                       (@"/api/player/parts")
+#define URI_PLAYER_PLANETS              (@"/api/player/planets")
 
+// Inventory
 #define URI_INVENTORY                   (@"/api/player/inventory")
 #define URI_INVENTORY_REMOVE_PART       (@"/api/player/inventory/remove")
 #define URI_INVENTORY_ATTACH_PART       (@"/api/player/inventory/attach")
-#define URI_INVENTORY_ITEM_MASTER       (@"/api/inventory/item/")
-#define URI_INVENTORY_GROUP_MASTER      (@"/api/inventory/group/")
 
-#define URI_PART_MASTER                 (@"/api/part/")
-#define URI_PLAYER_PLANETS              (@"/api/player/planets")
+// Planet
 #define URI_PLANET                      (@"/api/planet/index")
-
-// Buildings
-#define URI_MASTER_BUILDING             (@"/api/building/")
 #define URI_BUILDING_ADD                (@"/api/planet/build")
-#define URI_BUILDING_GROUP              (@"/api/building/group/")
 
-// API Research
-#define URI_MASTER_RESEARCH             (@"/api/research/")
+// Master
+#define URI_MASTER_DATA                 (@"/api/master/")
 
 // Errors
 #define ERROR_WARNING                   1000
@@ -141,13 +136,8 @@ enum eAuthenticationState {
 #pragma mark Parts
 -(void) refreshParts:(ResponseBlock) actionBlock;
 
-#pragma mark Master Lists
--(void) retrieveMasterItem:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
--(void) retrieveMasterPart:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
--(void) retrieveMasterGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
--(void) retrieveMasterBuilding:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
--(void) retrieveMasterBuildingGroup:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
--(void) retrieveMasterResearch:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
+#pragma mark Master Data
+-(void) retrieveMaster:(BasicBlock) actionBlock setErrorBlock:(BasicBlock) errorBlock;
 
 #pragma mark Inventory
 -(void) refreshInventory:(ResponseBlock) actionBlock;
@@ -168,6 +158,7 @@ enum eAuthenticationState {
 
 #pragma mark General Helpers
 -(NSDictionary*) getBuilding:(int) building_id;
+-(NSDictionary*) getResearch:(int) research_id;
 -(NSMutableArray*) getBuildingGroup:(NSString*) name;
 
 #pragma mark Building Popup

@@ -8,6 +8,10 @@
 
 #import "PlanetResearchViewController.h"
 #import "GameManager.h"
+#import "ResearchQueueView.h"
+#import "ResearchListView.h"
+
+#define PLANET_RESEARCH_VIEW_SPACER     5.0f
 
 @interface PlanetResearchViewController ()
 
@@ -31,7 +35,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    // Store Original List View Frame
+    _originalListFrame = [_listView frame];
+    
     [self setupPullRefresh];
+    
+    [self setupProgessTimer];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,8 +55,8 @@
 {
     // UnRegister Notification Handling
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_refreshTimer invalidate];
 }
-
 
 // Setup Pull Refresh
 -(void) setupPullRefresh
@@ -61,14 +71,10 @@
 
 }
 
-#pragma mark Data Processing
--(void) refreshData
-{
-
-    [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
-        
-    }];
-    
+// Timer
+-(void) setupProgessTimer {
+    // Setup Timer
+    _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:DEFAULT_QUEUE_VIEW_REFRESH target:self selector:@selector(refreshQueue) userInfo:nil repeats:YES];
 }
 
 // Disable Landscape Rotation
@@ -91,6 +97,11 @@
                                              selector:@selector(finishedLoading:)
                                                  name:@"cancelPullDown"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData)
+                                                 name:@"researchRefresh"
+                                               object:nil];
 }
 
 -(void) finishedLoading:(NSNotification *) notification
@@ -101,6 +112,41 @@
 #pragma mark PullToRefreshViewDelegate
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [self refreshData];
+}
+
+#pragma mark Queue Timer Processor
+-(void) refreshQueue
+{
+    // Refresh Queue View
+    [_queueView updateQueueProgress];
+}
+
+#pragma mark Data Processing
+-(void) refreshData
+{
+    
+    [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
+        
+        // Parent Planrt Dictionary
+        NSDictionary *planetDict   = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
+
+        // Sub View Listing(s)
+        [_queueView createQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"research"]];
+        
+        [_listView refresh:[planetDict objectForKey:@"research"]];
+        
+        // Push List Down (From Queue)
+        CGRect newFrame    = [_listView frame];
+        newFrame.origin.y  = _originalListFrame.origin.y + _queueView.frame.size.height+PLANET_RESEARCH_VIEW_SPACER;
+        [_listView setFrame:newFrame];
+        
+        // Adjust Content Size
+        CGSize contentSize  = _mainScrollView.contentSize;
+        contentSize.height  = _originalListFrame.origin.y + _listView.frame.size.height+_queueView.frame.size.height+(PLANET_RESEARCH_VIEW_SPACER*2.0f); // 2 Views + Padding
+        _mainScrollView.contentSize=contentSize;
+        
+    }];
+    
 }
 
 @end

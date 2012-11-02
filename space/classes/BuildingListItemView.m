@@ -59,10 +59,10 @@
     for(NSDictionary* buildingDetail in [[GameManager sharedInstance] masterBuildingList])
     {
         // Check Master Buildings / Add
-        if([[buildingDetail objectForKey:@"id"] integerValue]==[[buildingDict objectForKey:@"building_id"] integerValue])
+        if([[buildingDetail objectForKey:@"id"] integerValue]==[[buildingDict objectForKey:@"id"] integerValue])
         {
             // Internal
-            _buildingID = [[buildingDict objectForKey:@"building_id"] intValue];
+            _buildingID = [[buildingDict objectForKey:@"id"] intValue];
             
             // Basics
             [_buildingName setText:[buildingDetail objectForKey:@"name"]];
