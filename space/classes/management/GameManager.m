@@ -508,7 +508,7 @@
 
 -(NSDictionary*) getResearch:(int) research_id
 {
-    for(NSDictionary* item in [[GameManager sharedInstance] masterBuildingList])
+    for(NSDictionary* item in [[GameManager sharedInstance] masterResearchList])
     {
         // Check Master Buildings / Add
         if([[item objectForKey:@"id"] intValue]==research_id)
