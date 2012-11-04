@@ -35,13 +35,18 @@
 
 -(void) setTextNegativeRate:(NSNumber*) rate
 {
+    
     // Number Formatter
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
-    [self setText:[NSString stringWithFormat:@"-%@",[formatter stringFromNumber:rate]]];
     
-   [self setTextColor:[UIColor redColor]];
+    if([rate intValue]==0) {
+        [self setText:[NSString stringWithFormat:@"%@",[formatter stringFromNumber:rate]]];
+    } else {
+        [self setText:[NSString stringWithFormat:@"-%@",[formatter stringFromNumber:rate]]];
+        [self setTextColor:[UIColor redColor]];
+    }
+    
 }
 
 -(void) setTimerText:(NSNumber *)time

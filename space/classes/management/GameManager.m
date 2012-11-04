@@ -556,11 +556,18 @@
     // Create Local Notificaiton
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     
+ 
+    
     localNotification.fireDate                   = [NSDate dateWithTimeIntervalSince1970:time];
     localNotification.alertBody                  = message;
     localNotification.soundName                  = UILocalNotificationDefaultSoundName;
     localNotification.applicationIconBadgeNumber = 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
+-(void) createNotificationPopup:(NSString *)message
+{
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:message image:[UIImage imageNamed:@"icon_home"]];
 }
 
 #pragma mark Building Popup
@@ -586,9 +593,15 @@
     
     // Create Grey Background
     UIView *dimBackgroundView = [[UIView alloc] initWithFrame:masterView.bounds];
-    dimBackgroundView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7f];
+    dimBackgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:1.0f];
+    dimBackgroundView.alpha = 0.0f;
     dimBackgroundView.tag = TAG_POPUP_GREY;
     [masterView addSubview:dimBackgroundView];
+    
+    // Issue Animation
+    [UIView animateWithDuration:EFFECT_POPUP_FADE
+                     animations:^{dimBackgroundView.alpha = 0.8;}
+                     completion:^(BOOL finished){ }];
     
     // Add Tap (Cancel Popup)
     UITapGestureRecognizer *singleFingerTap =
@@ -600,7 +613,14 @@
     BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
     [buildingPopup setCenter:CGPointMake(masterView.frame.size.width*0.5f, masterView.frame.size.height*0.5f)];
     buildingPopup.tag = TAG_POPUP;
+    
+    [buildingPopup setTransform:CGAffineTransformMakeScale(0.01f, 0.01f)];
     [masterView addSubview:buildingPopup];
+    
+    // Issue Animation
+    [UIView animateWithDuration:EFFECT_POPUP_SCALE
+                     animations:^{[buildingPopup setTransform:CGAffineTransformMakeScale(1.0f, 1.0f)];}
+                     completion:^(BOOL finished){ }];
     
     // Setup Popup
     [buildingPopup setup:buildingDict];
@@ -625,8 +645,16 @@
         [dimBackgroundView removeGestureRecognizer:recognizer];
     }
     
-    [dimBackgroundView removeFromSuperview];
-    [buildingPopup removeFromSuperview];
+    // Issue Animation
+    [UIView animateWithDuration:EFFECT_POPUP_FADE
+                     animations:^{dimBackgroundView.alpha = 0.0;}
+                     completion:^(BOOL finished){ [dimBackgroundView removeFromSuperview]; }];
+    
+    // Issue Animation
+    [UIView animateWithDuration:EFFECT_POPUP_SCALE
+                     animations:^{[buildingPopup setTransform:CGAffineTransformMakeScale(0.01f, 0.01f)];}
+                     completion:^(BOOL finished){[buildingPopup removeFromSuperview]; }];
+
 }
 
 @end

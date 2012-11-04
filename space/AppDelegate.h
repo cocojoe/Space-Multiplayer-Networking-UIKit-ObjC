@@ -11,6 +11,9 @@
 @class MasterViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSString* _lastNotification;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MasterViewController *viewController;

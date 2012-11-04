@@ -116,6 +116,7 @@
 {
     // Filter
     NSMutableArray* buildingGroup = [[GameManager sharedInstance] getBuildingGroup:_groupFilter];
+    
     //CCLOG(@"Segment Filter: %@",buildingGroup);
     
     // Filtering

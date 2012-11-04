@@ -36,27 +36,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // Assign Scroll View to Member / Assign Delegate Self
-    for (UIView* subView in self.view.subviews) {
-        if ([subView isKindOfClass:[UIScrollView class]]) {
-            _mainScrollView = (UIScrollView *)subView;
-            _mainScrollView.delegate = (id) self;
-            
-            // Set Content Size (No Auto Layout)
-            _mainScrollView.contentSize=self.view.frame.size;
-        }
-    }
-    
-    // Set up Pull to Refresh code
-    PullToRefreshView *pull = [[PullToRefreshView alloc] initWithScrollView:_mainScrollView];
-    [pull setDelegate:self];
-    pull.tag = TAG_PULL;
-    [_mainScrollView addSubview:pull];
+    [self setupPullRefresh];
     
     // Store Original List View Frame
     _originalListFrame = [_buildingListView frame];
     
-    // Populate Segment
+    // Populate Segment Switch
     [self setupSegment];
     
     // Setup Timer
@@ -83,6 +68,19 @@
     return shouldAutorotate;
 }
 
+// Setup Pull Refresh
+-(void) setupPullRefresh
+{
+    // Assign Pull to View -> Scroll View
+    _pull = [[PullToRefreshView alloc] initWithScrollView:_mainScrollView];
+    [_pull setDelegate:self];
+    [_mainScrollView addSubview:_pull];
+    
+    // Manually Set Size (No Auto Layout)
+    _mainScrollView.contentSize=self.view.frame.size;
+    
+}
+
 #pragma mark Notification Handling
 -(void) setupNotification
 {
@@ -104,8 +102,7 @@
         [self refreshData];
     } else if ([[notification name] isEqualToString:@"cancelPullDown"])
     {
-        // Cancel Refresh
-        [(PullToRefreshView *)[self.view viewWithTag:TAG_PULL] performSelector:@selector(finishedLoading) withObject:nil];
+        [_pull finishedLoading];
     }
 }
 
@@ -173,21 +170,12 @@
     [viewController presentModalViewController:navigation animated:YES];
 }
 
-#pragma mark Segment 
-- (IBAction)segmentSwitch:(id)sender {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
-    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
-    
-    // Switch
-    NSString *segmentName = [segmentedControl titleForSegmentAtIndex:selectedSegment];
-    [_buildingListView setGroupFilter:segmentName];
-    [self refreshData];
-}
-
+#pragma mark Segment
 -(void) setupSegment
 {
     
     int index = 0;
+    
     // Clear 'Display' Segments
     [_segmentGroup removeAllSegments];
     
@@ -197,13 +185,69 @@
         // Create Parent Categories
         if([buildingGroupDict objectForKey:@"parent_id"]==[NSNull null])
         {
-            [_segmentGroup insertSegmentWithTitle:[buildingGroupDict objectForKey:@"name"] atIndex:index animated:NO];
+            [_segmentGroup insertSegmentWithTitle:[buildingGroupDict objectForKey:@"name"] atIndex:index animated:YES];
             index++;
         }
     }
+}
+
+- (IBAction)segmentSwitch:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
     
-    _segmentGroup.selectedSegmentIndex = 0; // Default
-    [_buildingListView setGroupFilter:[_segmentGroup titleForSegmentAtIndex:_segmentGroup.selectedSegmentIndex]];
+    // Segment Name
+    NSString *segmentName = [segmentedControl titleForSegmentAtIndex:selectedSegment];
+    
+    // Hieriachy Reset
+    if([segmentName isEqualToString:@"<<"])
+    {
+        [self setupSegment];
+        // Set View Filter Name / Refresh
+        [_buildingListView setGroupFilter:@""];
+        [self refreshData];
+        return;
+    }
+    
+    // Get Relevant Groups (Parent+Children)
+    NSMutableArray* buildingGroup = [[GameManager sharedInstance] getBuildingGroup:segmentName];
+    
+    // Has children?
+    if([buildingGroup count]<=1)
+    {
+        // Set View Filter Name / Refresh
+        [_buildingListView setGroupFilter:segmentName];
+        [self refreshData];
+        return;
+    }
+
+    // Clear Segments
+    int index = 0;
+    [segmentedControl removeAllSegments];
+    
+    // Loop Through List
+    for(NSNumber* groupID in buildingGroup)
+    {
+        
+        for(NSDictionary* buildingGroupDict in [[GameManager sharedInstance] masterBuildingGrouplist])
+        {
+            
+            // Create Parent Categories
+            if([[buildingGroupDict objectForKey:@"id"] intValue]==[groupID intValue])
+            {
+                if([[buildingGroupDict objectForKey:@"name"] isEqualToString:segmentName])
+                {
+                     [_segmentGroup insertSegmentWithTitle:@"<<" atIndex:index animated:YES];
+                } else {
+                    [_segmentGroup insertSegmentWithTitle:[buildingGroupDict objectForKey:@"name"] atIndex:index animated:YES];
+                }
+                index++;
+            }
+        }
+    }
+
+    // Set View Filter Name / Refresh
+    [_buildingListView setGroupFilter:segmentName];
+    [self refreshData];
 }
 
 @end

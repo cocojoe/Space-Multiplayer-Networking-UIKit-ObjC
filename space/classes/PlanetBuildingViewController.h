@@ -16,9 +16,10 @@
 {
     CGRect _originalListFrame;
     NSTimer* _refreshTimer;
+    PullToRefreshView *_pull;
 }
 
-@property (nonatomic) UIScrollView* mainScrollView;
+@property (nonatomic) IBOutlet UIScrollView* mainScrollView;
 
 // Custom IBOutlet Views
 @property (nonatomic) IBOutlet BuildingListView* buildingListView;

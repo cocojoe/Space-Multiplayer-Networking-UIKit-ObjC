@@ -97,19 +97,20 @@
     // Food
     value = [[costDict objectForKey:@"food"] intValue];
     value*=_amount;
-    _buildingCostFood.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
+    [_buildingCostFood setTextNegativeRate:[NSNumber numberWithInt:value]];
     // Workers
     value = [[costDict objectForKey:@"workers"] intValue];
     value*=_amount;
-    _buildingCostWorkers.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
+    [_buildingCostWorkers setTextNegativeRate:[NSNumber numberWithInt:value]];
     // Energy
     value = [[costDict objectForKey:@"energy"] intValue];
     value*=_amount;
-    _buildingCostEnergy.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
+    [_buildingCostEnergy setTextNegativeRate:[NSNumber numberWithInt:value]];
     // Minerals
     value = 0;
     value*=_amount;
-    _buildingCostMinerals.text  = [formatter stringFromNumber:[NSNumber numberWithInt:value]];
+    [_buildingCostMinerals setTextNegativeRate:[NSNumber numberWithInt:value]];
+    
   
     
     NSDictionary* incomeDict = [_buildingDict objectForKey:@"income"];
@@ -165,7 +166,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
         
         // Set Notification
-        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"%@ completed",_buildingName.text]];
+        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"1x%d %@ Build Complete",_amount,_buildingName.text]];
         
         // Dismiss
         [[GameManager sharedInstance] dismissBuildingPopUp:nil];

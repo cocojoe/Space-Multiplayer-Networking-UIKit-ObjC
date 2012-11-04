@@ -70,13 +70,21 @@
 
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
     
+    if([[notif alertBody] isEqualToString:_lastNotification])
+        return;
+    
     UIApplicationState state = [app applicationState];
     if (state == UIApplicationStateActive) {
-        CCLOG(@"Notification UIApplicationStateActive");
+        CCLOG(@"Notification UIApplicationStateActive: %@",notif);
+        // Alert Popup
+        [[GameManager sharedInstance] createNotificationPopup:[notif alertBody]];
     }
     else if(state == UIApplicationStateInactive){
-        CCLOG(@"Notification UIApplicationStateInActive");
+        CCLOG(@"Notification UIApplicationStateInActive: %@",notif);
     }
+    
+    // Set Last Notification (Hack for Dupe Alerts, Known Bug in 2010?!)
+    _lastNotification = [notif alertBody];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

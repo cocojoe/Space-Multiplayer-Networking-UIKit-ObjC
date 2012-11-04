@@ -21,4 +21,7 @@
 @property (nonatomic, readwrite) double startTime;
 @property (nonatomic, readwrite) double endTime;
 
+#pragma mark Progress
+-(BOOL) updateQueueProgress;
+
 @end

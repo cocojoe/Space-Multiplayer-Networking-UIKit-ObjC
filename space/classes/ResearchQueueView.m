@@ -55,7 +55,7 @@
     {
         // Rest Frame Height
         CGRect frame = [self frame];
-        frame.size.height = 0;
+        frame.size.height = RESEARCH_QUEUE_DEFAULT_HEIGHT;
         [self setFrame:frame];
         return;
     }
@@ -87,7 +87,7 @@
         newItem.itemName.text         = [itemMasterDetail objectForKey:@"name"];
         
         // Set Timer / Progress
-        [self updateQueueTimer:newItem];
+        [newItem updateQueueProgress];
         
         // Calculate Height
         if(totalHeight==0)
@@ -127,8 +127,9 @@
     
     BOOL bRefresh = NO;
     for(ResearchQueueItemView* newItem in _items) {
-        if([self updateQueueTimer:newItem])
+        if([newItem updateQueueProgress])
             bRefresh = YES;
+        
     }
     
     // Refresh Required
@@ -138,35 +139,6 @@
         [[[GameManager sharedInstance] planetDict] removeAllObjects];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"researchRefresh" object:self];
     }
-}
-
-// Format Progress
--(BOOL) updateQueueTimer:(ResearchQueueItemView*) newItem
-{
-    // Calculate Progress
-    double progressDivision = 1.0f / ([newItem endTime] - [newItem startTime]);
-    double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
-    double ETA              = [newItem endTime] - currentProgress;
-    float progress          = 0.0f;
-    if(ETA<=0)
-        ETA = 0; // CAP ETA 0
-    
-    // Cap Completion
-    if(ETA==0) {
-        progress = 1.0f;
-    } else { // Calculate Progress
-        progress = (currentProgress - [newItem startTime]) * progressDivision;
-    }
-    
-    // Set Progress Bar
-    [[newItem itemProgress] setProgress:progress animated:NO];
-    [newItem.itemETA setTimerText:[NSNumber numberWithDouble:ETA]];
-    
-    if(ETA==0)
-        return YES; // Refresh
-    
-    return NO;
-    
 }
 
 @end

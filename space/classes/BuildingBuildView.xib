@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11G56</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">1929</string>
@@ -46,11 +46,12 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="912840970"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<float key="IBUIAlpha">0.5</float>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">background_grey.png</string>
+							<string key="NSResourceName">background_planet.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="912840970">
@@ -166,9 +167,9 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">energy</string>
-								<object class="NSColor" key="IBUITextColor">
+								<object class="NSColor" key="IBUITextColor" id="25310690">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NDQ1MDU3NzQ1IDAgMC4wNDQ1MDM5MjQ4MgA</bytes>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
 								</object>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -190,10 +191,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">energy</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NDQ1MDU3NzQ1IDAgMC4wNDQ1MDM5MjQ4MgA</bytes>
-								</object>
+								<reference key="IBUITextColor" ref="25310690"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="129140716"/>
@@ -214,10 +212,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">energy</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NDQ1MDU3NzQ1IDAgMC4wNDQ1MDM5MjQ4MgA</bytes>
-								</object>
+								<reference key="IBUITextColor" ref="25310690"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="129140716"/>
@@ -270,10 +265,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">energy</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NDQ1MDU3NzQ1IDAgMC4wNDQ1MDM5MjQ4MgA</bytes>
-								</object>
+								<reference key="IBUITextColor" ref="25310690"/>
 								<reference key="IBUIHighlightedColor" ref="117788107"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="129140716"/>
@@ -511,7 +503,6 @@
 						<string key="NSFrame">{{219.5, 228}, {82, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="329037822"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -578,6 +569,11 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="839511376"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MCAwIDAAA</bytes>
+					<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+				</object>
 				<bool key="IBUIAutoresizesSubviews">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1064,7 +1060,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="background_grey.png">{128, 128}</string>
+			<string key="background_planet.jpg">{320, 274}</string>
 			<string key="building_icon_energy.png">{32, 32}</string>
 			<string key="building_icon_food.png">{32, 32}</string>
 			<string key="building_icon_minerals.png">{32, 32}</string>

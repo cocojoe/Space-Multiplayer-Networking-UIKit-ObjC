@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define RESEARCH_QUEUE_ITEM_BORDER             5.0f
+#define RESEARCH_QUEUE_DEFAULT_HEIGHT           20.0f
 
 @interface ResearchQueueView : UIView {
     NSMutableArray* _items;

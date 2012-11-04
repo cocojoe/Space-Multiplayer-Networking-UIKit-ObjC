@@ -31,8 +31,11 @@ typedef void (^BasicBlock)          ();
 #define TAG_POPUP_GREY                  900
 #define TAG_POPUP                       901
 
+// Effts
+#define EFFECT_POPUP_FADE               0.5f
+#define EFFECT_POPUP_SCALE              0.25f
+
 // Preferences
-#define DEFAULT_SPEED                   60.0f
 #define DEFAULT_QUEUE_VIEW_REFRESH      1.0f
 
 // API Credentials
@@ -155,6 +158,7 @@ enum eAuthenticationState {
 
 #pragma mark Notifications
 -(void) createNotification:(double) time setMessage:(NSString*) message;
+-(void) createNotificationPopup:(NSString *)message;
 
 #pragma mark General Helpers
 -(NSDictionary*) getBuilding:(int) building_id;
