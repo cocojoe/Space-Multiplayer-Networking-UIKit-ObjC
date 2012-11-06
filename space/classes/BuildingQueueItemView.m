@@ -26,6 +26,7 @@
     self = [super initWithCoder:coder];
     if(self) {
         [self applyDefaultStyle];
+        _ignore = YES;
     }
     return self;
 }
@@ -39,10 +40,7 @@
 #pragma mark Progress
 -(BOOL) updateQueueProgress
 {
-    // @todo Return NO If Progress Complete (In Case Refresh Delayed)
-    if([_itemProgress progress]==1.0f)
-        return NO;
-    
+
     // Calculate Progress
     double progressDivision = 1.0f / (_endTime - _startTime);
     double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
@@ -52,7 +50,7 @@
         ETA = 0; // CAP ETA 0
     
     // Cap Completion
-    if(ETA==0) {
+    if(ETA<=1) {
         progress = 1.0f;
     } else { // Calculate Progress
         progress = (currentProgress - _startTime) * progressDivision;
@@ -63,7 +61,10 @@
     [_itemETA setTimerText:[NSNumber numberWithDouble:ETA]];
     
     if(ETA==0)
+    {
+        _ignore = YES;
         return YES; // Refresh
+    }
     
     return NO;
     

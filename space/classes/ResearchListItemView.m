@@ -58,7 +58,7 @@
     _itemID = [itemID intValue];
     
     // Basics
-    [_name setText:[itemDict objectForKey:@"description"]];
+    [_name setText:[itemDict objectForKey:@"name"]];
     
 
     // Cost

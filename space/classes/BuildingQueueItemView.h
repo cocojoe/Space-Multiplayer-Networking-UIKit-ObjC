@@ -14,12 +14,14 @@
 @property (nonatomic) IBOutlet UILabel* itemName;
 @property (nonatomic) IBOutlet UILabel* itemAmount;
 @property (nonatomic) IBOutlet UILabel* itemETA;
+@property (nonatomic) IBOutlet UILabel* itemPosition;
 @property (nonatomic) IBOutlet UIProgressView* itemProgress;
 
 // Track Current Item
 @property (nonatomic, readwrite) int itemID;
 @property (nonatomic, readwrite) double startTime;
 @property (nonatomic, readwrite) double endTime;
+@property (nonatomic, readwrite) bool ignore;
 
 #pragma mark Progress
 -(BOOL) updateQueueProgress;

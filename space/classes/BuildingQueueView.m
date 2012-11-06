@@ -66,8 +66,12 @@
     CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, totalHeight);
     
     // Build Views
+    int position = 0;
     for(NSDictionary* itemQueue in itemQueueArray)
     {
+        // Increment Position
+        position++;
+        
         // Create UIView
         BuildingQueueItemView *newItem = [[[NSBundle mainBundle] loadNibNamed:@"BuildingQueueItemView" owner:self options:nil] objectAtIndex:0];
         
@@ -84,6 +88,9 @@
         // Setup Item Details
         newItem.itemName.text         = [itemMasterDetail objectForKey:@"name"];
         newItem.itemAmount.text       = [NSString stringWithFormat:@"x%d",[[itemQueue objectForKey:@"amount"] intValue]];
+        
+        // Set Position
+        newItem.itemPosition.text = [NSString stringWithFormat:@"%d/%d",position,BUILDING_DEFAULT_QUEUE_SLOTS];
         
         // Set Timer / Progress
         [self updateQueue];
@@ -104,6 +111,18 @@
         
         // Required for Final Frame Height
         itemHeight = newItem.frame.size.height;
+        
+        // Enable Item
+        [newItem setIgnore:NO];
+    }
+    
+    if(position>=BUILDING_DEFAULT_QUEUE_SLOTS)
+    {
+        // Remove Header (If We Have No Slots Available)
+        _header.hidden = YES;
+    } else {
+        // Restore Header
+        _header.hidden = NO;
     }
     
     // Bottom Border
@@ -123,11 +142,16 @@
     
     BOOL bRefresh = NO;
     for(BuildingQueueItemView* newItem in _items) {
-        if([newItem updateQueueProgress])
-            bRefresh = YES;
+        if([newItem ignore]==NO)
+        {
+            if([newItem updateQueueProgress])
+            {
+                bRefresh = YES;
+            }
+        }
     }
     
-    // Refresh Required
+    // Full API Refresh Required
     if(bRefresh)
     {
         // Invalidate Cache / Full Refresh

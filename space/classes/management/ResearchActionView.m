@@ -42,8 +42,8 @@
     
     NSDictionary* researchDict = [[GameManager sharedInstance] getResearch:itemID];
     
-    _name.text = [researchDict objectForKey:@"description"];
-    _description.text = [NSString stringWithFormat:@"\"%@\"",[researchDict objectForKey:@"name"]];
+    _name.text = [researchDict objectForKey:@"name"];
+    _description.text = [NSString stringWithFormat:@"\"%@\"",[researchDict objectForKey:@"description"]];
  
     [_time setTimerText:[researchDict objectForKey:@"time"]];
     
