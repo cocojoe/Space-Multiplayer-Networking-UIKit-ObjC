@@ -21,7 +21,6 @@
 @property (nonatomic, readwrite) int itemID;
 @property (nonatomic, readwrite) double startTime;
 @property (nonatomic, readwrite) double endTime;
-@property (nonatomic, readwrite) bool ignore;
 
 #pragma mark Progress
 -(BOOL) updateQueueProgress;

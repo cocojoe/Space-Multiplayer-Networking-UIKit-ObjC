@@ -55,7 +55,8 @@
     
     
     // Update Interal Dictionary
-    _building = [NSMutableArray arrayWithArray:buildingList];
+    if(buildingList)
+        _building = [NSMutableArray arrayWithArray:buildingList];
     
     // Filter
     [self filterBuildings];

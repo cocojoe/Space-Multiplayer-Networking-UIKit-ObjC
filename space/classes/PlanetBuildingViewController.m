@@ -198,13 +198,13 @@
     // Segment Name
     NSString *segmentName = [segmentedControl titleForSegmentAtIndex:selectedSegment];
     
-    // Hieriachy Reset
+    // Reset
     if([segmentName isEqualToString:@"<<"])
     {
         [self setupSegment];
         // Set View Filter Name / Refresh
         [_buildingListView setGroupFilter:@""];
-        [self refreshData];
+        [_buildingListView refresh:nil];
         return;
     }
     
@@ -216,7 +216,7 @@
     {
         // Set View Filter Name / Refresh
         [_buildingListView setGroupFilter:segmentName];
-        [self refreshData];
+        [_buildingListView refresh:nil];
         return;
     }
 
@@ -247,7 +247,8 @@
 
     // Set View Filter Name / Refresh
     [_buildingListView setGroupFilter:segmentName];
-    [self refreshData];
+    [_buildingListView refresh:nil];
+
 }
 
 @end

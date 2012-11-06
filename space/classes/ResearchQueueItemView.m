@@ -50,12 +50,11 @@
     double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
     double ETA              = _endTime - currentProgress;
     float progress          = 0.0f;
-    if(ETA<=0)
-        ETA = 0; // CAP ETA 0
-    
+
     // Cap Completion
-    if(ETA==0) {
+    if(ETA<=1) {
         progress = 1.0f;
+        ETA = 0;
     } else { // Calculate Progress
         progress = (currentProgress - _startTime) * progressDivision;
     }

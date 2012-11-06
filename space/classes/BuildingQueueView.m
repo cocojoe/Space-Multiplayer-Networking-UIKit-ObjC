@@ -59,6 +59,15 @@
         return;
     }
     
+    if([itemQueueArray count]>=BUILDING_DEFAULT_QUEUE_SLOTS)
+    {
+        // Remove Header (If We Have No Slots Available)
+        _header.hidden = YES;
+    } else {
+        // Restore Header
+        _header.hidden = NO;
+    }
+    
     // Start Point (Relative to View)
     float totalHeight  = 0;
     float itemHeight   = 0;
@@ -94,10 +103,15 @@
         
         // Set Timer / Progress
         [self updateQueue];
-
+        
+        // Enable ETA Label
+        [newItem.itemETA setHidden:NO];
+        
         // Alignment
         if(totalHeight==0)
         {
+            if(_header.hidden==NO) // Additional Spacing For Header Text
+                totalHeight+=_header.frame.size.height*0.5f;
             totalHeight+=newItem.frame.size.height*0.5f; // First Centre Point
         } else {
             totalHeight+=newItem.frame.size.height; // Next Centre Point
@@ -111,18 +125,7 @@
         
         // Required for Final Frame Height
         itemHeight = newItem.frame.size.height;
-        
-        // Enable Item
-        [newItem setIgnore:NO];
-    }
-    
-    if(position>=BUILDING_DEFAULT_QUEUE_SLOTS)
-    {
-        // Remove Header (If We Have No Slots Available)
-        _header.hidden = YES;
-    } else {
-        // Restore Header
-        _header.hidden = NO;
+
     }
     
     // Bottom Border
@@ -142,12 +145,9 @@
     
     BOOL bRefresh = NO;
     for(BuildingQueueItemView* newItem in _items) {
-        if([newItem ignore]==NO)
+        if([newItem updateQueueProgress])
         {
-            if([newItem updateQueueProgress])
-            {
-                bRefresh = YES;
-            }
+            bRefresh = YES;
         }
     }
     
