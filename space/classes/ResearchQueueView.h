@@ -16,6 +16,9 @@
     NSMutableArray* _items;
 }
 
+// IB Outlets
+@property (nonatomic) IBOutlet UILabel* header;
+
 -(void) createQueue:(NSMutableArray*) itemQueueArray;
 -(void) updateQueueProgress;
 

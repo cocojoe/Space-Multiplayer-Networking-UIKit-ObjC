@@ -57,8 +57,14 @@
         CGRect frame = [self frame];
         frame.size.height = RESEARCH_QUEUE_DEFAULT_HEIGHT;
         [self setFrame:frame];
+        
+        // Restore Header
+        _header.hidden = NO;
         return;
     }
+    
+    // Remove Header (If We Have Entries)
+    _header.hidden = YES;
     
     // Start Point (Relative to View)
     float totalHeight  = 0;

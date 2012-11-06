@@ -58,7 +58,7 @@
     _itemID = [itemID intValue];
     
     // Basics
-    [_name setText:[itemDict objectForKey:@"name"]];
+    [_name setText:[itemDict objectForKey:@"description"]];
     
 
     // Cost
@@ -84,7 +84,7 @@
 {
     //UIButton *button = (UIButton *) sender;
     // Universal Popup
-    //[[GameManager sharedInstance] createBuildingPopup:_buildingID];
+    [[GameManager sharedInstance] createPopup:ePopupResearch setItem:_itemID];
 }
 
 @end

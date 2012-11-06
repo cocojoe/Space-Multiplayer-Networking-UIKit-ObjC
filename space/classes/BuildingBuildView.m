@@ -35,8 +35,11 @@
 }
 
 
--(void) setup:(NSDictionary *)buildingDict
+-(void) setup:(int) buildingID
 {
+
+    NSDictionary* buildingDict = [[GameManager sharedInstance] getBuilding:buildingID];
+        
     // Setup Stepper
     _stepperAmount.maximumValue = 10;
     _stepperAmount.minimumValue = 1;
@@ -169,7 +172,7 @@
         [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"1x%d %@ Build Complete",_amount,_buildingName.text]];
         
         // Dismiss
-        [[GameManager sharedInstance] dismissBuildingPopUp:nil];
+        [[GameManager sharedInstance] dismissPopup:nil];
         
     } setBlockFail:^(){
         [self unlockUI];

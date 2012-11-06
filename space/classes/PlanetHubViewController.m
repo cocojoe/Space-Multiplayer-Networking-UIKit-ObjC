@@ -70,6 +70,9 @@
     _planetResearchViewController = [[PlanetResearchViewController alloc] initWithNibName:@"PlanetResearchViewController" bundle:nil];
     [self.view insertSubview:_planetResearchViewController.view belowSubview:_planetOverviewViewController.view];
     
+    // Set View Reference
+    [self setCurrentView:_planetResearchViewController.view];
+    
     // Default Selection
     [_customTabBar setSelectedItem:[_customTabBar.items objectAtIndex:0]];
     
@@ -101,21 +104,27 @@
 {
 
     self.navigationItem.title = _planetOverviewViewController.title;
-    [self.view bringSubviewToFront:_planetOverviewViewController.view];
+    [self transitionToView:_planetOverviewViewController.view];
     [_planetOverviewViewController refreshData];
 
     // Select Planet Option
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:_planetOverviewViewController action:@selector(showPlanetList)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
+    
+    // Set View Reference
+    [self setCurrentView:_planetOverviewViewController.view];
 }
 
 -(void) setPlanetBuildingController
 {
     
     self.navigationItem.title = _planetBuildingViewController.title;
-    [self.view bringSubviewToFront:_planetBuildingViewController.view];
+    [self transitionToView:_planetBuildingViewController.view];
     [_planetBuildingViewController refreshData];
     [[self navigationItem] setRightBarButtonItem:nil];
+    
+    // Set View Reference
+    [self setCurrentView:_planetBuildingViewController.view];
    
 }
 
@@ -123,9 +132,22 @@
 {
     
     self.navigationItem.title = _planetResearchViewController.title;
-    [self.view bringSubviewToFront:_planetResearchViewController.view];
+    [self transitionToView:_planetResearchViewController.view];
     [_planetResearchViewController refreshData];
     [[self navigationItem] setRightBarButtonItem:nil];
+    
+    // Set View Reference
+    [self setCurrentView:_planetResearchViewController.view];
+}
+
+-(void) transitionToView:(UIView*) viewTo
+{
+    [UIView transitionFromView:_currentView
+                        toView:viewTo
+                      duration:0.25f
+                       options:UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionTransitionCrossDissolve
+                    completion:^(BOOL finished){
+                    }];
 }
 
 #pragma mark UITabBar Delegate

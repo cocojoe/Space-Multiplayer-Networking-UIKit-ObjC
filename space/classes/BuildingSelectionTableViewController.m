@@ -184,7 +184,6 @@
     // will continue to try and send notification objects to the deallocated
     // object.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self dismissBuildingPopUp:nil];
 }
 
 #pragma mark - Table view delegate
@@ -192,50 +191,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Create Popup
-    [self createBuildingPopup:[_buildingsFiltered objectAtIndex:indexPath.row]];
-}
-
-#pragma mark Building Popup
--(void) createBuildingPopup:(NSDictionary*) buildingDict
-{
-    // Create Grey Background
-    UIView *dimBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    dimBackgroundView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.8f];
-    dimBackgroundView.tag = TAG_POPUP_GREY;
-    [self.view addSubview:dimBackgroundView];
-    
-    // Add Tap  (Dismiss Popup)
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(dismissBuildingPopUp:)];
-    [dimBackgroundView addGestureRecognizer:singleFingerTap];
-    
-    // Create Building Build View
-    BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
-    [buildingPopup setCenter:CGPointMake(self.view.bounds.size.width*0.5f, (self.view.bounds.size.height*0.5f)+self.tableView.contentOffset.y)];
-    buildingPopup.tag = TAG_POPUP;
-    [self.view addSubview:buildingPopup];
-
-    // Set Reference To This View (For Dismissal)
-    [buildingPopup setParent:self];
-    
-    // Setup Popup
-    [buildingPopup setup:buildingDict];
-
-}
-
-// Dismiss Popup
-- (void)dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer {
-    UIView *dimBackgroundView   = [self.view viewWithTag:TAG_POPUP_GREY];
-    UIView *buildingPopup       = [self.view viewWithTag:TAG_POPUP];
-    
-    // Remove Recognizer
-    for (UIGestureRecognizer *recognizer in dimBackgroundView.gestureRecognizers) {
-        [dimBackgroundView removeGestureRecognizer:recognizer];
-    }
-    
-    [dimBackgroundView removeFromSuperview];
-    [buildingPopup removeFromSuperview];
+    // Redundant
 }
 
 @end

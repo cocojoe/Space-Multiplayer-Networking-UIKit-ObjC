@@ -101,9 +101,7 @@
 // Button Pressed
 -(IBAction) buttonPressed:(id)sender
 {
-    //UIButton *button = (UIButton *) sender;
-    // Universal Popup
-    [[GameManager sharedInstance] createBuildingPopup:_buildingID];
+    [[GameManager sharedInstance] createPopup:ePopupBuilding setItem:_buildingID];
 }
 
 @end

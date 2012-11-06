@@ -46,6 +46,8 @@
 		5B54BCCC1645CED8000216B2 /* background_planet@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B54BCCA1645CED8000216B2 /* background_planet@2x.jpg */; };
 		5B5BA5DC163EC47400B7FACE /* building_icon_time.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5BA5DA163EC47400B7FACE /* building_icon_time.png */; };
 		5B5BA5DD163EC47400B7FACE /* building_icon_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5BA5DB163EC47400B7FACE /* building_icon_time@2x.png */; };
+		5B694A2916481A9C00E313FA /* ResearchActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B694A2816481A9C00E313FA /* ResearchActionView.xib */; };
+		5B694A2D16481ABF00E313FA /* ResearchActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B694A2C16481ABF00E313FA /* ResearchActionView.m */; };
 		5B7A10A5162579680012E452 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A10A1162579680012E452 /* arrow.png */; };
 		5B7A10A6162579680012E452 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A10A2162579680012E452 /* arrow@2x.png */; };
 		5B7A10A7162579680012E452 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A10A4162579680012E452 /* PullToRefreshView.m */; };
@@ -74,6 +76,8 @@
 		5B7E187F1624360200E0315E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7E187C1624360200E0315E /* OpenAL.framework */; };
 		5B7E189116243D8900E0315E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E188E16243D8900E0315E /* NSString+MD5Addition.m */; };
 		5B7E189216243D8900E0315E /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7E189016243D8900E0315E /* UIDevice+IdentifierAddition.m */; };
+		5B829F1816491EE900FB8DE8 /* research_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B829F1616491EE900FB8DE8 /* research_bulb.png */; };
+		5B829F1916491EE900FB8DE8 /* research_bulb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B829F1716491EE900FB8DE8 /* research_bulb@2x.png */; };
 		5B85DA06163EA0920050BDF7 /* building_icon_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85D9FE163EA0920050BDF7 /* building_icon_energy.png */; };
 		5B85DA07163EA0920050BDF7 /* building_icon_energy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85D9FF163EA0920050BDF7 /* building_icon_energy@2x.png */; };
 		5B85DA08163EA0920050BDF7 /* building_icon_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B85DA00163EA0920050BDF7 /* building_icon_food.png */; };
@@ -283,6 +287,9 @@
 		5B54BCCA1645CED8000216B2 /* background_planet@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background_planet@2x.jpg"; sourceTree = "<group>"; };
 		5B5BA5DA163EC47400B7FACE /* building_icon_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_time.png; sourceTree = "<group>"; };
 		5B5BA5DB163EC47400B7FACE /* building_icon_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_time@2x.png"; sourceTree = "<group>"; };
+		5B694A2816481A9C00E313FA /* ResearchActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResearchActionView.xib; path = classes/management/ResearchActionView.xib; sourceTree = "<group>"; };
+		5B694A2B16481ABF00E313FA /* ResearchActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResearchActionView.h; path = classes/management/ResearchActionView.h; sourceTree = "<group>"; };
+		5B694A2C16481ABF00E313FA /* ResearchActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResearchActionView.m; path = classes/management/ResearchActionView.m; sourceTree = "<group>"; };
 		5B7A10A1162579680012E452 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		5B7A10A2162579680012E452 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		5B7A10A3162579680012E452 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
@@ -327,6 +334,8 @@
 		5B7E188E16243D8900E0315E /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		5B7E188F16243D8900E0315E /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		5B7E189016243D8900E0315E /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		5B829F1616491EE900FB8DE8 /* research_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = research_bulb.png; sourceTree = "<group>"; };
+		5B829F1716491EE900FB8DE8 /* research_bulb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "research_bulb@2x.png"; sourceTree = "<group>"; };
 		5B85D9FE163EA0920050BDF7 /* building_icon_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_energy.png; sourceTree = "<group>"; };
 		5B85D9FF163EA0920050BDF7 /* building_icon_energy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "building_icon_energy@2x.png"; sourceTree = "<group>"; };
 		5B85DA00163EA0920050BDF7 /* building_icon_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_icon_food.png; sourceTree = "<group>"; };
@@ -644,6 +653,16 @@
 			name = "Buildings Overview Views";
 			sourceTree = "<group>";
 		};
+		5B694A2A16481AA300E313FA /* Building */ = {
+			isa = PBXGroup;
+			children = (
+				5B9BBCFE163F20DF008C6B7E /* BuildingBuildView.xib */,
+				5B9BBD01163F2118008C6B7E /* BuildingBuildView.h */,
+				5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */,
+			);
+			name = Building;
+			sourceTree = "<group>";
+		};
 		5B7A10A0162579680012E452 /* PullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -704,6 +723,7 @@
 		5B7E182916241ECC00E0315E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B829F1516491EE900FB8DE8 /* research */,
 				5BE21996164290C5005C3159 /* planet */,
 				5BDE26C916403BBD0032BA98 /* buttons */,
 				5B85D9FD163EA0920050BDF7 /* buildings */,
@@ -793,7 +813,7 @@
 				5B8F1A2D1624684500274D4E /* Objects */,
 				5B7E1869162434CC00E0315E /* GameManager.h */,
 				5B7E186A162434CC00E0315E /* GameManager.m */,
-				5B9BBD00163F20E6008C6B7E /* Building Popup Option */,
+				5B9BBD00163F20E6008C6B7E /* Global Popups */,
 				5BF38E4516316B890029658A /* UIView+FindUIViewController.h */,
 				5BF38E4616316B890029658A /* UIView+FindUIViewController.m */,
 				5B85DA11163EB0E80050BDF7 /* UILabel+formatHelpers.h */,
@@ -829,6 +849,16 @@
 			);
 			path = DeviceID;
 			sourceTree = "<group>";
+		};
+		5B829F1516491EE900FB8DE8 /* research */ = {
+			isa = PBXGroup;
+			children = (
+				5B829F1616491EE900FB8DE8 /* research_bulb.png */,
+				5B829F1716491EE900FB8DE8 /* research_bulb@2x.png */,
+			);
+			name = research;
+			path = assets/research;
+			sourceTree = SOURCE_ROOT;
 		};
 		5B85D9FD163EA0920050BDF7 /* buildings */ = {
 			isa = PBXGroup;
@@ -950,14 +980,15 @@
 			name = "List Item";
 			sourceTree = "<group>";
 		};
-		5B9BBD00163F20E6008C6B7E /* Building Popup Option */ = {
+		5B9BBD00163F20E6008C6B7E /* Global Popups */ = {
 			isa = PBXGroup;
 			children = (
-				5B9BBCFE163F20DF008C6B7E /* BuildingBuildView.xib */,
-				5B9BBD01163F2118008C6B7E /* BuildingBuildView.h */,
-				5B9BBD02163F2118008C6B7E /* BuildingBuildView.m */,
+				5B694A2A16481AA300E313FA /* Building */,
+				5B694A2816481A9C00E313FA /* ResearchActionView.xib */,
+				5B694A2B16481ABF00E313FA /* ResearchActionView.h */,
+				5B694A2C16481ABF00E313FA /* ResearchActionView.m */,
 			);
-			name = "Building Popup Option";
+			name = "Global Popups";
 			path = ../..;
 			sourceTree = "<group>";
 		};
@@ -1454,6 +1485,9 @@
 				5B9814C616442267009A0CF8 /* ResearchListItemView.xib in Resources */,
 				5B54BCCB1645CED8000216B2 /* background_planet.jpg in Resources */,
 				5B54BCCC1645CED8000216B2 /* background_planet@2x.jpg in Resources */,
+				5B694A2916481A9C00E313FA /* ResearchActionView.xib in Resources */,
+				5B829F1816491EE900FB8DE8 /* research_bulb.png in Resources */,
+				5B829F1916491EE900FB8DE8 /* research_bulb@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1518,6 +1552,7 @@
 				5B9814B916441654009A0CF8 /* ResearchQueueItemView.m in Sources */,
 				5B9814C0164421DB009A0CF8 /* ResearchListView.m in Sources */,
 				5B9814C41644224E009A0CF8 /* ResearchListItemView.m in Sources */,
+				5B694A2D16481ABF00E313FA /* ResearchActionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

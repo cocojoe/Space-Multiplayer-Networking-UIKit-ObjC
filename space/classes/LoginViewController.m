@@ -53,7 +53,7 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    _alertView = [[TKProgressAlertView alloc] initWithProgressTitle:@"Logging In"];
+    _alertView = [[TKProgressAlertView alloc] initWithProgressTitle:@"Establishing Uplink"];
     self.alertView.progressBar.progress = 0;
     [self.alertView show];
     
@@ -63,7 +63,7 @@
 #pragma mark Initialisation Sequence
 -(void) stepAuthenticate
 {
-    self.alertView.label.text           = @"Logging In";
+    self.alertView.label.text           = @"Establishing Uplink";
     
     [[GameManager sharedInstance] authenticate:^(){
         self.alertView.progressBar.progress = 0.25f;
@@ -77,11 +77,11 @@
 
 -(void) stepMasterDownload
 {
-    self.alertView.label.text           = @"Updating";
+    self.alertView.label.text           = @"Modulating Frequency";
     
     [[GameManager sharedInstance] retrieveMaster:^(){
         self.alertView.progressBar.progress = 1.0f;
-        self.alertView.label.text           = @"Ready...";
+        self.alertView.label.text           = @"Uplink Established";
         [self performSelector:@selector(dismissLogin) withObject:nil afterDelay:0.75f];
     } setErrorBlock:^(){
         self.alertView.label.text           = [NSString stringWithFormat:@"Retrying..."];

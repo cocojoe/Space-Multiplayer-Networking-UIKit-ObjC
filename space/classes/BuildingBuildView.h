@@ -32,7 +32,6 @@
 #pragma mark Internal Reference
 @property (nonatomic,readwrite) int amount;
 @property (nonatomic,readwrite) int building_id;
-@property (weak,nonatomic) UIViewController* parent;
 
 #pragma mark Actions
 @property (nonatomic) IBOutlet UIStepper* stepperAmount;
@@ -42,6 +41,6 @@
 -(IBAction) buttonPressed:(id)sender;
 
 #pragma mark Creation
--(void) setup:(NSDictionary*) buildingDict;
+-(void) setup:(int) buildingID;
 
 @end

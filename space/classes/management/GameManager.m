@@ -363,6 +363,27 @@
 
 }
 
+#pragma mark Research
+-(void) addResearch:(int)researchID setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock
+{
+    // Create DATA Dictionary
+    NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithInt:researchID], @"research_id",
+                              [NSNumber numberWithInt:planetID]  , @"planet_id",
+
+                              nil];
+    
+    [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
+        
+        [self makeRequest:URI_RESEARCH_ADD setPostDictionary:postDict setBlock:^(NSDictionary *jsonDict) {
+            // Clear Planet Cache
+            [_planetDict removeAllObjects];
+            actionBlock(jsonDict);
+        } setBlockFail:failBlock];
+        
+    }]];
+}
+
 #pragma mark General Caching
 -(BOOL) shouldUseCache:(NSDictionary*) checkDictionary setBlock:(ResponseBlock) actionBlock
 {
@@ -429,7 +450,8 @@
             {
                 // Debug API Issue
                 int errorCode = [[JSON objectForKey:@"error_code"] intValue];
-                CCLOG(@"%@",[NSString stringWithFormat:@"API Error Code: %d, Description: %@",errorCode,[JSON objectForKey:@"error_description"]]);
+                CCLOG(@"API Error Code: %d, Description: %@",errorCode,[JSON objectForKey:@"error_description"]);
+                CCLOG(@"Request URL:%@, POST:%@",[request URL],completeDict);
                 
                 if(errorCode==1)
                 {
@@ -570,20 +592,9 @@
     [[TKAlertCenter defaultCenter] postAlertWithMessage:message image:[UIImage imageNamed:@"icon_home"]];
 }
 
-#pragma mark Building Popup
--(void) createBuildingPopup:(int) buildingID
+#pragma mark Popup
+-(void) createPopup:(int)eType setItem:(int)itemID
 {
-    // Lookup Building
-    NSDictionary* buildingDict;
-    
-    for(NSDictionary* buildingDetail in [[GameManager sharedInstance] masterBuildingList])
-    {
-        // Check Master Buildings / Add
-        if([[buildingDetail objectForKey:@"id"] integerValue]==buildingID)
-        {
-            buildingDict = [NSDictionary dictionaryWithDictionary:buildingDetail];
-        }
-    }
     // Current Window
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     // Root ViewController
@@ -591,7 +602,7 @@
     // Root View
     UIView* masterView = rootViewController.view;
     
-    // Create Grey Background
+    // Create Grey Background (Tap to Cancel View Layer)
     UIView *dimBackgroundView = [[UIView alloc] initWithFrame:masterView.bounds];
     dimBackgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:1.0f];
     dimBackgroundView.alpha = 0.0f;
@@ -606,29 +617,45 @@
     // Add Tap (Cancel Popup)
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(dismissBuildingPopUp:)];
+                                            action:@selector(dismissPopup:)];
     [dimBackgroundView addGestureRecognizer:singleFingerTap];
     
-    // Create Building Build View
-    BuildingBuildView *buildingPopup = [[[NSBundle mainBundle] loadNibNamed:@"BuildingBuildView" owner:self options:nil] objectAtIndex:0];
-    [buildingPopup setCenter:CGPointMake(masterView.frame.size.width*0.5f, masterView.frame.size.height*0.5f)];
-    buildingPopup.tag = TAG_POPUP;
     
-    [buildingPopup setTransform:CGAffineTransformMakeScale(0.01f, 0.01f)];
-    [masterView addSubview:buildingPopup];
+    
+    // Setup Popup
+    NSString* xib = @"";
+    switch (eType) {
+        case ePopupBuilding:
+            xib = @"BuildingBuildView";
+            break;
+        case ePopupResearch:
+            xib = @"ResearchActionView";
+            break;
+        default:
+            break;
+    }
+    
+    // Create Building Build View
+    UIView *viewPopup = [[[NSBundle mainBundle] loadNibNamed:xib owner:self options:nil] objectAtIndex:0];
+    [viewPopup setCenter:CGPointMake(masterView.frame.size.width*0.5f, masterView.frame.size.height*0.5f)];
+    viewPopup.tag = TAG_POPUP;
+    
+    // Prepare For Animation Scale
+    [viewPopup setTransform:CGAffineTransformMakeScale(0.01f, 0.01f)];
+    [masterView addSubview:viewPopup];
     
     // Issue Animation
     [UIView animateWithDuration:EFFECT_POPUP_SCALE
-                     animations:^{[buildingPopup setTransform:CGAffineTransformMakeScale(1.0f, 1.0f)];}
+                     animations:^{[viewPopup setTransform:CGAffineTransformMakeScale(1.0f, 1.0f)];}
                      completion:^(BOOL finished){ }];
     
     // Setup Popup
-    [buildingPopup setup:buildingDict];
+    [(BuildingBuildView*)viewPopup setup:itemID];
     
 }
 
 // Dismiss Popup
--(void) dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer {
+-(void) dismissPopup:(UITapGestureRecognizer *)recognizer {
     
     // Current Window
     UIWindow *window = [UIApplication sharedApplication].keyWindow;

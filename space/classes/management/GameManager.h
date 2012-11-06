@@ -62,6 +62,9 @@ typedef void (^BasicBlock)          ();
 #define URI_PLANET                      (@"/api/planet/index")
 #define URI_BUILDING_ADD                (@"/api/planet/build")
 
+// Research
+#define URI_RESEARCH_ADD                (@"/api/planet/research")
+
 // Master
 #define URI_MASTER_DATA                 (@"/api/master/")
 
@@ -76,6 +79,13 @@ enum eAuthenticationState {
     eAuthenticationInProgress,
     eAuthenticationOK
 };
+
+enum ePopupType {
+    ePopupNone,
+    ePopupBuilding,
+    ePopupResearch
+};
+
 
 @class MasterViewController;
 
@@ -156,6 +166,9 @@ enum eAuthenticationState {
 #pragma mark Buildings
 -(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
 
+#pragma mark Research
+-(void) addResearch:(int)researchID setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
+
 #pragma mark Notifications
 -(void) createNotification:(double) time setMessage:(NSString*) message;
 -(void) createNotificationPopup:(NSString *)message;
@@ -166,7 +179,7 @@ enum eAuthenticationState {
 -(NSMutableArray*) getBuildingGroup:(NSString*) name;
 
 #pragma mark Building Popup
--(void) createBuildingPopup:(int) buildingID;
--(void) dismissBuildingPopUp:(UITapGestureRecognizer *)recognizer;
+-(void) createPopup:(int)eType setItem:(int)itemID;
+-(void) dismissPopup:(UITapGestureRecognizer *)recognizer;
 
 @end

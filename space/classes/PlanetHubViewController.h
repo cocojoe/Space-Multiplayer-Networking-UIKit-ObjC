@@ -21,5 +21,8 @@
 @property (nonatomic) PlanetBuildingViewController* planetBuildingViewController;
 @property (nonatomic) PlanetResearchViewController* planetResearchViewController;
 
+// Current 'View'
+@property (nonatomic,weak) UIView* currentView;
+
 
 @end
