@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
 
-@interface PlanetViewController : UITableViewController  <PullToRefreshViewDelegate>
+@interface PlanetViewController : UITableViewController  <PullToRefreshViewDelegate> 
 
 // Pull Refresh
 @property (nonatomic) PullToRefreshView *pull;
 
 // Data
 @property (nonatomic) NSMutableArray* planets;
+@property (nonatomic) NSMutableDictionary* planetsGrouped;
+@property (nonatomic) NSArray* planetGroupList;
 
 #pragma mark Data Processing
 -(void) refreshData;

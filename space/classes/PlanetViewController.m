@@ -23,6 +23,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _planets         = [[NSMutableArray alloc] init];
+        _planetsGrouped  = [[NSMutableDictionary alloc] init];
         self.title       = NSLocalizedString(@"PlanetSelectionTitleKey", @"");
         [self setupNotification];
     }
@@ -73,7 +74,37 @@
 #pragma mark Search Helpers
 -(void) defaultFilter
 {
+    // Process Data
+    // Create 'System' Groups
+    [self createGrouped];
+    
     [self.tableView reloadData];
+}
+
+-(void) createGrouped {
+    
+    /* Interesting Way For Counting
+     NSCountedSet * countedSet = [[NSCountedSet alloc]init];
+     [countedSet addObject:[[itemDict objectForKey:@"system"] objectForKey:@"name"]];
+     [countedSet allObjects]
+     [countedSet countForObject:countryName]
+    */
+    
+    [_planetsGrouped removeAllObjects];
+
+    for (NSDictionary* itemDict in _planets ) {
+        NSMutableArray* tempArray = [_planetsGrouped objectForKey:[[itemDict objectForKey:@"system"] objectForKey:@"name"]];
+        if(tempArray==nil)
+        {
+            tempArray = [NSMutableArray array];
+            [_planetsGrouped setObject:tempArray forKey:[[itemDict objectForKey:@"system"] objectForKey:@"name"]];
+        }
+        [tempArray addObject:itemDict];
+    
+    }
+    
+    _planetGroupList = [[_planetsGrouped allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
 }
 
 // For example after a modal is dimissed (that may have refreshed player)
@@ -95,13 +126,18 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [_planetGroupList count];
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [_planetGroupList objectAtIndex:section];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_planets count];
+    return [[_planetsGrouped objectForKey:[_planetGroupList objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,8 +152,12 @@
     // Disable Selection Highlight
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
+    NSString * systemName    = [_planetGroupList objectAtIndex:indexPath.section];
+    NSArray *systemPlanets   = [_planetsGrouped objectForKey:systemName];
+    NSDictionary *planetDict = [systemPlanets objectAtIndex:indexPath.row];
+    
     // Populate Cell
-    [cell refresh:[_planets objectAtIndex:indexPath.row]];
+    [cell refresh:planetDict];
 
 
     return cell;

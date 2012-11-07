@@ -121,7 +121,7 @@
     self.navigationItem.title = _planetBuildingViewController.title;
     [self transitionToView:_planetBuildingViewController.view];
     [_planetBuildingViewController refreshData];
-    [[self navigationItem] setRightBarButtonItem:nil];
+    //[[self navigationItem] setRightBarButtonItem:nil];
     
     // Set View Reference
     [self setCurrentView:_planetBuildingViewController.view];
@@ -134,7 +134,7 @@
     self.navigationItem.title = _planetResearchViewController.title;
     [self transitionToView:_planetResearchViewController.view];
     [_planetResearchViewController refreshData];
-    [[self navigationItem] setRightBarButtonItem:nil];
+    //[[self navigationItem] setRightBarButtonItem:nil];
     
     // Set View Reference
     [self setCurrentView:_planetResearchViewController.view];
