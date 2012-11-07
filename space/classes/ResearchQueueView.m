@@ -95,9 +95,6 @@
         // Set Timer / Progress
         [newItem updateQueueProgress];
         
-        // Enable ETA Label
-        [newItem.itemETA setHidden:NO];
-        
         // Calculate Height
         if(totalHeight==0)
         {

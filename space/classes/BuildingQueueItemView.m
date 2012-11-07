@@ -44,6 +44,18 @@
     // Calculate Progress
     double progressDivision = 1.0f / (_endTime - _startTime);
     double currentProgress  = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
+    
+    // Incorrect Client Time Capping (Or People Thinking Clock Changing Will Help :-)
+    // Time Before Build Start Time
+    if(currentProgress<_startTime)
+        currentProgress = _startTime;
+    
+    // Time After Build End Time (Stops API Refresh Spamming)
+    if(currentProgress>_endTime)
+    {
+        return NO;
+    }
+    
     double ETA              = _endTime - currentProgress;
     float progress          = 0.0f;
 
@@ -51,7 +63,7 @@
     if(ETA<=1) {
         progress = 1.0f;
         ETA = 0;
-    } else if(currentProgress<_endTime) { // Calculate Progress
+    } else if(currentProgress>_startTime) { // Calculate Progress
         progress = (currentProgress - _startTime) * progressDivision;
     }
     

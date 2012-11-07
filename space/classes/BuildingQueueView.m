@@ -104,9 +104,6 @@
         // Set Timer / Progress
         [self updateQueue];
         
-        // Enable ETA Label
-        [newItem.itemETA setHidden:NO];
-        
         // Alignment
         if(totalHeight==0)
         {
