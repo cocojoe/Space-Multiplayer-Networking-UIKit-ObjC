@@ -122,10 +122,15 @@
  
     [[GameManager sharedInstance] refreshPlanet:^(NSDictionary *jsonDict){
         
-        // Parent Player Dictionary
+        // Planet Data
         NSDictionary *planetDict = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
-        
         [_planetDetailView refresh:planetDict];
+        
+        // Refresh Tabs
+        // Update Navigation Title
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePlanet" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"researchRefresh" object:self];
         
     }];
 }

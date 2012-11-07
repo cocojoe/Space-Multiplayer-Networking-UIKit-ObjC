@@ -77,7 +77,7 @@
 
 -(void) stepMasterDownload
 {
-    self.alertView.label.text           = @"Modulating Frequency";
+    self.alertView.label.text           = @"Encrypting Channel";
     
     [[GameManager sharedInstance] retrieveMaster:^(){
         self.alertView.progressBar.progress = 1.0f;

@@ -33,6 +33,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        [self setupNotification];
     }
     return self;
 }
@@ -100,10 +101,29 @@
     return shouldAutorotate;
 }
 
+#pragma mark Notification Handling
+-(void) setupNotification
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:@"updatePlanet"
+                                               object:nil];
+}
+
+- (void) handleNotification:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"updatePlanet"])
+    {
+        self.navigationItem.title = [[[[GameManager sharedInstance] planetDict] objectForKey:@"planet"] objectForKey:@"name"];
+    }
+}
+
+
+#pragma mark Tab Switching
 -(void) setPlanetOverviewController
 {
 
-    self.navigationItem.title = _planetOverviewViewController.title;
     [self transitionToView:_planetOverviewViewController.view];
     [_planetOverviewViewController refreshData];
 
@@ -118,10 +138,8 @@
 -(void) setPlanetBuildingController
 {
     
-    self.navigationItem.title = _planetBuildingViewController.title;
     [self transitionToView:_planetBuildingViewController.view];
     [_planetBuildingViewController refreshData];
-    //[[self navigationItem] setRightBarButtonItem:nil];
     
     // Set View Reference
     [self setCurrentView:_planetBuildingViewController.view];
@@ -131,10 +149,8 @@
 -(void) setPlanetResearchController
 {
     
-    self.navigationItem.title = _planetResearchViewController.title;
     [self transitionToView:_planetResearchViewController.view];
     [_planetResearchViewController refreshData];
-    //[[self navigationItem] setRightBarButtonItem:nil];
     
     // Set View Reference
     [self setCurrentView:_planetResearchViewController.view];
@@ -169,6 +185,14 @@
     
     // Ensure Tab Bar
     [self.view bringSubviewToFront:_customTabBar];
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

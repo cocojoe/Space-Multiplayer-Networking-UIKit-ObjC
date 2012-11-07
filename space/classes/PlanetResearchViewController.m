@@ -135,18 +135,28 @@
         
         [_listView refresh:[planetDict objectForKey:@"research"]];
         
-        // Push List Down (From Queue)
-        CGRect newFrame    = [_listView frame];
-        newFrame.origin.y  = _originalListFrame.origin.y + _queueView.frame.size.height+PLANET_RESEARCH_VIEW_SPACER;
-        [_listView setFrame:newFrame];
-        
-        // Adjust Content Size
-        CGSize contentSize  = _mainScrollView.contentSize;
-        contentSize.height  = _originalListFrame.origin.y + _listView.frame.size.height+_queueView.frame.size.height+(PLANET_RESEARCH_VIEW_SPACER*2.0f); // 2 Views + Padding
-        _mainScrollView.contentSize=contentSize;
+        [self updateContentScrollSize];
         
     }];
     
+}
+
+-(void) updateContentScrollSize
+{
+    // Push List Down (From Queue)
+    CGRect newFrame    = [_listView frame];
+    newFrame.origin.y  = _originalListFrame.origin.y + _queueView.frame.size.height+PLANET_RESEARCH_VIEW_SPACER;
+    [_listView setFrame:newFrame];
+    
+    // Adjust Content Size
+    CGSize contentSize  = _mainScrollView.contentSize;
+    contentSize.height  = _originalListFrame.origin.y + _listView.frame.size.height+_queueView.frame.size.height+(PLANET_RESEARCH_VIEW_SPACER*2.0f); // 2 Views + Padding
+    
+    // Ensure Scrollable
+    if(contentSize.height<CONTENT_SIZE_MIN_HEIGHT)
+        contentSize.height=CONTENT_SIZE_MIN_HEIGHT;
+    
+    _mainScrollView.contentSize=contentSize;
 }
 
 @end

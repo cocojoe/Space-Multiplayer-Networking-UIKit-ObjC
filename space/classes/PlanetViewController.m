@@ -225,17 +225,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* planetDict = [_planets objectAtIndex:indexPath.row];
+    NSString * systemName    = [_planetGroupList objectAtIndex:indexPath.section];
+    NSArray *systemPlanets   = [_planetsGrouped objectForKey:systemName];
+    NSDictionary *planetDict = [systemPlanets objectAtIndex:indexPath.row];
     
     // Set Game Manager Planet
     [[GameManager sharedInstance] setPlanet:[[planetDict objectForKey:@"id"] intValue]];
     
-    // Refresh Planet
+    // Refresh Views
     [[NSNotificationCenter defaultCenter] postNotificationName:@"planetRefresh" object:self];
     
     // Dismiss
     [self dismissModalViewControllerAnimated:YES];
 
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -31,6 +31,9 @@ typedef void (^BasicBlock)          ();
 #define TAG_POPUP_GREY                  900
 #define TAG_POPUP                       901
 
+// Scroll
+#define CONTENT_SIZE_MIN_HEIGHT         392
+
 // Effts
 #define EFFECT_POPUP_FADE               0.5f
 #define EFFECT_POPUP_SCALE              0.25f
