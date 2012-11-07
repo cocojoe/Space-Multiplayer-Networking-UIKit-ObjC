@@ -47,6 +47,10 @@
 
     }
     
+    // Set Background
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_space.jpg"]];
+    self.tableView.backgroundView = imageView;
+    
     // Create Pull Loader
     _pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
     [_pull setDelegate:self];
@@ -109,6 +113,9 @@
         cell = [[PlanetTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    // Disable Selection Highlight
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     // Populate Cell
     [cell refresh:[_planets objectAtIndex:indexPath.row]];
 
@@ -116,7 +123,8 @@
     return cell;
 }
 
-// Colour Cell
+// Colour Currently Selected Cell
+/*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if([[[_planets objectAtIndex:indexPath.row] objectForKey:@"id"] intValue] == [[GameManager sharedInstance] planetID])
@@ -125,12 +133,13 @@
     }
 
 }
+*/
 
 // Table Size (Custom Cell)
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
-}
+    return 70;
+}  
 
 #pragma mark Rotation Fix
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
