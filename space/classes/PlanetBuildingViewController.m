@@ -138,6 +138,7 @@
         NSDictionary *planetDict   = [NSDictionary dictionaryWithDictionary:[jsonDict objectForKey:@"planet"]];
  
         // Sub View Listing(s)
+        [_buildingQueueView setMaxQueueDepth:[[planetDict objectForKey:@"build_queue"] intValue]];
         [_buildingQueueView setupQueue:[[planetDict objectForKey:@"queues"] objectForKey:@"building"]];
         
         [_buildingListView refresh:[planetDict objectForKey:@"buildings"]];

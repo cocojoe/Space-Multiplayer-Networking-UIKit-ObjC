@@ -80,6 +80,11 @@
     
     for(NSDictionary* building in _buildingFiltered)
     {
+        
+        // SKIP BUILDINGS NOT ALLOWED
+        if(![[building objectForKey:@"allow"] boolValue])
+            continue;
+        
         // Create UIView
         BuildingListItemView *buildingItem = [[[NSBundle mainBundle] loadNibNamed:@"BuildingListItemView" owner:self options:nil] objectAtIndex:0];
         [self addSubview:buildingItem];

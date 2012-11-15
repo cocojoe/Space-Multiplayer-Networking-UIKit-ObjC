@@ -42,6 +42,7 @@
 -(void) setupQueue:(NSMutableArray*) itemQueueArray
 {
     
+    
     // Remove Existing Views
     for(BuildingQueueItemView* item in _items)
     {
@@ -49,23 +50,23 @@
     }
     [_items removeAllObjects];
     
-    // Items to Add
+    // Reset Header
     if([itemQueueArray count]==0)
     {
         // Rest Frame Height
         CGRect frame = [self frame];
         frame.size.height = BUILDING_QUEUE_DEFAULT_HEIGHT;
         [self setFrame:frame];
+        
+        _header.hidden = NO;
+        _header.text = [NSString stringWithFormat:@"%d Queue Slots Free",(_maxQueueDepth-[itemQueueArray count])];
         return;
     }
     
-    if([itemQueueArray count]>=BUILDING_DEFAULT_QUEUE_SLOTS)
+    if([itemQueueArray count]>=_maxQueueDepth)
     {
         // Remove Header (If We Have No Slots Available)
         _header.hidden = YES;
-    } else {
-        // Restore Header
-        _header.hidden = NO;
     }
     
     // Start Point (Relative to View)
@@ -99,7 +100,7 @@
         newItem.itemAmount.text       = [NSString stringWithFormat:@"x%d",[[itemQueue objectForKey:@"amount"] intValue]];
         
         // Set Position
-        newItem.itemPosition.text = [NSString stringWithFormat:@"%d/%d",position,BUILDING_DEFAULT_QUEUE_SLOTS];
+        newItem.itemPosition.text = [NSString stringWithFormat:@"%d/%d",position,_maxQueueDepth];
         
         // Set Timer / Progress
         [self updateQueue];

@@ -40,7 +40,7 @@
     self.layer.borderWidth = 2.0f;
 }
 
--(void) refresh:(NSNumber*) itemID
+-(void) refresh:(NSDictionary*) itemMasterDict
 {
     
     // Modify Button
@@ -52,10 +52,11 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
 
-    NSDictionary* itemDict = [[GameManager sharedInstance] getResearch:[itemID intValue]];
-   
     // Internal
-    _itemID = [itemID intValue];
+    _itemID   = [[itemMasterDict objectForKey:@"id"] intValue];
+    _itemTime = [[itemMasterDict objectForKey:@"time"] intValue];
+    
+    NSDictionary* itemDict = [[GameManager sharedInstance] getResearch:_itemID];
     
     // Basics
     [_name setText:[itemDict objectForKey:@"name"]];
@@ -84,7 +85,7 @@
 {
     //UIButton *button = (UIButton *) sender;
     // Universal Popup
-    [[GameManager sharedInstance] createPopup:ePopupResearch setItem:_itemID];
+    [[GameManager sharedInstance] createPopup:ePopupResearch setItem:_itemID setExtra:_itemTime];
 }
 
 @end

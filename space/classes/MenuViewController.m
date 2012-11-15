@@ -13,12 +13,16 @@
 #import "InventoryViewController.h"
 #import "PlanetHubViewController.h"
 
+#import "CC3DRevealViewController.h"
+#import "Planet3DScene.h"
+
 // Various Object Definition(s)
 #import "MenuObject.h"
 
 #define MENU_HUB            0
 #define MENU_PLANET         1
 #define MENU_INVENTORY      2
+#define MENU_TEST           3
 
 @interface MenuViewController ()
 
@@ -85,6 +89,12 @@
     [menuItem setIconName:@"icon_inventory.png"];
     [menuItem setName:NSLocalizedString(@"InventoryTitleKey", @"")];
     [_menuList addObject:menuItem];
+    
+    // 3D Controller TEST
+    menuItem = [[MenuObject alloc] init];
+    [menuItem setIconName:@"icon_planet.png"];
+    [menuItem setName:@"3D Planet (Test)"];
+    [_menuList addObject:menuItem];
 }
 
 #pragma mark - Table view data source
@@ -148,6 +158,7 @@
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[InventoryViewController class]])
 		{
 			InventoryViewController *viewController = [[InventoryViewController alloc] initWithNibName:@"InventoryViewController" bundle:nil];
+            
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
             
 			[masterController setFrontViewController:navigationController animated:YES];
@@ -164,9 +175,46 @@
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[PlanetHubViewController class]])
 		{
 			PlanetHubViewController *viewController = [[PlanetHubViewController alloc] initWithNibName:@"PlanetHubViewController" bundle:nil];
+            
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
             
 			[masterController setFrontViewController:navigationController animated:YES];
+			
+		}
+		// Seems the user attempts to 'switch' to exactly the same controller he came from!
+		else
+		{
+			[masterController revealToggle:self];
+		}
+	} else if (indexPath.row == MENU_TEST) // Test Controller
+	{
+		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
+		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[CC3DRevealViewController class]])
+		{
+
+            CC3DRevealViewController *viewController = [CC3DRevealViewController controller];
+            viewController.supportedInterfaceOrientations = UIInterfaceOrientationMaskPortrait;
+            
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+            [masterController setFrontViewController:navigationController animated:YES];
+            
+            // Set GLView to This Controller View
+            [[CCDirector sharedDirector] setOpenGLView:viewController.view];
+            
+            // 3D Setup
+            // Create the customized CC3Layer that supports 3D rendering and schedule it for automatic updates.
+            CC3Layer* cc3Layer = [CC3Layer node];
+            [cc3Layer scheduleUpdate];
+            
+            // Create the customized 3D scene and attach it to the layer.
+            // Could also just create this inside the customer layer.
+            cc3Layer.cc3Scene = [Planet3DScene scene];
+            
+            // Assign to a generic variable so we can uncomment options below to play with the capabilities
+            CC3ControllableLayer* mainLayer = cc3Layer;
+
+            // Attach the layer to the controller and run a scene with it.
+            [viewController runSceneOnNode: mainLayer];
 			
 		}
 		// Seems the user attempts to 'switch' to exactly the same controller he came from!

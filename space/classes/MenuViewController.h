@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+// OpenGL Frame Rate
+#define kAnimationFrameRate		60
+
 @interface MenuViewController : UITableViewController
 
 @property (nonatomic) NSMutableArray* menuList;

@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Pedro LTD. All rights reserved.
 //
 
+#import "cocos2d.h"
+
 #import "AppDelegate.h"
 
 // Master
@@ -31,6 +33,15 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // Cocos2D/3D Setup Director
+    [CCDirector setDirectorType: kCCDirectorTypeDisplayLink];
+    CCTexture2D.defaultAlphaPixelFormat = kCCTexture2DPixelFormat_RGBA8888;
+    
+    CCDirector *director      = CCDirector.sharedDirector;
+    director.runLoopCommon    = YES;		// Improves display link integration with UIKit
+    director.animationInterval = (1.0f / kAnimationFrameRate);
+    director.displayFPS = YES; // Crashes on Second Opening
+
     // Initalise Game Manager
     [GameManager sharedInstance];
     
@@ -87,6 +98,10 @@
     _lastNotification = [notif alertBody];
 }
 
+-(void) applicationDidReceiveMemoryWarning: (UIApplication*) application {
+	[CCDirector.sharedDirector purgeCachedData];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -97,11 +112,14 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [CCDirector.sharedDirector stopAnimation];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [CCDirector.sharedDirector startAnimation];
     
     // Reset Badges
     application.applicationIconBadgeNumber = 0;
@@ -115,6 +133,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    [CCDirector.sharedDirector.openGLView removeFromSuperview];
+	[CCDirector.sharedDirector end];
+}
+
+-(void) applicationSignificantTimeChange: (UIApplication*) application {
+	[CCDirector.sharedDirector setNextDeltaTimeZero: YES];
 }
 
 @end

@@ -55,6 +55,9 @@
     int value = 0;
     int qty   = 0;
     
+    // Bonus Time Build
+    _buildingTime = [[buildingDict objectForKey:@"time"] intValue];
+    
     // Lookup Building
     for(NSDictionary* buildingDetail in [[GameManager sharedInstance] masterBuildingList])
     {
@@ -101,7 +104,7 @@
 // Button Pressed
 -(IBAction) buttonPressed:(id)sender
 {
-    [[GameManager sharedInstance] createPopup:ePopupBuilding setItem:_buildingID];
+    [[GameManager sharedInstance] createPopup:ePopupBuilding setItem:_buildingID setExtra:_buildingTime];
 }
 
 @end

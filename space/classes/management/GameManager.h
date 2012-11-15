@@ -167,7 +167,7 @@ enum ePopupType {
 -(void) refreshPlanet:(ResponseBlock) actionBlock;
 
 #pragma mark Buildings
--(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
+-(void) addBuilding:(int)buildingID setAmount:(int)amount setDepth:(int)depth setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
 
 #pragma mark Research
 -(void) addResearch:(int)researchID setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock;
@@ -182,7 +182,7 @@ enum ePopupType {
 -(NSMutableArray*) getBuildingGroup:(NSString*) name;
 
 #pragma mark Building Popup
--(void) createPopup:(int)eType setItem:(int)itemID;
+-(void) createPopup:(int)eType setItem:(int)itemID setExtra:(int) time;
 -(void) dismissPopup:(UITapGestureRecognizer *)recognizer;
 
 @end

@@ -20,6 +20,7 @@
 @property (nonatomic) IBOutlet UILabel* buildingMinerals;
 
 @property (nonatomic, readwrite) int buildingID;
+@property (nonatomic, readwrite) int buildingTime;
 
 -(void) refresh:(NSDictionary*) buildingDict;
 

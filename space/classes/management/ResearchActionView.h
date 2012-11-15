@@ -16,6 +16,7 @@
 
 // Internal
 @property (nonatomic,readwrite) int itemID;
+@property (nonatomic,readwrite) int itemTime;
 
 // Interface
 @property (nonatomic) IBOutlet UIButton* button;

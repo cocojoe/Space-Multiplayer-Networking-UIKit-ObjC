@@ -45,7 +45,7 @@
     _name.text = [researchDict objectForKey:@"name"];
     _description.text = [NSString stringWithFormat:@"\"%@\"",[researchDict objectForKey:@"description"]];
  
-    [_time setTimerText:[researchDict objectForKey:@"time"]];
+    [_time setTimerText:[NSNumber numberWithInt:_itemTime]];
     
     // Set Internals
     _itemID = itemID;
@@ -69,7 +69,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"researchRefresh" object:self];
         
         // Set Notification
-        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"%@ Complete",_name.text]];
+        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"Research Complete"]];
         
         
     } setBlockFail:^(){

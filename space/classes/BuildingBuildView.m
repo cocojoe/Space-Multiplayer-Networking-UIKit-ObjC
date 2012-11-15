@@ -12,6 +12,7 @@
 #import "BuildingSelectionTableViewController.h"
 
 #define DEFAULT_BUILD_AMOUNT    1
+#define DEFAULT_BUILD_DEPTH     1
 
 @implementation BuildingBuildView
 
@@ -29,7 +30,8 @@
 {
     self = [super initWithCoder:coder];
     if(self) {
-        _amount = DEFAULT_BUILD_AMOUNT; // Default
+        _amount = DEFAULT_BUILD_AMOUNT;
+        _depth  = DEFAULT_BUILD_DEPTH;
     }
     return self;
 }
@@ -39,12 +41,18 @@
 {
 
     NSDictionary* buildingDict = [[GameManager sharedInstance] getBuilding:buildingID];
+    NSDictionary* planetDict   = [[[GameManager sharedInstance] planetDict] objectForKey:@"planet"];
         
-    // Setup Stepper
-    _stepperAmount.maximumValue = 10;
+    // Setup Stepper Amount
+    _stepperAmount.maximumValue = [[planetDict objectForKey:@"build_max"] intValue];
     _stepperAmount.minimumValue = 1;
     _stepperAmount.value        = _amount;
     _stepperAmount.stepValue    = 1;
+    
+    _stepperDepth.maximumValue = [[planetDict objectForKey:@"build_queue"] intValue];
+    _stepperDepth.minimumValue = 1;
+    _stepperDepth.value        = _depth;
+    _stepperDepth.stepValue    = 1;
     
     // Modify Button
     UIImage *buttonImage = [[UIImage imageNamed:@"blueButton"]
@@ -87,8 +95,9 @@
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     
     // Build Time
-    double buildTime = [[_buildingDict objectForKey:@"time"] doubleValue];
+    double buildTime = _itemTime;
     buildTime*=_amount;
+    buildTime*=_depth;
     [_buildingTime setTimerText:[NSNumber numberWithDouble:buildTime]];
     
     int value = 0;
@@ -141,6 +150,7 @@
 
     // Rate Multiplier
     _buildingRateAmount.text = [NSString stringWithFormat:@"x%d",_amount];
+    _buildingRateDepth.text = [NSString stringWithFormat:@"x%d",_depth];
     
 }
 
@@ -151,11 +161,17 @@
     [self updateAmount];
 }
 
+- (IBAction) stepperValueDepthChanged:(id)sender
+{
+    _depth = _stepperDepth.value;
+    [self updateAmount];
+}
+
 -(IBAction) buttonPressed:(id)sender
 {
     [self lockUI];
     
-    [[GameManager sharedInstance] addBuilding:_building_id setAmount:_amount setPlanet:[[GameManager sharedInstance] planetID]  setBlock:^(NSDictionary *jsonDict){
+    [[GameManager sharedInstance] addBuilding:_building_id setAmount:_amount setDepth:_depth setPlanet:[[GameManager sharedInstance] planetID]  setBlock:^(NSDictionary *jsonDict){
         
         double time = [[[jsonDict objectForKey:@"build"] objectForKey:@"end_time"] doubleValue];
         // Format Time
@@ -169,7 +185,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"buildingRefresh" object:self];
         
         // Set Notification
-        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"1x%d %@ Build Complete",_amount,_buildingName.text]];
+        [[GameManager sharedInstance] createNotification:time setMessage:[NSString stringWithFormat:@"%dx%d %@ Build Complete",_depth,_amount,_buildingName.text]];
         
         // Dismiss
         [[GameManager sharedInstance] dismissPopup:nil];
@@ -184,12 +200,14 @@
 {
     [_button setUserInteractionEnabled:NO];
     [_stepperAmount setUserInteractionEnabled:NO];
+    [_stepperDepth setUserInteractionEnabled:NO];
 }
 
 -(void) unlockUI
 {
     [_button setUserInteractionEnabled:YES];
     [_stepperAmount setUserInteractionEnabled:YES];
+    [_stepperAmount setUserInteractionEnabled:NO];
 }
 
 

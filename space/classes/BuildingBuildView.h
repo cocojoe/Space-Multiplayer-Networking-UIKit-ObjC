@@ -27,15 +27,22 @@
 @property (nonatomic) IBOutlet UILabel* buildingRateWorkers;
 @property (nonatomic) IBOutlet UILabel* buildingRateFood;
 @property (nonatomic) IBOutlet UILabel* buildingRateMinerals;
+
 @property (nonatomic) IBOutlet UILabel* buildingRateAmount;
+@property (nonatomic) IBOutlet UILabel* buildingRateDepth;
 
 #pragma mark Internal Reference
 @property (nonatomic,readwrite) int amount;
+@property (nonatomic,readwrite) int depth;
 @property (nonatomic,readwrite) int building_id;
+@property (nonatomic,readwrite) int itemTime;
 
 #pragma mark Actions
 @property (nonatomic) IBOutlet UIStepper* stepperAmount;
 -(IBAction) stepperValueChanged:(id)sender;
+
+@property (nonatomic) IBOutlet UIStepper* stepperDepth;
+-(IBAction) stepperValueDepthChanged:(id)sender;
 
 @property (nonatomic) IBOutlet UIButton* button;
 -(IBAction) buttonPressed:(id)sender;

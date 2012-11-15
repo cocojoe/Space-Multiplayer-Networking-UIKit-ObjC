@@ -11,6 +11,7 @@
 @interface ResearchListItemView : UIView
 
 @property (nonatomic, readwrite) int itemID;
+@property (nonatomic, readwrite) int itemTime;
 
 @property (nonatomic) IBOutlet UILabel* name;
 
@@ -20,7 +21,7 @@
 @property (nonatomic) IBOutlet UILabel* costMinerals;
 
 #pragma mark Data Handling
--(void) refresh:(NSNumber*) itemID;
+-(void) refresh:(NSDictionary*) itemMasterDict;
 
 // Buttons
 @property (nonatomic) IBOutlet UIButton* button;

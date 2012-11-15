@@ -342,13 +342,14 @@
 }
 
 #pragma mark Buildings
--(void) addBuilding:(int)buildingID setAmount:(int)amount setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock
+-(void) addBuilding:(int)buildingID setAmount:(int)amount setDepth:(int)depth setPlanet:(int)planetID setBlock:(ResponseBlock) actionBlock setBlockFail:(BasicBlock) failBlock
 {
     // Create DATA Dictionary
     NSDictionary *postDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithInt:buildingID], @"building_id",
                               [NSNumber numberWithInt:planetID]  , @"planet_id",
                               [NSNumber numberWithInt:amount]    , @"amount",
+                              [NSNumber numberWithInt:depth]     , @"depth",
                               nil];
     
     [self addQueue:[NSBlockOperation blockOperationWithBlock:^{
@@ -593,7 +594,7 @@
 }
 
 #pragma mark Popup
--(void) createPopup:(int)eType setItem:(int)itemID
+-(void) createPopup:(int)eType setItem:(int)itemID setExtra:(int) time
 {
     // Current Window
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -639,6 +640,7 @@
     UIView *viewPopup = [[[NSBundle mainBundle] loadNibNamed:xib owner:self options:nil] objectAtIndex:0];
     [viewPopup setCenter:CGPointMake(masterView.frame.size.width*0.5f, masterView.frame.size.height*0.5f)];
     viewPopup.tag = TAG_POPUP;
+    [(BuildingBuildView*)viewPopup setItemTime:time];
     
     // Prepare For Animation Scale
     [viewPopup setTransform:CGAffineTransformMakeScale(0.01f, 0.01f)];

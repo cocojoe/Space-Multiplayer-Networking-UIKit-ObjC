@@ -67,12 +67,12 @@
     // Center in Parent View Horizontal, Border From Top
     CGPoint centerView = CGPointMake(self.bounds.size.width/2.0f, totalHeight);
     
-    for(NSNumber* itemID in itemList)
+    for(NSDictionary* itemDict in itemList)
     {
         // Create UIView
         ResearchListItemView *newItem = [[[NSBundle mainBundle] loadNibNamed:@"ResearchListItemView" owner:self options:nil] objectAtIndex:0];
         [self addSubview:newItem];
-        [newItem refresh:itemID];
+        [newItem refresh:itemDict];
         
         // Alignment
         if(totalHeight==0)
