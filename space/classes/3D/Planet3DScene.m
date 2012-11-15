@@ -41,7 +41,7 @@
 	// Create a light, place it back and to the left at a specific
 	// position (not just directional lighting), and add it to the scene
 	CC3Light* lamp = [CC3Light nodeWithName: @"Lamp"];
-	lamp.location = cc3v( -2.0, 0.0, 0.0 );
+	lamp.location = cc3v( -1.0, 1.0, 3.0 );
 	lamp.isDirectionalOnly = NO;
 	[cam addChild: lamp];
 
@@ -164,7 +164,9 @@
  *
  * For more info, read the notes of this method on CC3Scene.
  */
--(void) touchEvent: (uint) touchType at: (CGPoint) touchPoint {}
+-(void) touchEvent: (uint) touchType at: (CGPoint) touchPoint {
+    CCLOG(@"3D Scene Touched");
+}
 
 /**
  * This callback template method is invoked automatically when a node has been picked
@@ -175,7 +177,9 @@
  *
  * For more info, read the notes of this method on CC3Scene.
  */
--(void) nodeSelected: (CC3Node*) aNode byTouchEvent: (uint) touchType at: (CGPoint) touchPoint {}
+-(void) nodeSelected: (CC3Node*) aNode byTouchEvent: (uint) touchType at: (CGPoint) touchPoint {
+    CCLOG(@"Planet Touched");
+}
 
 @end
 

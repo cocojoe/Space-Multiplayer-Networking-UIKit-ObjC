@@ -231,6 +231,8 @@
 		5B7A10AA16257B390012E452 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7A10A916257B390012E452 /* QuartzCore.framework */; };
 		5B7A785A1624BF1600529AC3 /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A78581624BF1600529AC3 /* icon_menu.png */; };
 		5B7A785B1624BF1600529AC3 /* icon_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A78591624BF1600529AC3 /* icon_menu@2x.png */; };
+		5B7DCA9A165590FB007FF38D /* Planet3DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCA99165590FB007FF38D /* Planet3DLayer.m */; };
+		5B7DCAA816559542007FF38D /* CC3DRevealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B7DCAA716559542007FF38D /* CC3DRevealViewController.xib */; };
 		5B7E182316241ECC00E0315E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7E182216241ECC00E0315E /* UIKit.framework */; };
 		5B7E182516241ECC00E0315E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7E182416241ECC00E0315E /* Foundation.framework */; };
 		5B7E182716241ECC00E0315E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7E182616241ECC00E0315E /* CoreGraphics.framework */; };
@@ -862,6 +864,9 @@
 		5B7A10A916257B390012E452 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5B7A78581624BF1600529AC3 /* icon_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu.png; sourceTree = "<group>"; };
 		5B7A78591624BF1600529AC3 /* icon_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_menu@2x.png"; sourceTree = "<group>"; };
+		5B7DCA98165590FB007FF38D /* Planet3DLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet3DLayer.h; sourceTree = "<group>"; };
+		5B7DCA99165590FB007FF38D /* Planet3DLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet3DLayer.m; sourceTree = "<group>"; };
+		5B7DCAA716559542007FF38D /* CC3DRevealViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CC3DRevealViewController.xib; sourceTree = "<group>"; };
 		5B7E181E16241ECC00E0315E /* space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = space.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7E182216241ECC00E0315E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B7E182416241ECC00E0315E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1717,10 +1722,13 @@
 		5B2E72CC16552EC9001323F3 /* 3D */ = {
 			isa = PBXGroup;
 			children = (
+				5B7DCA98165590FB007FF38D /* Planet3DLayer.h */,
+				5B7DCA99165590FB007FF38D /* Planet3DLayer.m */,
 				5B2E72DF165540F7001323F3 /* Planet3DScene.m */,
 				5B2E72CD16552ECA001323F3 /* Planet3DScene.h */,
 				5B2E72DC16554079001323F3 /* CC3DRevealViewController.h */,
 				5B2E72DD16554079001323F3 /* CC3DRevealViewController.m */,
+				5B7DCAA716559542007FF38D /* CC3DRevealViewController.xib */,
 			);
 			name = 3D;
 			path = classes/3D;
@@ -2668,6 +2676,7 @@
 				5B2E72D816553D75001323F3 /* hello-world.pod in Resources */,
 				5B87D97B16554CDE00134415 /* earth.png in Resources */,
 				5B87D97C16554CDE00134415 /* earth.pod in Resources */,
+				5B7DCAA816559542007FF38D /* CC3DRevealViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2905,6 +2914,7 @@
 				5B2E72BA1655009D001323F3 /* ZFont.m in Sources */,
 				5B2E72DE1655407A001323F3 /* CC3DRevealViewController.m in Sources */,
 				5B2E72E0165540F7001323F3 /* Planet3DScene.m in Sources */,
+				5B7DCA9A165590FB007FF38D /* Planet3DLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

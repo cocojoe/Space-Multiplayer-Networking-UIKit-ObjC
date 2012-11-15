@@ -25,6 +25,10 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"3DTESTTitleKey", @"");
+    
     // ZUUIRevealConbtroller (Master)
     // Swipe/Pan Gesture
     UIPanGestureRecognizer *navigationBarPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.navigationController.parentViewController action:@selector(revealGesture:)];
@@ -34,9 +38,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_menu.png"] style:UIBarButtonItemStylePlain target:self.navigationController.parentViewController action:@selector(revealToggle:)];
     
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-    
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+}
+
+-(void) dealloc
+{
+    [[CCDirector sharedDirector] end];
 }
 
 - (void)didReceiveMemoryWarning

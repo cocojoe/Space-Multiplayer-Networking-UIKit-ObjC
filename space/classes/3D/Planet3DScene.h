@@ -9,8 +9,6 @@
 
 #import "CC3Scene.h"
 
-/** A sample application-specific CC3Scene subclass.*/
-@interface Planet3DScene : CC3Scene {
-}
+@interface Planet3DScene : CC3Scene 
 
 @end

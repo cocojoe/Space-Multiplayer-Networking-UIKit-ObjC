@@ -15,6 +15,7 @@
 
 #import "CC3DRevealViewController.h"
 #import "Planet3DScene.h"
+#import "Planet3DLayer.h"
 
 // Various Object Definition(s)
 #import "MenuObject.h"
@@ -93,7 +94,7 @@
     // 3D Controller TEST
     menuItem = [[MenuObject alloc] init];
     [menuItem setIconName:@"icon_planet.png"];
-    [menuItem setName:@"3D Planet (Test)"];
+    [menuItem setName:NSLocalizedString(@"3DTESTTitleKey", @"")];
     [_menuList addObject:menuItem];
 }
 
@@ -192,7 +193,8 @@
 		if ([masterController.frontViewController isKindOfClass:[UINavigationController class]] && ![((UINavigationController *)masterController.frontViewController).topViewController isKindOfClass:[CC3DRevealViewController class]])
 		{
 
-            CC3DRevealViewController *viewController = [CC3DRevealViewController controller];
+            //CC3DRevealViewController *viewController = [CC3DRevealViewController controller];
+            CC3DRevealViewController *viewController = [[CC3DRevealViewController alloc] initWithNibName:@"CC3DRevealViewController" bundle:nil];
             viewController.supportedInterfaceOrientations = UIInterfaceOrientationMaskPortrait;
             
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
@@ -203,7 +205,7 @@
             
             // 3D Setup
             // Create the customized CC3Layer that supports 3D rendering and schedule it for automatic updates.
-            CC3Layer* cc3Layer = [CC3Layer node];
+            Planet3DLayer* cc3Layer = [Planet3DLayer node];
             [cc3Layer scheduleUpdate];
             
             // Create the customized 3D scene and attach it to the layer.
@@ -215,6 +217,9 @@
 
             // Attach the layer to the controller and run a scene with it.
             [viewController runSceneOnNode: mainLayer];
+            
+            //UIImageView* image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_space.jpg"]];
+            //[viewController.view addSubview:image];
 			
 		}
 		// Seems the user attempts to 'switch' to exactly the same controller he came from!

@@ -37,10 +37,10 @@
     [CCDirector setDirectorType: kCCDirectorTypeDisplayLink];
     CCTexture2D.defaultAlphaPixelFormat = kCCTexture2DPixelFormat_RGBA8888;
     
-    CCDirector *director      = CCDirector.sharedDirector;
-    director.runLoopCommon    = YES;		// Improves display link integration with UIKit
+    CCDirector *director       = CCDirector.sharedDirector;
+    director.runLoopCommon     = YES;		// Improves display link integration with UIKit
     director.animationInterval = (1.0f / kAnimationFrameRate);
-    director.displayFPS = YES; // Crashes on Second Opening
+    director.displayFPS        = YES; // Crashes on Second Opening
 
     // Initalise Game Manager
     [GameManager sharedInstance];
