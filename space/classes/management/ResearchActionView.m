@@ -12,6 +12,8 @@
 
 @implementation ResearchActionView
 
+@synthesize description;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -43,7 +45,7 @@
     NSDictionary* researchDict = [[GameManager sharedInstance] getResearch:itemID];
     
     _name.text = [researchDict objectForKey:@"name"];
-    _description.text = [NSString stringWithFormat:@"\"%@\"",[researchDict objectForKey:@"description"]];
+    self.description.text = [NSString stringWithFormat:@"\"%@\"",[researchDict objectForKey:@"description"]];
  
     [_time setTimerText:[NSNumber numberWithInt:_itemTime]];
     

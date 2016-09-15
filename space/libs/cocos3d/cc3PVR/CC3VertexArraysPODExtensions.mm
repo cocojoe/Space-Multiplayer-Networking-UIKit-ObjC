@@ -78,7 +78,7 @@ extern "C" {
 -(void) setElementsFromCPODData: (CPODData*) aCPODData fromSPODMesh: (SPODMesh*) aSPODMesh {
 	if (aSPODMesh->pInterleaved) {					// vertex data is interleaved
 		self.vertices = aSPODMesh->pInterleaved;
-		self.elementOffset = (GLuint)aCPODData->pData;
+		//self.elementOffset = aCPODData->pData;
 	} else {										// not interleaved
 		self.vertices = aCPODData->pData;
 		allocatedVertexCapacity = vertexCount;	// CC3VertexArray instance will free data when needed.

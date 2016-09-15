@@ -23,6 +23,8 @@
 		5B07A741162ED4A9006B56A5 /* icon_cash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73D162ED4A9006B56A5 /* icon_cash@2x.png */; };
 		5B07A742162ED4A9006B56A5 /* icon_premium.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73E162ED4A9006B56A5 /* icon_premium.png */; };
 		5B07A743162ED4A9006B56A5 /* icon_premium@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B07A73F162ED4A9006B56A5 /* icon_premium@2x.png */; };
+		5B1033CA1D8AAA2A0035FE58 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B1033C91D8AAA2A0035FE58 /* TapkuLibrary.bundle */; };
+		5B1033D31D8AAA4E0035FE58 /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1033CE1D8AAA2B0035FE58 /* libTapkuLibrary.a */; };
 		5B19008A1641C7100092EE86 /* icon_research.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1900881641C7100092EE86 /* icon_research.png */; };
 		5B19008B1641C7100092EE86 /* icon_research@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1900891641C7100092EE86 /* icon_research@2x.png */; };
 		5B19008F1641C7E00092EE86 /* PlanetResearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19008D1641C7E00092EE86 /* PlanetResearchViewController.m */; };
@@ -211,7 +213,6 @@
 		5B369FFC1639515400FA8BC8 /* PlanetOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */; };
 		5B369FFD1639515400FA8BC8 /* PlanetOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */; };
 		5B3FE69916355D6800D9F2CC /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */; };
-		5B3FE6A216355D8A00D9F2CC /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */; };
 		5B3FE6A416355D9300D9F2CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3FE6A316355D9300D9F2CC /* MapKit.framework */; };
 		5B4104CC1639D230003E8CAD /* PlanetDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4104CB1639D230003E8CAD /* PlanetDetailView.m */; };
 		5B4104D01639D83A003E8CAD /* PlanetTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4104CF1639D83A003E8CAD /* PlanetTableCell.xib */; };
@@ -396,23 +397,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5B3FE69C16355D6900D9F2CC /* PBXContainerItemProxy */ = {
+		5B1033CD1D8AAA2B0035FE58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+			containerPortal = 5B1033C61D8AAA2A0035FE58 /* TapkuLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = TapkuLibrary;
 		};
-		5B3FE69E16355D6900D9F2CC /* PBXContainerItemProxy */ = {
+		5B1033CF1D8AAA2B0035FE58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+			containerPortal = 5B1033C61D8AAA2A0035FE58 /* TapkuLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3B45DDF1134C736600D24C1A;
 			remoteInfo = LogicTests;
 		};
-		5B3FE6A016355D7900D9F2CC /* PBXContainerItemProxy */ = {
+		5B1033D11D8AAA3B0035FE58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+			containerPortal = 5B1033C61D8AAA2A0035FE58 /* TapkuLibrary.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = TapkuLibrary;
@@ -437,6 +438,8 @@
 		5B07A73D162ED4A9006B56A5 /* icon_cash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cash@2x.png"; sourceTree = "<group>"; };
 		5B07A73E162ED4A9006B56A5 /* icon_premium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_premium.png; sourceTree = "<group>"; };
 		5B07A73F162ED4A9006B56A5 /* icon_premium@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_premium@2x.png"; sourceTree = "<group>"; };
+		5B1033C61D8AAA2A0035FE58 /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = space/libs/tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
+		5B1033C91D8AAA2A0035FE58 /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = space/libs/tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
 		5B1900881641C7100092EE86 /* icon_research.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_research.png; sourceTree = "<group>"; };
 		5B1900891641C7100092EE86 /* icon_research@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_research@2x.png"; sourceTree = "<group>"; };
 		5B19008C1641C7E00092EE86 /* PlanetResearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetResearchViewController.h; path = classes/PlanetResearchViewController.h; sourceTree = "<group>"; };
@@ -838,7 +841,6 @@
 		5B369FFA1639515400FA8BC8 /* PlanetOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetOverviewViewController.m; path = classes/PlanetOverviewViewController.m; sourceTree = "<group>"; };
 		5B369FFB1639515400FA8BC8 /* PlanetOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlanetOverviewViewController.xib; path = classes/PlanetOverviewViewController.xib; sourceTree = "<group>"; };
 		5B3FE69216355D6800D9F2CC /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = ../../tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
-		5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = ../tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
 		5B3FE6A316355D9300D9F2CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5B4104CA1639D230003E8CAD /* PlanetDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetDetailView.h; path = classes/PlanetDetailView.h; sourceTree = "<group>"; };
 		5B4104CB1639D230003E8CAD /* PlanetDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlanetDetailView.m; path = classes/PlanetDetailView.m; sourceTree = "<group>"; };
@@ -1082,10 +1084,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B1033D31D8AAA4E0035FE58 /* libTapkuLibrary.a in Frameworks */,
 				5B2E72C616550133001323F3 /* libz.1.2.5.dylib in Frameworks */,
 				5B2E72C416550105001323F3 /* OpenGLES.framework in Frameworks */,
 				5B3FE6A416355D9300D9F2CC /* MapKit.framework in Frameworks */,
-				5B3FE6A216355D8A00D9F2CC /* libTapkuLibrary.a in Frameworks */,
 				5BD3C423162808D300974C3C /* SystemConfiguration.framework in Frameworks */,
 				5B7A10AA16257B390012E452 /* QuartzCore.framework in Frameworks */,
 				5B7E187D1624360200E0315E /* AudioToolbox.framework in Frameworks */,
@@ -1140,6 +1142,15 @@
 			name = profile;
 			path = assets/profile;
 			sourceTree = SOURCE_ROOT;
+		};
+		5B1033C71D8AAA2A0035FE58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B1033CE1D8AAA2B0035FE58 /* libTapkuLibrary.a */,
+				5B1033D01D8AAA2B0035FE58 /* LogicTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 		5B2E6F061654F9C0001323F3 /* cocos2d */ = {
 			isa = PBXGroup;
@@ -1791,15 +1802,6 @@
 			name = "Default Icons";
 			sourceTree = "<group>";
 		};
-		5B3FE69416355D6800D9F2CC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */,
-				5B3FE69F16355D6900D9F2CC /* LogicTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5B4104CD1639D241003E8CAD /* Planet Detail View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1856,6 +1858,8 @@
 		5B7E181316241ECC00E0315E = {
 			isa = PBXGroup;
 			children = (
+				5B1033C61D8AAA2A0035FE58 /* TapkuLibrary.xcodeproj */,
+				5B1033C91D8AAA2A0035FE58 /* TapkuLibrary.bundle */,
 				5B7E182816241ECC00E0315E /* space */,
 				5B7E182116241ECC00E0315E /* Frameworks */,
 				5B7E181F16241ECC00E0315E /* Products */,
@@ -1875,7 +1879,6 @@
 			children = (
 				5B2E72C516550133001323F3 /* libz.1.2.5.dylib */,
 				5B2E72C316550105001323F3 /* OpenGLES.framework */,
-				5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */,
 				5B3FE6A316355D9300D9F2CC /* MapKit.framework */,
 				5BD3C422162808D300974C3C /* SystemConfiguration.framework */,
 				5B7A10A916257B390012E452 /* QuartzCore.framework */,
@@ -2470,7 +2473,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				5B3FE6A116355D7900D9F2CC /* PBXTargetDependency */,
+				5B1033D21D8AAA3B0035FE58 /* PBXTargetDependency */,
 			);
 			name = space;
 			productName = space;
@@ -2498,8 +2501,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5B3FE69416355D6800D9F2CC /* Products */;
-					ProjectRef = 5B3FE69316355D6800D9F2CC /* TapkuLibrary.xcodeproj */;
+					ProductGroup = 5B1033C71D8AAA2A0035FE58 /* Products */;
+					ProjectRef = 5B1033C61D8AAA2A0035FE58 /* TapkuLibrary.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2510,18 +2513,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		5B3FE69D16355D6900D9F2CC /* libTapkuLibrary.a */ = {
+		5B1033CE1D8AAA2B0035FE58 /* libTapkuLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libTapkuLibrary.a;
-			remoteRef = 5B3FE69C16355D6900D9F2CC /* PBXContainerItemProxy */;
+			remoteRef = 5B1033CD1D8AAA2B0035FE58 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5B3FE69F16355D6900D9F2CC /* LogicTests.octest */ = {
+		5B1033D01D8AAA2B0035FE58 /* LogicTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = LogicTests.octest;
-			remoteRef = 5B3FE69E16355D6900D9F2CC /* PBXContainerItemProxy */;
+			remoteRef = 5B1033CF1D8AAA2B0035FE58 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2561,6 +2564,7 @@
 				5BDD4A53162FFFF8009FA697 /* InventoryCell.xib in Resources */,
 				5BECBB0016303364004620B0 /* icon_trophy.png in Resources */,
 				5BECBB0116303364004620B0 /* icon_trophy@2x.png in Resources */,
+				5B1033CA1D8AAA2A0035FE58 /* TapkuLibrary.bundle in Resources */,
 				5B04D35F16354F1A0019FDDF /* Icon-72.png in Resources */,
 				5B04D36016354F1A0019FDDF /* Icon-72@2x.png in Resources */,
 				5B04D36116354F1A0019FDDF /* Icon-Small-50.png in Resources */,
@@ -2921,10 +2925,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5B3FE6A116355D7900D9F2CC /* PBXTargetDependency */ = {
+		5B1033D21D8AAA3B0035FE58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TapkuLibrary;
-			targetProxy = 5B3FE6A016355D7900D9F2CC /* PBXContainerItemProxy */;
+			targetProxy = 5B1033D11D8AAA3B0035FE58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3009,8 +3013,11 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "space/space-Prefix.pch";
-				HEADER_SEARCH_PATHS = /Users/martin/Documents/ios/tapkulibrary/src;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/space/libs/tapkulibrary/src/";
 				INFOPLIST_FILE = "space/space-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3021,8 +3028,11 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "space/space-Prefix.pch";
-				HEADER_SEARCH_PATHS = /Users/martin/Documents/ios/tapkulibrary/src;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/space/libs/tapkulibrary/src/";
 				INFOPLIST_FILE = "space/space-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
